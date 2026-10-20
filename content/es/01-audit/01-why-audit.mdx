@@ -1,14 +1,71 @@
 ---
 title: Por qué auditar
-description: Por qué un agente necesita saber qué piezas del sistema son válidas y cuáles no.
+meta_title: "Por qué auditar un sistema de diseño antes de conectarlo con IA"
+description: Un agente trata como válido todo lo que encuentra. Por qué conviene saber qué piezas del sistema son estables, cuáles están obsoletas y cuáles solo existen en Figma antes de documentar nada.
 nav_title: Por qué auditar
 lastReviewed: 2026-10-20
 ---
 
-Por qué un agente necesita saber qué piezas del sistema son válidas y cuáles no.
+Antes de documentar un sistema para un agente, hay que saber qué contiene de verdad. La auditoría responde a tres preguntas: qué piezas existen, en qué estado está cada una y dónde no coinciden Figma y el código.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 0: Auditoría» (`docs/guia-fuente.md`).
+- [El agente no distingue lo obsoleto](#el-agente-no-distingue-lo-obsoleto)
+- [Más contexto no es mejor contexto](#más-contexto-no-es-mejor-contexto)
+- [Qué mide la auditoría](#qué-mide-la-auditoría)
+- [Qué sale de la auditoría](#qué-sale-de-la-auditoría)
+- [En resumen](#en-resumen)
+
+## El agente no distingue lo obsoleto
+
+Cuando un agente busca un componente, no sabe cuál prefiere tu equipo. Si encuentra `Button` y `LegacyButton`, y nada dice que el segundo está obsoleto, los dos le parecen igual de válidos.
+
+Las herramientas ya dan forma a esta idea. Storybook recomienda excluir de su manifiesto para agentes las historias que muestran antipatrones y las páginas de componentes obsoletos ([Storybook: Best practices for using Storybook with AI](https://storybook.js.org/docs/ai/best-practices)). DTCG tiene una propiedad `$deprecated` para marcar un token como obsoleto ([Format Module: Deprecated](https://www.designtokens.org/TR/2025.10/format/#deprecated)). Las dos parten del mismo problema: lo obsoleto que no está marcado se usa.
+
+## Más contexto no es mejor contexto
+
+Un agente no lee el sistema entero cada vez. Trabaja con una ventana de contexto limitada, y Anthropic describe ese contexto como un recurso finito, con rendimientos decrecientes: cada dato que entra consume parte de la atención del modelo ([Anthropic: Effective context engineering for AI agents](https://anthropic.com/engineering/effective-context-engineering-for-ai-agents)). Storybook lo dice desde el lado de los componentes: poco contexto impide al agente usar bien los componentes, pero demasiado contexto irrelevante también empeora su rendimiento ([Storybook: Best practices for using Storybook with AI](https://storybook.js.org/docs/ai/best-practices)).
+
+La consecuencia práctica: documentar los cuarenta componentes con el mismo detalle no ayuda. Ayuda saber cuáles importan, documentar bien esos y marcar el resto.
+
+## Qué mide la auditoría
+
+| Pregunta | Qué anotas por componente |
+|---|---|
+| Qué existe | Nombre, nivel atómico y categoría funcional |
+| En qué estado está | Estable, beta u obsoleto, y su sustituto si es obsoleto |
+| Dónde existe | Solo en Figma, solo en código o en los dos |
+| Si coinciden | Diferencias de nombre, de propiedades o de valores |
+| Si se usa | Inserciones y separaciones, si tienes analíticas de librería |
+| Qué falta para el agente | Variables, descripción, Code Connect, documentación |
+
+Las dos páginas siguientes explican cómo recoger esos datos en [Figma](/audit/figma-inventory) y en el [código](/audit/code-inventory).
+
+## Qué sale de la auditoría
+
+Dos entregables:
+
+1. **`inventory.md`**, una tabla con una fila por componente. Este archivo no se tira: en el capítulo 6 se convierte en el índice que lee el agente para saber qué componentes puede usar.
+2. **Una puntuación de madurez**, que sirve como línea de base. La volverás a calcular al final para medir el avance ([Scorecard de madurez](/audit/maturity-scorecard)).
+
+<Callout variant="recommendation">
+
+Audita el código además de Figma, aunque tu trabajo sea de diseño. El agente que implementa genera código, y si un componente solo existe en Figma, el agente tendrá que inventarlo.
 
 </Callout>
+
+<Takeaways>
+
+## En resumen
+
+- Un agente usa lo que encuentra: lo obsoleto que no está marcado acaba en los diseños.
+- El contexto es limitado; documentar mejor lo importante rinde más que documentar todo igual.
+- La auditoría produce `inventory.md`, que después será el índice del agente.
+
+</Takeaways>
+
+## Fuentes
+
+- [Storybook: Best practices for using Storybook with AI](https://storybook.js.org/docs/ai/best-practices)
+- [Design Tokens Format Module 2025.10: Deprecated](https://www.designtokens.org/TR/2025.10/format/#deprecated)
+- [Anthropic: Effective context engineering for AI agents](https://anthropic.com/engineering/effective-context-engineering-for-ai-agents)

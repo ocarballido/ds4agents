@@ -1,14 +1,77 @@
 ---
 title: Scorecard de madurez
-description: Una rúbrica para medir el punto de partida del sistema antes de integrarlo con IA.
+meta_title: "Scorecard de madurez de un sistema de diseño para agentes de IA"
+description: Una rúbrica de ocho criterios para medir el punto de partida de un sistema de diseño antes de conectarlo con agentes de IA, y cómo leer el resultado.
 nav_title: Scorecard de madurez
 lastReviewed: 2026-10-20
 ---
 
-Una rúbrica para medir el punto de partida del sistema antes de integrarlo con IA.
+La scorecard resume la auditoría en una cifra que puedes comparar. La calculas ahora como línea de base y la repites al terminar el piloto para ver qué ha cambiado.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 0: Auditoría» (`docs/guia-fuente.md`).
+- [Una rúbrica propia](#una-rúbrica-propia)
+- [Los ocho criterios](#los-ocho-criterios)
+- [Cómo puntuar](#cómo-puntuar)
+- [Cómo leer el resultado](#cómo-leer-el-resultado)
+- [En resumen](#en-resumen)
+
+## Una rúbrica propia
+
+<Callout variant="recommendation">
+
+Esta rúbrica es nuestra, no un estándar publicado. La hemos construido a partir de las prácticas que Figma, Storybook y Anthropic documentan para que un agente use bien un sistema de diseño. Cada criterio enlaza al capítulo que lo trabaja. Adáptala a tu equipo, pero mantén los mismos criterios entre una medición y la siguiente.
 
 </Callout>
+
+## Los ocho criterios
+
+| Criterio | Qué mide | Capítulo |
+|---|---|---|
+| Cobertura | Porcentaje de componentes de Figma que existen también en código | [1](/audit/code-inventory) |
+| Variables | Porcentaje de propiedades visuales de los componentes enlazadas a variables | [2](/figma/naming) |
+| Nombres | Componentes, propiedades y capas con nombres por función y alineados con el código | [2](/figma/naming) |
+| Contexto en Figma | Componentes con descripción, anotaciones y dev resources; guidelines en la librería | [2](/figma/descriptions) |
+| Tokens | Tokens exportados en formato DTCG, con descripción en los semánticos | [3](/tokens/tokens-for-agents) |
+| Documentación | Componentes y patrones con reglas de uso escritas en Markdown | [4](/documentation/why-markdown) |
+| Vínculo con el código | Componentes conectados con Code Connect | [5](/design-to-code/code-connect) |
+| Gobernanza | Responsable, proceso de contribución y changelog | [7](/evaluation/contributing) |
+
+## Cómo puntuar
+
+Puntúa cada criterio de 0 a 3:
+
+| Puntos | Significado |
+|---|---|
+| 0 | No existe |
+| 1 | Existe en algunos componentes, sin criterio común |
+| 2 | Existe en la mayoría de los componentes estables |
+| 3 | Existe en todos los componentes estables y alguien lo mantiene |
+
+Para los criterios con porcentaje, una equivalencia orientativa: menos del 25 % es 0; hasta el 60 %, 1; hasta el 90 %, 2; más, 3.
+
+## Cómo leer el resultado
+
+La media de los ocho criterios da una cifra de 0 a 3. Más útil que la media es el perfil: qué criterios están bajos.
+
+<Callout variant="recommendation">
+
+Si la media es inferior a 1,5, no empieces por las herramientas de IA. Los capítulos 2 a 4 (Figma, tokens y documentación) te darán más retorno que conectar un servidor MCP a una librería sin variables ni nombres claros: el servidor transmite lo que hay en el archivo, y Figma advierte que la calidad del resultado depende de ese contexto ([Figma: Structure your Figma file for better code](https://developers.figma.com/docs/figma-mcp-server/structure-figma-file/)).
+
+</Callout>
+
+Guarda la scorecard al final de `inventory.md`, con la fecha. En la [práctica](/audit/practice-inventory) tienes la plantilla.
+
+<Takeaways>
+
+## En resumen
+
+- La scorecard tiene ocho criterios de 0 a 3, cada uno ligado a un capítulo.
+- Es una rúbrica propia: mantén los mismos criterios entre mediciones.
+- Con una media baja, prepara Figma, tokens y documentación antes de conectar herramientas.
+
+</Takeaways>
+
+## Fuentes
+
+- [Figma: Structure your Figma file for better code](https://developers.figma.com/docs/figma-mcp-server/structure-figma-file/)

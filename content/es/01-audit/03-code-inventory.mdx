@@ -1,14 +1,74 @@
 ---
 title: Inventario de código
-description: Cómo listar los componentes de código y cruzarlos con los de Figma.
+meta_title: "Cruzar los componentes de Figma con los del código"
+description: Cómo listar los componentes de la librería de código, cruzarlos con el inventario de Figma y anotar cada diferencia de nombre, de propiedades o de existencia.
 nav_title: Inventario de código
 lastReviewed: 2026-10-20
 ---
 
-Cómo listar los componentes de código y cruzarlos con los de Figma.
+El agente que implementa un diseño escribe código, así que lo que existe en el código es lo que puede usar sin inventar. En esta página cruzas el inventario de Figma con la librería de componentes y anotas cada diferencia.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 0: Auditoría» (`docs/guia-fuente.md`).
+- [De dónde sale la lista](#de-dónde-sale-la-lista)
+- [El cruce](#el-cruce)
+- [Los cuatro tipos de diferencia](#los-cuatro-tipos-de-diferencia)
+- [Qué hacer con cada diferencia](#qué-hacer-con-cada-diferencia)
+- [En resumen](#en-resumen)
+
+## De dónde sale la lista
+
+Tres fuentes posibles, de más a menos fiable:
+
+1. **Storybook, si lo usas con React.** El manifiesto de componentes que genera Storybook describe los componentes disponibles y sus propiedades, extraídas por análisis estático de las historias y del código ([Storybook: Manifests](https://storybook.js.org/docs/11/ai/manifests.md)).
+2. **Code Connect, si ya está en marcha.** En Dev Mode, **Library → Connect components to code** lista los componentes publicados de la librería y muestra cuáles están conectados ([Figma: Code Connect UI setup](https://developers.figma.com/docs/code-connect/code-connect-ui-setup/)).
+3. **La carpeta de componentes del repositorio.** Una carpeta por componente suele bastar para listar nombres y abrir cada archivo para ver sus props.
+
+Si no escribes código, pide a alguien de desarrollo esta lista con las props de cada componente. Un agente con acceso al repositorio también puede generarla.
+
+## El cruce
+
+Añade al inventario dos columnas: **Código** (si existe y con qué nombre) y **Diferencias**. Este es un ejemplo con cuatro casos típicos:
+
+| Componente | Figma | Código | Diferencias |
+|---|---|---|---|
+| Button | `Button`, `variant: primary, secondary, ghost` | `Button`, `variant: 'primary' \| 'secondary' \| 'ghost'` | Ninguna |
+| TextField | `Text field`, `State: Default, Error` | `TextField`, `invalid: boolean` | Nombre y propiedad del error |
+| Tag | `Tag` | No existe | Solo en Figma |
+| Toast | No existe | `Toast` | Solo en código |
+
+## Los cuatro tipos de diferencia
+
+- **De nombre.** `Text field` en Figma y `TextField` en código. Un agente puede emparejarlos o no; no lo dejes a su criterio.
+- **De propiedades.** Figma expresa el error como un valor de variante (`State=Error`) y el código como un booleano (`invalid`). Code Connect puede traducir uno a otro, pero cada traducción es una regla más que mantener ([Figma: Code Connect](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)).
+- **Solo en Figma.** El agente que implementa ese diseño tendrá que inventar el componente.
+- **Solo en código.** El agente de diseño no lo usará, porque no lo ve en la librería.
+
+## Qué hacer con cada diferencia
+
+<Callout variant="recommendation">
+
+No arregles las diferencias durante la auditoría: anótalas. Después, decide una de estas salidas para cada una y escríbela en la columna Diferencias:
+
+- **Alinear el nombre** en Figma o en código (en el [capítulo 2](/figma/naming) proponemos una convención).
+- **Implementar** el componente que solo existe en Figma, o **quitarlo** de la librería si no se va a implementar.
+- **Diseñar** en Figma el componente que solo existe en código, si los diseñadores lo necesitan.
+- **Aceptar** la diferencia y documentarla en Code Connect, si alinearla cuesta más de lo que aporta.
 
 </Callout>
+
+<Takeaways>
+
+## En resumen
+
+- La lista de código sale de Storybook, de Code Connect o de la carpeta de componentes.
+- Las diferencias son de nombre, de propiedades o de existencia.
+- Durante la auditoría, las diferencias se anotan; se resuelven en los capítulos siguientes.
+
+</Takeaways>
+
+## Fuentes
+
+- [Storybook: Manifests](https://storybook.js.org/docs/11/ai/manifests.md)
+- [Figma: Code Connect UI setup](https://developers.figma.com/docs/code-connect/code-connect-ui-setup/)
+- [Figma: Code Connect](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)

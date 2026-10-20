@@ -1,14 +1,92 @@
 ---
 title: Inventario de Figma
-description: Cómo recorrer la librería y anotar cada componente con su nivel, categoría y estado.
+meta_title: "Inventario de componentes de una librería de Figma"
+description: Cómo recorrer una librería de Figma y anotar cada componente con su nivel atómico, su categoría, su estado y lo que le falta para que un agente lo entienda.
 nav_title: Inventario de Figma
 lastReviewed: 2026-10-20
 ---
 
-Cómo recorrer la librería y anotar cada componente con su nivel, categoría y estado.
+El inventario de Figma es una tabla con una fila por componente principal de la librería. Esta página explica qué columnas tiene, cómo clasificar cada componente y de dónde sacar los datos de uso.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 0: Auditoría» (`docs/guia-fuente.md`).
+- [Qué se inventaría](#qué-se-inventaría)
+- [Nivel atómico y categoría funcional](#nivel-atómico-y-categoría-funcional)
+- [El estado de cada componente](#el-estado-de-cada-componente)
+- [Los datos de uso](#los-datos-de-uso)
+- [En Figma](#en-figma)
+- [En resumen](#en-resumen)
+
+## Qué se inventaría
+
+Se inventaría cada **componente principal** o **conjunto de componentes** (*component set*) publicado en la librería, no cada variante. Un botón con doce variantes es una fila.
+
+Por cada uno, anota:
+
+| Columna | Qué anotas |
+|---|---|
+| Componente | El nombre tal como aparece en la librería |
+| Nivel | Átomo, molécula, organismo o plantilla |
+| Categoría | La función del componente (acciones, formularios, navegación…) |
+| Estado | Estable, beta u obsoleto |
+| Propiedades | Las propiedades de componente y sus valores, por ejemplo `variant: primary, secondary` |
+| Variables | Si todas sus propiedades visuales usan variables o hay valores sueltos |
+| Descripción | Si tiene descripción y enlace a documentación |
+
+## Nivel atómico y categoría funcional
+
+Atomic Design ordena una interfaz en cinco niveles: átomos, moléculas, organismos, plantillas y páginas ([Brad Frost: Atomic Design, capítulo 2](https://atomicdesign.bradfrost.com/chapter-2/)). Es la organización más extendida en las librerías de Figma, y sirve para saber cuánto documentar cada pieza: un organismo necesita más reglas de composición que un átomo.
+
+Un agente, en cambio, no busca por nivel. Busca por intención: "necesito mostrar un error", "necesito pedir una fecha".
+
+<Callout variant="recommendation">
+
+Anota también una **categoría funcional** para cada componente. Proponemos estas, que puedes adaptar: `actions`, `forms`, `navigation`, `feedback`, `data-display`, `layout`, `overlays`. El nivel atómico ordena la librería; la categoría ayuda al agente a encontrar el componente que resuelve un problema.
 
 </Callout>
+
+## El estado de cada componente
+
+| Estado | Cuándo | Qué hace el agente |
+|---|---|---|
+| `stable` | Existe en Figma y en código, coinciden y se usa en producción | Lo usa |
+| `beta` | Existe, pero le falta algo: documentación, código o validación | Lo usa solo si se le pide |
+| `deprecated` | Tiene un sustituto | No lo usa; usa el sustituto |
+| `figma-only` | Solo existe en Figma | No puede implementarlo sin inventarlo |
+| `code-only` | Solo existe en código | Puede usarlo en código, pero no aparece en los diseños |
+
+Un componente `deprecated` lleva siempre el nombre de su sustituto. Sin sustituto, el agente sabe qué no usar, pero no qué usar.
+
+## Los datos de uso
+
+Si tu plan es Organization o Enterprise, las **analíticas de librería** muestran, para cada componente, las instancias, los equipos y archivos que lo usan, y las inserciones y separaciones (*detaches*) de los últimos 30 días ([Figma: View and explore library analytics](https://help.figma.com/hc/en-us/articles/360039238353-Track-library-and-component-usage)).
+
+Dos lecturas útiles:
+
+- **Muchas inserciones:** son los componentes que más aparecerán en lo que genere un agente. Documéntalos primero.
+- **Muchas separaciones:** el componente no cubre algún caso real, y el equipo lo separa para modificarlo. Un agente no sabrá cuál es ese caso si no lo escribes.
+
+En otros planes, el uso se estima a mano: qué componentes aparecen en los archivos de producto más recientes.
+
+## En Figma
+
+Para recorrer la librería, abre el panel **Assets** del archivo de la librería: muestra los componentes con su nombre y su descripción, en lista o en cuadrícula ([Figma: Add descriptions to styles, components, and variables](https://help.figma.com/hc/en-us/articles/7938814091287)). Las analíticas se abren desde el menú del nombre del archivo, en **Library analytics**, con todas las capas deseleccionadas ([Figma: View and explore library analytics](https://help.figma.com/hc/en-us/articles/360039238353-Track-library-and-component-usage)).
+
+En una librería grande, un agente conectado al servidor MCP de Figma puede hacer el primer recorrido: la herramienta `use_figma` crea, edita e inspecciona contenido en archivos de Figma, y `search_design_system` busca componentes, variables y estilos en las librerías conectadas ([Figma: Tools and prompts](https://developers.figma.com/docs/figma-mcp-server/tools-and-prompts/)). Pídele solo lectura y revisa la tabla que devuelve: el nivel, la categoría y el estado son decisiones tuyas.
+
+<Takeaways>
+
+## En resumen
+
+- Se inventaría cada componente principal o conjunto, no cada variante.
+- El nivel atómico ordena la librería; la categoría funcional ayuda al agente a encontrar el componente.
+- Un componente obsoleto lleva siempre el nombre de su sustituto.
+
+</Takeaways>
+
+## Fuentes
+
+- [Brad Frost: Atomic Design, capítulo 2](https://atomicdesign.bradfrost.com/chapter-2/)
+- [Figma: View and explore library analytics](https://help.figma.com/hc/en-us/articles/360039238353-Track-library-and-component-usage)
+- [Figma: Add descriptions to styles, components, and variables](https://help.figma.com/hc/en-us/articles/7938814091287)
+- [Figma: Tools and prompts](https://developers.figma.com/docs/figma-mcp-server/tools-and-prompts/)

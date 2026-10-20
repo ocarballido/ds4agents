@@ -1,14 +1,70 @@
 ---
 title: Qué es ds4agents
-description: Qué es esta guía, de dónde sale y para quién la hemos escrito.
+meta_title: "ds4agents: sistemas de diseño legibles por agentes de IA"
+description: Qué es esta guía, de dónde sale y para quién la hemos escrito. Una investigación abierta sobre cómo preparar un sistema de diseño de Figma para que un agente de IA lo use bien.
 nav_title: Qué es ds4agents
 lastReviewed: 2026-10-20
 ---
 
-Qué es esta guía, de dónde sale y para quién la hemos escrito.
+ds4agents (*design systems for agents*) es una guía abierta sobre cómo documentar un sistema de diseño de Figma y conectarlo con agentes de IA. Reúne lo que hemos investigado y probado, con cada afirmación técnica enlazada a su fuente oficial.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Cómo usar esta guía» (`docs/guia-fuente.md`).
+- [De dónde sale esta guía](#de-dónde-sale-esta-guía)
+- [Para quién es](#para-quién-es)
+- [Lo que no es](#lo-que-no-es)
+- [Cómo la escribimos](#cómo-la-escribimos)
+- [Una guía que caduca](#una-guía-que-caduca)
+- [En resumen](#en-resumen)
 
-</Callout>
+## De dónde sale esta guía
+
+Los agentes de IA ya generan pantallas, componentes y código. Cuando trabajan con un sistema de diseño, la calidad de lo que producen depende del contexto que reciben. Figma lo dice en su documentación del servidor MCP: la calidad de lo que construye el agente depende de ese contexto y de cómo se lo pides ([Figma: Structure your Figma file for better code](https://developers.figma.com/docs/figma-mcp-server/structure-figma-file/)). Anthropic hace la misma advertencia sobre Claude Design: sin un sistema de diseño publicado, el resultado es funcional pero genérico ([Claude Help: Claude Design admin guide](https://support.claude.com/en/articles/14604406-claude-design-admin-guide)).
+
+Nos hicimos una pregunta práctica: **qué hay que preparar, escribir y conectar para que un agente use un sistema de diseño como lo usaría alguien del equipo**. Esta guía es la respuesta que hemos encontrado, ordenada en siete fases.
+
+## Para quién es
+
+- **Diseñadores de UI y equipos de sistemas de diseño** que trabajan en Figma y quieren que los agentes de IA respeten sus componentes, tokens y reglas.
+- **Perfiles híbridos de diseño y front-end**, que mantienen la librería de Figma y la de código.
+- **Desarrolladores** que reciben diseños y usan agentes para implementarlos.
+
+Los capítulos 1 a 4 se siguen en Figma y con documentos Markdown. Los capítulos 5 a 7 trabajan también con un repositorio de código: el texto explica qué hace cada pieza, pero ponerlas en marcha pide algo de soltura técnica.
+
+## Lo que no es
+
+- **No es un curso de Figma ni de tokens.** Damos por hecho que sabes crear componentes y variables. Para los tokens de diseño, de Figma al código, remitimos a [DesignToken101](https://designtokens101.com), que comparte con esta web el sistema de diseño.
+- **No es una comparativa de herramientas de IA.** Usamos Figma, Claude y Storybook porque documentan de forma pública cómo exponen un sistema de diseño a un agente. Casi todo lo que proponemos (Markdown, tokens en formato DTCG, servidores MCP) es un estándar abierto que funciona con otros agentes.
+- **No es una norma.** Separamos siempre lo que dice una fuente oficial de lo que recomendamos nosotros, que aparece en un bloque de recomendación.
+
+## Cómo la escribimos
+
+- **Cada afirmación sobre una herramienta enlaza a su documentación oficial.** Si no la hemos podido comprobar, no la publicamos.
+- **Las recomendaciones propias van marcadas.** Una rúbrica, una plantilla o un orden de trabajo son nuestro criterio, no un estándar.
+- **Esta web se hizo con ayuda de Claude (Anthropic) y con la revisión de una persona.** Usa el mismo sistema de diseño, los mismos componentes y el mismo stack que DesignToken101.
+
+Si encuentras un error, avísanos en los [issues del repositorio en GitHub](https://github.com/ocarballido/ds4agents/issues).
+
+## Una guía que caduca
+
+Las herramientas de esta guía cambian cada pocas semanas. Algunas de las que citamos están en beta o en *preview* en octubre de 2026: las guidelines de librería de Figma ([Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)), los sistemas de diseño en Claude ([Claude Help: Set up your design system in Claude Design](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)) y las capacidades de IA de Storybook ([Storybook: MCP server](https://storybook.js.org/docs/ai/mcp/overview)).
+
+Por eso cada página indica su fecha de última revisión, debajo del título. Si la fecha es antigua, comprueba la fuente antes de aplicar un detalle concreto: el método de la guía cambia poco, los nombres de los menús cambian mucho.
+
+<Takeaways>
+
+## En resumen
+
+- ds4agents reúne nuestra investigación sobre cómo preparar un sistema de diseño de Figma para agentes de IA.
+- Cada afirmación técnica enlaza a su fuente oficial, y nuestras recomendaciones van marcadas como tales.
+- Las herramientas cambian rápido: cada página lleva su fecha de revisión.
+
+</Takeaways>
+
+## Fuentes
+
+- [Figma: Structure your Figma file for better code](https://developers.figma.com/docs/figma-mcp-server/structure-figma-file/)
+- [Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)
+- [Claude Help: Claude Design admin guide](https://support.claude.com/en/articles/14604406-claude-design-admin-guide)
+- [Claude Help: Set up your design system in Claude Design](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)
+- [Storybook: MCP server](https://storybook.js.org/docs/ai/mcp/overview)

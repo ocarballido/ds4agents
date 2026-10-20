@@ -12,7 +12,7 @@ Cuando miras un componente en Figma, ves su intención: sabes que el botón verd
 
 - [Lo que tú ves y lo que recibe el agente](#lo-que-tú-ves-y-lo-que-recibe-el-agente)
 - [Lo que le llega de Figma](#lo-que-le-llega-de-figma)
-- [Lo que no le llega nunca](#lo-que-no-le-llega-nunca)
+- [Lo que no se ve en el dibujo](#lo-que-no-se-ve-en-el-dibujo)
 - [Del archivo de Figma a un contrato](#del-archivo-de-figma-a-un-contrato)
 - [En Figma](#en-figma)
 - [En resumen](#en-resumen)
@@ -47,15 +47,24 @@ Figma documenta las prácticas que mejoran el contexto que recibe el agente ([Fi
 
 De todas, Figma señala Code Connect como la forma más eficaz de que el agente reutilice tus componentes reales: sin ese vínculo, tiene que adivinar qué componente de código corresponde a cada componente de Figma ([Figma: Structure your Figma file for better code](https://developers.figma.com/docs/figma-mcp-server/structure-figma-file/)).
 
-## Lo que no le llega nunca
+## Lo que no se ve en el dibujo
 
-Ninguna de esas prácticas transmite tus **reglas de uso**: cuándo se usa un componente, cuándo no, qué combinaciones están prohibidas. Esas decisiones viven en la cabeza del equipo, en una reunión o en un comentario antiguo.
+Esas prácticas describen **qué es** cada pieza. No dicen **cuándo se usa**: cuándo un componente es el adecuado, cuándo no, qué combinaciones están prohibidas. Esas decisiones suelen vivir en la cabeza del equipo, en una reunión o en un comentario antiguo.
 
 Un agente trata como válido todo lo que encuentra. Si tienes dos botones casi iguales, uno de ellos obsoleto, y nada lo indica, puede elegir cualquiera de los dos. Storybook lo resume en las instrucciones que propone para los agentes: antes de usar una propiedad de un componente, el agente tiene que comprobar que está documentada, en lugar de suponer que existe ([Storybook: MCP server](https://storybook.js.org/docs/ai/mcp/overview)).
 
+Las herramientas ya ofrecen sitios donde escribir esas reglas, y cada uno llega a un agente distinto:
+
+| Dónde se escribe la regla | Quién la recibe | Fuente |
+|---|---|---|
+| Guidelines de la librería (archivos Markdown, en beta) | El agente de Figma, cuando diseña con esa librería | [Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511) |
+| Instrucciones para el MCP en Code Connect | Cualquier agente que lea el diseño con el servidor MCP de Figma | [Figma: Code Connect integration](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/) |
+| `CLAUDE.md`, `AGENTS.md` y skills en el repositorio | Claude Code y los agentes de código que leen esos archivos | [Claude Code: Memory](https://code.claude.com/docs/en/memory) |
+| El sistema de diseño publicado en Claude | Claude Design y los chats de Claude que lo usan | [Claude Help: Set up your design system](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design) |
+
 <Callout variant="recommendation">
 
-Nuestra conclusión: una regla que no está escrita no existe para el agente. Por eso esta guía dedica un capítulo entero a documentar en Markdown las reglas que hoy solo conoce tu equipo, con frases que se pueden comprobar: *nunca*, *máximo*, *solo si*.
+Nuestra conclusión: una regla que no está escrita no existe para el agente. Y como cada herramienta lee un sitio distinto, conviene escribir las reglas **una vez**, en Markdown, y publicarlas en cada destino. El [capítulo Documentar](/documentation/why-markdown) explica cómo escribirlas y la página [Una fuente, varios destinos](/documentation/one-source-many-channels), cómo repartirlas.
 
 </Callout>
 
@@ -93,7 +102,7 @@ Cómo conectar el servidor MCP lo explicamos en el capítulo [Capa de agente](/a
 
 - Un agente recibe datos estructurados de Figma, no la intención con la que diseñaste.
 - Componentes, variables, nombres, auto layout, anotaciones y Code Connect convierten esa intención en datos.
-- Las reglas de uso no llegan por ninguna de esas vías: hay que escribirlas.
+- Las reglas de uso no se ven en el dibujo: hay que escribirlas, una vez, y publicarlas donde las lee cada agente.
 
 </Takeaways>
 
@@ -104,3 +113,7 @@ Cómo conectar el servidor MCP lo explicamos en el capítulo [Capa de agente](/a
 - [Figma: Code Connect](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)
 - [Figma: Overview of variables, collections, and modes](https://help.figma.com/hc/en-us/articles/14506821864087)
 - [Storybook: MCP server](https://storybook.js.org/docs/ai/mcp/overview)
+- [Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)
+- [Figma: Code Connect integration](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/)
+- [Claude Code: How Claude remembers your project](https://code.claude.com/docs/en/memory)
+- [Claude Help: Set up your design system in Claude Design](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)

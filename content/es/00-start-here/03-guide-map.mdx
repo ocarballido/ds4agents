@@ -1,14 +1,83 @@
 ---
-title: "Qué contiene la guía"
-description: Las siete fases de la guía y el entregable de cada una.
-nav_title: "Qué contiene la guía"
+title: Qué contiene la guía
+meta_title: "Las siete fases para preparar un sistema de diseño para agentes de IA"
+description: Las siete fases de la guía, la pregunta que responde cada una y el entregable con el que termina.
+nav_title: Qué contiene la guía
 lastReviewed: 2026-10-20
 ---
 
-Las siete fases de la guía y el entregable de cada una.
+La guía recorre siete fases en orden. Cada una termina con un entregable concreto, y la siguiente lo necesita para empezar. Puedes leerla entera la primera vez y volver después a la fase que te haga falta.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Cómo usar esta guía» (`docs/guia-fuente.md`).
+- [Las siete fases](#las-siete-fases)
+- [Qué entregable sale de cada fase](#qué-entregable-sale-de-cada-fase)
+- [Por dónde empezar](#por-dónde-empezar)
+- [Cómo se organiza cada página](#cómo-se-organiza-cada-página)
+- [En resumen](#en-resumen)
+
+## Las siete fases
+
+<Flow caption="Las siete fases de ds4agents, agrupadas como en el menú lateral.">
+  <FlowGroup title="Preparar el sistema" meta="Figma y documentos Markdown">
+    <FlowStep title="Auditoría" meta="Capítulo 1" href="/audit/why-audit" />
+    <FlowStep title="Preparar Figma" meta="Capítulo 2" href="/figma/library-structure" />
+    <FlowStep title="Tokens" meta="Capítulo 3" href="/tokens/tokens-for-agents" />
+    <FlowStep title="Documentar" meta="Capítulo 4" href="/documentation/why-markdown" />
+  </FlowGroup>
+  <FlowGroup title="Conectar con la IA" meta="Repositorio de código">
+    <FlowStep title="Diseño y código" meta="Capítulo 5" href="/design-to-code/code-connect" />
+    <FlowStep title="Capa de agente" meta="Capítulo 6" href="/agent-layer/progressive-disclosure" />
+    <FlowStep title="Evaluar y mantener" meta="Capítulo 7" href="/evaluation/why-evaluate" />
+  </FlowGroup>
+</Flow>
+
+## Qué entregable sale de cada fase
+
+| Capítulo | Pregunta que responde | Entregable |
+|---|---|---|
+| 1. Auditoría | Qué tiene el sistema y en qué estado está cada pieza | `inventory.md` y una puntuación de madurez |
+| 2. Preparar Figma | Si el archivo se puede leer como datos, no solo como dibujo | Librería con nombres, variables, descripciones, anotaciones y guidelines |
+| 3. Tokens | Cuáles son las decisiones visuales y para qué sirve cada una | Tokens en formato DTCG con descripción en los semánticos |
+| 4. Documentar | Cómo y cuándo se usa cada pieza | Carpeta `docs/` en Markdown: fundamentos, componentes y patrones |
+| 5. Diseño y código | Qué componente de código corresponde a cada componente de Figma | Code Connect con instrucciones para el MCP, y Storybook si usas React |
+| 6. Capa de agente | Cómo encuentra un agente todo lo anterior | `CLAUDE.md` o `AGENTS.md`, skills, servidores MCP y el sistema publicado en Claude |
+| 7. Evaluar y mantener | Si funciona y cómo se mantiene | Evaluaciones, proceso de contribución y changelog |
+
+Todas las plantillas de los entregables están reunidas en [Plantillas](/templates/templates).
+
+## Por dónde empezar
+
+<Callout variant="recommendation">
+
+No documentes todo el sistema de una vez. Elige un piloto de cinco componentes y dos patrones de pantalla, recorre con ellos las siete fases y mide el resultado. Con lo que aprendas, extiende el trabajo al resto del sistema.
 
 </Callout>
+
+Si tu sistema no tiene librería de código, los capítulos 1 a 4 siguen sirviendo: el agente de Figma y Claude Design también aprovechan una librería bien nombrada, con variables y guidelines. Los capítulos 5 y 6 dan su mejor resultado cuando existe un repositorio con los componentes.
+
+## Cómo se organiza cada página
+
+Cada página sigue la misma estructura, heredada de DesignToken101:
+
+1. Una introducción breve y la lista "En esta página".
+2. El contenido, con cada afirmación enlazada a su fuente.
+3. Un bloque de **Recomendación** cuando lo que sigue es criterio nuestro y no de una fuente oficial.
+4. "En resumen", con tres ideas clave.
+5. Las fuentes de la página.
+
+Cada capítulo termina con una **práctica**: un ejercicio corto que aplica la fase a tu propio sistema y deja preparado el material de la siguiente.
+
+<Takeaways>
+
+## En resumen
+
+- La guía tiene siete fases: cuatro para preparar el sistema y tres para conectarlo con agentes.
+- Cada fase termina con un entregable que necesita la siguiente.
+- Empieza con un piloto pequeño y amplía cuando hayas medido el resultado.
+
+</Takeaways>
+
+## Fuentes
+
+Esta página describe la estructura de la guía. Las fuentes de cada fase están en sus capítulos.

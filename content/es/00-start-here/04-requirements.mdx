@@ -1,14 +1,93 @@
 ---
 title: Requisitos
-description: "Qué necesitas antes de empezar: archivos, planes de Figma y herramientas."
+meta_title: "Requisitos de Figma, Claude y Storybook para conectar un sistema de diseño con IA"
+description: Qué plan, asiento o herramienta pide cada función que usa la guía, según la documentación oficial de Figma, Claude y Storybook en octubre de 2026.
 nav_title: Requisitos
 lastReviewed: 2026-10-20
 ---
 
-Qué necesitas antes de empezar: archivos, planes de Figma y herramientas.
+Muchas de las funciones de esta guía dependen del plan de Figma, del tipo de asiento o de la cuenta de Claude. Revisa esta página antes de empezar para saber qué puedes aplicar con lo que tienes.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Cómo usar esta guía» (`docs/guia-fuente.md`).
+- [Figma](#figma)
+- [Claude](#claude)
+- [Código](#código)
+- [Conocimientos previos](#conocimientos-previos)
+- [En resumen](#en-resumen)
+
+## Figma
+
+| Función | Plan | Asiento o permiso | Fuente |
+|---|---|---|---|
+| Modos de variables | Professional, Education, Organization o Enterprise | Edición del archivo | [Figma: Modes for variables](https://help.figma.com/hc/en-us/articles/15343816063383-Modes-for-variables) |
+| Descripciones de componentes, estilos y variables | La ayuda no indica límite de plan | Edición de la librería | [Figma: Add descriptions](https://help.figma.com/hc/en-us/articles/7938814091287) |
+| Anotaciones | De pago | Full para añadirlas; Full o Dev para verlas | [Figma: Add measurements and annotate designs](https://help.figma.com/hc/en-us/articles/20774752502935-Add-measurements-and-annotate-designs) |
+| Dev resources | De pago | Full o Dev | [Figma: Dev resources](https://help.figma.com/hc/en-us/articles/15023231995927) |
+| Guidelines de librería (beta abierta) | Professional, Organization o Enterprise | Edición del archivo; consume créditos de IA | [Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511) |
+| Code Connect | Professional, Organization, Government o Enterprise | Full o Dev | [Figma: Code Connect](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect) |
+| Servidor MCP de Figma | Starter, Professional, Education, Organization, Government o Enterprise | El servidor de escritorio pide Dev o Full; los límites de uso dependen del plan y del asiento | [Figma: Figma MCP server](https://help.figma.com/hc/en-us/articles/32132100833559) |
+| Analíticas de librería | Organization o Enterprise | Ver o editar la librería | [Figma: Library analytics](https://help.figma.com/hc/en-us/articles/360039238353-Track-library-and-component-usage) |
+
+<Callout variant="warning">
+
+En Professional, Code Connect permite una sola librería y un solo framework activos, y el servidor MCP solo devuelve las conexiones de esa librería y ese framework ([Figma: Code Connect integration](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/)).
 
 </Callout>
+
+<Callout variant="note">
+
+Las analíticas de librería solo existen en Organization y Enterprise. En otros planes, la [auditoría](/audit/figma-inventory) se hace a mano, recorriendo la librería.
+
+</Callout>
+
+## Claude
+
+| Herramienta | Requisito | Fuente |
+|---|---|---|
+| Claude Code | La mayoría de sus superficies piden una suscripción de Claude o una cuenta de Anthropic Console | [Claude Code: Overview](https://code.claude.com/docs/en/overview) |
+| Claude Design | Free, Pro, Max, Team y Enterprise | [Claude Help: Get started with Claude Design](https://support.claude.com/en/articles/14604416-get-started-with-claudae-design) |
+| Sistemas de diseño en Claude (beta) | Pro, Max, Team y Enterprise; en Enterprise, un propietario los activa | [Claude Help: Set up your design system](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design) |
+| Projects | Todos los planes; compartirlos con el equipo, solo Team y Enterprise | [Claude Help: Create and manage projects](https://support.claude.com/en/articles/9519177) |
+
+## Código
+
+Los capítulos 5 a 7 suponen que el sistema tiene una librería de componentes en un repositorio. Para seguirlos necesitas:
+
+- Un repositorio Git con la librería de componentes.
+- Node.js y un gestor de paquetes, para Code Connect por línea de comandos y Storybook.
+- Si usas Storybook con agentes: un proyecto con React (cualquier framework de React), `angular-vite` o `vue3-vite`. Con otros frameworks, el servidor MCP de Storybook funciona, pero sin el manifiesto de componentes ([Storybook: MCP server](https://storybook.js.org/docs/ai/mcp/overview)).
+
+## Conocimientos previos
+
+- **Imprescindible:** manejo de componentes, propiedades de componente, auto layout y variables en Figma.
+- **Útil:** haber escrito documentación en Markdown.
+- **Para los capítulos 5 a 7:** terminal y Git básicos.
+- **Para los tokens:** si nunca has trabajado con tokens de diseño, empieza por [DesignToken101](https://designtokens101.com).
+
+<Takeaways>
+
+## En resumen
+
+- Las guidelines y Code Connect piden Figma Professional o superior; las analíticas, Organization o Enterprise.
+- Claude Design está en todos los planes de Claude; los sistemas de diseño publicados, en Pro o superior.
+- Los capítulos 5 a 7 dan su mejor resultado con una librería de componentes en un repositorio.
+
+</Takeaways>
+
+## Fuentes
+
+- [Figma: Modes for variables](https://help.figma.com/hc/en-us/articles/15343816063383-Modes-for-variables)
+- [Figma: Add descriptions to styles, components, and variables](https://help.figma.com/hc/en-us/articles/7938814091287)
+- [Figma: Add measurements and annotate designs](https://help.figma.com/hc/en-us/articles/20774752502935-Add-measurements-and-annotate-designs)
+- [Figma: Link dev resources to layers in Dev Mode](https://help.figma.com/hc/en-us/articles/15023231995927)
+- [Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)
+- [Figma: Code Connect](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)
+- [Figma: Code Connect integration](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/)
+- [Figma: Figma MCP server](https://help.figma.com/hc/en-us/articles/32132100833559)
+- [Figma: View and explore library analytics](https://help.figma.com/hc/en-us/articles/360039238353-Track-library-and-component-usage)
+- [Claude Code: Overview](https://code.claude.com/docs/en/overview)
+- [Claude Help: Get started with Claude Design](https://support.claude.com/en/articles/14604416-get-started-with-claudae-design)
+- [Claude Help: Set up your design system in Claude Design](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)
+- [Claude Help: How can I create and manage projects](https://support.claude.com/en/articles/9519177)
+- [Storybook: MCP server](https://storybook.js.org/docs/ai/mcp/overview)
