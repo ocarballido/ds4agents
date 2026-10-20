@@ -10,3 +10,6 @@ Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 - `docs/sistema/`: especificación del sistema copiada de designtokens101, con nota de procedencia.
 - Estructura de contenido con 10 secciones y la lección modelo `start-here/why-agents-cant-see-figma`. El resto de lecciones son esqueletos marcados con `<Callout variant="pending">`.
 - `tests/content.test.mjs`: sustituye a las pruebas de las herramientas quitadas.
+- CI en GitHub Actions (G09). `tools/ci-step.sh` publica la salida de un paso que falla como anotaciones, porque las sesiones de Claude no pueden descargar los registros de Actions.
+- La CI encontró dos errores, ya corregidos: títulos con dos puntos sin comillas en el frontmatter de los ejercicios, y `check:tokens` leyendo la especificación en la ruta antigua (`docs/sistema-tokens-v1.md` → `docs/sistema/`).
+- La sesión no tuvo acceso al registro de npm: build y comprobaciones solo en CI.

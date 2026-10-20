@@ -2,7 +2,7 @@
 
 Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El detalle de lo hecho va en `docs/historial.md`.
 
-Última actualización: 2026-10-20, sesión de desarrollo. Clon inicial de designtokens101 con la estructura de módulos y una lección modelo (`start-here/why-agents-cant-see-figma`); **sin compilar todavía**: la sesión no tuvo acceso a npm. Comprobados con un script la estructura, el frontmatter, los enlaces internos y las anclas. Primer paso pendiente: `npm ci && npm run build && npm run check:content && npm run check:tokens && npm test`.
+Última actualización: 2026-10-20, sesión de desarrollo. Clon inicial de designtokens101 con la estructura de módulos y una lección modelo (`start-here/why-agents-cant-see-figma`), subido a `main`. CI en GitHub Actions (G09): `npm test`, `check:tokens`, `build` y `check:content` sin errores.
 
 ## Plan general
 
