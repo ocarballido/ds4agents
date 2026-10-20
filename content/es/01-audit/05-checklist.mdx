@@ -1,0 +1,93 @@
+---
+title: Lista de comprobación
+meta_title: "Lista de comprobación: auditoría de un sistema de diseño para agentes de IA"
+description: El entregable de la auditoría (inventory.md con la scorecard), los pasos para producirlo y los criterios para darlo por terminado.
+nav_title: Lista de comprobación
+lastReviewed: 2026-10-20
+---
+
+Esta lista resume la fase de auditoría: el entregable que produce, los pasos para obtenerlo y los criterios para darlo por terminado. Sirve para el piloto y para cada auditoría que repitas después.
+
+**En esta página**
+
+- [El entregable](#el-entregable)
+- [Pasos](#pasos)
+- [Criterios para darlo por terminado](#criterios-para-darlo-por-terminado)
+- [En resumen](#en-resumen)
+
+## El entregable
+
+`docs/inventory.md`: una fila por componente, la lista de obsoletos, las diferencias entre Figma y código y la scorecard con fecha. Este archivo es, más adelante, el índice que lee el agente ([capítulo 6](/agent-layer/claude-md#la-plantilla)).
+
+```markdown filename="docs/inventory.md"
+---
+title: Inventario del sistema de diseño
+updated: 2026-10-20
+owner: Nombre del responsable
+---
+
+# Inventario
+
+Estados: stable · beta · deprecated · figma-only · code-only
+
+| Componente | Nivel | Categoría | Estado | Figma | Código | Code Connect | Doc |
+|---|---|---|---|---|---|---|---|
+| Button | átomo | actions | stable | Sí | Sí | No | No |
+| TextField | molécula | forms | stable | Sí | Sí | No | No |
+| DataTable | organismo | data-display | beta | Sí | Sí | No | No |
+| Tag | átomo | data-display | figma-only | Sí | No | No | No |
+
+## Obsoletos
+
+| Componente | Sustituto | Desde |
+|---|---|---|
+| LegacyButton | Button | 1.2.0 |
+
+## Diferencias
+
+- TextField: en Figma `State=Error`, en código `invalid: boolean`. Decisión: renombrar en Figma.
+- Tag: no existe en código. Decisión: pendiente.
+
+## Scorecard (2026-10-20)
+
+| Criterio | Puntos (0-3) | Nota |
+|---|---|---|
+| Cobertura | 2 | |
+| Variables | 1 | Los organismos usan valores sueltos |
+| Nombres | 1 | |
+| Contexto en Figma | 0 | |
+| Tokens | 1 | |
+| Documentación | 0 | |
+| Vínculo con el código | 0 | |
+| Gobernanza | 1 | |
+| **Media** | **0,75** | |
+```
+
+## Pasos
+
+1. Elige el alcance. Para empezar, un piloto de cinco componentes (al menos un átomo muy usado, una molécula de formulario y un organismo) y dos patrones de pantalla ([Qué contiene la guía](/start-here/guide-map#por-dónde-empezar)).
+2. Anota cada componente con nivel, categoría y estado ([Inventario de Figma](/audit/figma-inventory)).
+3. Cruza con el código y anota cada diferencia con su decisión ([Inventario de código](/audit/code-inventory)).
+4. Lista los obsoletos con su sustituto, aunque estén fuera del alcance.
+5. Puntúa los ocho criterios de la scorecard y escribe la fecha ([Scorecard de madurez](/audit/maturity-scorecard)).
+
+## Criterios para darlo por terminado
+
+- Cada componente del alcance tiene estado, nivel y categoría.
+- Cada componente `deprecated` tiene sustituto.
+- Cada diferencia tiene una decisión o la palabra "pendiente".
+- La scorecard tiene fecha y se puede repetir con los mismos criterios.
+
+<Takeaways>
+
+## En resumen
+
+- La auditoría produce `docs/inventory.md`: componentes, obsoletos, diferencias y scorecard.
+- Empieza con un piloto pequeño; la misma lista vale para auditorías posteriores.
+- La fase está terminada cuando nada queda sin estado, sin sustituto o sin decisión.
+
+</Takeaways>
+
+## Fuentes
+
+Esta lista resume las páginas del capítulo. Las fuentes están en cada una de ellas.

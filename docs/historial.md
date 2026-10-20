@@ -2,6 +2,12 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-10-20 · Contenido · Listas de comprobación (G14) e icono de Takeaways (G15)
+
+- Oscar confirma que la guía no tiene prácticas. Las siete páginas `NN-practice-…` se sustituyen por `NN-checklist` ("Lista de comprobación"): el entregable de la fase, los pasos numerados y los criterios para darla por terminada. La plantilla de `inventory.md` pasa a la lista de la auditoría.
+- Enlaces actualizados en la scorecard, "Por qué Markdown", Plantillas y "Qué contiene la guía"; convención en `content/README.md`; G10 corregida.
+- `Takeaways`: `BookOpenText` en lugar de `GraduationCap`, como excepción a G02 (G15).
+
 ## 2026-10-20 · Contenido · Las 53 páginas
 
 - Fuentes revisadas el 2026-10-20: ayuda y documentación para desarrolladores de Figma (servidor MCP, herramientas, Code Connect UI y plantillas, guidelines, anotaciones, descripciones, dev resources, analíticas, skills, Config India 2026), Claude Code (memoria, skills, MCP, visión general), ayuda de Claude (Claude Design, sistemas de diseño, Projects), blog de ingeniería de Anthropic (contexto y evaluaciones), Storybook 10.6 (MCP, manifiestos, buenas prácticas), DTCG 2025.10, Style Dictionary, AGENTS.md, llms.txt, SemVer y Keep a Changelog.

@@ -1,0 +1,61 @@
+---
+title: Lista de comprobación
+meta_title: "Lista de comprobación: tokens de diseño preparados para agentes de IA"
+description: El entregable de la fase de tokens (descripciones en los semánticos, obsoletos marcados y regla de capas escrita), los pasos y los criterios para darla por terminada.
+nav_title: Lista de comprobación
+lastReviewed: 2026-10-20
+---
+
+Esta lista resume la preparación de los tokens para agentes: el entregable, los pasos para obtenerlo y los criterios para darlo por terminado. Vuelve a ella cada vez que añadas tokens semánticos.
+
+**En esta página**
+
+- [El entregable](#el-entregable)
+- [Pasos](#pasos)
+- [Criterios para darlo por terminado](#criterios-para-darlo-por-terminado)
+- [En resumen](#en-resumen)
+
+## El entregable
+
+- Tokens semánticos con `$description` en Figma y en la exportación DTCG.
+- Tokens obsoletos marcados con `$deprecated` y su sustituto.
+- La regla de capas escrita en `docs/rules/rules-tokens.md`:
+
+```markdown filename="docs/rules/rules-tokens.md"
+# Tokens
+
+- Usa solo tokens semánticos o de componente. Nunca primitivos.
+- Nunca escribas un valor literal de color, espaciado, radio o tipografía.
+- Si ningún token semántico encaja, no uses un primitivo: dilo y propone el token que falta.
+- Los tokens con $deprecated no se usan. Su descripción dice cuál usar en su lugar.
+```
+
+## Pasos
+
+1. Saca la lista de variables que usan los componentes del alcance, por ejemplo con `get_variable_defs` ([Comprobar con el MCP](/figma/verify-with-mcp)).
+2. Sepárala en primitivos, semánticos y de componente; anota en `inventory.md` cada componente que use un primitivo directamente ([Primero los semánticos](/tokens/semantic-first)).
+3. Escribe la descripción de cada semántico con sus dos partes: para qué sirve y su restricción principal ([Descripciones en DTCG](/tokens/descriptions-in-dtcg#cómo-escribir-una-descripción)).
+4. Exporta y comprueba que cada semántico lleva `$description`.
+5. Marca los obsoletos con `$deprecated` y un texto con el sustituto ([Primero los semánticos](/tokens/semantic-first#los-tokens-obsoletos)).
+6. Escribe la regla de capas.
+
+## Criterios para darlo por terminado
+
+- Todos los semánticos que usan los componentes del alcance tienen descripción en Figma y en la exportación.
+- Ninguna descripción repite solo el valor ("Azul 600").
+- Los obsoletos dicen qué usar en su lugar.
+- `rules-tokens.md` incluye qué hacer cuando falta un token.
+
+<Takeaways>
+
+## En resumen
+
+- El entregable son tokens semánticos descritos, obsoletos marcados y una regla de capas escrita.
+- Las descripciones dicen para qué sirve el token y su restricción principal.
+- La regla de capas dice también qué hacer cuando falta un token.
+
+</Takeaways>
+
+## Fuentes
+
+Esta lista resume las páginas del capítulo. Las fuentes están en cada una de ellas.

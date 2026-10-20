@@ -1,0 +1,61 @@
+---
+title: Lista de comprobación
+meta_title: "Lista de comprobación: documentación de un sistema de diseño para agentes de IA"
+description: El entregable de la fase de documentación (la carpeta docs con fundamentos, componentes, patrones y reglas), los pasos y los criterios para darla por terminada.
+nav_title: Lista de comprobación
+lastReviewed: 2026-10-20
+---
+
+Esta lista resume la fase de documentación: el entregable, los pasos para producirlo y los criterios para darlo por terminado. Úsala también al documentar cada componente o patrón nuevo.
+
+**En esta página**
+
+- [El entregable](#el-entregable)
+- [Pasos](#pasos)
+- [Criterios para darlo por terminado](#criterios-para-darlo-por-terminado)
+- [En resumen](#en-resumen)
+
+## El entregable
+
+La carpeta `docs/` del repositorio, con la estructura de [Por qué Markdown](/documentation/why-markdown#la-carpeta-docs):
+
+- `inventory.md`, de la auditoría.
+- Al menos un fundamento, como `foundations/color.md`.
+- Un documento por componente del alcance.
+- Al menos un patrón.
+- `rules/`, con la regla de tokens y los antipatrones.
+- Las guidelines de Figma generadas desde `docs/` y subidas a la librería.
+
+## Pasos
+
+1. Crea la estructura de carpetas y mueve allí `inventory.md` y `rules-tokens.md`.
+2. Escribe un fundamento con la [plantilla de color](/documentation/foundations#plantilla-de-color).
+3. Escribe un documento por componente con la [plantilla de componente](/documentation/components#la-plantilla); en los átomos, quita las secciones que no apliquen ([Profundidad por nivel](/documentation/depth-by-level)).
+4. Escribe un patrón con la [plantilla de patrón](/documentation/patterns#la-plantilla).
+5. Escribe la guía de voz y tono ([Contenido](/documentation/content-guidelines)).
+6. Mueve a `docs/rules/anti-patterns.md` los antipatrones que subiste a Figma.
+7. Repasa cada documento con la tabla de [Escribir para agentes](/documentation/writing-for-agents#reglas-que-se-pueden-comprobar): cada "intenta" o "mejor" se convierte en una regla comprobable.
+8. Genera las guidelines con el script de [Una fuente, varios destinos](/documentation/one-source-many-channels#generar-las-guidelines-de-figma) y súbelas.
+9. Añade el [script de validación](/documentation/validate-docs#un-script-de-validación) a la integración continua.
+
+## Criterios para darlo por terminado
+
+- Cada componente del alcance tiene un documento con el frontmatter completo.
+- Cada "No usar" tiene su alternativa.
+- El patrón tiene una receta con componentes, props y tokens.
+- El script de validación no devuelve errores.
+- Las guidelines de Figma pesan menos de 100 KB y salen de `docs/`.
+
+<Takeaways>
+
+## En resumen
+
+- El entregable es la carpeta `docs/`: fundamentos, componentes, patrones, contenido y reglas.
+- Las reglas se pueden comprobar y cada prohibición tiene alternativa.
+- Las guidelines de Figma se generan desde `docs/`, la única fuente.
+
+</Takeaways>
+
+## Fuentes
+
+Esta lista resume las páginas del capítulo. Las fuentes están en cada una de ellas.

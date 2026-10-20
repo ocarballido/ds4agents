@@ -2,7 +2,7 @@
 
 > Convenciones heredadas de designtokens101 (G01). Donde dice DesignToken101, léase ds4agents.
 >
-> **ds4agents es una guía, no un curso (G10).** Compartimos nuestra investigación con la comunidad: se habla de *guía*, *capítulo* y *página*, no de *curso*, *módulo* ni *lección*. Los ejercicios son *prácticas* (`NN-practice-…`, título "Práctica: …"). El apartado final de cada página es "En resumen", no "Lo que te llevas". En primera persona del plural cuando contamos lo que hemos investigado o recomendamos ("hemos comprobado", "recomendamos").
+> **ds4agents es una guía, no un curso (G10).** Compartimos nuestra investigación con la comunidad: se habla de *guía*, *capítulo* y *página*, no de *curso*, *módulo* ni *lección*. No hay ejercicios ni prácticas: cada capítulo termina con una *Lista de comprobación* (`NN-checklist`) con tres apartados, "El entregable", "Pasos" (lista numerada) y "Criterios para darlo por terminado" (G14). El apartado final de cada página es "En resumen", no "Lo que te llevas". En primera persona del plural cuando contamos lo que hemos investigado o recomendamos ("hemos comprobado", "recomendamos").
 
 Convenciones para escribir y mantener las lecciones. Última revisión: 30/09/2026.
 

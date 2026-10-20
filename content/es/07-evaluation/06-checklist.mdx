@@ -1,0 +1,63 @@
+---
+title: Lista de comprobación
+meta_title: "Lista de comprobación: evaluar y mantener un sistema de diseño para agentes de IA"
+description: El entregable de la fase de evaluación y mantenimiento (evaluaciones, scorecard repetida, proceso de contribución y changelog), los pasos y cómo ampliar el sistema después.
+nav_title: Lista de comprobación
+lastReviewed: 2026-10-20
+---
+
+Esta lista resume la evaluación y el mantenimiento: el entregable, los pasos para producirlo y los criterios para darlo por terminado. Repítela con cada versión del sistema.
+
+**En esta página**
+
+- [El entregable](#el-entregable)
+- [Pasos](#pasos)
+- [Criterios para darlo por terminado](#criterios-para-darlo-por-terminado)
+- [Ampliar el sistema](#ampliar-el-sistema)
+- [En resumen](#en-resumen)
+
+## El entregable
+
+- `evals/evals.md`, con las tareas, los resultados y una acción por fallo.
+- La scorecard repetida, para compararla con la de la auditoría.
+- `CONTRIBUTING.md`, con el proceso y la Definition of Done.
+- `CHANGELOG.md`, con la versión actual.
+
+## Pasos
+
+1. Escribe 10 tareas con el reparto de [Diseñar evaluaciones](/evaluation/design-evals#qué-tareas-incluir), dos de ellas trampa.
+2. Haz tres intentos por tarea, cada uno en una sesión nueva del agente.
+3. Pasa el [script de búsquedas](/evaluation/rubric#lo-que-puntúa-un-script) por cada intento y puntúalo con la rúbrica.
+4. Lee las transcripciones de las tareas fallidas: si el agente abrió el patrón y el documento del componente.
+5. Escribe una acción por fallo: qué documento, regla o instrucción cambiar.
+6. Repite la [scorecard](/audit/maturity-scorecard) y compárala con la de la [auditoría](/audit/checklist#el-entregable).
+7. Escribe `CONTRIBUTING.md` con la [Definition of Done](/evaluation/contributing#definition-of-done) y `CHANGELOG.md` con el [formato propuesto](/evaluation/changelog#el-changelog).
+
+## Criterios para darlo por terminado
+
+- `evals/evals.md` tiene las tareas, los resultados de los tres intentos y una acción por fallo.
+- Las tareas trampa se puntúan por si el agente avisó, no por lo que construyó.
+- La scorecard nueva tiene fecha y se compara con la anterior.
+- `CONTRIBUTING.md` y `CHANGELOG.md` existen.
+
+## Ampliar el sistema
+
+<Callout variant="recommendation">
+
+Aplica las acciones de los fallos, vuelve a evaluar y, cuando las tareas del piloto pasen, conviértelas en evaluaciones de regresión. Después, amplía el sistema por orden de uso: los siguientes componentes más insertados y los siguientes patrones más repetidos, cada uno con su Definition of Done y recorriendo de nuevo las listas de comprobación de cada capítulo.
+
+</Callout>
+
+<Takeaways>
+
+## En resumen
+
+- El entregable son las evaluaciones con sus acciones, la scorecard repetida, el proceso de contribución y el changelog.
+- Las tareas trampa miden si el agente respeta las reglas.
+- Para ampliar el sistema, se repiten las listas de comprobación por orden de uso.
+
+</Takeaways>
+
+## Fuentes
+
+Esta lista resume las páginas del capítulo. Las fuentes están en cada una de ellas.

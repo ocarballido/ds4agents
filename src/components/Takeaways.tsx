@@ -1,8 +1,9 @@
-import { Check, GraduationCap } from 'lucide-react';
+import { BookOpenText, Check } from 'lucide-react';
 import { Children, cloneElement, isValidElement, type ReactElement, type ReactNode } from 'react';
 import { Heading2, UnorderedList } from '@/components/Prose';
 
 // Anatomía: docs/componentes-v1.md §3.9 (C18). "Lo que te llevas" (T10), al final de cada lección.
+// En ds4agents (G15): "En resumen", con el icono BookOpenText en lugar del birrete.
 // No es un Callout: el título es el ## del MDX, con el id de rehype-slug, para que llegue el
 // enlace de "En esta página". El componente le añade el icono y le da nombre a la región.
 // Icono y marcas decorativos (aria-hidden): la lista sigue siendo una ul con sus elementos.
@@ -23,7 +24,7 @@ export function Takeaways({ children }: { children: ReactNode }) {
         className: 'type-heading-2 flex items-center gap-300 text-neutral-default',
         children: (
           <>
-            <GraduationCap aria-hidden className="size-600 shrink-0 text-accent-default" />
+            <BookOpenText aria-hidden className="size-600 shrink-0 text-accent-default" />
             <span>{element.props.children}</span>
           </>
         ),

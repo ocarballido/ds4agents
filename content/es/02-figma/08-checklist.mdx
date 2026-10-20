@@ -1,0 +1,70 @@
+---
+title: Lista de comprobación
+meta_title: "Lista de comprobación: preparar una librería de Figma para agentes de IA"
+description: La lista Ready for AI para cada componente de Figma, los pasos para aplicarla a la librería y los criterios para dar la fase por terminada.
+nav_title: Lista de comprobación
+lastReviewed: 2026-10-20
+---
+
+Esta lista resume la preparación de Figma: lo que debe cumplir cada componente, los pasos para aplicarlo a la librería y los criterios para darlo por terminado. Úsala con cada componente nuevo o modificado.
+
+**En esta página**
+
+- [El entregable](#el-entregable)
+- [Ready for AI, por componente](#ready-for-ai-por-componente)
+- [Pasos](#pasos)
+- [Criterios para darlo por terminado](#criterios-para-darlo-por-terminado)
+- [En resumen](#en-resumen)
+
+## El entregable
+
+Una librería publicada en la que los componentes del alcance cumplen la lista Ready for AI, con un primer archivo de guidelines (`anti-patterns.md`) subido. Para las guidelines hace falta Figma Professional o superior ([Requisitos](/start-here/requirements)).
+
+## Ready for AI, por componente
+
+<Callout variant="recommendation">
+
+Esta lista es nuestra y resume el capítulo. Adáptala a tu sistema.
+
+</Callout>
+
+```markdown filename="Ready for AI: TextField"
+- [ ] Es un conjunto de componentes con propiedades nombradas como en código
+- [ ] Todas sus propiedades visuales usan variables (ningún valor suelto)
+- [ ] Usa auto layout y responde bien al redimensionarlo
+- [ ] Sus capas internas tienen nombres por función (Label, Input, HelperText)
+- [ ] Tiene descripción con la plantilla de cinco líneas y enlace a documentación
+- [ ] Tiene anotaciones del comportamiento que no se ve (validación, foco, error)
+- [ ] Tiene dev resources: documento Markdown, Storybook y código
+- [ ] Sus antipatrones están en las guidelines de la librería
+- [ ] La comprobación con el MCP devuelve nombres, variables y anotaciones
+```
+
+## Pasos
+
+1. Ordena las páginas de la librería y oculta lo obsoleto ([Estructura de la librería](/figma/library-structure)).
+2. Alinea los nombres de componentes, propiedades y capas con el código ([Nombres](/figma/naming)).
+3. Escribe las descripciones, las anotaciones y los dev resources ([Descripciones](/figma/descriptions), [Anotaciones](/figma/annotations), [Dev resources](/figma/dev-resources)).
+4. Escribe los tres antipatrones más frecuentes de tu equipo como escenarios y súbelos como guidelines ([Guidelines de la librería](/figma/library-guidelines#un-ejemplo)).
+5. Comprueba cada componente con el [prompt de comprobación](/figma/verify-with-mcp#cómo-pedir-la-comprobación) y anota en `inventory.md` lo que no llega.
+
+## Criterios para darlo por terminado
+
+- La comprobación con el MCP de cada componente del alcance no devuelve `Frame` ni `Group` en los nombres de capa.
+- `get_variable_defs` no devuelve valores sueltos.
+- La librería tiene al menos un archivo de guidelines.
+- `inventory.md` dice qué componentes cumplen la lista y qué les falta a los demás.
+
+<Takeaways>
+
+## En resumen
+
+- La lista Ready for AI resume lo que necesita cada componente de Figma para que un agente lo entienda.
+- El entregable es la librería preparada, con un primer archivo de guidelines.
+- Lo que el MCP no devuelve se anota y se resuelve por otra vía.
+
+</Takeaways>
+
+## Fuentes
+
+Esta lista resume las páginas del capítulo. Las fuentes están en cada una de ellas.
