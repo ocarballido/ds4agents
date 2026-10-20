@@ -1,14 +1,88 @@
 ---
 title: Contenido
-description: Cómo documentar voz, tono y microcopy.
+meta_title: "Guía de voz, tono y microcopy de un sistema de diseño para agentes de IA"
+description: Cómo documentar la voz, el tono y los textos de interfaz de un sistema de diseño para que un agente escriba botones, errores y mensajes como lo haría tu equipo.
 nav_title: Contenido
 lastReviewed: 2026-10-20
 ---
 
-Cómo documentar voz, tono y microcopy.
+Un agente que genera una pantalla también escribe sus textos: botones, errores, estados vacíos. Si no tiene una guía, escribe como escribe por defecto. Esta página propone qué documentar para que los textos suenen a tu producto.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 3: Documentación en Markdown» (`docs/guia-fuente.md`).
+- [Por qué documentar el contenido](#por-qué-documentar-el-contenido)
+- [Qué documentar](#qué-documentar)
+- [La plantilla](#la-plantilla)
+- [En resumen](#en-resumen)
+
+## Por qué documentar el contenido
+
+La guía de Figma sobre documentación de sistemas de diseño recuerda que cada público necesita una cosa distinta: quien desarrolla necesita referencias a los tokens y quien escribe necesita, por ejemplo, orientación sobre los mensajes de error ([Figma: Lesson 4, Document and manage your system](https://help.figma.com/hc/en-us/articles/14552804059927-Lesson-4-Document-and-manage-your-system)). Un agente hace los dos trabajos a la vez, así que necesita las dos cosas.
+
+## Qué documentar
+
+| Elemento | Qué escribir |
+|---|---|
+| Voz | Tratamiento (tú o usted), persona gramatical, longitud de frase |
+| Botones | Forma del texto: verbo y objeto, número máximo de palabras |
+| Errores | Qué ha pasado y cómo resolverlo; nunca culpar al usuario |
+| Estados vacíos | Qué falta y cuál es la siguiente acción |
+| Confirmaciones | Qué se ha hecho, en pasado |
+| Palabras prohibidas | Las que tu equipo no usa, con su alternativa |
+| Glosario | Los nombres de las cosas de tu producto, siempre iguales |
+
+## La plantilla
+
+```markdown filename="docs/content/voice-and-tone.md"
+---
+title: Voz y tono
+type: content
+status: stable
+---
+
+# Voz y tono
+
+## Voz
+- Tuteo. Frases de 20 palabras como máximo.
+- Voz activa: "Hemos guardado los cambios", no "Los cambios han sido guardados".
+
+## Botones
+- Verbo en infinitivo y objeto: "Guardar cambios", "Crear proyecto".
+- Máximo tres palabras.
+- Nunca "Aceptar" ni "OK" si se puede decir la acción.
+
+## Errores
+- Qué ha pasado y cómo resolverlo: "No hemos podido guardar. Revisa tu conexión y vuelve a intentarlo."
+- Nunca culpar al usuario. Nunca códigos de error sin explicación.
+- Sin signos de exclamación.
+
+## Palabras
+| No | Sí |
+|---|---|
+| Ups | (nada: ve al mensaje) |
+| Usuario (en la interfaz) | tú, o el nombre del rol |
+| Item | elemento, o el nombre del objeto |
+
+## Glosario del producto
+- Proyecto: el contenedor de archivos. Nunca "espacio" ni "carpeta".
+```
+
+<Callout variant="recommendation">
+
+El glosario del producto es la parte que más errores evita. Un agente que no lo tiene llama a lo mismo de tres formas en la misma pantalla.
 
 </Callout>
+
+<Takeaways>
+
+## En resumen
+
+- Un agente escribe los textos de la interfaz: necesita la guía de contenido tanto como la de componentes.
+- Documenta voz, botones, errores, estados vacíos, palabras prohibidas y el glosario del producto.
+- Escribe ejemplos completos, no adjetivos sobre el tono.
+
+</Takeaways>
+
+## Fuentes
+
+- [Figma: Lesson 4, Document and manage your system](https://help.figma.com/hc/en-us/articles/14552804059927-Lesson-4-Document-and-manage-your-system)

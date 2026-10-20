@@ -1,14 +1,61 @@
 ---
 title: Profundidad por nivel
-description: Cuánto documentar según el nivel atómico de cada componente.
+meta_title: "Cuánto documentar cada componente de un sistema de diseño para agentes"
+description: Cuánto documentar cada componente según su nivel atómico, su uso y los errores que provoca, y por qué los patrones de pantalla son lo que más rinde.
 nav_title: Profundidad por nivel
 lastReviewed: 2026-10-20
 ---
 
-Cuánto documentar según el nivel atómico de cada componente.
+No todos los componentes necesitan el mismo documento. Un icono necesita pocas reglas; una tabla de datos, muchas. Esta página propone cuánto documentar cada nivel y por dónde empezar.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 3: Documentación en Markdown» (`docs/guia-fuente.md`).
+- [Más contexto no siempre es mejor](#más-contexto-no-siempre-es-mejor)
+- [Secciones por nivel](#secciones-por-nivel)
+- [Por dónde empezar](#por-dónde-empezar)
+- [En resumen](#en-resumen)
+
+## Más contexto no siempre es mejor
+
+Storybook advierte que poco contexto impide al agente usar bien los componentes, pero que demasiado contexto irrelevante empeora su rendimiento ([Storybook: Best practices for using Storybook with AI](https://storybook.js.org/docs/ai/best-practices)). Figma recomienda que las guidelines de una librería no repitan la misma indicación en varios archivos ([Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)).
+
+La profundidad de cada documento tiene que corresponder a lo que el agente puede hacer mal con ese componente.
+
+## Secciones por nivel
+
+<Callout variant="recommendation">
+
+Esta tabla es nuestra propuesta. Las extensiones son orientativas: lo que manda es que cada sección responda a un error posible.
 
 </Callout>
+
+| Nivel | Secciones | Extensión orientativa |
+|---|---|---|
+| Átomo | Propósito, cuándo usar y cuándo no, props, tokens, accesibilidad, un ejemplo correcto y uno incorrecto | 40 a 80 líneas |
+| Molécula | Lo anterior, más anatomía, composición permitida y estados | 80 a 150 líneas |
+| Organismo | Lo anterior, más comportamiento adaptable, límites del contenido y errores frecuentes | 150 a 250 líneas |
+| Patrón | Problema, componentes que usa, receta paso a paso, variantes y antipatrones | 100 a 200 líneas |
+
+La plantilla de componente de la página [Componentes](/documentation/components) tiene todas las secciones; en un átomo, borra las que no apliquen.
+
+## Por dónde empezar
+
+1. **Los patrones de tu piloto.** Son lo que más ayuda a un agente a crear pantallas nuevas, y casi ningún sistema los documenta.
+2. **Los componentes con más inserciones**, según las analíticas de librería o tu estimación ([Inventario de Figma](/audit/figma-inventory#los-datos-de-uso)).
+3. **Los componentes con más separaciones** o con más errores en lo que generan los agentes. Una separación frecuente indica un caso que el componente no cubre y que hay que escribir.
+4. **El resto**, con la descripción de cinco líneas de Figma como mínimo.
+
+<Takeaways>
+
+## En resumen
+
+- Demasiado contexto irrelevante empeora el resultado: documenta según el riesgo de error.
+- Átomos cortos, organismos y patrones más largos.
+- Empieza por los patrones y por los componentes más usados.
+
+</Takeaways>
+
+## Fuentes
+
+- [Storybook: Best practices for using Storybook with AI](https://storybook.js.org/docs/ai/best-practices)
+- [Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)

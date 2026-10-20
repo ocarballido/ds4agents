@@ -1,14 +1,91 @@
 ---
 title: Escribir para agentes
-description: Cómo convertir recomendaciones vagas en reglas que se pueden comprobar.
+meta_title: "Cómo escribir reglas de un sistema de diseño que un agente de IA pueda seguir"
+description: Cómo convertir recomendaciones vagas en reglas comprobables, cuándo escribir una regla absoluta y cuándo un escenario, y por qué los ejemplos valen más que las listas de excepciones.
 nav_title: Escribir para agentes
 lastReviewed: 2026-10-20
 ---
 
-Cómo convertir recomendaciones vagas en reglas que se pueden comprobar.
+Una persona del equipo entiende "intenta no abusar del botón principal". Un agente necesita saber cuántos son demasiados. Esta página reúne lo que dicen Anthropic, Claude Code y Figma sobre cómo escribir instrucciones que un agente siga, aplicado a un sistema de diseño.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 3: Documentación en Markdown» (`docs/guia-fuente.md`).
+- [Ni demasiado rígido ni demasiado vago](#ni-demasiado-rígido-ni-demasiado-vago)
+- [Reglas que se pueden comprobar](#reglas-que-se-pueden-comprobar)
+- [Reglas absolutas y escenarios](#reglas-absolutas-y-escenarios)
+- [Ejemplos, no listas de excepciones](#ejemplos-no-listas-de-excepciones)
+- [Sin contradicciones](#sin-contradicciones)
+- [En resumen](#en-resumen)
+
+## Ni demasiado rígido ni demasiado vago
+
+Anthropic describe dos errores opuestos al escribir instrucciones para un agente: la lógica rígida, que intenta prever cada caso, y la orientación vaga, que da por hecho un contexto compartido. Entre los dos está la "altura correcta": instrucciones concretas que dejan al modelo aplicar su criterio ([Anthropic: Effective context engineering for AI agents](https://anthropic.com/engineering/effective-context-engineering-for-ai-agents)). El mismo texto pide buscar el conjunto mínimo de información que describa por completo el comportamiento esperado, y aclara que mínimo no significa corto.
+
+La documentación de Claude Code lo resume así: cuanto más concretas y concisas son las instrucciones, con más constancia las sigue Claude ([Claude Code: Memory](https://code.claude.com/docs/en/memory)).
+
+## Reglas que se pueden comprobar
+
+| En lugar de | Escribe |
+|---|---|
+| Intenta no abusar del botón principal. | Máximo un `Button variant=primary` por vista. |
+| Los textos largos quedan mejor en secundario. | Si el texto del botón supera tres palabras, usa `variant=secondary`. |
+| El Tag es más bien informativo. | Nunca uses `Tag` para acciones. Para filtros que se activan, usa `Chip`. |
+| Usa el azul de la marca. | Usa `color.action.primary`. |
+| Cuidado con la accesibilidad. | Todo `IconButton` lleva `aria-label`. |
+
+<Callout variant="recommendation">
+
+Usa palabras que se puedan comprobar: **siempre**, **nunca**, **máximo**, **mínimo**, **solo si**, **en su lugar usa**. Y escribe los nombres exactos de componentes, props y tokens entre comillas invertidas, tal como aparecen en el código.
 
 </Callout>
+
+## Reglas absolutas y escenarios
+
+La ayuda de Figma para las guidelines distingue dos tipos de indicación ([Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)):
+
+- **Reglas sin excepciones**, que se escriben como absolutas.
+- **Decisiones ambiguas**, que se escriben como escenarios: una descripción, un ejemplo de lo que sí, uno de lo que no y el motivo. Si hay excepciones, se describen para que no choquen con la regla.
+
+```markdown filename="Escenario"
+## Confirmar una acción destructiva
+- Descripción: el usuario borra un proyecto con contenido.
+- Sí: `Dialog` con el nombre del proyecto en el título y `Button variant=danger` "Borrar proyecto".
+- No: `Toast` con "Deshacer" como única protección.
+- Motivo: la acción no se puede deshacer en el servidor.
+- Excepción: si el proyecto está vacío, basta con `Toast` y "Deshacer".
+```
+
+El motivo no es decorativo. Con él, el agente puede aplicar la regla a un caso parecido que no está escrito.
+
+## Ejemplos, no listas de excepciones
+
+Anthropic desaconseja llenar las instrucciones de casos límite y recomienda, en su lugar, un conjunto de ejemplos variados y canónicos del comportamiento esperado ([Anthropic: Effective context engineering for AI agents](https://anthropic.com/engineering/effective-context-engineering-for-ai-agents)).
+
+En un sistema de diseño, eso significa: un ejemplo correcto y uno incorrecto por componente, y un patrón completo por tipo de pantalla, antes que veinte excepciones escritas. La guía de Figma también recomienda incluir ejemplos de uso correcto e incorrecto en la documentación ([Figma: Lesson 4, Document and manage your system](https://help.figma.com/hc/en-us/articles/14552804059927-Lesson-4-Document-and-manage-your-system)).
+
+## Sin contradicciones
+
+Si dos instrucciones se contradicen, Claude puede elegir una de las dos al azar ([Claude Code: Memory](https://code.claude.com/docs/en/memory)). En un sistema de diseño, las contradicciones suelen aparecer entre la documentación de un componente y la de un patrón, o entre una regla antigua y una nueva.
+
+<Callout variant="recommendation">
+
+Cada regla vive en un solo archivo: la de un componente, en su documento; la de todo el sistema, en `docs/rules/`. Los demás archivos enlazan a ella en lugar de repetirla.
+
+</Callout>
+
+<Takeaways>
+
+## En resumen
+
+- Instrucciones concretas y concisas, con palabras que se pueden comprobar y nombres exactos.
+- Reglas absolutas cuando no hay excepciones; escenarios con sí, no y motivo cuando la decisión es ambigua.
+- Ejemplos canónicos antes que listas de excepciones, y cada regla en un solo sitio.
+
+</Takeaways>
+
+## Fuentes
+
+- [Anthropic: Effective context engineering for AI agents](https://anthropic.com/engineering/effective-context-engineering-for-ai-agents)
+- [Claude Code: How Claude remembers your project](https://code.claude.com/docs/en/memory)
+- [Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)
+- [Figma: Lesson 4, Document and manage your system](https://help.figma.com/hc/en-us/articles/14552804059927-Lesson-4-Document-and-manage-your-system)

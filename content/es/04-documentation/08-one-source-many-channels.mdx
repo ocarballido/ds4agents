@@ -1,14 +1,112 @@
 ---
-title: "Una fuente, varios destinos"
-description: "Cómo publicar la misma documentación Markdown en Figma, en el repositorio y en Claude sin mantener copias distintas."
-nav_title: "Una fuente, varios destinos"
+title: Una fuente, varios destinos
+meta_title: "Publicar la documentación de un sistema de diseño en Figma, Claude y el repositorio"
+description: Cómo publicar la misma documentación Markdown en las guidelines de Figma, en Code Connect, en el repositorio, en Claude y en Storybook sin mantener copias distintas.
+nav_title: Una fuente, varios destinos
 lastReviewed: 2026-10-20
 ---
 
-Cómo publicar la misma documentación Markdown en Figma, en el repositorio y en Claude sin mantener copias distintas.
+Cada herramienta lee las reglas del sistema en un sitio distinto: el agente de Figma, en las guidelines; Claude Code, en el repositorio; Claude Design, en el sistema publicado. Si escribes una versión para cada una, acabarán diciendo cosas distintas. Esta página propone escribir una vez y publicar en cada destino.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación.
+- [Los destinos](#los-destinos)
+- [La carpeta docs como fuente](#la-carpeta-docs-como-fuente)
+- [Qué va a cada destino](#qué-va-a-cada-destino)
+- [Generar las guidelines de Figma](#generar-las-guidelines-de-figma)
+- [En resumen](#en-resumen)
+
+## Los destinos
+
+| Destino | Quién lo lee | Límites | Fuente |
+|---|---|---|---|
+| Guidelines de la librería | El agente de Figma | De 3 a 8 archivos, menos de 100 KB recomendados, 200 KB como máximo | [Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511) |
+| Instrucciones de Code Connect | Agentes que leen el diseño por el servidor MCP | Una por conexión de componente | [Figma: Code Connect integration](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/) |
+| `CLAUDE.md` o `AGENTS.md` | Claude Code y otros agentes de código, en cada sesión | Menos de 200 líneas por archivo, según Claude Code | [Claude Code: Memory](https://code.claude.com/docs/en/memory) |
+| Skills | Claude Code, cuando la tarea coincide | `SKILL.md` de menos de 500 líneas | [Claude Code: Skills](https://code.claude.com/docs/en/skills) |
+| Sistema de diseño en Claude | Claude Design y los chats de Claude | En beta; se crea desde fuentes o con `/design-sync` | [Claude Help: Set up your design system](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design) |
+| Conocimiento de un Project | Los chats de ese Project | Se usa en todos sus chats | [Claude Help: Projects](https://support.claude.com/en/articles/9519177) |
+| Documentación MDX de Storybook | Agentes conectados al MCP de Storybook | Solo lo escrito en el MDX | [Storybook: Best practices](https://storybook.js.org/docs/ai/best-practices) |
+
+<Flow caption="La carpeta docs como fuente única de las reglas, publicada en cada destino.">
+  <FlowGroup title="Fuente" meta="Repositorio">
+    <FlowStep title="docs/" meta="Fundamentos, componentes, patrones, reglas" />
+  </FlowGroup>
+  <FlowGroup title="Destinos" meta="Generados o enlazados">
+    <FlowStep title="Guidelines de Figma" meta="Agente de Figma" />
+    <FlowStep title="CLAUDE.md, AGENTS.md y skills" meta="Agentes de código" />
+    <FlowStep title="Sistema publicado en Claude" meta="Claude Design" />
+    <FlowStep title="Instrucciones de Code Connect" meta="Servidor MCP de Figma" />
+  </FlowGroup>
+</Flow>
+
+## La carpeta docs como fuente
+
+<Callout variant="recommendation">
+
+La fuente es la carpeta `docs/` del repositorio, porque es el único sitio con historial de cambios, revisión por pull request y validación automática. Los demás destinos se generan desde ella o la enlazan. Nunca se edita una regla directamente en un destino.
 
 </Callout>
+
+## Qué va a cada destino
+
+- **Guidelines de Figma:** las reglas que afectan al diseño (fundamentos, antipatrones, patrones), agrupadas en pocos archivos. No las props: el agente de Figma trabaja con los componentes de la librería, no con el código.
+- **Instrucciones de Code Connect:** dos o tres líneas por componente con lo que un agente de código necesita al implementarlo, sacadas de la sección Reglas de su documento. Lo vemos en [Instrucciones para el MCP](/design-to-code/mcp-instructions).
+- **`CLAUDE.md` o `AGENTS.md`:** las reglas que valen siempre y un mapa de la carpeta `docs/`, no los documentos enteros. Claude Code permite importar archivos con `@ruta`, pero los archivos importados se cargan al empezar la sesión y no reducen el coste de contexto ([Claude Code: Memory](https://code.claude.com/docs/en/memory)). Mejor enlazar las rutas y dejar que el agente abra lo que necesite ([capítulo 6](/agent-layer/progressive-disclosure)).
+- **Sistema de diseño en Claude:** el repositorio con los componentes y la documentación, como una de sus fuentes. Si los componentes son de React, `/design-sync` desde Claude Code lee los tokens y los componentes directamente ([Claude Help: Set up your design system](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)).
+- **Storybook:** si usas su MCP, el manifiesto de documentación solo recoge lo que está escrito en los archivos MDX, no valores importados de otros archivos ([Storybook: Best practices](https://storybook.js.org/docs/ai/best-practices)).
+
+## Generar las guidelines de Figma
+
+Mientras las guidelines estén en beta, los archivos se suben a mano ([Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)). Un script puede prepararlos desde `docs/` y comprobar el tamaño:
+
+```js filename="scripts/build-figma-guidelines.mjs"
+// Junta docs/ en los archivos que se suben a Figma (Library → Manage guidelines…).
+import fs from 'node:fs';
+import path from 'node:path';
+
+const OUT = 'dist/figma-guidelines';
+const groups = {
+  'overview.md': ['docs/foundations'],
+  'rules.md': ['docs/rules'], // reglas transversales y anti-patterns.md
+  'patterns.md': ['docs/patterns'],
+  'content.md': ['docs/content'],
+};
+
+const read = (p) =>
+  fs.statSync(p).isDirectory()
+    ? fs.readdirSync(p).filter((f) => f.endsWith('.md')).sort().map((f) => read(path.join(p, f))).join('\n\n')
+    : fs.readFileSync(p, 'utf8').replace(/^---\n[\s\S]*?\n---\n/, ''); // sin frontmatter
+
+fs.mkdirSync(OUT, { recursive: true });
+let total = 0;
+for (const [file, sources] of Object.entries(groups)) {
+  const text = sources.map(read).join('\n\n');
+  fs.writeFileSync(path.join(OUT, file), text);
+  total += Buffer.byteLength(text);
+}
+console.log(`Guidelines: ${(total / 1024).toFixed(1)} KB`);
+if (total > 100 * 1024) process.exitCode = 1; // Figma recomienda menos de 100 KB
+```
+
+El script es un ejemplo: ajusta los grupos a tu carpeta `docs/`. Lo importante es el orden de trabajo: se cambia `docs/`, se genera, se sube.
+
+<Takeaways>
+
+## En resumen
+
+- Cada herramienta lee las reglas en un sitio distinto, con límites distintos.
+- La carpeta `docs/` del repositorio es la única fuente; los destinos se generan o la enlazan.
+- Las guidelines de Figma se pueden generar con un script que respete el límite de tamaño.
+
+</Takeaways>
+
+## Fuentes
+
+- [Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)
+- [Figma: Code Connect integration](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/)
+- [Claude Code: How Claude remembers your project](https://code.claude.com/docs/en/memory)
+- [Claude Code: Extend Claude with skills](https://code.claude.com/docs/en/skills)
+- [Claude Help: Set up your design system in Claude Design](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)
+- [Claude Help: How can I create and manage projects](https://support.claude.com/en/articles/9519177)
+- [Storybook: Best practices for using Storybook with AI](https://storybook.js.org/docs/ai/best-practices)

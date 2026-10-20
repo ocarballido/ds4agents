@@ -1,14 +1,81 @@
 ---
 title: Validar la documentación
-description: Cómo comprobar el frontmatter de forma automática para que la documentación no se degrade.
+meta_title: "Validar de forma automática la documentación de un sistema de diseño"
+description: Cómo comprobar con un script que cada componente estable tiene enlace a Figma, a código y a sus tokens, y cómo revisar las instrucciones para agentes en busca de contradicciones.
 nav_title: Validar la documentación
 lastReviewed: 2026-10-20
 ---
 
-Cómo comprobar el frontmatter de forma automática para que la documentación no se degrade.
+La documentación se degrada en silencio: alguien añade un componente y no escribe su documento, o cambia una prop y no actualiza la tabla. Un script que revisa el frontmatter en cada cambio evita lo primero; una revisión periódica de las instrucciones evita lo segundo.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 3: Documentación en Markdown» (`docs/guia-fuente.md`).
+- [Qué se puede comprobar](#qué-se-puede-comprobar)
+- [Un script de validación](#un-script-de-validación)
+- [Revisar las instrucciones para agentes](#revisar-las-instrucciones-para-agentes)
+- [En resumen](#en-resumen)
+
+## Qué se puede comprobar
+
+Con el frontmatter de cada documento ([Por qué Markdown](/documentation/why-markdown#frontmatter-datos-además-de-texto)) se pueden comprobar, sin leer el texto:
+
+- Que cada componente `stable` tiene `figma`, `code` y `tokens`.
+- Que cada componente `deprecated` tiene sustituto (`replaced_by`).
+- Que cada componente de `inventory.md` tiene su documento, y al revés.
+- Que la ruta de `code` existe en el repositorio.
+
+Lo que no se puede comprobar con un script, como si una regla es clara, se revisa con las [evaluaciones del capítulo 7](/evaluation/design-evals).
+
+## Un script de validación
+
+```js filename="scripts/validate-docs.mjs"
+// Comprueba el frontmatter de docs/components/*.md. Uso: node scripts/validate-docs.mjs
+import fs from 'node:fs';
+import path from 'node:path';
+
+const DIR = 'docs/components';
+const REQUIRED = { stable: ['figma', 'code', 'tokens'], deprecated: ['replaced_by'] };
+const errors = [];
+
+for (const file of fs.readdirSync(DIR).filter((f) => f.endsWith('.md'))) {
+  const text = fs.readFileSync(path.join(DIR, file), 'utf8');
+  const block = /^---\n([\s\S]*?)\n---/.exec(text);
+  if (!block) { errors.push(`${file}: sin frontmatter`); continue; }
+  const data = Object.fromEntries(
+    block[1].split('\n').map((line) => line.split(/:\s(.*)/s)).filter(([k, v]) => k && v !== undefined),
+  );
+  for (const key of REQUIRED[data.status] ?? []) {
+    if (!data[key]) errors.push(`${file}: status ${data.status} sin "${key}"`);
+  }
+  if (data.code && !fs.existsSync(data.code)) errors.push(`${file}: no existe ${data.code}`);
+}
+
+console.log(errors.length ? errors.join('\n') : 'Documentación sin errores');
+process.exitCode = errors.length ? 1 : 0;
+```
+
+El script lee el frontmatter de forma simple, línea a línea. Si tus documentos usan listas o valores en varias líneas, usa una librería de YAML. Ejecútalo en la integración continua de cada pull request, junto con el que genera las [guidelines de Figma](/documentation/one-source-many-channels#generar-las-guidelines-de-figma).
+
+## Revisar las instrucciones para agentes
+
+Claude Code advierte que, si dos instrucciones se contradicen, Claude puede elegir una al azar, y recomienda revisar de vez en cuando los archivos de instrucciones para quitar lo obsoleto o contradictorio. Para hacerlo con ayuda, ofrece una auditoría: `/doctor prompt-audit` revisa `CLAUDE.md`, `AGENTS.md`, las reglas y las skills del proyecto ([Claude Code: Memory](https://code.claude.com/docs/en/memory)).
+
+<Callout variant="recommendation">
+
+Haz esa revisión al publicar cada versión del sistema. Y añade al proceso de contribución una pregunta: "¿Este cambio contradice alguna regla escrita?" ([capítulo 7](/evaluation/contributing)).
 
 </Callout>
+
+<Takeaways>
+
+## En resumen
+
+- El frontmatter permite comprobar con un script que no falta ningún enlace ni sustituto.
+- El script se ejecuta en cada pull request, junto con la generación de guidelines.
+- Las contradicciones entre instrucciones se revisan en cada versión; Claude Code tiene una auditoría para ello.
+
+</Takeaways>
+
+## Fuentes
+
+- [Claude Code: How Claude remembers your project](https://code.claude.com/docs/en/memory)

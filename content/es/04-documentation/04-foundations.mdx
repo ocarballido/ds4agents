@@ -1,14 +1,91 @@
 ---
 title: Fundamentos
-description: Plantilla para documentar color, tipografía, espaciado y accesibilidad.
+meta_title: "Plantilla para documentar los fundamentos de un sistema de diseño en Markdown"
+description: Qué escribir en los documentos de fundamentos (color, tipografía, espaciado y accesibilidad) para que un agente sepa qué token usar en cada caso, con una plantilla de color.
 nav_title: Fundamentos
 lastReviewed: 2026-10-20
 ---
 
-Plantilla para documentar color, tipografía, espaciado y accesibilidad.
+Los fundamentos explican las decisiones que hay detrás de los tokens: por qué existe cada rol de color, qué paso de espaciado va con qué caso, qué contraste es obligatorio. Para un agente, son la respuesta a "¿qué token uso aquí?".
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 3: Documentación en Markdown» (`docs/guia-fuente.md`).
+- [Qué documentos escribir](#qué-documentos-escribir)
+- [Qué lleva cada uno](#qué-lleva-cada-uno)
+- [Plantilla de color](#plantilla-de-color)
+- [En resumen](#en-resumen)
+
+## Qué documentos escribir
+
+| Documento | Responde a |
+|---|---|
+| `color.md` | Qué rol semántico usar y qué combinaciones evitar |
+| `typography.md` | Qué estilo de texto va con cada jerarquía |
+| `spacing.md` | Qué paso de la escala usar en cada relación (dentro de un componente, entre componentes, entre secciones) |
+| `radius.md` | Qué radio corresponde a cada tipo de componente |
+| `accessibility.md` | Qué mínimos son obligatorios en todo el sistema |
+
+La ayuda de Figma para las guidelines señala estos mismos huecos como los que más conviene cubrir: los roles semánticos de color y las combinaciones que evitar, la escala de espaciado y su aplicación, y qué radio va con qué componente ([Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)).
+
+## Qué lleva cada uno
+
+1. **Principios:** dos o tres frases con la intención del fundamento.
+2. **Tabla de tokens semánticos:** token, uso y para qué no usarlo.
+3. **Reglas para agentes:** las reglas comprobables que se derivan de los principios.
+4. **Enlace a los tokens:** el archivo DTCG del repositorio, que es la fuente de los valores.
+
+<Callout variant="recommendation">
+
+No copies los valores en el documento de fundamentos. El valor está en el token; el documento explica el uso. Si copias valores, tendrás dos fuentes que pueden dejar de coincidir.
 
 </Callout>
+
+## Plantilla de color
+
+```markdown filename="docs/foundations/color.md"
+---
+title: Color
+type: foundation
+status: stable
+tokens: tokens/semantic.tokens.json
+---
+
+# Color
+
+## Principios
+- El color comunica jerarquía y estado. Nunca es el único indicador de un estado.
+- Contraste mínimo 4.5:1 para texto y 3:1 para elementos de interfaz (WCAG 2.2 AA).
+
+## Tokens semánticos
+| Token | Uso | No usar para |
+|---|---|---|
+| `color.action.primary` | Fondo de la acción principal | Enlaces de texto |
+| `color.text.default` | Texto principal | Texto sobre fondos de color (usa los pares `on-`) |
+| `color.text.subtle` | Metadatos y ayudas | Texto necesario para completar una tarea |
+| `color.feedback.error` | Mensajes y bordes de error | Botones destructivos (usa `color.action.danger`) |
+
+## Reglas para agentes
+- Usa solo los tokens de esta tabla. Nunca primitivos ni valores literales.
+- Un estado de error lleva siempre texto o icono, además del color.
+- En el modo oscuro no inviertas colores a mano: los tokens ya cambian con el modo.
+```
+
+Los mínimos de contraste de la plantilla son los de WCAG 2.2: 4,5:1 para texto normal ([WCAG 2.2: Contrast (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html)) y 3:1 para componentes de interfaz ([WCAG 2.2: Non-text Contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html)). La regla de no usar solo el color sale del criterio 1.4.1 ([WCAG 2.2: Use of Color](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html)). DesignToken101 explica cómo aplicarlos a los tokens ([DesignToken101: Qué pide WCAG a los tokens](https://designtokens101.com/accessibility/wcag-and-tokens)).
+
+<Takeaways>
+
+## En resumen
+
+- Los fundamentos responden a "qué token uso aquí": color, tipografía, espaciado, radio y accesibilidad.
+- Cada documento tiene principios, una tabla de tokens con su uso y reglas comprobables.
+- Los valores viven en los tokens; el documento solo explica el uso.
+
+</Takeaways>
+
+## Fuentes
+
+- [Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)
+- [WCAG 2.2: Contrast (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html)
+- [WCAG 2.2: Non-text Contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html)
+- [WCAG 2.2: Use of Color](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html)
+- [DesignToken101: Qué pide WCAG a los tokens](https://designtokens101.com/accessibility/wcag-and-tokens)

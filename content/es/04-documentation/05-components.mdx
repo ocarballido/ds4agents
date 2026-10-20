@@ -1,14 +1,119 @@
 ---
 title: Componentes
-description: Plantilla completa de documentación de un componente.
+meta_title: "Plantilla de documentación de un componente para agentes de IA"
+description: La plantilla completa de documentación de un componente en Markdown, con frontmatter, cuándo usarlo, anatomía, props, estados, reglas, accesibilidad y ejemplos.
 nav_title: Componentes
 lastReviewed: 2026-10-20
 ---
 
-Plantilla completa de documentación de un componente.
+El documento de un componente es lo que el agente lee antes de usarlo. Tiene que responder tres preguntas: si es el componente adecuado, cómo se configura y qué no se debe hacer con él. Esta página explica cada sección de la plantilla.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 3: Documentación en Markdown» (`docs/guia-fuente.md`).
+- [Las secciones](#las-secciones)
+- [La plantilla](#la-plantilla)
+- [Qué hace útil cada sección](#qué-hace-útil-cada-sección)
+- [En resumen](#en-resumen)
+
+## Las secciones
+
+| Sección | Pregunta que responde |
+|---|---|
+| Frontmatter | Qué es, dónde está en Figma y en código, en qué estado está |
+| Propósito | Para qué sirve, en una frase |
+| Cuándo usar y cuándo no | Si es el componente adecuado, y cuál usar si no lo es |
+| Anatomía | Qué partes tiene, con los mismos nombres que las capas de Figma |
+| Props | Qué se puede configurar, con nombres y valores exactos |
+| Estados | Qué estados existen y cuáles son props |
+| Reglas | Qué no se puede hacer, de forma comprobable |
+| Accesibilidad | Lo que no se ve en el dibujo |
+| Ejemplos | Un uso correcto y uno incorrecto |
+
+## La plantilla
+
+```markdown filename="docs/components/text-field.md"
+---
+name: TextField
+level: molecule
+category: forms
+status: stable
+since: 1.2.0
+figma: https://www.figma.com/design/<archivo>?node-id=<nodo>
+code: src/components/TextField/TextField.tsx
+storybook: https://storybook.ejemplo.com/?path=/docs/forms-textfield
+composes: [Label, Input, HelperText, Icon]
+tokens: [color.border.default, color.feedback.error, space.inset.sm]
+replaces: [LegacyInput]
+---
+
+# TextField
+
+Campo de texto de una línea, con etiqueta, ayuda y validación.
+
+## Cuándo usar y cuándo no
+- Usar: texto corto, como nombre, email o búsqueda dentro de un formulario.
+- No usar: texto de varias líneas (usa `TextArea`) ni elegir entre opciones (usa `Select`).
+
+## Anatomía
+1. Label: obligatoria y visible.
+2. Input.
+3. HelperText: opcional; el mensaje de error lo sustituye.
+4. LeadingIcon y TrailingIcon: opcionales.
+
+## Props
+| Prop | Tipo | Valores | Por defecto | Nota |
+|---|---|---|---|---|
+| `label` | string | | | Obligatoria |
+| `size` | enum | `sm`, `md` | `md` | `sm` solo en tablas y filtros |
+| `invalid` | boolean | | `false` | Exige `errorMessage` |
+| `errorMessage` | string | | | Dice cómo corregir el error |
+| `disabled` | boolean | | `false` | |
+
+## Estados
+`default`, `hover`, `focus`, `invalid`, `disabled`, `read-only`.
+`invalid` y `disabled` son props; `hover` y `focus` los pone el navegador.
+
+## Reglas
+- Nunca uses el placeholder en lugar de la etiqueta.
+- Si `invalid` es `true`, `errorMessage` es obligatorio y explica cómo corregir el error.
+- Máximo un icono a cada lado.
+
+## Accesibilidad
+- La etiqueta está asociada al campo.
+- El mensaje de error está enlazado con `aria-describedby`.
+
+## Ejemplos
+Correcto:
+<TextField label="Email" type="email" invalid errorMessage="Escribe un email con @" />
+
+Incorrecto (sin etiqueta y sin mensaje de error):
+<TextField placeholder="Email" invalid />
+```
+
+## Qué hace útil cada sección
+
+- **`replaces` y `replaced_by` en el frontmatter.** El componente nuevo dice a cuál sustituye (`replaces: [LegacyInput]`) y el obsoleto, cuál lo sustituye (`replaced_by: TextField`). Si el agente encuentra `LegacyInput` en el código, sabe qué usar.
+- **"Cuándo no" con alternativa.** Una regla negativa sin alternativa deja al agente sin salida. Siempre "no uses X; usa Y".
+- **Anatomía con los nombres de Figma.** Si las capas se llaman `Label`, `Input` y `HelperText` ([Nombres](/figma/naming#capas-internas)), el agente encuentra la misma palabra en el diseño y en el documento.
+- **Estados separados de props.** Evita que el agente intente pasar `hover` como prop.
+- **El ejemplo incorrecto, con el motivo.** Muestra el error más probable, no uno cualquiera.
+
+<Callout variant="recommendation">
+
+Las props de la tabla tienen que coincidir con las del código. Si usas Storybook, el manifiesto de componentes ya extrae las props del código ([capítulo 5](/design-to-code/storybook-mcp)); en ese caso, en el documento basta con las notas que el código no dice, y el agente consulta las props en Storybook.
 
 </Callout>
+
+<Takeaways>
+
+## En resumen
+
+- El documento responde: si es el componente adecuado, cómo se configura y qué no hacer.
+- Cada "no" lleva su alternativa, y la anatomía usa los nombres de las capas de Figma.
+- Las props coinciden con el código; con Storybook, basta con las notas que el código no dice.
+
+</Takeaways>
+
+## Fuentes
+
+Esta página propone una plantilla propia. Las fuentes de cada práctica que aplica están en [Escribir para agentes](/documentation/writing-for-agents) y en el [capítulo 2](/figma/naming).

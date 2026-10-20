@@ -1,14 +1,93 @@
 ---
 title: Por qué Markdown
-description: Por qué Markdown con frontmatter es el formato que leen los agentes.
+meta_title: "Por qué documentar un sistema de diseño en Markdown para agentes de IA"
+description: Por qué Markdown con frontmatter es el formato común de la documentación para agentes, qué ventajas tiene frente a texto plano o PDF y cómo organizar la carpeta docs del repositorio.
 nav_title: Por qué Markdown
 lastReviewed: 2026-10-20
 ---
 
-Por qué Markdown con frontmatter es el formato que leen los agentes.
+La documentación de un sistema de diseño para agentes tiene que leerse en Figma, en el repositorio, en Claude y en la web del sistema. Markdown es el único formato que admiten todos esos destinos. Esta página explica por qué y cómo organizar los archivos.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 3: Documentación en Markdown» (`docs/guia-fuente.md`).
+- [El formato que leen todos](#el-formato-que-leen-todos)
+- [Estructura que el modelo aprovecha](#estructura-que-el-modelo-aprovecha)
+- [Frontmatter: datos además de texto](#frontmatter-datos-además-de-texto)
+- [La carpeta docs](#la-carpeta-docs)
+- [En resumen](#en-resumen)
+
+## El formato que leen todos
+
+| Destino | Formato que lee | Fuente |
+|---|---|---|
+| Claude Code | `CLAUDE.md` y `AGENTS.md`, en Markdown | [Claude Code: Memory](https://code.claude.com/docs/en/memory) |
+| Skills de Claude Code y de Figma | `SKILL.md`, Markdown con frontmatter YAML | [Claude Code: Skills](https://code.claude.com/docs/en/skills) |
+| Agentes de código en general | `AGENTS.md`, Markdown sin campos obligatorios | [AGENTS.md](https://agents.md/) |
+| Agente de Figma | Guidelines en `.md`, `.txt` o `.json` | [Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511) |
+| Webs de documentación | `llms.txt`, una propuesta de índice en Markdown para LLM | [llms.txt](https://llmstxt.org/) |
+
+Las guidelines de Figma admiten texto plano, pero los demás destinos esperan Markdown. Un PDF o una captura no sirven: un agente no puede citar una regla de una imagen ni enlazar a una sección de un PDF.
+
+## Estructura que el modelo aprovecha
+
+Markdown separa los apartados con encabezados, las reglas en listas y las propiedades en tablas. Esa estructura ayuda a quien lo lee, persona o modelo, a encontrar la parte que necesita sin leerlo todo.
+
+Anthropic recomienda organizar las instrucciones para agentes en secciones diferenciadas, con encabezados de Markdown o etiquetas XML, y advierte que el formato exacto importa cada vez menos a medida que los modelos mejoran ([Anthropic: Effective context engineering for AI agents](https://anthropic.com/engineering/effective-context-engineering-for-ai-agents)). Lo que sí importa es que cada regla esté en un sitio previsible.
+
+## Frontmatter: datos además de texto
+
+El frontmatter es un bloque YAML al principio del archivo, entre dos líneas `---`. Claude Code lo usa en las skills para saber cuándo cargarlas ([Claude Code: Skills](https://code.claude.com/docs/en/skills)), y esta misma web lo usa en cada página.
+
+En la documentación del sistema, el frontmatter convierte cada archivo en un registro:
+
+```markdown filename="docs/components/button.md (cabecera)"
+---
+name: Button
+level: atom
+category: actions
+status: stable
+figma: https://www.figma.com/design/<archivo>?node-id=<nodo>
+code: src/components/Button/Button.tsx
+---
+```
+
+Con eso, un script puede listar los componentes estables, comprobar que todos tienen enlace a Figma y a código, o generar el índice que lee el agente ([Validar la documentación](/documentation/validate-docs)).
+
+## La carpeta docs
+
+<Callout variant="recommendation">
+
+Proponemos esta estructura. Un archivo por componente y por patrón, con el nombre del componente en minúsculas y con guiones.
 
 </Callout>
+
+```text filename="Repositorio del sistema de diseño"
+docs/
+├── inventory.md           índice de componentes con su estado (capítulo 1)
+├── foundations/           color.md, typography.md, spacing.md, accessibility.md
+├── components/            button.md, text-field.md, data-table.md…
+├── patterns/              login.md, list-with-filters.md…
+├── content/               voice-and-tone.md
+└── rules/                 rules-tokens.md, anti-patterns.md y otras reglas transversales
+```
+
+Las páginas siguientes explican qué escribir en cada carpeta. La carpeta `rules/` reúne las reglas que valen para todo el sistema, como la de los tokens del [capítulo 3](/tokens/practice-token-descriptions).
+
+<Takeaways>
+
+## En resumen
+
+- Markdown es el formato común de Claude Code, las skills, AGENTS.md y las guidelines de Figma.
+- Los encabezados, listas y tablas ayudan al modelo a encontrar cada regla.
+- El frontmatter convierte cada documento en un registro que un script puede comprobar.
+
+</Takeaways>
+
+## Fuentes
+
+- [Claude Code: How Claude remembers your project](https://code.claude.com/docs/en/memory)
+- [Claude Code: Extend Claude with skills](https://code.claude.com/docs/en/skills)
+- [AGENTS.md](https://agents.md/)
+- [Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)
+- [llms.txt](https://llmstxt.org/)
+- [Anthropic: Effective context engineering for AI agents](https://anthropic.com/engineering/effective-context-engineering-for-ai-agents)

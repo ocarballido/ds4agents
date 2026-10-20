@@ -1,14 +1,92 @@
 ---
 title: Patrones
-description: Cómo documentar recetas de pantallas completas para que el agente las siga.
+meta_title: "Documentar patrones de pantalla para que un agente de IA los componga"
+description: Cómo documentar un patrón de pantalla como una receta paso a paso que un agente pueda seguir, con sus variantes y antipatrones, y cómo enlazarlo con su marco de referencia en Figma.
 nav_title: Patrones
 lastReviewed: 2026-10-20
 ---
 
-Cómo documentar recetas de pantallas completas para que el agente las siga.
+Un componente dice cómo es una pieza. Un patrón dice cómo se combinan varias para resolver una pantalla: un inicio de sesión, un listado con filtros, un detalle. Para un agente que tiene que crear una pantalla nueva, el patrón es la documentación más útil del sistema.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 3: Documentación en Markdown» (`docs/guia-fuente.md`).
+- [Por qué los patrones](#por-qué-los-patrones)
+- [Qué lleva un patrón](#qué-lleva-un-patrón)
+- [La plantilla](#la-plantilla)
+- [El patrón en Figma](#el-patrón-en-figma)
+- [En resumen](#en-resumen)
+
+## Por qué los patrones
+
+Anthropic recomienda dar a un agente ejemplos canónicos del comportamiento esperado antes que listas de casos límite ([Anthropic: Effective context engineering for AI agents](https://anthropic.com/engineering/effective-context-engineering-for-ai-agents)). Un patrón es exactamente eso: el ejemplo canónico de una pantalla.
+
+Sin patrones, un agente que tiene que construir un formulario elige componentes uno a uno y los combina a su manera. Con un patrón, sigue una receta que el equipo ya validó. La ayuda de Figma para las guidelines pone los patrones establecidos entre lo primero que conviene escribir ([Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)).
+
+## Qué lleva un patrón
+
+| Sección | Qué escribe |
+|---|---|
+| Problema | Qué necesita hacer el usuario |
+| Componentes | La lista de componentes que usa, como enlaces a sus documentos |
+| Receta | Los pasos en orden, con componente, props y tokens de cada uno |
+| Variantes | Los cambios para los casos habituales |
+| Antipatrones | Los errores frecuentes, con su motivo |
+| Referencia | El enlace al marco de Figma |
+
+## La plantilla
+
+```markdown filename="docs/patterns/login.md"
+---
+name: Login
+type: pattern
+status: stable
+components: [Card, TextField, Button, Link, Alert]
+figma: https://www.figma.com/design/<archivo>?node-id=<nodo>
+---
+
+# Patrón: inicio de sesión
+
+## Problema
+El usuario se identifica con email y contraseña.
+
+## Receta
+1. Contenedor: `Card` centrada, ancho máximo 400 px, relleno `space.inset.lg`.
+2. Título: estilo `heading.md`, texto "Inicia sesión".
+3. `TextField` type="email", label "Email", autocomplete="email".
+4. `TextField` type="password", label "Contraseña", con botón para mostrarla.
+5. `Link` "¿Has olvidado tu contraseña?", alineado a la derecha.
+6. `Button` variant="primary", ancho completo, texto "Entrar".
+7. Errores del servidor: `Alert` variant="error" encima del formulario, no en los campos.
+
+## Variantes
+- Con inicio de sesión externo: un `Button` variant="secondary" por proveedor, debajo de un `Divider` con el texto "o".
+
+## Antipatrones
+- Dos botones principales: "Entrar" y "Crear cuenta" no pueden ser los dos `primary`.
+- Validar la contraseña mientras se escribe: el error aparece antes de que el usuario termine.
+```
+
+## El patrón en Figma
+
+En la librería, cada patrón tiene un marco de referencia en la página **Patterns**, con las anotaciones de su comportamiento ([Estructura de la librería](/figma/library-structure)). El documento enlaza al marco y el marco enlaza al documento con un dev resource ([Dev resources](/figma/dev-resources)).
+
+<Callout variant="recommendation">
+
+Documenta primero los dos patrones de tu piloto. Después, los que más se repiten en tus productos: en la mayoría de los sistemas, cinco o diez patrones cubren casi todas las pantallas.
 
 </Callout>
+
+<Takeaways>
+
+## En resumen
+
+- Un patrón es el ejemplo canónico de una pantalla: lo que más ayuda a un agente a crear pantallas nuevas.
+- La receta da los pasos en orden, con componentes, props y tokens.
+- Cada patrón tiene un marco de referencia en Figma, enlazado con su documento.
+
+</Takeaways>
+
+## Fuentes
+
+- [Anthropic: Effective context engineering for AI agents](https://anthropic.com/engineering/effective-context-engineering-for-ai-agents)
+- [Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)
