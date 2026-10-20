@@ -1,0 +1,17 @@
+{
+  "pages": [
+    "00-start-here",
+    "---Preparar el sistema---",
+    "01-audit",
+    "02-figma",
+    "03-tokens",
+    "04-documentation",
+    "---Conectar con la IA---",
+    "05-design-to-code",
+    "06-agent-layer",
+    "07-evaluation",
+    "---Referencia---",
+    "98-templates",
+    "99-resources"
+  ]
+}

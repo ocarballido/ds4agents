@@ -1,0 +1,58 @@
+import type { LucideIcon } from 'lucide-react';
+import type { ComponentPropsWithoutRef, ReactNode, Ref } from 'react';
+import Link from 'next/link';
+import { cx } from '@/lib/cx';
+
+// Anatomía: docs/componentes-v1.md §2.2. Con `href` es un enlace; sin él, un <button> (D15).
+// Sin disabled ni loading en v1 (D14).
+// `primary` lleva un borde transparente de border-width/100: con colores forzados el navegador
+// lo pinta con un color del sistema y el botón conserva su contorno (T17, V42).
+
+type ButtonProps = {
+  variant?: 'primary' | 'secondary';
+  children: ReactNode;
+  /** Icono opcional, al final. */
+  icon?: LucideIcon;
+  href?: string;
+  /** Solo sin href: el <button> (FileUpload devuelve el foco al primer botón, §5.5). */
+  ref?: Ref<HTMLButtonElement>;
+} & Omit<ComponentPropsWithoutRef<'button'>, 'children'>;
+
+const VARIANTS = {
+  primary:
+    'border-(length:--t101-border-width-100) border-transparent bg-accent-strong-default text-on-accent hover:bg-accent-strong-hover active:bg-accent-strong-active',
+  secondary:
+    'border-(length:--t101-border-width-100) border-neutral-strong text-neutral-default hover:bg-neutral-hover active:bg-neutral-active',
+};
+
+export function Button({ variant = 'primary', children, icon: Icon, href, className, type = 'button', ref, ...props }: ButtonProps) {
+  const classes = cx(
+    'inline-flex cursor-pointer items-center justify-center gap-200 rounded-control py-200 type-label-default focus-ring',
+    Icon ? 'ps-400 pe-300' : 'px-400',
+    VARIANTS[variant],
+    className,
+  );
+  const content = (
+    <>
+      {children}
+      {Icon ? <Icon aria-hidden className="size-600 shrink-0" /> : null}
+    </>
+  );
+
+  if (href) {
+    return href.startsWith('/') ? (
+      <Link href={href} className={classes}>
+        {content}
+      </Link>
+    ) : (
+      <a href={href} className={classes}>
+        {content}
+      </a>
+    );
+  }
+  return (
+    <button ref={ref} type={type} className={classes} {...props}>
+      {content}
+    </button>
+  );
+}

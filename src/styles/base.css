@@ -1,0 +1,152 @@
+/* Estilos base y utilidades compartidas (paso 8). Solo variables --t101-* (S27). */
+
+/* Variante dark: con los mismos selectores que el modo Dark de tokens.css (V10): elegido en el
+ * selector o "system" con el sistema en oscuro. Solo la usan los logotipos (V20): los colores
+ * cambian solos con los tokens. https://tailwindcss.com/docs/dark-mode#using-a-data-attribute */
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme="light"]) *) {
+      @slot;
+    }
+  }
+}
+
+@layer base {
+  /* Fondo y texto de la página; el estilo de texto por defecto es body/default (§8). */
+  html {
+    background-color: var(--t101-color-background-neutral-default);
+    color: var(--t101-color-text-neutral-default);
+    font-family: var(--font-sans);
+    font-size: var(--t101-font-size-body-default);
+    line-height: var(--t101-line-height-normal);
+    font-weight: var(--t101-font-weight-400);
+  }
+
+  /* D17: la negrita del texto es body/strong (peso 600), con el tamaño del texto que la rodea. */
+  strong,
+  b {
+    font-weight: var(--t101-font-weight-600);
+  }
+
+  /* Con el panel de navegación móvil abierto, la página no hace scroll; solo el panel (V25). */
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
+
+  /* V28: la cabecera es sticky. Al saltar a un ancla o mover el foco, el navegador deja libre su
+   * altura (2.4.11 Focus Not Obscured). --site-header-height la mide HeaderHeight. */
+  html {
+    scroll-padding-block-start: var(--site-header-height, 0);
+  }
+
+  /* Las anclas de "En esta página" no quedan pegadas a la cabecera. */
+  :target {
+    scroll-margin-block-start: var(--t101-space-600);
+  }
+}
+
+/* Anillo de foco (componentes-v1.md §1.3, entrega-diseno.md §3.1): border-width/200 con
+ * border/focus, por fuera del control. outline se dibuja fuera del borde; con
+ * offset 0 queda pegado al control. Solo con :focus-visible (2.4.7). */
+@utility focus-ring {
+  &:focus-visible {
+    outline: var(--t101-border-width-200) solid var(--t101-color-border-focus);
+    outline-offset: 0;
+  }
+}
+
+/* Igual, pero hacia dentro: para controles dentro de un contenedor con overflow que
+ * recortaría el anillo (sidebar con scroll propio, cabecera de InCode). Es como lo dibuja Figma. */
+@utility focus-ring-inset {
+  &:focus-visible {
+    outline: var(--t101-border-width-200) solid var(--t101-color-border-focus);
+    outline-offset: calc(var(--t101-border-width-200) * -1);
+  }
+}
+
+/* C29: deslizador del tinte de Generar escalas sobre el input type="range" nativo, que conserva el
+ * teclado y el lector de pantalla. Pulgar de 24 × 24 px (2.5.8) con relleno de acento y borde
+ * border/accent/strong (1.4.11); pista de 4 px en border/neutral/strong; anillo de foco en el pulgar.
+ * Cada motor tiene sus pseudoelementos y una regla que no entiende anula las demás de su lista, así
+ * que van por separado. https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-slider-thumb
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/::-moz-range-thumb */
+@utility range-tint {
+  appearance: none;
+  background: transparent;
+  outline: none;
+
+  &::-webkit-slider-runnable-track {
+    block-size: var(--t101-space-100);
+    border-radius: var(--t101-radius-100);
+    background-color: var(--t101-color-border-neutral-strong);
+  }
+  &::-moz-range-track {
+    block-size: var(--t101-space-100);
+    border-radius: var(--t101-radius-100);
+    background-color: var(--t101-color-border-neutral-strong);
+  }
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    box-sizing: border-box;
+    inline-size: var(--t101-space-600);
+    block-size: var(--t101-space-600);
+    /* Centra el pulgar sobre la pista: WebKit lo alinea con el borde superior de la pista. */
+    margin-block-start: calc((var(--t101-space-100) - var(--t101-space-600)) / 2);
+    border: var(--t101-border-width-200) solid var(--t101-color-border-accent-strong);
+    border-radius: var(--t101-radius-1200);
+    background-color: var(--t101-color-background-accent-strong-default);
+  }
+  &::-moz-range-thumb {
+    box-sizing: border-box;
+    inline-size: var(--t101-space-600);
+    block-size: var(--t101-space-600);
+    border: var(--t101-border-width-200) solid var(--t101-color-border-accent-strong);
+    border-radius: var(--t101-radius-1200);
+    background-color: var(--t101-color-background-accent-strong-default);
+  }
+
+  /* C31: el anillo son sombras sin desenfoque y no un outline: Chrome no pinta el outline del pulgar
+   * (comprobado en Chrome 154). border/focus es el color del borde del pulgar, así que entre los dos
+   * va un hueco de border-width/200 en background/neutral/default y, por fuera, el anillo. */
+  &:focus-visible::-webkit-slider-thumb {
+    box-shadow:
+      0 0 0 var(--t101-border-width-200) var(--t101-color-background-neutral-default),
+      0 0 0 calc(var(--t101-border-width-200) * 2) var(--t101-color-border-focus);
+  }
+  &:focus-visible::-moz-range-thumb {
+    box-shadow:
+      0 0 0 var(--t101-border-width-200) var(--t101-color-background-neutral-default),
+      0 0 0 calc(var(--t101-border-width-200) * 2) var(--t101-color-border-focus);
+  }
+}
+
+/* C30: pulso del resultado desactualizado de Generar escalas, de 1 a opacity/inactive y vuelta, en
+ * ciclos de duration/2000 con easing/standard, sin parar. Con prefers-reduced-motion no hay pulso
+ * (V24) y las muestras se atenúan fijas (prop inactive de ColorScale y ScalePreview). */
+@keyframes t101-pulse {
+  50% {
+    opacity: var(--t101-opacity-inactive);
+  }
+}
+
+@utility pulse-stale {
+  @media (prefers-reduced-motion: no-preference) {
+    animation: t101-pulse var(--t101-duration-2000) var(--t101-easing-standard) infinite;
+  }
+}
+
+/* Separación vertical del texto de la lección (Figma: 16 px entre bloques, 24 px antes de cada apartado). */
+@utility flow {
+  & > * + * {
+    margin-block-start: var(--t101-space-400);
+  }
+  /* Takeaways (C18) empieza con su h2: lleva la misma separación que un título. */
+  & > h2,
+  & > [data-component='Takeaways'] {
+    margin-block-start: var(--t101-space-600);
+  }
+}

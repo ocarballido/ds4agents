@@ -1,0 +1,62 @@
+{
+  "Callout": {
+    "note": "Note",
+    "warning": "Warning",
+    "recommendation": "Recommendation",
+    "pending": "Pending"
+  },
+  "InCode": {
+    "label": "In code"
+  },
+  "Sidebar": {
+    "label": "Lessons"
+  },
+  "Lesson": {
+    "untranslated": "This lesson is not translated yet. It is shown in {language}."
+  },
+  "Languages": {
+    "en": "English",
+    "es": "Spanish"
+  },
+  "LessonHeader": {
+    "lastReviewed": "Last reviewed: <date></date>"
+  },
+  "CodeBlock": {
+    "copy": "Copy code",
+    "copied": "Copied",
+    "label": "Code"
+  },
+  "Table": {
+    "label": "Table"
+  },
+  "SkipLink": {
+    "label": "Skip to content"
+  },
+  "SiteHeader": {
+    "home": "ds4agents, home"
+  },
+  "MobileNav": {
+    "open": "Open menu",
+    "close": "Close menu",
+    "label": "Navigation"
+  },
+  "LanguageSwitcher": {
+    "label": "Language"
+  },
+  "ThemeToggle": {
+    "label": "Color mode",
+    "light": "Light mode",
+    "dark": "Dark mode",
+    "system": "System mode"
+  },
+  "PageNav": {
+    "label": "Previous and next lesson",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "SiteFooter": {
+    "createdBy": "A website by:",
+    "notice": "This website was made with help from Claude (Anthropic) and reviewed by a person.",
+    "authorSite": "Oscar Carballido, personal website"
+  }
+}

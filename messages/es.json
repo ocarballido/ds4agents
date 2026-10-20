@@ -1,0 +1,73 @@
+{
+  "Callout": {
+    "note": "Nota",
+    "warning": "Aviso",
+    "recommendation": "Recomendación",
+    "pending": "Pendiente"
+  },
+  "InCode": {
+    "label": "En código"
+  },
+  "Sidebar": {
+    "label": "Lecciones"
+  },
+  "Lesson": {
+    "untranslated": "Esta lección todavía no está traducida. Se muestra en {language}."
+  },
+  "Languages": {
+    "en": "inglés",
+    "es": "español"
+  },
+  "LessonHeader": {
+    "lastReviewed": "Última revisión: <date></date>"
+  },
+  "CodeBlock": {
+    "copy": "Copiar código",
+    "copied": "Copiado",
+    "label": "Código",
+    "mark": "nota"
+  },
+  "Table": {
+    "label": "Tabla"
+  },
+  "SkipLink": {
+    "label": "Saltar al contenido"
+  },
+  "SiteHeader": {
+    "home": "ds4agents, inicio"
+  },
+  "MobileNav": {
+    "open": "Abrir menú",
+    "close": "Cerrar menú",
+    "label": "Navegación"
+  },
+  "LanguageSwitcher": {
+    "label": "Idioma"
+  },
+  "ThemeToggle": {
+    "label": "Modo de color",
+    "light": "Modo claro",
+    "dark": "Modo oscuro",
+    "system": "Modo del sistema"
+  },
+  "PageNav": {
+    "label": "Lección anterior y siguiente",
+    "previous": "Anterior",
+    "next": "Siguiente"
+  },
+  "SiteFooter": {
+    "createdBy": "Una web creada por:",
+    "notice": "Esta web se ha hecho con ayuda de Claude (Anthropic) y con la revisión de una persona.",
+    "authorSite": "Oscar Carballido, web personal",
+    "reportError": "¿Has encontrado un error?",
+    "reportLink": "Avísalo en GitHub"
+  },
+  "Home": {
+    "metaTitle": "ds4agents · Sistemas de diseño legibles por agentes de IA",
+    "metaDescription": "Un curso en español para diseñadores de UI: prepara tu sistema de diseño en Figma, documéntalo y conéctalo para que cualquier agente de IA pueda usar sus componentes, tokens y reglas.",
+    "title": "Sistemas de diseño para agentes de IA",
+    "subtitle": "Un curso en español para diseñadores de UI",
+    "intro": "Paso a paso, auditarás tu sistema, prepararás Figma, convertirás tus decisiones en tokens y documentos Markdown y los conectarás con agentes como Claude. Cada afirmación técnica enlaza a su fuente, y esta web usa el mismo sistema de diseño que DesignToken101.",
+    "start": "Empezar el curso"
+  }
+}
