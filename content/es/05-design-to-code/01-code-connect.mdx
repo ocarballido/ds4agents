@@ -1,14 +1,74 @@
 ---
 title: Code Connect
-description: Qué es Code Connect, qué requiere y qué recibe el agente gracias a él.
+meta_title: "Code Connect: que el agente de IA use tus componentes reales al implementar un diseño"
+description: Qué es Code Connect, qué recibe un agente gracias a él a través del servidor MCP de Figma, en qué se diferencian la versión de interfaz y la de línea de comandos y qué plan pide.
 nav_title: Code Connect
 lastReviewed: 2026-10-20
 ---
 
-Qué es Code Connect, qué requiere y qué recibe el agente gracias a él.
+Sin Code Connect, un agente que lee un botón en Figma tiene que adivinar qué componente de tu código le corresponde. Con Code Connect, recibe el import y el fragmento de código reales. Figma lo describe como la forma más eficaz de que el agente reutilice tus componentes.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 4: Vínculo diseño-código» (`docs/guia-fuente.md`).
+- [Qué es](#qué-es)
+- [Qué recibe el agente](#qué-recibe-el-agente)
+- [Interfaz o línea de comandos](#interfaz-o-línea-de-comandos)
+- [Requisitos](#requisitos)
+- [Qué componentes conectar primero](#qué-componentes-conectar-primero)
+- [En resumen](#en-resumen)
+
+## Qué es
+
+Code Connect vincula los componentes de una librería de Figma con su implementación en código y traduce las propiedades de Figma a las props del código ([Figma: Code Connect](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)). La guía de Figma para el servidor MCP lo señala como la forma más eficaz de que el agente reutilice tus componentes reales: sin él, el agente tiene que adivinar qué componente de código corresponde ([Figma: Structure your Figma file for better code](https://developers.figma.com/docs/figma-mcp-server/structure-figma-file/)).
+
+## Qué recibe el agente
+
+Cuando un marco contiene componentes conectados, el servidor MCP envuelve cada uno en una marca `<CodeConnectSnippet>`. La marca puede llevar los valores actuales de las propiedades de diseño, las líneas de import, un fragmento de uso y las instrucciones personalizadas que hayas escrito ([Figma: Code Connect integration](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/)).
+
+La herramienta `get_code_connect_map` devuelve, para cada instancia seleccionada, el nombre del componente, su ubicación en el código y el fragmento, si existe ([Figma: Tools and prompts](https://developers.figma.com/docs/figma-mcp-server/tools-and-prompts/)).
+
+## Interfaz o línea de comandos
+
+| | Code Connect UI | Code Connect CLI |
+|---|---|---|
+| Dónde se trabaja | Dentro de Figma | En el repositorio |
+| Cómo se crea la conexión | Ruta del componente, a mano o con el repositorio de GitHub conectado | Archivos de plantilla junto al código |
+| Qué fragmento recibe el agente | Import y uso básico, generados desde la ruta, el nombre y las propiedades | Import y fragmento exactos, escritos por el equipo |
+| Instrucciones para el MCP | Sí, una por conexión | No documentado en la interfaz de línea de comandos |
+| Quién lo suele mantener | Diseño | Desarrollo |
+
+Fuentes: [Figma: Code Connect](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect) y [Figma: Code Connect integration](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/).
+
+Las dos se pueden usar en el mismo sistema. Las conexiones creadas por línea de comandos aparecen en la interfaz, pero solo se editan desde la línea de comandos. Para la línea de comandos, Figma recomienda ahora los archivos de plantilla, independientes del framework: los analizadores específicos de cada framework ya no se mantienen de forma activa ([Figma: Code Connect](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)).
+
+<Callout variant="recommendation">
+
+Si en tu equipo diseño mantiene la librería y desarrollo mantiene el código, empieza con Code Connect UI: lo puedes poner en marcha tú, en Figma, y añadir las instrucciones para el MCP. Pasa a la línea de comandos cuando el fragmento genérico se quede corto para un componente concreto.
 
 </Callout>
+
+## Requisitos
+
+- Planes Professional, Organization, Government o Enterprise, con asiento Full o Dev.
+- En Professional, una librería y un framework activos ([Figma: Code Connect](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)).
+
+## Qué componentes conectar primero
+
+Los mismos que documentaste primero: los del piloto y los que más se insertan. Un componente conectado sin documentación da al agente el import correcto, pero no le dice cuándo usarlo; un componente documentado sin conexión le dice cuándo usarlo, pero no cómo importarlo. Los dos juntos son lo que buscas.
+
+<Takeaways>
+
+## En resumen
+
+- Code Connect da al agente el import y el fragmento reales de cada componente.
+- Code Connect UI se configura en Figma y admite instrucciones para el MCP; la línea de comandos da fragmentos exactos.
+- Pide Figma Professional o superior, con asiento Full o Dev.
+
+</Takeaways>
+
+## Fuentes
+
+- [Figma: Code Connect](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)
+- [Figma: Structure your Figma file for better code](https://developers.figma.com/docs/figma-mcp-server/structure-figma-file/)
+- [Figma: Code Connect integration](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/)
+- [Figma: Tools and prompts](https://developers.figma.com/docs/figma-mcp-server/tools-and-prompts/)

@@ -1,14 +1,96 @@
 ---
 title: JSDoc para agentes
-description: Cómo escribir JSDoc en componentes y props para que llegue al manifiesto.
+meta_title: "JSDoc en componentes y props para el manifiesto de Storybook"
+description: Cómo escribir los comentarios JSDoc de un componente, de sus props y de sus historias para que lleguen al manifiesto de Storybook, y cómo excluir los antipatrones.
 nav_title: JSDoc para agentes
 lastReviewed: 2026-10-20
 ---
 
-Cómo escribir JSDoc en componentes y props para que llegue al manifiesto.
+Los tipos de las props dicen qué valores admite un componente. Los comentarios JSDoc dicen cuándo usarlo. Storybook extrae esos comentarios al manifiesto que lee el agente, así que son la forma de poner reglas de uso dentro del propio código.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 4: Vínculo diseño-código» (`docs/guia-fuente.md`).
+- [El resumen del componente](#el-resumen-del-componente)
+- [La descripción de cada prop](#la-descripción-de-cada-prop)
+- [Historias que explican el porqué](#historias-que-explican-el-porqué)
+- [Qué excluir del manifiesto](#qué-excluir-del-manifiesto)
+- [En resumen](#en-resumen)
+
+## El resumen del componente
+
+Storybook extrae al manifiesto el comentario JSDoc que hay encima del componente exportado. El agente recibe la etiqueta `@summary` si existe o, si no, una descripción recortada. Storybook recomienda que el resumen diga cuándo usar el componente ([Storybook: Best practices for using Storybook with AI](https://storybook.js.org/docs/ai/best-practices)):
+
+```tsx filename="Button.tsx"
+/**
+ * Úsalo para acciones que se quedan en la página actual. Para navegar, usa Link.
+ * Máximo un variant="primary" por vista.
+ *
+ * @summary para acciones que se quedan en la página actual
+ */
+export const Button = (props: ButtonProps) => { /* … */ };
+```
+
+## La descripción de cada prop
+
+Cada prop se documenta con un comentario en su interfaz, porque el agente lo usa para entender cómo emplear el componente ([Storybook: Best practices](https://storybook.js.org/docs/ai/best-practices)):
+
+```tsx filename="Button.tsx"
+export interface ButtonProps {
+  /** Jerarquía visual. "danger" solo para acciones destructivas que no se pueden deshacer. */
+  variant?: 'primary' | 'secondary' | 'ghost' | 'danger';
+  /** "sm" solo dentro de tablas y barras de filtros. */
+  size?: 'sm' | 'md' | 'lg';
+  /** Obligatorio si iconOnly es true. */
+  'aria-label'?: string;
+}
+```
+
+Para extraer los tipos, Storybook recomienda `react-docgen-typescript`, más completo que `react-docgen`, que es más rápido. Solo propone cambiar a `react-docgen` si el manifiesto tarda demasiado en generarse.
+
+## Historias que explican el porqué
+
+Las historias son los ejemplos de uso del manifiesto. Storybook pide que su descripción explique **por qué** usar esa historia, no qué muestra, y que cada historia se centre en un solo concepto ([Storybook: Best practices](https://storybook.js.org/docs/ai/best-practices)):
+
+```tsx filename="Button.stories.tsx"
+/**
+ * Para la acción principal de una vista. Evita más de una por vista.
+ *
+ * @summary para la acción principal de una vista
+ */
+export const Primary: Story = {
+  args: { variant: 'primary', children: 'Guardar cambios' },
+};
+```
+
+## Qué excluir del manifiesto
+
+Poco contexto impide al agente usar bien los componentes; demasiado contexto irrelevante empeora su rendimiento. Storybook usa la etiqueta `manifest` para decidir qué entra, y recomienda excluir las historias que muestran antipatrones y las páginas de componentes obsoletos ([Storybook: Best practices](https://storybook.js.org/docs/ai/best-practices)):
+
+```tsx filename="Button.stories.tsx"
+// Historia para personas: muestra el error. No entra en el manifiesto.
+export const TwoPrimariesAntiPattern: Story = {
+  tags: ['!manifest'],
+};
+```
+
+Para excluir un archivo entero se quita la etiqueta `manifest` del `meta` de la exportación por defecto, y para una página MDX se añade `tags={['!manifest']}` a su bloque `Meta`.
+
+<Callout variant="recommendation">
+
+Copia en el JSDoc el "cuándo usar" y las reglas de las props desde el documento del componente. Si mantienes los dos a mano, revísalos juntos en el mismo pull request ([Validar la documentación](/documentation/validate-docs)).
 
 </Callout>
+
+<Takeaways>
+
+## En resumen
+
+- El `@summary` del componente dice cuándo usarlo; Storybook lo pasa al manifiesto.
+- Cada prop lleva un comentario con su regla de uso.
+- Los antipatrones y lo obsoleto se excluyen del manifiesto con `!manifest`.
+
+</Takeaways>
+
+## Fuentes
+
+- [Storybook: Best practices for using Storybook with AI](https://storybook.js.org/docs/ai/best-practices)

@@ -1,14 +1,101 @@
 ---
 title: Storybook y su MCP
-description: Cómo el addon MCP de Storybook da al agente el manifiesto de componentes y props.
+meta_title: "El servidor MCP de Storybook: componentes y props para agentes de IA"
+description: Qué ofrece el servidor MCP de Storybook a un agente, cómo instalarlo, qué frameworks generan el manifiesto de componentes y qué instrucciones conviene darle al agente.
 nav_title: Storybook y su MCP
 lastReviewed: 2026-10-20
 ---
 
-Cómo el addon MCP de Storybook da al agente el manifiesto de componentes y props.
+Si tu librería de componentes usa Storybook, su servidor MCP da al agente la lista de componentes, sus props y las historias como ejemplos de uso. Es la fuente más fiable de "qué props existen", porque sale del código.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 4: Vínculo diseño-código» (`docs/guia-fuente.md`).
+- [Qué ofrece](#qué-ofrece)
+- [Qué frameworks lo admiten](#qué-frameworks-lo-admiten)
+- [Instalarlo](#instalarlo)
+- [Las instrucciones para el agente](#las-instrucciones-para-el-agente)
+- [Figma y Storybook juntos](#figma-y-storybook-juntos)
+- [En resumen](#en-resumen)
+
+## Qué ofrece
+
+El servidor MCP de Storybook conecta tu Storybook con agentes de IA para que entiendan tus componentes y su documentación, generen historias y ejecuten pruebas. Sus herramientas se agrupan en tres conjuntos ([Storybook: MCP server](https://storybook.js.org/docs/ai/mcp/overview)):
+
+| Conjunto | Herramientas | Para qué |
+|---|---|---|
+| Docs | `docs-list`, `docs-show`, `docs-show-story` | Consultar componentes, props y documentación |
+| Development | `get-storybook-story-instructions`, `stories-preview`, `stories-find-by-component`, `stories-changed`, `review-create` | Crear y revisar historias |
+| Testing | `test-run` | Ejecutar las pruebas de componentes |
+
+El conjunto Docs lee el **manifiesto de componentes**, que Storybook genera por análisis estático de las historias y de los tipos de las props ([Storybook: Manifests](https://storybook.js.org/docs/11/ai/manifests.md)).
+
+<Callout variant="warning">
+
+Las capacidades de IA de Storybook están en *preview* en la versión 10.6, y su API puede cambiar ([Storybook: MCP server](https://storybook.js.org/docs/ai/mcp/overview)).
 
 </Callout>
+
+## Qué frameworks lo admiten
+
+| Framework | Manifiesto de componentes |
+|---|---|
+| Cualquier framework de React (`react-vite`, `nextjs`…) | Sí |
+| `@storybook/angular-vite` | Sí |
+| `@storybook/vue3-vite` | Sí, con `experimentalDocgenServer` |
+| `@storybook/angular` (Webpack) y el resto | No: el conjunto Docs no está disponible; Development y Testing, sí |
+
+Fuente: [Storybook: MCP server](https://storybook.js.org/docs/ai/mcp/overview).
+
+## Instalarlo
+
+```bash filename="Terminal"
+npx storybook add @storybook/addon-mcp
+```
+
+Con el servidor de desarrollo de Storybook en marcha, el MCP queda en `http://localhost:6006/mcp` (el puerto puede variar). El manifiesto de componentes está desactivado por defecto y se activa en la configuración:
+
+```ts filename=".storybook/main.ts (fragmento)"
+features: {
+  componentsManifest: true,
+},
+```
+
+Para conectar el servidor a Claude Code, mira [Servidores MCP](/agent-layer/mcp-servers).
+
+## Las instrucciones para el agente
+
+Storybook propone un texto para el archivo de instrucciones del agente (`AGENTS.md` o `CLAUDE.md`). Sus puntos principales ([Storybook: MCP server](https://storybook.js.org/docs/ai/mcp/overview)):
+
+- Usar las herramientas del MCP de Storybook antes de responder o actuar sobre componentes de interfaz.
+- No inventar nunca propiedades de un componente: usar solo las documentadas o las que aparecen en las historias de ejemplo.
+- Pedir las instrucciones actuales para crear historias con `get-storybook-story-instructions`.
+- Comprobar el trabajo con `test-run`.
+
+## Figma y Storybook juntos
+
+| Pregunta del agente | Quién responde |
+|---|---|
+| ¿Qué componente es este elemento del diseño? | Code Connect, por el MCP de Figma |
+| ¿Qué props tiene y qué valores admite? | El manifiesto, por el MCP de Storybook |
+| ¿Cuándo debo usarlo y cuándo no? | La documentación del sistema y el JSDoc del componente |
+
+<Callout variant="recommendation">
+
+Si tienes Storybook, enlaza cada historia desde los dev resources del componente en Figma ([Dev resources](/figma/dev-resources)) y desde el frontmatter de su documento. Así las tres fuentes apuntan al mismo componente.
+
+</Callout>
+
+<Takeaways>
+
+## En resumen
+
+- El MCP de Storybook da al agente los componentes, las props y las historias como ejemplos.
+- El manifiesto funciona con React, `angular-vite` y `vue3-vite`; está en *preview*.
+- Figma dice qué componente es; Storybook, qué props tiene; la documentación, cuándo usarlo.
+
+</Takeaways>
+
+## Fuentes
+
+- [Storybook: MCP server](https://storybook.js.org/docs/ai/mcp/overview)
+- [Storybook: Manifests](https://storybook.js.org/docs/11/ai/manifests.md)

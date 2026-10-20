@@ -1,14 +1,77 @@
 ---
-title: "Instrucciones para el MCP"
-description: "Cómo añadir a cada conexión de Code Connect instrucciones que el servidor MCP de Figma entrega al agente."
-nav_title: "Instrucciones para el MCP"
+title: Instrucciones para el MCP
+meta_title: "Instrucciones para el MCP en Code Connect: reglas de uso que recibe el agente"
+description: Cómo añadir a cada conexión de Code Connect instrucciones que el servidor MCP de Figma entrega al agente como reglas, y qué escribir en ellas.
+nav_title: Instrucciones para el MCP
 lastReviewed: 2026-10-20
 ---
 
-Cómo añadir a cada conexión de Code Connect instrucciones que el servidor MCP de Figma entrega al agente.
+Code Connect UI permite escribir, en cada conexión, instrucciones para el agente. El servidor MCP de Figma las incluye junto al fragmento del componente como reglas de usuario. Es la vía documentada para que una regla de uso llegue a un agente de código que lee tu diseño.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación.
+- [Qué son](#qué-son)
+- [Cómo se añaden](#cómo-se-añaden)
+- [Qué escribir](#qué-escribir)
+- [De dónde sacarlas](#de-dónde-sacarlas)
+- [En resumen](#en-resumen)
+
+## Qué son
+
+En Code Connect UI, cada conexión puede llevar instrucciones personalizadas. Figma las incluye en la respuesta del servidor MCP para guiar a las herramientas de IA ([Figma: Code Connect](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)). Dentro de la marca `<CodeConnectSnippet>`, el servidor las entrega como reglas de usuario. Usos típicos: patrones de props, requisitos de accesibilidad y convenciones del equipo ([Figma: Code Connect integration](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/)).
+
+Como van por conexión, cada implementación (React, SwiftUI) puede tener las suyas.
+
+## Cómo se añaden
+
+1. En Code Connect UI, selecciona un componente conectado.
+2. Pulsa **Add instructions for MCP**.
+3. Escribe cómo se debe usar el componente: props o configuración, accesibilidad, variaciones habituales y convenciones del equipo.
+
+Fuente: [Figma: Code Connect UI setup](https://developers.figma.com/docs/code-connect/code-connect-ui-setup/).
+
+Para comprobar el resultado, selecciona el componente conectado, cambia sus propiedades en Figma y mira el fragmento que se genera. Figma advierte que la vista previa puede diferir un poco de lo que produce el modelo en un uso real.
+
+## Qué escribir
+
+<Callout variant="recommendation">
+
+Las instrucciones viajan con cada instancia del componente, así que tienen que ser cortas: tres o cuatro reglas, las que más errores evitan al implementar. Lo demás está en el documento del componente, y el agente lo encuentra por el [archivo de instrucciones del repositorio](/agent-layer/claude-md).
 
 </Callout>
+
+```text filename="Instrucciones para el MCP: Button"
+- Máximo un variant="primary" por vista. Las demás acciones, "secondary" o "ghost".
+- Si iconOnly es true, aria-label es obligatorio.
+- Importa desde "@acme/ui", nunca desde la carpeta interna components/.
+- Para el tamaño usa la prop size; no añadas CSS propio.
+```
+
+Algunos ejemplos de lo que encaja aquí y lo que no:
+
+| Encaja en las instrucciones | Va al documento del componente |
+|---|---|
+| "Máximo un primary por vista" | La explicación de por qué |
+| "aria-label obligatorio si iconOnly" | Toda la sección de accesibilidad |
+| "Importa desde @acme/ui" | La tabla completa de props |
+| "No uses Tag para acciones; usa Chip" | Todos los casos de uso de Tag |
+
+## De dónde sacarlas
+
+Las instrucciones son un resumen de la sección Reglas del documento del componente ([Componentes](/documentation/components#la-plantilla)). Escríbelas desde ahí, no al revés, para que la carpeta `docs/` siga siendo la única fuente ([Una fuente, varios destinos](/documentation/one-source-many-channels)).
+
+<Takeaways>
+
+## En resumen
+
+- Code Connect UI permite escribir instrucciones por conexión, que el servidor MCP entrega al agente como reglas.
+- Tres o cuatro reglas cortas: las que más errores evitan al implementar.
+- Se resumen desde la sección Reglas del documento del componente.
+
+</Takeaways>
+
+## Fuentes
+
+- [Figma: Code Connect](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)
+- [Figma: Code Connect integration](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/)
+- [Figma: Code Connect UI setup](https://developers.figma.com/docs/code-connect/code-connect-ui-setup/)

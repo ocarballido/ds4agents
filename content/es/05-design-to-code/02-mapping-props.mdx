@@ -1,14 +1,98 @@
 ---
 title: Mapear propiedades
-description: Cómo mapear las propiedades de Figma a las props del código.
+meta_title: "Mapear propiedades de Figma a props de código con Code Connect"
+description: Cómo conectar un componente en Code Connect UI y cómo mapear sus propiedades de Figma a las props del código con un archivo de plantilla.
 nav_title: Mapear propiedades
 lastReviewed: 2026-10-20
 ---
 
-Cómo mapear las propiedades de Figma a las props del código.
+Mapear es decir a Code Connect que la propiedad `variant` de Figma corresponde a la prop `variant` del código, y que el valor `Error` de Figma corresponde a `invalid={true}`. Si en el capítulo 2 alineaste los nombres, casi todo el mapeo es directo.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 4: Vínculo diseño-código» (`docs/guia-fuente.md`).
+- [Conectar en Code Connect UI](#conectar-en-code-connect-ui)
+- [Mapear con un archivo de plantilla](#mapear-con-un-archivo-de-plantilla)
+- [Cuando los nombres no coinciden](#cuando-los-nombres-no-coinciden)
+- [En resumen](#en-resumen)
+
+## Conectar en Code Connect UI
+
+1. En Figma, abre el archivo de la librería con los componentes publicados y pasa a Dev Mode.
+2. En el menú junto al nombre del archivo, elige **Library → Connect components to code**.
+3. Selecciona un componente de la lista.
+4. Escribe la ruta del archivo del componente, por ejemplo `src/components/Button.tsx`, y, si quieres, el nombre del componente.
+5. Para otro framework, usa el botón de añadir en la fila del componente.
+
+Si conectas el repositorio de GitHub desde los ajustes de Code Connect, los campos completan las rutas y puedes buscar los componentes. Sin GitHub, las rutas se escriben a mano ([Figma: Code Connect UI setup](https://developers.figma.com/docs/code-connect/code-connect-ui-setup/)).
+
+Con la interfaz, el fragmento que recibe el agente se genera a partir de la ruta, el nombre y las propiedades de Figma ([Figma: Code Connect integration](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/)). Por eso los nombres alineados importan: el fragmento usa los nombres de Figma.
+
+## Mapear con un archivo de plantilla
+
+Con la línea de comandos, cada componente tiene un archivo de plantilla con el sufijo `.figma.ts`. Empieza con un comentario con la URL del componente en Figma, lee las propiedades de la instancia seleccionada y devuelve el fragmento, los imports y un identificador ([Figma: Template files](https://developers.figma.com/docs/code-connect/template-files/)).
+
+```ts filename="src/components/Button/Button.figma.ts"
+// url=https://www.figma.com/design/<archivo>?node-id=<nodo>
+import figma from 'figma'
+
+const instance = figma.selectedInstance
+
+const label = instance.getString('label')
+const variant = instance.getEnum('variant', {
+  primary: 'primary',
+  secondary: 'secondary',
+  ghost: 'ghost',
+})
+const disabled = instance.getBoolean('disabled')
+
+export default {
+  example: figma.code`<Button variant="${variant}" disabled={${disabled}}>${label}</Button>`,
+  imports: ['import { Button } from "@acme/ui"'],
+  id: 'button',
+}
+```
+
+La configuración del proyecto indica qué archivos son plantillas:
+
+```json filename="figma.config.json"
+{
+  "codeConnect": {
+    "include": ["**/*.figma.ts"],
+    "label": "React",
+    "language": "jsx"
+  }
+}
+```
+
+Las conexiones se publican con `npx figma connect publish` ([Figma: Template files](https://developers.figma.com/docs/code-connect/template-files/)). Los métodos para leer propiedades (`getString`, `getEnum`, `getBoolean`, `getInstanceSwap`, `getSlot` y otros) están en la [referencia de la API de plantillas](https://developers.figma.com/docs/code-connect/template-api/).
+
+## Cuando los nombres no coinciden
+
+`getEnum` recibe un objeto que traduce cada valor de Figma al valor del código ([Figma: Template API](https://developers.figma.com/docs/code-connect/template-api/)). Así se mapea, por ejemplo, un estado de variante a un booleano:
+
+```ts filename="TextField.figma.ts (fragmento)"
+const invalid = instance.getEnum('state', { default: false, error: true })
+```
+
+<Callout variant="recommendation">
+
+Cada traducción así es una regla escondida que hay que mantener. Si un componente necesita más de una o dos, plantéate alinear los nombres en Figma o en código ([Inventario de código](/audit/code-inventory#qué-hacer-con-cada-diferencia)).
 
 </Callout>
+
+<Takeaways>
+
+## En resumen
+
+- En Code Connect UI basta con la ruta del componente; el fragmento usa los nombres de Figma.
+- Con la línea de comandos, un archivo `.figma.ts` por componente traduce propiedades a props.
+- Cada traducción entre nombres distintos es una regla que mantener: mejor alinear los nombres.
+
+</Takeaways>
+
+## Fuentes
+
+- [Figma: Code Connect UI setup](https://developers.figma.com/docs/code-connect/code-connect-ui-setup/)
+- [Figma: Code Connect integration](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/)
+- [Figma: Template files](https://developers.figma.com/docs/code-connect/template-files/)
+- [Figma: Template API](https://developers.figma.com/docs/code-connect/template-api/)
