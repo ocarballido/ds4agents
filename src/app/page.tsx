@@ -6,8 +6,7 @@ import { LOCALE } from '@/i18n/request';
 import { getLessons, lessonHref } from '@/lib/content';
 import { pageMetadata } from '@/lib/metadata';
 
-// Portada (P27 y D42 en designtokens101). PENDIENTE: ilustración propia de ds4agents (la de
-// designtokens101 se ha quitado). Va dentro del layout raíz: con sidebar y
+// Portada (P27 y D42 en designtokens101; ilustración de ds4agents, G16). Va dentro del layout raíz: con sidebar y
 // ninguna sección abierta, porque ninguna lección es la actual (C11). Estructura y huecos:
 // entrega-diseno.md §3.10.
 
@@ -22,7 +21,7 @@ export default async function Home() {
 
   return (
     // V48: centrada en vertical en main (my-auto en la columna flex del layout).
-    <div className="my-auto grid items-center gap-1200 py-600 desktop:py-1600">
+    <div className="my-auto grid items-center gap-1200 py-600 desktop:grid-cols-2 desktop:py-1600">
       <div className="flex flex-col items-start gap-600">
         {/* El subtítulo no es un encabezado: hgroup lo une al h1 sin crear otro nivel. */}
         <hgroup className="flex flex-col gap-200">
@@ -34,6 +33,13 @@ export default async function Home() {
         <Button href={lessonHref(first)} icon={ChevronRight}>
           {t('start')}
         </Button>
+      </div>
+      {/* D43 y V48 en designtokens101, con una diferencia (G16): la ilustración de ds4agents tiene
+          fondo propio y sirve en los dos temas, así que hay un solo PNG (880 × 880, a 2×).
+          Decorativa: el título ya dice qué es la página. Fuera de "solo tokens" como los logotipos
+          (D22); el radio sí es un token. */}
+      <div>
+        <img src="/brand/home.png" alt="" width={440} height={440} className="block aspect-square w-full rounded-container object-cover" />
       </div>
     </div>
   );

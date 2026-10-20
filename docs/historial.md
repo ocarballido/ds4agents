@@ -2,6 +2,15 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-10-20 · Diseño y desarrollo · Marca definitiva (G16)
+
+- Inspección con el MCP de Figma (TokensDS, página Templates): Logo 228:6874 y LogoMonocrome 229:6939 (571 × 331), Symbol 228:6906 (252 × 224), emoticon 228:6907 (89 × 106), Opengraph 225:6859 (1200 × 630) e Illustration 228:6911 (440 × 441). Ninguno tenía variante para Dark.
+- Cambios en Figma, con el visto bueno de Oscar: sin relleno blanco en los frames de Logo, LogoMonocrome y emoticon; Illustration a 440 × 440 y sin radio (el radio va en CSS); nuevos `Logo-dark` (230:6789; verde `#105950` → emerald-400 `#4FD7A6`, el rosa no cambia) y `LogoMonocrome-dark` (230:6795; `#414141` → `#BFBFBF` y `#999999` → `#666666`), en la misma página. El verde y el gris oscuro quedaban por debajo de 2,5:1 sobre el fondo de Dark.
+- `download_assets` añade al SVG el fondo del lienzo (`#F5F5F5`); los SVG salen de `exportAsync` (solo lectura), como en G11. Los de Dark se generan desde el export de Light cambiando colores e id del recorte, y sus trazados se han comparado con los de Figma: iguales.
+- `public/brand/`: `logo-colored(-dark).svg`, `logo-gray(-dark).svg`, `symbol.svg`, `share.png` (1200 × 630) y `home.png` (880 × 880, a 2×). `src/app/`: `icon.svg` y `favicon.ico` (16 y 32 px) desde el emoticon, que se lee mejor que el robot a 16 px; `apple-icon.png` (180 px, fondo blanco) desde el símbolo. Renderizados con Chrome (Playwright).
+- `Logo.tsx` a 76 × 44 y 59 × 34. Portada con la rejilla de dos columnas de designtokens101 y una sola imagen para los dos temas, porque la ilustración tiene fondo propio. Texto alternativo nuevo de `share.png`.
+- Comprobado: `npm test`, `check:tokens`, `build`, `check:content`; capturas a 1440 y 375 px en Light y Dark; sin scroll horizontal a 320 px en la portada ni en una página de la guía; `BookOpenText` de "En resumen" (G15) visible en los dos temas.
+
 ## 2026-10-20 · Contenido · Listas de comprobación (G14) e icono de Takeaways (G15)
 
 - Oscar confirma que la guía no tiene prácticas. Las siete páginas `NN-practice-…` se sustituyen por `NN-checklist` ("Lista de comprobación"): el entregable de la fase, los pasos numerados y los criterios para darla por terminada. La plantilla de `inventory.md` pasa a la lista de la auditoría.
