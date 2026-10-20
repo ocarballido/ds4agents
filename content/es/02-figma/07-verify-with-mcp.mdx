@@ -1,14 +1,82 @@
 ---
 title: Comprobar con el MCP
-description: Cómo comprobar qué recibe el agente de un componente a través del servidor MCP de Figma.
+meta_title: "Comprobar qué recibe un agente de IA de un componente de Figma"
+description: Cómo usar las herramientas del servidor MCP de Figma para ver qué contexto recibe un agente de un componente y qué revisar en la respuesta.
 nav_title: Comprobar con el MCP
 lastReviewed: 2026-10-20
 ---
 
-Cómo comprobar qué recibe el agente de un componente a través del servidor MCP de Figma.
+Después de preparar un componente, conviene comprobar qué recibe de él un agente. El servidor MCP de Figma tiene herramientas de lectura que muestran exactamente eso. Si un dato no aparece en la respuesta, el agente no lo conoce.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 1: Saneado de Figma» (`docs/guia-fuente.md`).
+- [Las herramientas de lectura](#las-herramientas-de-lectura)
+- [Cómo pedir la comprobación](#cómo-pedir-la-comprobación)
+- [Qué revisar en la respuesta](#qué-revisar-en-la-respuesta)
+- [Selecciones pequeñas](#selecciones-pequeñas)
+- [En resumen](#en-resumen)
+
+## Las herramientas de lectura
+
+Estas son las herramientas de lectura del servidor MCP de Figma más útiles para comprobar un componente ([Figma: Tools and prompts](https://developers.figma.com/docs/figma-mcp-server/tools-and-prompts/)):
+
+| Herramienta | Qué devuelve |
+|---|---|
+| `get_design_context` | Código y contexto de diseño de una capa o selección |
+| `get_variable_defs` | Las variables y estilos que usa la selección: colores, espaciado, tipografía |
+| `get_code_connect_map` | Para cada instancia: nombre del componente, ubicación en el código y fragmento, si existe |
+| `get_metadata` | Un esquema ligero en XML de las capas de la selección |
+| `get_screenshot` | Una imagen de la selección |
+| `search_design_system` | Componentes, variables y estilos de las librerías conectadas (solo en el servidor remoto) |
+
+Cómo conectar el servidor MCP a tu agente lo explicamos en [Servidores MCP](/agent-layer/mcp-servers).
+
+## Cómo pedir la comprobación
+
+La guía de Figma pide escribir al agente como si informaras a un compañero: cuanto más concreto, mejor resultado ([Figma: Write effective prompts](https://developers.figma.com/docs/figma-mcp-server/write-effective-prompts/)). Para comprobar, pide solo lectura y que te muestre la respuesta tal cual:
+
+```text filename="Prompt de comprobación"
+Usa get_design_context y get_variable_defs con este enlace de Figma: <enlace al componente>.
+No generes código. Muéstrame, sin resumir:
+1. Los nombres de las capas y de las propiedades del componente.
+2. Las variables que usa y si queda algún valor sin variable.
+3. Las anotaciones o descripciones que aparezcan en la respuesta.
+4. Si hay Code Connect, el fragmento de código y las instrucciones.
+```
+
+## Qué revisar en la respuesta
+
+<Callout variant="recommendation">
+
+Revisa la respuesta con esta lista. Cada "no" te lleva a una página de este capítulo:
+
+- ¿Los nombres de las capas describen su función? → [Nombres](/figma/naming)
+- ¿Todas las propiedades visuales usan una variable? → [Nombres](/figma/naming#variables)
+- ¿Aparecen las anotaciones de comportamiento? → [Anotaciones](/figma/annotations)
+- ¿Aparecen los enlaces a documentación y código? → [Dev resources](/figma/dev-resources)
+- ¿El componente trae su componente de código? → [Code Connect](/design-to-code/code-connect)
 
 </Callout>
+
+Anota en `inventory.md` lo que no llega. Algunas cosas no llegarán aunque estén bien hechas: por ejemplo, las anotaciones dentro de instancias anidadas, según informan usuarios en el [foro de Figma](https://forum.figma.com/report-a-problem-6/figma-mcp-server-not-displaying-annotations-from-nested-component-instances-42958). Lo que no llega por el MCP tiene que llegar por los archivos del repositorio ([capítulo 6](/agent-layer/claude-md)).
+
+## Selecciones pequeñas
+
+Las selecciones grandes pueden ralentizar las herramientas, provocar errores o devolver resultados incompletos. Figma recomienda trabajar por partes, por ejemplo un componente, una tarjeta o una cabecera, y en diseños grandes pedir primero `get_metadata` para tener el esquema y después el contexto solo de lo necesario ([Figma: Avoid selecting large, heavy frames](https://developers.figma.com/docs/figma-mcp-server/avoid-large-frames/)).
+
+<Takeaways>
+
+## En resumen
+
+- `get_design_context`, `get_variable_defs` y `get_code_connect_map` muestran lo que recibe el agente.
+- Si un dato no aparece en la respuesta, el agente no lo conoce.
+- Comprueba componente a componente: las selecciones grandes dan respuestas incompletas.
+
+</Takeaways>
+
+## Fuentes
+
+- [Figma: Tools and prompts](https://developers.figma.com/docs/figma-mcp-server/tools-and-prompts/)
+- [Figma: Write effective prompts to guide the AI](https://developers.figma.com/docs/figma-mcp-server/write-effective-prompts/)
+- [Figma: Avoid selecting large, heavy frames](https://developers.figma.com/docs/figma-mcp-server/avoid-large-frames/)
+- [Foro de Figma: MCP server not displaying annotations from nested component instances](https://forum.figma.com/report-a-problem-6/figma-mcp-server-not-displaying-annotations-from-nested-component-instances-42958) (foro)

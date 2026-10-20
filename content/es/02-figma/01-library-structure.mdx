@@ -1,14 +1,95 @@
 ---
 title: Estructura de la librería
-description: Cómo organizar las páginas de la librería para que personas y agentes encuentren cada pieza.
+meta_title: "Cómo organizar una librería de Figma para personas y agentes de IA"
+description: Cómo ordenar las páginas de una librería de Figma para que personas y agentes encuentren cada componente, y qué hacer con los componentes obsoletos.
 nav_title: Estructura de la librería
 lastReviewed: 2026-10-20
 ---
 
-Cómo organizar las páginas de la librería para que personas y agentes encuentren cada pieza.
+Una librería con una estructura previsible es más fácil de recorrer, para tu equipo y para un agente que la inspecciona por el servidor MCP. Esta página propone un orden de páginas y explica qué hacer con lo que ya no se debe usar.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 1: Saneado de Figma» (`docs/guia-fuente.md`).
+- [Fundamentos, componentes y patrones](#fundamentos-componentes-y-patrones)
+- [Una estructura de páginas](#una-estructura-de-páginas)
+- [La página de cada componente](#la-página-de-cada-componente)
+- [Lo obsoleto, fuera de la librería](#lo-obsoleto-fuera-de-la-librería)
+- [En resumen](#en-resumen)
+
+## Fundamentos, componentes y patrones
+
+El curso de sistemas de diseño de Figma usa como ejemplo una librería organizada en tres bloques: **fundamentos** (espaciado, tipografía, color), **componentes** (botones, tarjetas, interruptores) y **patrones** (selectores de día, navegación, listas) ([Figma: Lesson 4, Document and manage your system](https://help.figma.com/hc/en-us/articles/14552804059927-Lesson-4-Document-and-manage-your-system)).
+
+Los tres bloques son útiles para un agente por razones distintas:
+
+- Los **fundamentos** explican las decisiones que hay detrás de las variables.
+- Los **componentes** son las piezas que puede usar.
+- Los **patrones** le dicen cómo combinarlas para resolver una pantalla. Son lo que más falta en la mayoría de los sistemas.
+
+## Una estructura de páginas
+
+<Callout variant="recommendation">
+
+Proponemos este orden de páginas. Lo importante no es el nombre de cada una, sino que sea siempre el mismo y que el nivel atómico se vea en el orden.
 
 </Callout>
+
+```text filename="Páginas de la librería"
+Cover            nombre, versión, estado y enlace al repositorio
+Changelog        resumen de versiones (el detalle vive en CHANGELOG.md)
+Foundations      color, tipografía, espaciado, radios, elevación, iconos
+--- Atoms
+Button
+Icon
+--- Molecules
+TextField
+Card
+--- Organisms
+DataTable
+Header
+--- Patterns     pantallas de referencia anotadas: login, listado, detalle
+Deprecated       componentes retirados, ocultos al publicar
+```
+
+Las líneas que empiezan por `---` son páginas separadoras: agrupan en el panel de páginas sin contener nada.
+
+## La página de cada componente
+
+Para los componentes complejos, una página propia con tres zonas:
+
+1. **El conjunto de componentes** (*component set*), con todas sus variantes.
+2. **Un marco de especificación:** anatomía, espaciados y estados, con las variables que usa cada parte.
+3. **Ejemplos de uso correcto e incorrecto.** La guía de Figma recomienda incluirlos en la documentación, junto con un registro de cambios y enlaces al código ([Figma: Lesson 4, Document and manage your system](https://help.figma.com/hc/en-us/articles/14552804059927-Lesson-4-Document-and-manage-your-system)).
+
+Los ejemplos incorrectos son útiles para las personas. Para los agentes, la forma de transmitir un antipatrón es escribirlo: en las [guidelines de la librería](/figma/library-guidelines) y en la [documentación Markdown](/documentation/why-markdown).
+
+## Lo obsoleto, fuera de la librería
+
+Un componente obsoleto que sigue publicado aparece en las búsquedas de la librería, también en las del agente. Figma permite ocultarlo al publicar: clic derecho sobre el componente en el panel **Assets** y **Hide when publishing**, o un punto al principio de su nombre. El componente pasa a la sección **Hidden** de la librería ([Figma: Hide styles, components, and variables when publishing](https://help.figma.com/hc/en-us/articles/360039238193)).
+
+<Callout variant="warning">
+
+La ayuda de Figma no dice qué pasa con las instancias que ya existen en otros archivos cuando ocultas un componente. Antes de ocultar uno muy usado, pruébalo en una copia de la librería.
+
+</Callout>
+
+<Callout variant="recommendation">
+
+Antes de ocultarlo, muévelo a la página **Deprecated** y escribe en su descripción el sustituto: "Obsoleto desde 1.4.0. Usa Button". Así quien abra un archivo antiguo sabe qué hacer, y el inventario y el changelog dicen lo mismo.
+
+</Callout>
+
+<Takeaways>
+
+## En resumen
+
+- Fundamentos, componentes y patrones: los patrones son lo que más ayuda a un agente a componer pantallas.
+- Una estructura de páginas fija, con el nivel atómico visible en el orden.
+- Lo obsoleto se marca con su sustituto y se oculta al publicar.
+
+</Takeaways>
+
+## Fuentes
+
+- [Figma: Lesson 4, Document and manage your system](https://help.figma.com/hc/en-us/articles/14552804059927-Lesson-4-Document-and-manage-your-system)
+- [Figma: Hide styles, components, and variables when publishing](https://help.figma.com/hc/en-us/articles/360039238193)

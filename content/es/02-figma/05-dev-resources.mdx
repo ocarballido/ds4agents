@@ -1,14 +1,75 @@
 ---
 title: Dev resources
-description: Cómo enlazar cada componente con su documentación, su story y su código.
+meta_title: "Dev resources de Figma: enlazar componentes con su documentación y su código"
+description: Cómo enlazar cada componente de Figma con su documentación, su historia de Storybook y su archivo de código, y en qué se diferencia del enlace de documentación del componente.
 nav_title: Dev resources
 lastReviewed: 2026-10-20
 ---
 
-Cómo enlazar cada componente con su documentación, su story y su código.
+Un dev resource es un enlace unido a una capa en Dev Mode: a un archivo de código, a una historia de Storybook o a la página de documentación. La guía de Figma para el servidor MCP los recomienda para que el agente reciba enlaces a la documentación, el código o las tareas relacionadas.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 1: Saneado de Figma» (`docs/guia-fuente.md`).
+- [Qué son](#qué-son)
+- [Dev resources y enlace de documentación](#dev-resources-y-enlace-de-documentación)
+- [Qué enlazar](#qué-enlazar)
+- [En Figma](#en-figma)
+- [En resumen](#en-resumen)
+
+## Qué son
+
+Los dev resources son enlaces a documentación externa, normalmente a la documentación o al código fuente. Están disponibles en todos los planes de pago y piden un asiento Full o Dev. Un dev resource añadido a un componente lo heredan todas sus instancias; uno añadido a una instancia solo vale para esa instancia ([Figma: Link dev resources to layers in Dev Mode](https://help.figma.com/hc/en-us/articles/15023231995927)).
+
+La guía de Figma para el servidor MCP pide añadirlos a las capas para que el agente reciba enlaces a la documentación, al código o a las tareas relacionadas ([Figma: Structure your Figma file for better code](https://developers.figma.com/docs/figma-mcp-server/structure-figma-file/)).
+
+## Dev resources y enlace de documentación
+
+Un componente puede llevar dos tipos de enlace:
+
+| | Enlace de documentación | Dev resources |
+|---|---|---|
+| Dónde se añade | Component configuration, junto a la descripción | Dev Mode, en el panel Inspect |
+| Cuántos | Uno | Varios |
+| Quién lo ve | Cualquiera que use el componente | Quien abre Dev Mode |
+| Para qué | La página de documentación para personas | Código, historias, documentación y tareas |
+
+Fuentes: [Figma: Add descriptions](https://help.figma.com/hc/en-us/articles/7938814091287) y [Figma: Link dev resources to layers in Dev Mode](https://help.figma.com/hc/en-us/articles/15023231995927).
+
+## Qué enlazar
+
+<Callout variant="recommendation">
+
+En cada componente estable, tres dev resources, siempre en el mismo orden:
+
+1. **El documento Markdown del componente** (`docs/components/button.md`), en su versión publicada o en el repositorio.
+2. **La historia de Storybook**, si existe.
+3. **El archivo del componente en el repositorio.**
+
+El enlace de documentación del componente apunta a la página para personas. Si tu documentación web se genera desde los mismos archivos Markdown, puede ser el mismo enlace que el primero.
 
 </Callout>
+
+## En Figma
+
+1. Copia la URL.
+2. En Dev Mode, selecciona la capa.
+3. En el panel Inspect, abre las opciones de la capa y elige **Add a dev resource link**.
+4. Pega el enlace y pulsa Intro.
+
+Para borrarlo, usa las opciones junto al enlace y **Delete link** ([Figma: Link dev resources to layers in Dev Mode](https://help.figma.com/hc/en-us/articles/15023231995927)).
+
+<Takeaways>
+
+## En resumen
+
+- Los dev resources enlazan una capa con su código, su historia y su documentación.
+- Añadidos al componente principal, los heredan todas las instancias.
+- Tres enlaces por componente estable: documento Markdown, Storybook y archivo de código.
+
+</Takeaways>
+
+## Fuentes
+
+- [Figma: Link dev resources to layers in Dev Mode](https://help.figma.com/hc/en-us/articles/15023231995927)
+- [Figma: Structure your Figma file for better code](https://developers.figma.com/docs/figma-mcp-server/structure-figma-file/)
+- [Figma: Add descriptions to styles, components, and variables](https://help.figma.com/hc/en-us/articles/7938814091287)

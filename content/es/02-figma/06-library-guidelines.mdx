@@ -1,14 +1,105 @@
 ---
-title: "Guidelines de la librería"
-description: "Cómo escribir y subir las guidelines de una librería de Figma para que el agente de Figma siga tus patrones y evite tus antipatrones."
-nav_title: "Guidelines de la librería"
+title: Guidelines de la librería
+meta_title: "Guidelines de librería en Figma: reglas y antipatrones para el agente de Figma"
+description: Qué son las guidelines de una librería de Figma, qué archivos admite, qué escribir en ellas para que el agente de Figma siga tus patrones y evite tus antipatrones, y cómo subirlas.
+nav_title: Guidelines de la librería
 lastReviewed: 2026-10-20
 ---
 
-Cómo escribir y subir las guidelines de una librería de Figma para que el agente de Figma siga tus patrones y evite tus antipatrones.
+Las guidelines son archivos que se añaden a una librería publicada de Figma para dar al agente de Figma el contexto que no puede deducir de los componentes ni de la documentación: tus patrones y tus antipatrones. Es la primera función de Figma pensada para escribir reglas de uso que un agente lea.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación.
+- [Qué son](#qué-son)
+- [Qué archivos admite](#qué-archivos-admite)
+- [Qué escribir](#qué-escribir)
+- [Un ejemplo](#un-ejemplo)
+- [Subirlas y mantenerlas](#subirlas-y-mantenerlas)
+- [Lo que todavía no sabemos](#lo-que-todavía-no-sabemos)
+- [En resumen](#en-resumen)
+
+## Qué son
+
+Las guidelines dan al agente de Figma contexto sobre una librería que no puede obtener de sus elementos ni de su documentación, para que cree diseños que reflejen mejor el sistema. Pueden describir patrones establecidos y antipatrones que evitar. Se unen a una librería publicada, y cuando alguien pide al agente diseñar con esa librería, el agente las recibe automáticamente ([Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)).
+
+| Dato | Valor |
+|---|---|
+| Estado | Beta abierta (octubre de 2026) |
+| Planes | Professional, Organization y Enterprise |
+| Permiso | Edición del archivo de la librería |
+| Coste | Pueden consumir más créditos de IA, porque añaden contexto |
+
+Figma las anunció en Config India 2026, junto con otras funciones para sistemas de diseño ([Figma: What's new from Config India 2026](https://help.figma.com/hc/en-us/articles/43663368947863-What-s-new-from-Config-India-2026)).
+
+## Qué archivos admite
+
+- Formatos: Markdown (`.md`), texto (`.txt`) o JSON (`.json`).
+- Nombres que Figma sugiere: `overview.md`, `guidelines.md`, `components.md`, `examples.md`, `anti-patterns.md`, `best-practices.md`.
+- Tamaño: de tres a ocho archivos centrados en un tema, con menos de 100 KB entre todos. El máximo por librería es de 200 KB.
+- Sin repeticiones: la misma indicación en varios archivos alarga el procesamiento y el consumo de créditos.
+
+Fuente: [Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511).
+
+## Qué escribir
+
+La ayuda de Figma pide centrarse en lo que el agente no puede deducir:
+
+- **Errores frecuentes y antipatrones.**
+- **Decisiones difíciles** sobre qué componente o patrón usar.
+- **Escenarios** para las decisiones ambiguas: una descripción, un ejemplo de lo que sí, uno de lo que no y el motivo.
+- **Una recomendación clara.** Las reglas sin excepciones se escriben como absolutas; las excepciones se describen para que no choquen con la regla.
+- **Huecos de la documentación:** colores (roles semánticos y combinaciones que evitar), espaciado (escala y cuándo usar cada paso) y radios (qué valor va con qué componente).
+
+## Un ejemplo
+
+```markdown filename="anti-patterns.md"
+# Antipatrones
+
+## Dos acciones principales en la misma vista
+- Descripción: un formulario con "Guardar" y "Publicar" como botones principales.
+- Sí: "Publicar" como `Button variant=primary` y "Guardar" como `variant=secondary`.
+- No: dos `Button variant=primary`.
+- Motivo: la acción principal tiene que ser una sola para que se reconozca.
+
+## Placeholder en lugar de etiqueta
+- Descripción: un campo de formulario sin etiqueta visible.
+- Sí: `TextField` con `label` siempre visible.
+- No: el texto de la etiqueta dentro del placeholder.
+- Motivo: el placeholder desaparece al escribir y no lo anuncian todos los lectores de pantalla.
+```
+
+<Callout variant="recommendation">
+
+No escribas las guidelines como documentos aparte. Escribe la documentación del sistema en Markdown, en el repositorio ([capítulo 4](/documentation/why-markdown)), y genera desde ella los archivos que subes a Figma. Así las reglas que lee el agente de Figma y las que leen los agentes de código son las mismas. Lo explicamos en [Una fuente, varios destinos](/documentation/one-source-many-channels).
 
 </Callout>
+
+## Subirlas y mantenerlas
+
+1. Abre el archivo de Figma Design que contiene la librería.
+2. En el menú del archivo, ve a **Library → Manage guidelines…**
+3. Pulsa **Upload** y elige los archivos.
+4. Pulsa **Apply changes**.
+
+Para cambiarlas, en el mismo menú, cada archivo tiene opciones para renombrarlo, sustituirlo o borrarlo; después, **Apply changes**. El agente deja de usar las instrucciones de los archivos borrados. Durante la beta, los archivos los creas y los subes tú; el agente puede ayudarte a redactarlos, pero no los guarda ([Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)).
+
+## Lo que todavía no sabemos
+
+- **Si llegan por el servidor MCP.** La ayuda habla del agente de Figma. La documentación del servidor MCP no menciona las guidelines ([Figma: Figma MCP server](https://help.figma.com/hc/en-us/articles/32132100833559)). Para los agentes de código, las reglas tienen que llegar por otra vía: [instrucciones para el MCP](/design-to-code/mcp-instructions) y [archivos del repositorio](/agent-layer/claude-md).
+- **Figma Make.** En Make, las guidelines se gestionan en cada archivo de Make, y las de una librería de Figma Design no se usan al crear un *Make kit* ([Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)).
+
+<Takeaways>
+
+## En resumen
+
+- Las guidelines son archivos Markdown, texto o JSON unidos a una librería que el agente de Figma recibe al diseñar con ella.
+- Escribe antipatrones, decisiones difíciles y escenarios con un sí, un no y el motivo.
+- Genéralas desde la documentación del repositorio para no mantener dos versiones de las mismas reglas.
+
+</Takeaways>
+
+## Fuentes
+
+- [Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)
+- [Figma: What's new from Config India 2026](https://help.figma.com/hc/en-us/articles/43663368947863-What-s-new-from-Config-India-2026)
+- [Figma: Figma MCP server](https://help.figma.com/hc/en-us/articles/32132100833559)

@@ -1,14 +1,82 @@
 ---
 title: Nombres
-description: Convenciones de nombres para componentes, propiedades, capas y variables alineadas con el código.
+meta_title: "Nombres de componentes, propiedades y capas en Figma para agentes de IA"
+description: Una convención de nombres para componentes, propiedades, valores de variante y capas de Figma, alineada con el código para que el agente y Code Connect no tengan que traducir.
 nav_title: Nombres
 lastReviewed: 2026-10-20
 ---
 
-Convenciones de nombres para componentes, propiedades, capas y variables alineadas con el código.
+El nombre es lo primero que lee un agente de cada pieza. Figma lo dice en su guía para el servidor MCP: un nombre que describe la función ayuda al agente a entender qué es cada capa y cómo debe funcionar. Esta página propone una convención alineada con el código.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 1: Saneado de Figma» (`docs/guia-fuente.md`).
+- [Por qué el nombre importa](#por-qué-el-nombre-importa)
+- [Los tipos de propiedad](#los-tipos-de-propiedad)
+- [Una convención alineada con el código](#una-convención-alineada-con-el-código)
+- [Capas internas](#capas-internas)
+- [Variables](#variables)
+- [En resumen](#en-resumen)
+
+## Por qué el nombre importa
+
+La guía de Figma para el servidor MCP pide sustituir nombres por defecto como `Frame1268` o `Group5` por nombres que describan la función, como `CardContainer`, `ProductImage` o `CTA_Button` ([Figma: Structure your Figma file for better code](https://developers.figma.com/docs/figma-mcp-server/structure-figma-file/)).
+
+Hay una segunda razón: Code Connect traduce las propiedades de Figma a las props del código. Si los nombres coinciden, la traducción es directa. Si no, cada diferencia es una regla de traducción que alguien tiene que escribir y mantener ([Figma: Code Connect](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)).
+
+## Los tipos de propiedad
+
+Figma tiene cinco tipos de propiedad de componente ([Figma: Explore component properties](https://help.figma.com/hc/en-us/articles/5579474826519-Explore-component-properties)):
+
+| Tipo | Para qué | Equivalente habitual en código |
+|---|---|---|
+| Variant | Atributos de las variantes: estado, tamaño, color. Solo en conjuntos de componentes | Una prop con valores cerrados (`variant`, `size`) |
+| Boolean | Mostrar u ocultar una capa, como un icono | Una prop booleana o la presencia de un hijo |
+| Instance swap | Qué instancia anidada se puede cambiar, y por cuáles | Una prop que recibe un componente (`icon`) |
+| Text | Qué texto se puede editar | Una prop de texto o `children` |
+| Slot | Una zona donde añadir y ordenar contenido sin separar la instancia | `children` o una prop de contenido |
+
+## Una convención alineada con el código
+
+<Callout variant="recommendation">
+
+Proponemos esta convención. La regla de fondo es una: **el nombre en Figma es el mismo que en código**. Si tu código usa otra convención, sigue la del código.
 
 </Callout>
+
+| Elemento | Convención | Correcto | A evitar |
+|---|---|---|---|
+| Componente | PascalCase, como en código | `TextField` | `Input text v2 FINAL` |
+| Propiedad | camelCase, como la prop | `variant`, `size`, `iconStart` | `Type`, `Tamaño` |
+| Valor de variante | Como el valor en código | `primary`, `md` | `Primary Button`, `Medium` |
+| Booleano | Como la prop | `disabled`, `hasIcon` | `On/Off` |
+| Estado de interacción | Una propiedad `state` solo para lo que no es una prop | `state: hover, focus` | Mezclar `hover` con `disabled` |
+
+El último punto evita un error frecuente: en código, `disabled` es una prop y `hover` no lo es (lo pone el navegador). Si las dos son valores de la misma variante en Figma, el mapeo con el código se complica.
+
+## Capas internas
+
+Nombra cada capa por su función dentro del componente: `Label`, `Input`, `HelperText`, `LeadingIcon`. Son los nombres que usarás en la anatomía de la documentación ([capítulo 4](/documentation/components)), así que el agente encontrará la misma palabra en los dos sitios.
+
+## Variables
+
+Las variables siguen su propia convención, por capas: primitivos, semánticos y de componente. DesignToken101 dedica un módulo entero a nombrarlas ([DesignToken101: Anatomía de un nombre](https://designtokens101.com/naming/anatomy-of-a-name)) y explica cómo se traduce un nombre de Figma a DTCG y a CSS ([DesignToken101: Un nombre en Figma, DTCG y CSS](https://designtokens101.com/naming/name-constraints)).
+
+Lo que importa en esta guía es que cada propiedad visual de un componente use una variable, no un valor suelto. La guía de Figma lo pide para que el agente haga referencia a tus tokens en lugar de copiar valores ([Figma: Structure your Figma file for better code](https://developers.figma.com/docs/figma-mcp-server/structure-figma-file/)).
+
+<Takeaways>
+
+## En resumen
+
+- Un nombre por función ayuda al agente a entender cada capa.
+- El nombre en Figma es el mismo que en código: componente, propiedad y valor.
+- Cada propiedad visual usa una variable, no un valor suelto.
+
+</Takeaways>
+
+## Fuentes
+
+- [Figma: Structure your Figma file for better code](https://developers.figma.com/docs/figma-mcp-server/structure-figma-file/)
+- [Figma: Explore component properties](https://help.figma.com/hc/en-us/articles/5579474826519-Explore-component-properties)
+- [Figma: Code Connect](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)
+- [DesignToken101: Anatomía de un nombre](https://designtokens101.com/naming/anatomy-of-a-name)
+- [DesignToken101: Un nombre en Figma, DTCG y CSS](https://designtokens101.com/naming/name-constraints)

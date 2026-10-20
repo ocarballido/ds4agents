@@ -1,14 +1,72 @@
 ---
 title: "Práctica: Ready for AI"
-description: Aplica la checklist Ready for AI a un componente de tu librería.
+meta_title: "Práctica: preparar un componente de Figma para agentes de IA"
+description: Aplica la lista Ready for AI a un componente de tu piloto, sube una primera guideline a la librería y comprueba con el servidor MCP qué recibe el agente.
 nav_title: "Práctica: Ready for AI"
 lastReviewed: 2026-10-20
 ---
 
-Aplica la checklist Ready for AI a un componente de tu librería.
+En esta práctica preparas en Figma los componentes de tu piloto y compruebas el resultado con el servidor MCP. Termina con una primera versión de las guidelines de la librería.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 1: Saneado de Figma» (`docs/guia-fuente.md`).
+- [Qué necesitas](#qué-necesitas)
+- [Pasos](#pasos)
+- [La lista Ready for AI](#la-lista-ready-for-ai)
+- [Cómo saber si está bien](#cómo-saber-si-está-bien)
+- [En resumen](#en-resumen)
+
+## Qué necesitas
+
+- Tu `inventory.md` de la [práctica anterior](/audit/practice-inventory).
+- Permiso de edición en la librería de Figma.
+- Para las guidelines, Figma Professional o superior. Para comprobar con el MCP, un cliente conectado al servidor MCP de Figma ([Requisitos](/start-here/requirements)).
+
+## Pasos
+
+1. Empieza por el átomo más usado del piloto. Aplícale la lista de abajo entera.
+2. Comprueba el resultado con el [prompt de comprobación](/figma/verify-with-mcp#cómo-pedir-la-comprobación) y anota lo que no llega.
+3. Repite con el resto de componentes del piloto.
+4. Escribe un primer `anti-patterns.md` con los tres errores que más ves en los diseños de tu equipo, con el formato de escenario de [Guidelines de la librería](/figma/library-guidelines#un-ejemplo), y súbelo a la librería.
+5. Actualiza la columna Estado de `inventory.md` y marca los componentes que ya cumplen la lista.
+
+## La lista Ready for AI
+
+<Callout variant="recommendation">
+
+Esta lista resume el capítulo. Es nuestra; adáptala a tu sistema.
 
 </Callout>
+
+```markdown filename="Ready for AI: TextField"
+- [ ] Es un conjunto de componentes con propiedades nombradas como en código
+- [ ] Todas sus propiedades visuales usan variables (ningún valor suelto)
+- [ ] Usa auto layout y responde bien al redimensionarlo
+- [ ] Sus capas internas tienen nombres por función (Label, Input, HelperText)
+- [ ] Tiene descripción con la plantilla de cinco líneas y enlace a documentación
+- [ ] Tiene anotaciones del comportamiento que no se ve (validación, foco, error)
+- [ ] Tiene dev resources: documento Markdown, Storybook y código
+- [ ] Sus antipatrones están en las guidelines de la librería
+- [ ] La comprobación con el MCP devuelve nombres, variables y anotaciones
+```
+
+## Cómo saber si está bien
+
+- La comprobación con el MCP de cada componente del piloto no tiene `Frame` ni `Group` en los nombres de capa.
+- `get_variable_defs` no devuelve valores sueltos.
+- La librería tiene al menos un archivo de guidelines.
+- `inventory.md` dice qué componentes cumplen la lista y qué falta en los demás.
+
+<Takeaways>
+
+## En resumen
+
+- Los componentes del piloto cumplen la lista Ready for AI o sabes qué les falta.
+- La librería tiene una primera guideline con tus antipatrones.
+- Has comprobado con el MCP lo que recibe un agente.
+
+</Takeaways>
+
+## Fuentes
+
+Esta práctica aplica las páginas del capítulo. Las fuentes están en cada una de ellas.

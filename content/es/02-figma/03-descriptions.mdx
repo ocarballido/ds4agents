@@ -1,14 +1,78 @@
 ---
 title: Descripciones
-description: Una plantilla fija para el campo Description de cada componente.
+meta_title: "Descripciones de componentes en Figma: una plantilla para personas y agentes"
+description: Dónde se escribe la descripción de un componente, una variable o un estilo en Figma, dónde se ve y una plantilla fija de cinco líneas.
 nav_title: Descripciones
 lastReviewed: 2026-10-20
 ---
 
-Una plantilla fija para el campo Description de cada componente.
+La descripción es el texto que acompaña a un componente, una variable o un estilo allá donde se use. Es el sitio natural para su propósito y su regla principal. Esta página explica dónde se escribe y propone una plantilla fija.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 1: Saneado de Figma» (`docs/guia-fuente.md`).
+- [Dónde se escribe](#dónde-se-escribe)
+- [Dónde se ve](#dónde-se-ve)
+- [Una plantilla de cinco líneas](#una-plantilla-de-cinco-líneas)
+- [Qué no va en la descripción](#qué-no-va-en-la-descripción)
+- [En resumen](#en-resumen)
+
+## Dónde se escribe
+
+| Elemento | Dónde | Fuente |
+|---|---|---|
+| Componente, conjunto o variante | Selecciónalo en el archivo de la librería y abre **Component configuration** | [Figma: Add descriptions](https://help.figma.com/hc/en-us/articles/7938814091287) |
+| Estilo | Pasa el cursor sobre el estilo en el panel Design, pulsa el icono de edición y escribe en **Description** | La misma |
+| Variable | En la ventana de variables, clic derecho sobre la variable y **Edit variable** | La misma |
+
+Los componentes tienen, además, un campo de **enlace a documentación externa** o a otro archivo con más explicaciones ([Figma: Add descriptions](https://help.figma.com/hc/en-us/articles/7938814091287)). Al combinar componentes en un conjunto, sus descripciones y enlaces pasan a las variantes.
+
+Para editar descripciones necesitas permiso de edición en el archivo de la librería.
+
+## Dónde se ve
+
+Según la ayuda de Figma, la descripción aparece en el menú de la instancia en el panel Design, en el panel Assets, en el panel Inspect de Dev Mode y, para quien solo tiene acceso de lectura, en el panel de propiedades ([Figma: Add descriptions](https://help.figma.com/hc/en-us/articles/7938814091287)). La de variables y estilos aparece como ayuda emergente en los selectores.
+
+<Callout variant="note">
+
+La documentación del servidor MCP de Figma no detalla si la descripción de un componente forma parte del contexto que recibe el agente. Compruébalo con tu cliente, como explicamos en [Comprobar con el MCP](/figma/verify-with-mcp). Para las reglas que el agente debe seguir sí hay canales documentados: las [guidelines de la librería](/figma/library-guidelines) y las [instrucciones para el MCP](/design-to-code/mcp-instructions) de Code Connect.
 
 </Callout>
+
+## Una plantilla de cinco líneas
+
+<Callout variant="recommendation">
+
+Escribe todas las descripciones con la misma estructura. Una estructura fija se lee de un vistazo, se revisa con facilidad y se puede copiar a la documentación Markdown sin reescribirla.
+
+</Callout>
+
+```text filename="Descripción de Button"
+Dispara una acción en la vista actual.
+Usar: acción principal o secundaria de formularios y diálogos.
+No usar: para navegar entre páginas (usa Link). Máximo un primary por vista.
+Tokens: button.primary.*, radius.control, space.200
+Docs: https://ds.ejemplo.com/components/button
+```
+
+Para una variable, basta con una línea que diga su función y su restricción principal: "Fondo de la acción principal. Máximo uno por vista". DesignToken101 explica qué lleva una buena descripción de token y por qué Figma la exporta a DTCG como `$description` ([DesignToken101: Documentar el sistema](https://designtokens101.com/final-exercise/document-the-system)). Volveremos a ello en el [capítulo 3](/tokens/descriptions-in-dtcg).
+
+## Qué no va en la descripción
+
+- **Reglas largas o con excepciones.** No caben en una línea; van a la documentación Markdown.
+- **La lista de propiedades.** Ya la tiene el componente.
+- **Cambios de versión.** Van al changelog.
+
+<Takeaways>
+
+## En resumen
+
+- Componentes, variables y estilos tienen descripción; los componentes, además, enlace a documentación.
+- Una plantilla fija de cinco líneas: propósito, usar, no usar, tokens y enlace.
+- Las reglas largas no caben aquí: van a la documentación y a las guidelines.
+
+</Takeaways>
+
+## Fuentes
+
+- [Figma: Add descriptions to styles, components, and variables](https://help.figma.com/hc/en-us/articles/7938814091287)
+- [DesignToken101: Documentar el sistema](https://designtokens101.com/final-exercise/document-the-system)
