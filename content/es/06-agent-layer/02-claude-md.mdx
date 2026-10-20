@@ -1,14 +1,118 @@
 ---
 title: CLAUDE.md y AGENTS.md
-description: Cómo escribir el archivo de instrucciones que el agente lee al empezar.
+meta_title: "CLAUDE.md y AGENTS.md para un sistema de diseño: instrucciones para agentes de IA"
+description: Qué escribir en el archivo de instrucciones que un agente lee al empezar, cómo se relacionan CLAUDE.md y AGENTS.md y una plantilla para un repositorio de sistema de diseño.
 nav_title: CLAUDE.md y AGENTS.md
 lastReviewed: 2026-10-20
 ---
 
-Cómo escribir el archivo de instrucciones que el agente lee al empezar.
+El archivo de instrucciones es lo primero que lee un agente de código en tu repositorio. Claude Code lee `CLAUDE.md`; la mayoría de los demás agentes, `AGENTS.md`. Esta página explica qué poner en él y cómo tener un solo archivo para todos.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 5: Capa de agente» (`docs/guia-fuente.md`).
+- [CLAUDE.md](#claudemd)
+- [AGENTS.md](#agentsmd)
+- [Un archivo para todos los agentes](#un-archivo-para-todos-los-agentes)
+- [Qué escribir y qué no](#qué-escribir-y-qué-no)
+- [La plantilla](#la-plantilla)
+- [Reglas por ruta](#reglas-por-ruta)
+- [En resumen](#en-resumen)
+
+## CLAUDE.md
+
+`CLAUDE.md` es un archivo Markdown con instrucciones persistentes que Claude lee al empezar cada sesión. Claude Code recomienda dejar en él lo que debe tener presente siempre: comandos, convenciones, estructura del proyecto y reglas del tipo "haz siempre X". Recomienda también menos de 200 líneas por archivo, porque los archivos largos consumen más contexto y se siguen peor ([Claude Code: Memory](https://code.claude.com/docs/en/memory)).
+
+## AGENTS.md
+
+`AGENTS.md` es un formato abierto para guiar a agentes de código: Markdown sin campos obligatorios, complementario al README. Lo mantiene la Agentic AI Foundation, de la Linux Foundation, y lo admiten herramientas como Codex, Cursor, GitHub Copilot, Gemini CLI o VS Code. En un repositorio con varios proyectos, cada uno puede tener el suyo, y manda el más cercano al archivo que se edita ([AGENTS.md](https://agents.md/)).
+
+## Un archivo para todos los agentes
+
+Claude Code puede leer `AGENTS.md` directamente cuando no hay ningún `CLAUDE.md` en la carpeta de trabajo ni por encima. Si hay los dos, por defecto lee solo `CLAUDE.md`. Para compartir un único archivo, Claude Code propone un `CLAUDE.md` que importe `AGENTS.md` con `@AGENTS.md`, seguido de las instrucciones propias de Claude ([Claude Code: Memory](https://code.claude.com/docs/en/memory)):
+
+```markdown filename="CLAUDE.md"
+@AGENTS.md
+
+## Solo para Claude Code
+- Antes de terminar una tarea de interfaz, ejecuta la skill review-ui.
+```
+
+<Callout variant="recommendation">
+
+Escribe las reglas del sistema en `AGENTS.md`, que leen casi todos los agentes, y deja `CLAUDE.md` con la importación y lo específico de Claude Code. Así tu equipo puede usar el agente que prefiera con las mismas reglas.
 
 </Callout>
+
+## Qué escribir y qué no
+
+| Va en el archivo de instrucciones | Va en otro sitio |
+|---|---|
+| Las reglas no negociables del sistema (tokens, componentes, accesibilidad) | El detalle de cada componente: `docs/components/` |
+| El mapa de `docs/`: dónde está cada cosa | Los procedimientos de varios pasos: skills |
+| Los comandos: generar tokens, validar la documentación, Storybook | Las reglas de un tipo de archivo: reglas por ruta |
+| Qué hacer cuando falta algo | El historial de cambios: `CHANGELOG.md` |
+
+## La plantilla
+
+```markdown filename="AGENTS.md"
+# Sistema de diseño Acme: instrucciones para agentes
+
+Este repositorio contiene el sistema de diseño Acme: tokens, componentes React y su documentación.
+
+## Reglas no negociables
+1. Usa solo componentes de `src/components`. Si lo que necesitas no existe, para y dilo; no lo crees.
+2. Nunca escribas valores literales de color, espaciado, radio o tipografía. Usa tokens semánticos.
+3. Nunca inventes props. Compruébalas en `docs/components/<nombre>.md` o con el MCP de Storybook.
+4. No uses componentes con `status: deprecated`. Usa el de su campo `replaced_by`.
+5. Accesibilidad WCAG 2.2 AA: contraste, etiquetas y foco visible.
+
+## Dónde está cada cosa
+- Índice de componentes y su estado: `docs/inventory.md`
+- Recetas de pantallas: `docs/patterns/`
+- Fundamentos y reglas transversales: `docs/foundations/` y `docs/rules/`
+- Voz y tono: `docs/content/voice-and-tone.md`
+- Tokens: `tokens/` (se generan desde Figma; no se editan a mano)
+
+## Cómo crear una interfaz
+1. Busca en `docs/patterns/` un patrón que encaje y sigue su receta.
+2. Si partes de un diseño de Figma, usa el MCP de Figma para el contexto, las variables y Code Connect.
+3. Lee el documento de cada componente que vayas a usar.
+4. Revisa el resultado con las reglas de arriba antes de terminar.
+
+## Comandos
+- `npm run tokens`: genera los tokens
+- `npm run storybook`: Storybook, con su MCP en `http://localhost:6006/mcp`
+- `npm run validate:docs`: valida la documentación
+```
+
+La plantilla tiene unas 30 líneas. Las reglas apuntan a los documentos; no los copian.
+
+## Reglas por ruta
+
+Para instrucciones que solo valen al tocar ciertos archivos, Claude Code admite archivos en `.claude/rules/` con un campo `paths` en el frontmatter. Se cargan solo cuando Claude trabaja con archivos que coinciden ([Claude Code: Memory](https://code.claude.com/docs/en/memory)):
+
+```markdown filename=".claude/rules/stories.md"
+---
+paths:
+  - "src/**/*.stories.tsx"
+---
+
+# Historias
+- Cada historia muestra un solo concepto.
+- Las historias de antipatrones llevan tags: ['!manifest'].
+```
+
+<Takeaways>
+
+## En resumen
+
+- El archivo de instrucciones lleva reglas que valen siempre, el mapa de `docs/` y los comandos, en menos de 200 líneas.
+- `AGENTS.md` lo leen casi todos los agentes; `CLAUDE.md` puede importarlo con `@AGENTS.md`.
+- El detalle va a los documentos; los procedimientos, a skills; las reglas de un tipo de archivo, a reglas por ruta.
+
+</Takeaways>
+
+## Fuentes
+
+- [Claude Code: How Claude remembers your project](https://code.claude.com/docs/en/memory)
+- [AGENTS.md](https://agents.md/)

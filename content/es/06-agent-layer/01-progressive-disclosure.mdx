@@ -1,14 +1,73 @@
 ---
 title: Divulgación progresiva
-description: Qué se carga siempre, qué bajo demanda y por qué.
+meta_title: "Divulgación progresiva: qué carga siempre un agente de IA y qué bajo demanda"
+description: Por qué la documentación del sistema no se carga entera en el agente, qué piezas se cargan siempre, cuáles bajo demanda y cuáles en vivo, y cómo encaja cada una.
 nav_title: Divulgación progresiva
 lastReviewed: 2026-10-20
 ---
 
-Qué se carga siempre, qué bajo demanda y por qué.
+Ya tienes Figma preparado, tokens con descripción, documentación en Markdown y componentes conectados. La capa de agente decide cómo encuentra el agente todo eso. La idea que la ordena es la divulgación progresiva: lo mínimo, siempre; el resto, cuando haga falta.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 5: Capa de agente» (`docs/guia-fuente.md`).
+- [El contexto es un recurso limitado](#el-contexto-es-un-recurso-limitado)
+- [Tres momentos de carga](#tres-momentos-de-carga)
+- [Las piezas de la capa de agente](#las-piezas-de-la-capa-de-agente)
+- [En resumen](#en-resumen)
+
+## El contexto es un recurso limitado
+
+Anthropic describe el contexto de un agente como un recurso finito con rendimientos decrecientes: a medida que se llena, la capacidad del modelo de recordar con precisión lo que contiene disminuye ([Anthropic: Effective context engineering for AI agents](https://anthropic.com/engineering/effective-context-engineering-for-ai-agents)). Por eso propone que los agentes mantengan referencias ligeras, como rutas de archivo, y carguen los datos en el momento en que los necesitan. Llama a eso divulgación progresiva.
+
+Para un sistema de diseño, la consecuencia es clara: el agente no tiene que leer los cuarenta documentos de componentes al empezar. Tiene que saber que existen, dónde están y cuándo abrir cada uno.
+
+## Tres momentos de carga
+
+<Flow caption="Qué carga un agente de Claude Code en cada momento.">
+  <FlowGroup title="Siempre" meta="Al empezar cada sesión">
+    <FlowStep title="CLAUDE.md o AGENTS.md" meta="Reglas que valen siempre y el mapa de docs/" />
+  </FlowGroup>
+  <FlowGroup title="Bajo demanda" meta="Cuando la tarea lo pide">
+    <FlowStep title="Skills" meta="Cuando la tarea coincide con su descripción" />
+    <FlowStep title="Reglas por ruta" meta="Al tocar archivos que coinciden" />
+    <FlowStep title="Documentos de docs/" meta="Cuando el agente los abre" />
+  </FlowGroup>
+  <FlowGroup title="En vivo" meta="Cuando el agente llama a una herramienta">
+    <FlowStep title="MCP de Figma" meta="Diseño, variables y Code Connect" />
+    <FlowStep title="MCP de Storybook" meta="Componentes, props e historias" />
+  </FlowGroup>
+</Flow>
+
+Claude Code carga los archivos `CLAUDE.md` al empezar cada sesión ([Claude Code: Memory](https://code.claude.com/docs/en/memory)). Las skills se cargan cuando la petición coincide con su descripción, o cuando se invocan con `/nombre` ([Claude Code: Skills](https://code.claude.com/docs/en/skills)). Las reglas de `.claude/rules/` con un campo `paths` se cargan solo cuando Claude trabaja con archivos que coinciden ([Claude Code: Memory](https://code.claude.com/docs/en/memory)).
+
+## Las piezas de la capa de agente
+
+| Pieza | Qué lleva | Página |
+|---|---|---|
+| `CLAUDE.md` o `AGENTS.md` | Reglas no negociables, mapa de `docs/`, comandos | [CLAUDE.md y AGENTS.md](/agent-layer/claude-md) |
+| Skills | Procedimientos de varios pasos: crear una pantalla, revisar una interfaz | [Skills](/agent-layer/skills) |
+| Servidores MCP | Acceso en vivo a Figma y Storybook | [Servidores MCP](/agent-layer/mcp-servers) |
+| Sistema publicado en Claude | El sistema para Claude Design y los chats de Claude | [Claude Design](/agent-layer/claude-design) |
+| Project de Claude | El sistema para consultas del equipo | [Projects de Claude](/agent-layer/claude-projects) |
+
+<Callout variant="recommendation">
+
+Antes de escribir una línea en `CLAUDE.md`, pregúntate si el agente la necesita en **todas** las sesiones. Si solo la necesita para una tarea, va a una skill. Si solo para un tipo de archivo, a una regla por ruta. Si es el detalle de un componente, a su documento en `docs/`.
 
 </Callout>
+
+<Takeaways>
+
+## En resumen
+
+- El contexto es limitado: el agente carga lo mínimo y abre el resto cuando lo necesita.
+- `CLAUDE.md` se carga siempre; skills y reglas por ruta, bajo demanda; los MCP, en vivo.
+- Cada pieza de información va al momento de carga que le corresponde.
+
+</Takeaways>
+
+## Fuentes
+
+- [Anthropic: Effective context engineering for AI agents](https://anthropic.com/engineering/effective-context-engineering-for-ai-agents)
+- [Claude Code: How Claude remembers your project](https://code.claude.com/docs/en/memory)
+- [Claude Code: Extend Claude with skills](https://code.claude.com/docs/en/skills)

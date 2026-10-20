@@ -1,14 +1,112 @@
 ---
 title: Skills
-description: Cómo empaquetar procedimientos en skills con SKILL.md.
+meta_title: "Skills de Claude Code para trabajar con un sistema de diseño"
+description: Qué es una skill, cómo se escribe un SKILL.md, qué skills ofrece Figma y dos skills de ejemplo para crear y revisar interfaces con tu sistema de diseño.
 nav_title: Skills
 lastReviewed: 2026-10-20
 ---
 
-Cómo empaquetar procedimientos en skills con SKILL.md.
+Una skill empaqueta un procedimiento de varios pasos para que el agente lo siga siempre igual: crear una pantalla con el sistema, revisar una interfaz contra sus reglas. Se carga solo cuando la tarea lo pide, así que no ocupa contexto el resto del tiempo.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 5: Capa de agente» (`docs/guia-fuente.md`).
+- [Qué es una skill](#qué-es-una-skill)
+- [Cómo se escribe](#cómo-se-escribe)
+- [Las skills de Figma](#las-skills-de-figma)
+- [Skill para crear interfaces](#skill-para-crear-interfaces)
+- [Skill para revisar interfaces](#skill-para-revisar-interfaces)
+- [En resumen](#en-resumen)
+
+## Qué es una skill
+
+Una skill es una carpeta con un archivo `SKILL.md`: un frontmatter YAML que dice cuándo usarla y un cuerpo con las instrucciones. Puede llevar archivos de apoyo, como plantillas o scripts. Las skills de Claude Code siguen el estándar abierto Agent Skills, que funciona en varias herramientas de IA ([Claude Code: Skills](https://code.claude.com/docs/en/skills)).
+
+Claude Code recomienda pasar a una skill cualquier entrada de `CLAUDE.md` que sea un procedimiento de varios pasos ([Claude Code: Memory](https://code.claude.com/docs/en/memory)).
+
+| Ubicación | Ruta | Se carga en |
+|---|---|---|
+| Proyecto | `.claude/skills/<nombre>/SKILL.md` | Las sesiones de ese repositorio |
+| Personal | `~/.claude/skills/<nombre>/SKILL.md` | Todos tus proyectos |
+| Plugin | `<plugin>/skills/<nombre>/SKILL.md` | Donde el plugin esté activo |
+
+Fuente: [Claude Code: Skills](https://code.claude.com/docs/en/skills).
+
+## Cómo se escribe
+
+Lo que dice la documentación de Claude Code ([Claude Code: Skills](https://code.claude.com/docs/en/skills)):
+
+- **`description`** es el campo recomendado: Claude lo usa para decidir cuándo aplicar la skill. Conviene poner primero el caso de uso principal, porque la lista de skills recorta las descripciones largas.
+- **Menos de 500 líneas** en `SKILL.md`. El material de referencia va a archivos aparte, enlazados desde `SKILL.md` para que Claude sepa cuándo abrirlos.
+- **`disable-model-invocation: true`** impide que Claude use la skill por su cuenta; solo se ejecuta con `/nombre`. Es para procedimientos con efectos, como publicar.
+
+## Las skills de Figma
+
+Figma publica skills oficiales para agentes. Entre ellas, `figma-use` (escribir en el lienzo de Figma con los componentes y variables del equipo), `figma-code-connect` (conectar componentes publicados con su código), `figma-spec` (leer y escribir Figma Specs) y dos de ejemplo, `figma-generate-library` y `figma-generate-design`, que sirven tal cual y como plantilla ([Figma: Figma's agent skills](https://help.figma.com/hc/en-us/articles/39166810751895)). En Claude Code se instalan con el plugin de Figma ([Figma: Remote server installation](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/)).
+
+El servidor MCP de Figma tiene, además, un *prompt* llamado `create_design_system_rules` que genera un archivo de reglas para que el agente produzca código que encaje con tu código y tu sistema. Figma propone guardar el resultado en una carpeta `rules/` o `instructions/` del proyecto ([Figma: Tools and prompts](https://developers.figma.com/docs/figma-mcp-server/tools-and-prompts/)).
+
+<Callout variant="recommendation">
+
+Usa `create_design_system_rules` como borrador, no como resultado. Compara lo que genera con tu `AGENTS.md` y tu carpeta `docs/`, y quédate solo con lo que falte. Si lo guardas tal cual, tendrás dos versiones de las mismas reglas.
 
 </Callout>
+
+## Skill para crear interfaces
+
+```markdown filename=".claude/skills/build-ui/SKILL.md"
+---
+name: build-ui
+description: Crear o modificar pantallas y componentes de interfaz con el sistema de diseño Acme. Usar cuando se pida construir una vista, un formulario o una página, o implementar un diseño de Figma.
+---
+
+# Crear interfaces con el sistema Acme
+
+1. Lee `docs/inventory.md` para saber qué componentes existen y cuáles están obsoletos.
+2. Busca en `docs/patterns/` un patrón que encaje. Si existe, sigue su receta.
+3. Si hay un enlace de Figma, usa el MCP de Figma: contexto de diseño, variables y Code Connect.
+   Trata el código que devuelve como referencia del diseño, no como código final.
+4. Lee el documento de cada componente que vayas a usar y comprueba sus props.
+5. Sustituye cualquier valor literal por su token semántico.
+6. Antes de terminar, ejecuta la skill review-ui.
+
+Si falta un componente o un token, no lo inventes: explica qué falta y propón la composición más cercana.
+Si Figma y `docs/` no coinciden, manda `docs/`; señala la diferencia.
+```
+
+## Skill para revisar interfaces
+
+```markdown filename=".claude/skills/review-ui/SKILL.md"
+---
+name: review-ui
+description: Revisar una interfaz o un conjunto de cambios contra las reglas del sistema de diseño Acme. Usar antes de terminar cualquier tarea de interfaz o cuando se pida una revisión de diseño.
+---
+
+# Revisión contra el sistema
+
+Revisa los archivos cambiados y devuelve una tabla: regla, archivo y línea, problema, corrección.
+
+- Ningún color, espaciado ni radio literal (busca #, rgb( y px fuera de tokens/).
+- Ningún import de componentes con status deprecated.
+- Todas las props usadas existen en el documento del componente.
+- Máximo un Button variant="primary" por vista.
+- Todo TextField tiene label.
+- Los textos siguen docs/content/voice-and-tone.md.
+```
+
+<Takeaways>
+
+## En resumen
+
+- Una skill es un `SKILL.md` con una descripción que dice cuándo usarla y las instrucciones del procedimiento.
+- Figma publica skills oficiales y un *prompt* que genera un borrador de reglas.
+- Dos skills cubren lo esencial: crear interfaces con el sistema y revisarlas contra sus reglas.
+
+</Takeaways>
+
+## Fuentes
+
+- [Claude Code: Extend Claude with skills](https://code.claude.com/docs/en/skills)
+- [Claude Code: How Claude remembers your project](https://code.claude.com/docs/en/memory)
+- [Figma: Figma's agent skills](https://help.figma.com/hc/en-us/articles/39166810751895)
+- [Figma: Remote server installation](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/)
+- [Figma: Tools and prompts](https://developers.figma.com/docs/figma-mcp-server/tools-and-prompts/)

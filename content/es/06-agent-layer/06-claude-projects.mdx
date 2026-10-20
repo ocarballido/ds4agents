@@ -1,14 +1,64 @@
 ---
 title: Projects de Claude
-description: Cómo dar al equipo acceso al sistema con un Project de claude.ai.
+meta_title: "Un Project de Claude para consultar el sistema de diseño"
+description: Cómo dar a todo el equipo acceso al sistema de diseño con un Project de Claude, qué documentos subir, qué instrucciones escribir y qué límites tiene.
 nav_title: Projects de Claude
 lastReviewed: 2026-10-20
 ---
 
-Cómo dar al equipo acceso al sistema con un Project de claude.ai.
+No todo el equipo usa Claude Code. Producto, contenido o marketing también tienen preguntas sobre el sistema: qué componente usar, cómo se escribe un mensaje de error. Un Project de Claude con la documentación del sistema les da respuestas que salen de tus reglas.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 5: Capa de agente» (`docs/guia-fuente.md`).
+- [Qué es un Project](#qué-es-un-project)
+- [Qué subir](#qué-subir)
+- [Las instrucciones](#las-instrucciones)
+- [Límites](#límites)
+- [En resumen](#en-resumen)
+
+## Qué es un Project
+
+Un Project es un espacio de trabajo de Claude con su propio conocimiento y sus instrucciones. Lo que subes al conocimiento se usa en todos los chats del Project, y las instrucciones se aplican a todos ellos. En los planes de pago, cuando el conocimiento se acerca al límite del contexto, Claude activa un modo de recuperación para ampliarlo. En Team y Enterprise, un Project se puede compartir con miembros de la organización, con permiso para usarlo o para editarlo ([Claude Help: How can I create and manage projects](https://support.claude.com/en/articles/9519177)).
+
+## Qué subir
+
+<Callout variant="recommendation">
+
+Sube los documentos que responden a las preguntas del equipo, no el código:
+
+- `AGENTS.md`, como resumen de las reglas.
+- `docs/inventory.md`, para saber qué componentes existen.
+- `docs/foundations/`, `docs/patterns/` y `docs/content/`.
+- Los documentos de los componentes más consultados.
 
 </Callout>
+
+## Las instrucciones
+
+```text filename="Instrucciones del Project"
+Eres el asistente del sistema de diseño Acme.
+Responde solo con los componentes, props y tokens que aparecen en los documentos del Project.
+Si algo no está documentado, dilo y sugiere preguntar al equipo del sistema de diseño.
+Cita el documento del que sacas cada regla.
+Para textos de interfaz, aplica docs/content/voice-and-tone.md.
+```
+
+## Límites
+
+- **Es una copia.** Los archivos subidos no se actualizan solos: cuando publiques una versión del sistema, vuelve a subirlos.
+- **No genera interfaces de producción.** Para eso están Claude Design, con el sistema publicado, y Claude Code, con el repositorio.
+- **Cada chat empieza de cero.** El contexto no se comparte entre chats de un Project, salvo lo que está en su conocimiento ([Claude Help: How can I create and manage projects](https://support.claude.com/en/articles/9519177)).
+
+<Takeaways>
+
+## En resumen
+
+- Un Project da a todo el equipo respuestas que salen de la documentación del sistema.
+- Sube las reglas, el inventario, los fundamentos, los patrones y la guía de contenido.
+- Es una copia: vuelve a subirla con cada versión del sistema.
+
+</Takeaways>
+
+## Fuentes
+
+- [Claude Help: How can I create and manage projects](https://support.claude.com/en/articles/9519177)

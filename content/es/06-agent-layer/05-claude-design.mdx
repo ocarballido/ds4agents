@@ -1,14 +1,82 @@
 ---
 title: Claude Design
-description: Cómo publicar tu sistema de diseño en Claude Design.
+meta_title: "Publicar un sistema de diseño en Claude Design"
+description: Cómo crear y publicar tu sistema de diseño en Claude para que Claude Design y los chats de Claude lo apliquen, desde qué fuentes y cómo mantenerlo al día.
 nav_title: Claude Design
 lastReviewed: 2026-10-20
 ---
 
-Cómo publicar tu sistema de diseño en Claude Design.
+Claude Design crea diseños, prototipos y presentaciones conversando con Claude. Con tu sistema de diseño publicado, los aplica a todo lo que genera. Sin él, Anthropic advierte que el resultado es funcional pero genérico.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 5: Capa de agente» (`docs/guia-fuente.md`).
+- [Qué es Claude Design](#qué-es-claude-design)
+- [Por qué el sistema va primero](#por-qué-el-sistema-va-primero)
+- [Cómo se crea el sistema](#cómo-se-crea-el-sistema)
+- [Revisar y publicar](#revisar-y-publicar)
+- [Mantenerlo al día](#mantenerlo-al-día)
+- [En resumen](#en-resumen)
+
+## Qué es Claude Design
+
+En Claude Design describes lo que necesitas en un chat y Claude genera el diseño. Está disponible en los planes Free, Pro, Max, Team y Enterprise. Claude comprueba su resultado contra tu sistema de diseño antes de mostrártelo, y un diseño terminado se puede pasar a Claude Code para convertirlo en software ([Claude Help: Get started with Claude Design](https://support.claude.com/en/articles/14604416-get-started-with-claudae-design)).
+
+<Callout variant="warning">
+
+La versión independiente de claude.ai/design cierra el 14 de diciembre de 2026. Sus sistemas de diseño se migran a Claude, donde se pueden usar en cualquier chat, también en Claude Code ([Claude Help: Get started with Claude Design](https://support.claude.com/en/articles/14604416-get-started-with-claudae-design)). Los sistemas de diseño en Claude están en beta en los planes Pro, Max, Team y Enterprise ([Claude Help: Set up your design system](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)).
 
 </Callout>
+
+## Por qué el sistema va primero
+
+La guía de Anthropic para administradores dice que lo más importante antes de abrir Claude Design al equipo es que una persona con experiencia en diseño configure el sistema de diseño de la organización. Sin él, el equipo obtiene resultados funcionales pero genéricos ([Claude Help: Claude Design admin guide](https://support.claude.com/en/articles/14604406-claude-design-admin-guide)).
+
+## Cómo se crea el sistema
+
+Hay tres formas ([Claude Help: Set up your design system](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)):
+
+| Forma | Cuándo | Qué hace |
+|---|---|---|
+| Desde un chat | Sistemas de marca con fuentes, colores y guías | Pides a Claude que lo construya a partir de tus fuentes |
+| `/design-sync` en Claude Code | Sistemas que ya existen como componentes de React | Lee los tokens y los componentes directamente |
+| Migrar desde claude.ai/design | Sistemas creados en la versión independiente | Los trae a Claude; Claude puede ordenarlos después |
+
+Las fuentes que admite: un repositorio o librería de componentes, prototipos, capturas, archivos de diseño (también de Figma), presentaciones o documentos y elementos sueltos como logotipos, paletas y muestras tipográficas. Basta con una fuente para empezar, pero más fuentes dan más material. Anthropic recomienda incluir ejemplos reales, no solo especificaciones: una página terminada transmite mejor la marca que una paleta.
+
+<Callout variant="recommendation">
+
+Si tienes el repositorio preparado con los capítulos anteriores, usa `/design-sync` desde Claude Code: Claude lee los tokens y componentes reales, y tu `AGENTS.md` y tu carpeta `docs/` están en el mismo repositorio. Añade como fuentes uno o dos diseños terminados de tu producto.
+
+</Callout>
+
+## Revisar y publicar
+
+Claude genera un sistema con paleta de color, tipografía, componentes y patrones de maquetación. Para validarlo, crea un proyecto de prueba con una petición real, por ejemplo una página de aterrizaje de tu producto. Cuando el resultado te convenza, activa **Published**: desde ese momento, los proyectos nuevos de la organización usan tu sistema en lugar del de por defecto ([Claude Help: Set up your design system](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)).
+
+<Callout variant="recommendation">
+
+Usa como proyecto de prueba los dos patrones de tu piloto. Así puedes comparar lo que genera Claude Design con la receta que escribiste en `docs/patterns/`, con las mismas [evaluaciones del capítulo 7](/evaluation/design-evals).
+
+</Callout>
+
+## Mantenerlo al día
+
+Para cambiar un sistema publicado, ábrelo desde la configuración de Claude Design de la organización con **Open** y pulsa **Remix**: se abre un chat para modificarlo con Claude ([Claude Help: Set up your design system](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)). En Enterprise, los administradores pueden limitar quién publica, quién elige el sistema por defecto y quién los borra.
+
+Anota en el changelog del sistema cada vez que actualices la versión de Claude, para saber qué versión del repositorio refleja ([Changelog](/evaluation/changelog)).
+
+<Takeaways>
+
+## En resumen
+
+- Sin un sistema publicado, Claude Design da resultados funcionales pero genéricos.
+- El sistema se crea desde un chat con tus fuentes o con `/design-sync` desde Claude Code.
+- Se valida con un proyecto real, se publica con Published y se actualiza con Remix.
+
+</Takeaways>
+
+## Fuentes
+
+- [Claude Help: Get started with Claude Design](https://support.claude.com/en/articles/14604416-get-started-with-claudae-design)
+- [Claude Help: Set up your design system in Claude Design](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)
+- [Claude Help: Claude Design admin guide](https://support.claude.com/en/articles/14604406-claude-design-admin-guide)

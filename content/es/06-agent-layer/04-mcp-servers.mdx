@@ -1,14 +1,90 @@
 ---
 title: Servidores MCP
-description: Cómo conectar los servidores MCP de Figma y Storybook.
+meta_title: "Conectar los servidores MCP de Figma y Storybook a Claude Code"
+description: Qué es un servidor MCP, cómo conectar el de Figma y el de Storybook a Claude Code y cómo compartir la configuración con el equipo.
 nav_title: Servidores MCP
 lastReviewed: 2026-10-20
 ---
 
-Cómo conectar los servidores MCP de Figma y Storybook.
+Un servidor MCP da al agente acceso en vivo a una herramienta. Con el de Figma, el agente lee tus diseños, tus variables y tus conexiones de Code Connect; con el de Storybook, tus componentes y sus props. Esta página explica cómo conectarlos a Claude Code.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 5: Capa de agente» (`docs/guia-fuente.md`).
+- [Qué es MCP](#qué-es-mcp)
+- [El servidor de Figma](#el-servidor-de-figma)
+- [El servidor de Storybook](#el-servidor-de-storybook)
+- [Compartir la configuración con el equipo](#compartir-la-configuración-con-el-equipo)
+- [En resumen](#en-resumen)
+
+## Qué es MCP
+
+El Model Context Protocol es un estándar abierto para conectar herramientas de IA con fuentes de datos externas ([Claude Code: Overview](https://code.claude.com/docs/en/overview)). Un servidor MCP expone herramientas que el agente puede llamar, como las de lectura de Figma que viste en [Comprobar con el MCP](/figma/verify-with-mcp).
+
+## El servidor de Figma
+
+Figma recomienda el servidor remoto, en `https://mcp.figma.com/mcp`: no necesita la aplicación de escritorio y tiene el conjunto de funciones más amplio. El servidor de escritorio queda para necesidades concretas de organizaciones ([Figma: Figma MCP server](https://help.figma.com/hc/en-us/articles/32132100833559)).
+
+En Claude Code, Figma propone dos formas de conectarlo ([Figma: Remote server installation](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/)):
+
+**Con el plugin de Figma (recomendada).** Instala el servidor y las skills de Figma:
+
+```bash filename="Terminal"
+claude plugin install figma@claude-plugins-official
+```
+
+Después, reinicia Claude Code, abre `/plugin`, ve a la pestaña **Installed**, elige `figma` y sigue el inicio de sesión en el navegador con **Allow access**.
+
+**A mano.** Añade solo el servidor, sin las skills:
+
+```bash filename="Terminal"
+claude mcp add --transport http figma https://mcp.figma.com/mcp
+```
+
+Después, en una sesión nueva, abre `/mcp`, elige **figma** y **Authenticate**.
+
+## El servidor de Storybook
+
+Con el servidor de desarrollo de Storybook en marcha y el addon instalado ([Storybook y su MCP](/design-to-code/storybook-mcp)), el servidor está en `http://localhost:6006/mcp`. Se añade a Claude Code igual que cualquier servidor HTTP ([Claude Code: MCP](https://code.claude.com/docs/en/mcp)):
+
+```bash filename="Terminal"
+claude mcp add --transport http storybook http://localhost:6006/mcp
+```
+
+## Compartir la configuración con el equipo
+
+Claude Code guarda cada servidor en uno de tres ámbitos ([Claude Code: MCP](https://code.claude.com/docs/en/mcp)):
+
+| Ámbito | Dónde se guarda | Se comparte |
+|---|---|---|
+| Local (por defecto) | `~/.claude.json`, para el proyecto actual | No |
+| Proyecto | `.mcp.json`, en la raíz del repositorio | Sí, con el control de versiones |
+| Usuario | `~/.claude.json`, para todos tus proyectos | No |
+
+Con `--scope project`, el servidor queda en `.mcp.json` y todo el equipo lo tiene al clonar el repositorio. Por seguridad, Claude Code pide aprobación antes de usar los servidores de un `.mcp.json`.
+
+```bash filename="Terminal"
+claude mcp add --transport http storybook --scope project http://localhost:6006/mcp
+```
+
+<Callout variant="recommendation">
+
+En el repositorio del sistema de diseño, guarda Storybook en el ámbito de proyecto, porque es parte del repositorio. El de Figma, con el plugin o en el ámbito de usuario: cada persona inicia sesión con su propia cuenta de Figma.
 
 </Callout>
+
+<Takeaways>
+
+## En resumen
+
+- El servidor MCP de Figma da acceso en vivo a diseños, variables y Code Connect; el de Storybook, a componentes y props.
+- Figma recomienda el servidor remoto, instalado con el plugin de Figma para tener también sus skills.
+- El ámbito de proyecto guarda la configuración en `.mcp.json` para todo el equipo.
+
+</Takeaways>
+
+## Fuentes
+
+- [Claude Code: Overview](https://code.claude.com/docs/en/overview)
+- [Claude Code: Connect Claude Code to tools via MCP](https://code.claude.com/docs/en/mcp)
+- [Figma: Figma MCP server](https://help.figma.com/hc/en-us/articles/32132100833559)
+- [Figma: Remote server installation](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/)
