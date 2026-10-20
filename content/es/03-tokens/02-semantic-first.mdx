@@ -1,14 +1,92 @@
 ---
 title: Primero los semánticos
-description: Por qué el agente debe usar tokens semánticos y nunca primitivos ni valores literales.
+meta_title: "Por qué un agente de IA debe usar tokens semánticos y no primitivos"
+description: Qué capas de tokens existen, cuál debe usar un agente al generar diseños o código y cómo escribir esa regla para que se pueda comprobar.
 nav_title: Primero los semánticos
 lastReviewed: 2026-10-20
 ---
 
-Por qué el agente debe usar tokens semánticos y nunca primitivos ni valores literales.
+Un sistema de tokens suele tener dos o tres capas: valores, intenciones y, a veces, decisiones de componente. Un agente que elige mal la capa produce código que se rompe al cambiar de tema. Esta página propone una regla sencilla y comprobable.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 2: Tokens como contrato» (`docs/guia-fuente.md`).
+- [Las capas](#las-capas)
+- [La regla para el agente](#la-regla-para-el-agente)
+- [Cómo se comprueba](#cómo-se-comprueba)
+- [Los tokens obsoletos](#los-tokens-obsoletos)
+- [En resumen](#en-resumen)
+
+## Las capas
+
+| Capa | Qué nombra | Ejemplo | Lo usa el agente |
+|---|---|---|---|
+| Primitivo | Qué valor es | `color.blue.600`, `space.400` | No |
+| Semántico | Para qué se usa | `color.action.primary`, `space.inset.md` | Sí |
+| Componente | Una decisión de un componente | `button.primary.background` | Solo dentro de ese componente |
+
+DesignToken101 explica las capas y cómo se relacionan con alias ([DesignToken101: Las capas](https://designtokens101.com/relations/layers)). En DTCG, un alias se escribe con llaves y siempre apunta al `$value` del token de destino: `"$value": "{color.blue.600}"` ([Format Module: Curly brace syntax](https://www.designtokens.org/TR/2025.10/format/#curly-brace-syntax-token-references)).
+
+## La regla para el agente
+
+<Callout variant="recommendation">
+
+Escribe la regla en las [guidelines](/figma/library-guidelines) y en el [archivo de instrucciones del repositorio](/agent-layer/claude-md), con estas palabras o parecidas:
+
+- Usa solo tokens semánticos o de componente. Nunca primitivos.
+- Nunca escribas un valor literal de color, espaciado, radio o tipografía.
+- Si ningún token semántico encaja, no uses un primitivo: dilo y propone el token que falta.
 
 </Callout>
+
+El tercer punto es el más importante. Sin él, un agente que no encuentra el token adecuado elige el valor más parecido, y el sistema crece con excepciones que nadie decidió.
+
+En Figma, la regla se refuerza ocultando los primitivos al publicar, para que no aparezcan al aplicar variables. Figma permite ocultar una variable al publicar, o una colección entera si su nombre empieza por `_` o `.` ([Figma: Hide styles, components, and variables when publishing](https://help.figma.com/hc/en-us/articles/360039238193)). DesignToken101 oculta sus primitivos variable por variable ([DesignToken101: La colección completa](https://designtokens101.com/primitives/primitives-collection)).
+
+## Cómo se comprueba
+
+Una regla con "nunca" se puede comprobar con un script, sin leer el código a mano:
+
+- Buscar valores hexadecimales, `rgb(` o `px` fuera de la carpeta de tokens.
+- Buscar referencias a primitivos (`--ds-color-blue-`) fuera de la carpeta de tokens.
+
+En el [capítulo 7](/evaluation/rubric) usamos estas búsquedas para puntuar lo que genera un agente.
+
+## Los tokens obsoletos
+
+DTCG permite marcar un token como obsoleto con `$deprecated`: `true`, `false` o un texto que explica el motivo ([Format Module: Deprecated](https://www.designtokens.org/TR/2025.10/format/#deprecated)). El texto es lo que el agente necesita para saber qué usar en su lugar:
+
+```json filename="tokens/semantic.tokens.json (fragmento)"
+{
+  "color": {
+    "$type": "color",
+    "brand": {
+      "$value": "{color.blue.600}",
+      "$deprecated": "Usa color.action.primary. Se elimina en 2.0.0."
+    }
+  }
+}
+```
+
+<Callout variant="note">
+
+No hemos comprobado si Figma exporta o importa `$deprecated` en las variables. Si tus tokens salen de Figma, puede que tengas que añadirlo en el repositorio.
+
+</Callout>
+
+<Takeaways>
+
+## En resumen
+
+- El agente usa tokens semánticos o de componente, nunca primitivos ni valores literales.
+- Si no hay token adecuado, el agente lo dice; no elige el valor más parecido.
+- `$deprecated` con un texto dice qué usar en lugar del token obsoleto.
+
+</Takeaways>
+
+## Fuentes
+
+- [Design Tokens Format Module 2025.10: Curly brace syntax](https://www.designtokens.org/TR/2025.10/format/#curly-brace-syntax-token-references)
+- [Design Tokens Format Module 2025.10: Deprecated](https://www.designtokens.org/TR/2025.10/format/#deprecated)
+- [Figma: Hide styles, components, and variables when publishing](https://help.figma.com/hc/en-us/articles/360039238193)
+- [DesignToken101: Las capas](https://designtokens101.com/relations/layers)
+- [DesignToken101: La colección completa](https://designtokens101.com/primitives/primitives-collection)

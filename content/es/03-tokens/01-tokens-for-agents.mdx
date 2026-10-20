@@ -1,14 +1,71 @@
 ---
 title: Tokens para agentes
-description: Qué aporta un sistema de tokens a un agente y qué cubre DesignToken101.
+meta_title: "Qué aporta un sistema de tokens de diseño a un agente de IA"
+description: Por qué un agente necesita tokens con nombre y no valores sueltos, qué recorrido hace un token de Figma al código y qué parte de ese recorrido explica DesignToken101.
 nav_title: Tokens para agentes
 lastReviewed: 2026-10-20
 ---
 
-Qué aporta un sistema de tokens a un agente y qué cubre DesignToken101.
+Un token es una decisión de diseño con nombre. Para un agente, la diferencia entre `#1C64D9` y `color.action.primary` es la diferencia entre copiar un color y entender para qué sirve. Este capítulo trata lo que el agente necesita de tus tokens; cómo se construye el sistema completo lo explica DesignToken101.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 2: Tokens como contrato» (`docs/guia-fuente.md`).
+- [Del valor a la decisión](#del-valor-a-la-decisión)
+- [El recorrido de un token](#el-recorrido-de-un-token)
+- [Lo que este capítulo añade](#lo-que-este-capítulo-añade)
+- [En resumen](#en-resumen)
+
+## Del valor a la decisión
+
+La especificación DTCG define un token como información asociada a un nombre legible por personas, y presenta los tokens como una forma de compartir decisiones de diseño entre herramientas y tecnologías ([Format Module: Introduction](https://www.designtokens.org/TR/2025.10/format/#introduction)).
+
+La guía de Figma para el servidor MCP pide usar variables para el espaciado, el color, el radio y la tipografía, para que el agente haga referencia a tus tokens en lugar de copiar valores ([Figma: Structure your Figma file for better code](https://developers.figma.com/docs/figma-mcp-server/structure-figma-file/)). La herramienta `get_variable_defs` devuelve las variables y estilos de una selección ([Figma: Tools and prompts](https://developers.figma.com/docs/figma-mcp-server/tools-and-prompts/)).
+
+Un agente que recibe un valor suelto puede reproducir el diseño. Uno que recibe un token puede, además, mantenerlo: si cambia la marca o el modo, el código generado sigue funcionando.
+
+## El recorrido de un token
+
+<Flow caption="El recorrido de un token, de Figma al código que genera un agente.">
+  <FlowStep title="Variable de Figma" meta="color/action/primary" />
+  <FlowStep title="Exportación DTCG" meta="JSON estándar, con $description" />
+  <FlowStep title="Transformación" meta="Terrazzo o Style Dictionary" />
+  <FlowStep title="Variable CSS" meta="--ds-color-action-primary" />
+  <FlowStep title="Código del agente" meta="Usa la variable, no el valor" />
+</Flow>
+
+DesignToken101 explica cada paso: qué exporta Figma ([Qué sale de Figma](https://designtokens101.com/figma-to-code/what-figma-exports)), cómo completar la exportación ([Completar la exportación](https://designtokens101.com/figma-to-code/normalize-the-export)) y cómo generar las variables CSS ([Las variables CSS](https://designtokens101.com/figma-to-code/css-variables)).
+
+<Callout variant="note">
+
+Las herramientas todavía se están adaptando a la versión estable de DTCG, la 2025.10. La documentación de Style Dictionary dice que su soporte de 2025.10 no está completo y que es un trabajo en curso en su versión 5 ([Style Dictionary: DTCG](https://styledictionary.com/info/dtcg/)). DesignToken101 usa Terrazzo con una normalización propia delante ([DesignToken101: Completar la exportación](https://designtokens101.com/figma-to-code/normalize-the-export)).
 
 </Callout>
+
+## Lo que este capítulo añade
+
+Para un agente, un sistema de tokens bien construido necesita dos cosas más:
+
+1. **Una regla de uso clara:** qué capa de tokens puede usar y cuál no. Lo vemos en [Primero los semánticos](/tokens/semantic-first).
+2. **La intención escrita en cada token:** para qué sirve y para qué no. Lo vemos en [Descripciones en DTCG](/tokens/descriptions-in-dtcg).
+
+Si tu sistema todavía no tiene tokens, empieza por [DesignToken101](https://designtokens101.com) y vuelve aquí.
+
+<Takeaways>
+
+## En resumen
+
+- Un token da al agente el nombre y la intención, no solo el valor.
+- El recorrido de Figma al código lo explica DesignToken101 paso a paso.
+- Para un agente faltan dos cosas: una regla de capas y una descripción en cada token semántico.
+
+</Takeaways>
+
+## Fuentes
+
+- [Design Tokens Format Module 2025.10](https://www.designtokens.org/TR/2025.10/format/)
+- [Figma: Structure your Figma file for better code](https://developers.figma.com/docs/figma-mcp-server/structure-figma-file/)
+- [Figma: Tools and prompts](https://developers.figma.com/docs/figma-mcp-server/tools-and-prompts/)
+- [Style Dictionary: DTCG](https://styledictionary.com/info/dtcg/)
+- [DesignToken101: Qué sale de Figma](https://designtokens101.com/figma-to-code/what-figma-exports)
+- [DesignToken101: Completar la exportación](https://designtokens101.com/figma-to-code/normalize-the-export)
+- [DesignToken101: Las variables CSS](https://designtokens101.com/figma-to-code/css-variables)

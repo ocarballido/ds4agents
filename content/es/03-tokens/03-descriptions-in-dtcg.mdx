@@ -1,14 +1,72 @@
 ---
 title: Descripciones en DTCG
-description: Cómo usar $description para que la intención de cada token viaje con él.
+meta_title: "La descripción de un token de diseño: $description en DTCG para agentes de IA"
+description: Cómo usar $description en DTCG para que la intención de cada token viaje con él, de Figma al código, y cómo escribir una descripción que un agente pueda aplicar.
 nav_title: Descripciones en DTCG
 lastReviewed: 2026-10-20
 ---
 
-Cómo usar $description para que la intención de cada token viaje con él.
+El nombre de un token dice para qué sirve en general. La descripción dice cuándo usarlo y cuándo no. Es la documentación más barata que puedes escribir para un agente, porque viaja con el token a cualquier herramienta que lea DTCG.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 2: Tokens como contrato» (`docs/guia-fuente.md`).
+- [Qué es $description](#qué-es-description)
+- [De Figma a DTCG](#de-figma-a-dtcg)
+- [Cómo escribir una descripción](#cómo-escribir-una-descripción)
+- [Qué tokens describir](#qué-tokens-describir)
+- [En resumen](#en-resumen)
+
+## Qué es $description
+
+DTCG define `$description` como una descripción en texto plano, opcional, que explica el propósito del token. Las herramientas pueden usarla de distintas formas: un editor puede mostrarla como ayuda emergente y una herramienta de transformación, como comentario en el código generado ([Format Module: Description](https://www.designtokens.org/TR/2025.10/format/#description)).
+
+## De Figma a DTCG
+
+La descripción de una variable se escribe en Figma con **Edit variable** ([Figma: Add descriptions](https://help.figma.com/hc/en-us/articles/7938814091287)). DesignToken101 comprobó que la exportación de Figma a DTCG la escribe como `$description` del token ([DesignToken101: Documentar el sistema](https://designtokens101.com/final-exercise/document-the-system)):
+
+```json filename="Exportación de Figma (fragmento)"
+"primary": {
+  "$type": "color",
+  "$value": { "colorSpace": "srgb", "components": [0.11, 0.39, 0.85], "hex": "#1C64D9" },
+  "$description": "Fondo de la acción principal. Máximo una por vista."
+}
+```
+
+Así, la misma frase está en Figma, en el JSON del repositorio y, si la herramienta de transformación la conserva, como comentario en el CSS que lee el agente.
+
+## Cómo escribir una descripción
+
+<Callout variant="recommendation">
+
+Una descripción de token tiene dos partes: **para qué sirve** y **la restricción principal**. Una frase cada una. Sin el valor, que ya está en `$value`.
 
 </Callout>
+
+| Token | Descripción débil | Descripción útil para un agente |
+|---|---|---|
+| `color.action.primary` | Azul principal | Fondo de la acción principal. Máximo una por vista. |
+| `color.text.subtle` | Texto gris | Texto secundario: metadatos y ayudas. No para texto que haya que leer para completar una tarea. |
+| `color.feedback.error` | Rojo de error | Mensajes y bordes de error. No para botones destructivos: usa `color.action.danger`. |
+| `space.inset.md` | 16 px | Relleno interior de tarjetas y paneles. |
+
+Las descripciones útiles se parecen a las reglas de la documentación: dicen cuándo, cuándo no y qué usar en su lugar.
+
+## Qué tokens describir
+
+DesignToken101 hace obligatoria la descripción en los semánticos y opcional en los primitivos ([DesignToken101: Documentar el sistema](https://designtokens101.com/final-exercise/document-the-system)). Para un agente tiene sentido: los semánticos son los que debe usar, así que son los que necesitan instrucciones.
+
+<Takeaways>
+
+## En resumen
+
+- `$description` explica el propósito del token y viaja con él entre herramientas.
+- Figma exporta la descripción de la variable como `$description`.
+- Una descripción útil dice para qué sirve el token y su restricción principal.
+
+</Takeaways>
+
+## Fuentes
+
+- [Design Tokens Format Module 2025.10: Description](https://www.designtokens.org/TR/2025.10/format/#description)
+- [Figma: Add descriptions to styles, components, and variables](https://help.figma.com/hc/en-us/articles/7938814091287)
+- [DesignToken101: Documentar el sistema](https://designtokens101.com/final-exercise/document-the-system)
