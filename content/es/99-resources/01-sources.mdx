@@ -1,14 +1,101 @@
 ---
 title: Fuentes
-description: Bibliografía comentada de la guía, ordenada por fase.
+meta_title: "Bibliografía comentada: sistemas de diseño y agentes de IA"
+description: Las fuentes oficiales de la guía, agrupadas por herramienta, con una nota sobre qué aporta cada una y en qué capítulo se usa. Revisadas en octubre de 2026.
 nav_title: Fuentes
 lastReviewed: 2026-10-20
 ---
 
-Bibliografía comentada de la guía, ordenada por fase.
+Todas las fuentes de la guía, agrupadas por herramienta y comentadas. Son documentación oficial salvo que se indique lo contrario. Las herramientas cambian rápido: si una fuente está en beta o en *preview*, lo decimos.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Bibliografía comentada y Glosario» (`docs/guia-fuente.md`).
+- [Figma](#figma)
+- [Claude y Anthropic](#claude-y-anthropic)
+- [Storybook](#storybook)
+- [Tokens de diseño](#tokens-de-diseño)
+- [Estándares y metodología](#estándares-y-metodología)
+- [DesignToken101](#designtoken101)
+- [En resumen](#en-resumen)
 
-</Callout>
+## Figma
+
+**Servidor MCP**
+
+- [Figma MCP server](https://help.figma.com/hc/en-us/articles/32132100833559): servidor remoto y de escritorio, planes y clientes compatibles. Capítulos 0 y 6.
+- [Structure your Figma file for better code](https://developers.figma.com/docs/figma-mcp-server/structure-figma-file/): las prácticas que mejoran lo que recibe el agente. La fuente más citada de la guía.
+- [Tools and prompts](https://developers.figma.com/docs/figma-mcp-server/tools-and-prompts/): todas las herramientas del servidor y el *prompt* `create_design_system_rules`. Capítulos 2 y 6.
+- [Code Connect integration](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/): qué recibe el agente de un componente conectado y las instrucciones para el MCP. Capítulo 5.
+- [Remote server installation](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/): instalación en Claude Code con el plugin o a mano. Capítulo 6.
+- [Write effective prompts](https://developers.figma.com/docs/figma-mcp-server/write-effective-prompts/) y [Avoid selecting large, heavy frames](https://developers.figma.com/docs/figma-mcp-server/avoid-large-frames/): cómo pedir y qué seleccionar. Capítulo 2.
+- [Figma's agent skills](https://help.figma.com/hc/en-us/articles/39166810751895): las skills oficiales de Figma. Capítulo 6.
+
+**Librería y documentación**
+
+- [About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511): las guidelines de librería para el agente de Figma, en beta abierta. Capítulos 2 y 4.
+- [What's new from Config India 2026](https://help.figma.com/hc/en-us/articles/43663368947863-What-s-new-from-Config-India-2026): las novedades de octubre de 2026 para sistemas de diseño.
+- [Add descriptions to styles, components, and variables](https://help.figma.com/hc/en-us/articles/7938814091287): descripciones y enlace de documentación. Capítulo 2.
+- [Add measurements and annotate designs](https://help.figma.com/hc/en-us/articles/20774752502935-Add-measurements-and-annotate-designs): anotaciones y sus categorías. Capítulo 2.
+- [Link dev resources to layers in Dev Mode](https://help.figma.com/hc/en-us/articles/15023231995927): dev resources y su herencia en las instancias. Capítulo 2.
+- [Explore component properties](https://help.figma.com/hc/en-us/articles/5579474826519-Explore-component-properties): los cinco tipos de propiedad. Capítulo 2.
+- [Hide styles, components, and variables when publishing](https://help.figma.com/hc/en-us/articles/360039238193): ocultar lo obsoleto y los primitivos. Capítulos 2 y 3.
+- [View and explore library analytics](https://help.figma.com/hc/en-us/articles/360039238353-Track-library-and-component-usage): inserciones y separaciones, en Organization y Enterprise. Capítulo 1.
+- [Lesson 4: Document and manage your system](https://help.figma.com/hc/en-us/articles/14552804059927-Lesson-4-Document-and-manage-your-system): el curso de Figma sobre documentar, versionar y trabajar con ramas. Capítulos 2, 4 y 7.
+- [Modes for variables](https://help.figma.com/hc/en-us/articles/15343816063383-Modes-for-variables): qué planes tienen modos. Capítulo 0.
+
+**Code Connect**
+
+- [Code Connect](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect): interfaz y línea de comandos, planes y asientos. Capítulo 5.
+- [Code Connect UI setup](https://developers.figma.com/docs/code-connect/code-connect-ui-setup/), [Template files](https://developers.figma.com/docs/code-connect/template-files/) y [Template API](https://developers.figma.com/docs/code-connect/template-api/): cómo conectar y mapear. Capítulo 5.
+
+**Foro (no oficial)**
+
+- [Figma MCP server not displaying annotations from nested component instances](https://forum.figma.com/report-a-problem-6/figma-mcp-server-not-displaying-annotations-from-nested-component-instances-42958): informe de usuarios sobre anotaciones en instancias anidadas. Capítulo 2.
+
+## Claude y Anthropic
+
+- [Claude Code: How Claude remembers your project](https://code.claude.com/docs/en/memory): `CLAUDE.md`, `AGENTS.md`, importaciones, reglas por ruta y auditoría de instrucciones. Capítulos 4 y 6.
+- [Claude Code: Extend Claude with skills](https://code.claude.com/docs/en/skills): el formato de `SKILL.md`. Capítulo 6.
+- [Claude Code: Connect Claude Code to tools via MCP](https://code.claude.com/docs/en/mcp): ámbitos y `.mcp.json`. Capítulo 6.
+- [Claude Code: Overview](https://code.claude.com/docs/en/overview): superficies y cuentas. Capítulo 0.
+- [Get started with Claude Design](https://support.claude.com/en/articles/14604416-get-started-with-claudae-design), [Set up your design system in Claude Design](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design) y [Claude Design admin guide](https://support.claude.com/en/articles/14604406-claude-design-admin-guide): disponibilidad, creación y publicación del sistema. Los sistemas de diseño están en beta. Capítulo 6.
+- [How can I create and manage projects](https://support.claude.com/en/articles/9519177): conocimiento, instrucciones y uso compartido. Capítulo 6.
+- [Effective context engineering for AI agents](https://anthropic.com/engineering/effective-context-engineering-for-ai-agents) (blog de ingeniería de Anthropic, septiembre de 2025): el contexto como recurso limitado, la altura correcta de las instrucciones y la divulgación progresiva. Capítulos 1, 4 y 6.
+- [Demystifying evals for AI agents](https://anthropic.com/engineering/demystifying-evals-for-ai-agents) (blog de ingeniería de Anthropic, enero de 2026): tareas, intentos, evaluadores y tipos de evaluación. Capítulo 7.
+
+## Storybook
+
+- [MCP server](https://storybook.js.org/docs/ai/mcp/overview): instalación, herramientas, frameworks e instrucciones para el agente. En *preview* en la versión 10.6. Capítulo 5.
+- [Manifests](https://storybook.js.org/docs/ai/manifests): qué contiene el manifiesto de componentes. Capítulos 1 y 5.
+- [Best practices for using Storybook with AI](https://storybook.js.org/docs/ai/best-practices): JSDoc, historias y qué excluir del manifiesto. Capítulos 1, 4 y 5.
+
+## Tokens de diseño
+
+- [Design Tokens Format Module 2025.10](https://www.designtokens.org/TR/2025.10/format/): `$description`, `$deprecated` y alias. Capítulo 3.
+- [Style Dictionary: DTCG](https://styledictionary.com/info/dtcg/): el estado de su soporte de DTCG 2025.10. Capítulo 3.
+
+## Estándares y metodología
+
+- [AGENTS.md](https://agents.md/): el formato abierto de instrucciones para agentes de código. Capítulos 4 y 6.
+- [llms.txt](https://llmstxt.org/): propuesta de índice en Markdown para webs que leen los LLM. Capítulo 4.
+- [Atomic Design, capítulo 2](https://atomicdesign.bradfrost.com/chapter-2/) (Brad Frost): los cinco niveles. Capítulo 1.
+- [Semantic Versioning 2.0.0](https://semver.org/) y [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.1.0/): versiones y changelog. Capítulo 7.
+- [WCAG 2.2: Contrast (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html), [Non-text Contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html) y [Use of Color](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html): los mínimos de la plantilla de color. Capítulo 4.
+
+## DesignToken101
+
+[DesignToken101](https://designtokens101.com) es la web hermana de esta guía: el recorrido de un token de Figma al código. Las páginas que citamos están en los capítulos 2, 3, 4 y 7.
+
+<Takeaways>
+
+## En resumen
+
+- La guía se apoya en la documentación oficial de Figma, Claude, Storybook y DTCG.
+- Lo que está en beta o en *preview* va señalado, y el foro de Figma, marcado como no oficial.
+- Para los tokens, DesignToken101 cubre el recorrido completo de Figma al código.
+
+</Takeaways>
+
+## Fuentes
+
+Esta página es la lista de fuentes de la guía.

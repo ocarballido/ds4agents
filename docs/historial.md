@@ -2,6 +2,15 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-10-20 · Contenido · Las 53 páginas
+
+- Fuentes revisadas el 2026-10-20: ayuda y documentación para desarrolladores de Figma (servidor MCP, herramientas, Code Connect UI y plantillas, guidelines, anotaciones, descripciones, dev resources, analíticas, skills, Config India 2026), Claude Code (memoria, skills, MCP, visión general), ayuda de Claude (Claude Design, sistemas de diseño, Projects), blog de ingeniería de Anthropic (contexto y evaluaciones), Storybook 10.6 (MCP, manifiestos, buenas prácticas), DTCG 2025.10, Style Dictionary, AGENTS.md, llms.txt, SemVer y Keep a Changelog.
+- Novedades que cambian el planteamiento de la guía-fuente: las guidelines de librería de Figma (beta abierta, 6 y 14 de octubre de 2026) y las instrucciones para el MCP de Code Connect UI son vías documentadas para las reglas de uso; Claude Design se integra en Claude (claude.ai/design cierra el 14 de diciembre de 2026) y `/design-sync` crea el sistema desde Claude Code; Code Connect pasa a Professional y recomienda archivos de plantilla; Claude Code lee `AGENTS.md`.
+- Páginas nuevas (G12) y plantillas en una sola página índice (G13).
+- La página modelo cambia "Lo que no le llega nunca" por "Lo que no se ve en el dibujo", con los cuatro sitios donde se escriben las reglas.
+- Scripts de las páginas (`build-figma-guidelines.mjs`, `validate-docs.mjs`, `check-ui.sh`) probados con archivos de ejemplo.
+- Comprobación local de cada capítulo antes de subirlo (frontmatter, enlaces internos, anclas, llaves fuera de código, guiones largos) y CI en cada push.
+
 ## 2026-10-20 · Desarrollo · Guía en lugar de curso (G10) y marca (G11)
 
 - Oscar aprueba el tono de la página modelo y pide que la web sea una guía con nuestra investigación, no un curso.

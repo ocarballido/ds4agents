@@ -1,14 +1,58 @@
 ---
 title: Glosario
-description: Los términos de la guía, con su definición.
+meta_title: "Glosario de sistemas de diseño y agentes de IA"
+description: Los términos de la guía, con su definición y la página donde se explican.
 nav_title: Glosario
 lastReviewed: 2026-10-20
 ---
 
-Los términos de la guía, con su definición.
+Los términos que usa la guía, por orden alfabético. Cada uno enlaza a la página donde se explica.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Bibliografía comentada y Glosario» (`docs/guia-fuente.md`).
+- [Términos](#términos)
+- [En resumen](#en-resumen)
 
-</Callout>
+## Términos
+
+| Término | Definición | Dónde |
+|---|---|---|
+| Agente | Un modelo de lenguaje con acceso a herramientas (archivos, terminal, servidores MCP) que ejecuta tareas de varios pasos | [Por qué un agente no ve tu Figma](/start-here/why-agents-cant-see-figma) |
+| Agent Skills | Estándar abierto para empaquetar procedimientos en carpetas con un `SKILL.md`; lo siguen las skills de Claude Code | [Skills](/agent-layer/skills) |
+| AGENTS.md | Formato abierto de instrucciones para agentes de código, en Markdown | [CLAUDE.md y AGENTS.md](/agent-layer/claude-md#agentsmd) |
+| Alias | Un token cuyo valor apunta a otro, como `{color.blue.600}` | [Primero los semánticos](/tokens/semantic-first) |
+| Anotación | Nota de Figma unida a una capa, con texto o propiedades | [Anotaciones](/figma/annotations) |
+| Atomic Design | Metodología que ordena una interfaz en átomos, moléculas, organismos, plantillas y páginas | [Inventario de Figma](/audit/figma-inventory#nivel-atómico-y-categoría-funcional) |
+| CLAUDE.md | Archivo de instrucciones que Claude Code lee al empezar cada sesión | [CLAUDE.md y AGENTS.md](/agent-layer/claude-md#claudemd) |
+| Claude Design | Producto de Anthropic que crea diseños conversando con Claude, con el sistema de diseño publicado | [Claude Design](/agent-layer/claude-design) |
+| Code Connect | Función de Figma que vincula componentes de diseño con su código | [Code Connect](/design-to-code/code-connect) |
+| Contexto | Lo que el modelo tiene presente al trabajar; un recurso limitado | [Divulgación progresiva](/agent-layer/progressive-disclosure) |
+| Dev resource | Enlace unido a una capa en Dev Mode | [Dev resources](/figma/dev-resources) |
+| Divulgación progresiva | Cargar lo mínimo siempre y el resto cuando se necesita | [Divulgación progresiva](/agent-layer/progressive-disclosure) |
+| DTCG | Design Tokens Community Group del W3C; publica el formato estándar de tokens, estable desde 2025.10 | [Tokens para agentes](/tokens/tokens-for-agents) |
+| Evaluación | Conjunto fijo de tareas con las que se mide lo que hace un agente | [Por qué evaluar](/evaluation/why-evaluate) |
+| Evaluador | La lógica que puntúa un aspecto del resultado: código, modelo o persona | [Rúbrica](/evaluation/rubric) |
+| Frontmatter | Bloque YAML al principio de un archivo Markdown, con datos estructurados | [Por qué Markdown](/documentation/why-markdown#frontmatter-datos-además-de-texto) |
+| Guidelines | Archivos unidos a una librería de Figma que el agente de Figma recibe al diseñar con ella | [Guidelines de la librería](/figma/library-guidelines) |
+| Instrucciones para el MCP | Reglas por conexión de Code Connect que el servidor MCP entrega al agente | [Instrucciones para el MCP](/design-to-code/mcp-instructions) |
+| Manifiesto de componentes | JSON que genera Storybook con los componentes y sus props para agentes | [Storybook y su MCP](/design-to-code/storybook-mcp) |
+| MCP | Model Context Protocol: estándar abierto para conectar herramientas de IA con fuentes externas | [Servidores MCP](/agent-layer/mcp-servers) |
+| Patrón | Receta documentada de una pantalla, compuesta por componentes del sistema | [Patrones](/documentation/patterns) |
+| Project | Espacio de trabajo de Claude con conocimiento e instrucciones propios | [Projects de Claude](/agent-layer/claude-projects) |
+| Skill | Carpeta con un `SKILL.md` que el agente carga cuando la tarea coincide | [Skills](/agent-layer/skills) |
+| Tarea trampa | Tarea de evaluación que pide romper una regla; la respuesta correcta es avisar | [Diseñar evaluaciones](/evaluation/design-evals#las-tareas-trampa) |
+| Token semántico | Token que nombra para qué se usa un valor, no qué valor es | [Primero los semánticos](/tokens/semantic-first) |
+
+<Takeaways>
+
+## En resumen
+
+- El glosario reúne los términos de las siete fases.
+- Cada término enlaza a la página donde se explica con sus fuentes.
+- Los nombres de herramientas y estándares se mantienen en inglés, como en su documentación.
+
+</Takeaways>
+
+## Fuentes
+
+Las fuentes de cada término están en la página a la que enlaza.

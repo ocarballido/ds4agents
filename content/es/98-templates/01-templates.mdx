@@ -1,14 +1,86 @@
 ---
 title: Plantillas
-description: Todas las plantillas de la guía, listas para copiar.
+meta_title: "Plantillas para preparar un sistema de diseño para agentes de IA"
+description: El índice de todas las plantillas de la guía, con el archivo que genera cada una y la página donde se explica.
 nav_title: Plantillas
 lastReviewed: 2026-10-20
 ---
 
-Todas las plantillas de la guía, listas para copiar.
+Cada plantilla de la guía está en la página que la explica, junto con el motivo de cada sección. Este índice las reúne por fase para que encuentres la que necesitas.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Plantillas de cada fase» (`docs/guia-fuente.md`).
+- [Por fase](#por-fase)
+- [La estructura completa del repositorio](#la-estructura-completa-del-repositorio)
+- [En resumen](#en-resumen)
 
-</Callout>
+## Por fase
+
+| Fase | Plantilla | Archivo | Dónde está |
+|---|---|---|---|
+| 1. Auditoría | Inventario y scorecard | `docs/inventory.md` | [Práctica: tu inventario](/audit/practice-inventory#la-plantilla) |
+| 2. Figma | Descripción de componente | Campo Description | [Descripciones](/figma/descriptions#una-plantilla-de-cinco-líneas) |
+| 2. Figma | Antipatrones para guidelines | `anti-patterns.md` | [Guidelines de la librería](/figma/library-guidelines#un-ejemplo) |
+| 2. Figma | Prompt de comprobación | | [Comprobar con el MCP](/figma/verify-with-mcp#cómo-pedir-la-comprobación) |
+| 2. Figma | Lista Ready for AI | | [Práctica: Ready for AI](/figma/practice-ready-for-ai#la-lista-ready-for-ai) |
+| 3. Tokens | Token obsoleto | `tokens/*.tokens.json` | [Primero los semánticos](/tokens/semantic-first#los-tokens-obsoletos) |
+| 3. Tokens | Regla de capas | `docs/rules/rules-tokens.md` | [Práctica: describe tus tokens](/tokens/practice-token-descriptions#pasos) |
+| 4. Documentar | Escenario | | [Escribir para agentes](/documentation/writing-for-agents#reglas-absolutas-y-escenarios) |
+| 4. Documentar | Fundamento de color | `docs/foundations/color.md` | [Fundamentos](/documentation/foundations#plantilla-de-color) |
+| 4. Documentar | Componente | `docs/components/<nombre>.md` | [Componentes](/documentation/components#la-plantilla) |
+| 4. Documentar | Patrón | `docs/patterns/<nombre>.md` | [Patrones](/documentation/patterns#la-plantilla) |
+| 4. Documentar | Voz y tono | `docs/content/voice-and-tone.md` | [Contenido](/documentation/content-guidelines#la-plantilla) |
+| 4. Documentar | Script de guidelines de Figma | `scripts/build-figma-guidelines.mjs` | [Una fuente, varios destinos](/documentation/one-source-many-channels#generar-las-guidelines-de-figma) |
+| 4. Documentar | Script de validación | `scripts/validate-docs.mjs` | [Validar la documentación](/documentation/validate-docs#un-script-de-validación) |
+| 5. Diseño y código | Plantilla de Code Connect | `*.figma.ts` y `figma.config.json` | [Mapear propiedades](/design-to-code/mapping-props#mapear-con-un-archivo-de-plantilla) |
+| 5. Diseño y código | Instrucciones para el MCP | Code Connect UI | [Instrucciones para el MCP](/design-to-code/mcp-instructions#qué-escribir) |
+| 5. Diseño y código | JSDoc e historias | `*.tsx` y `*.stories.tsx` | [JSDoc para agentes](/design-to-code/jsdoc) |
+| 6. Capa de agente | Instrucciones del repositorio | `AGENTS.md` y `CLAUDE.md` | [CLAUDE.md y AGENTS.md](/agent-layer/claude-md#la-plantilla) |
+| 6. Capa de agente | Regla por ruta | `.claude/rules/*.md` | [CLAUDE.md y AGENTS.md](/agent-layer/claude-md#reglas-por-ruta) |
+| 6. Capa de agente | Skills de crear y revisar | `.claude/skills/*/SKILL.md` | [Skills](/agent-layer/skills#skill-para-crear-interfaces) |
+| 6. Capa de agente | Instrucciones del Project | | [Projects de Claude](/agent-layer/claude-projects#las-instrucciones) |
+| 7. Evaluar | Registro de evaluaciones | `evals/evals.md` | [Diseñar evaluaciones](/evaluation/design-evals#el-registro) |
+| 7. Evaluar | Script de búsquedas | `scripts/check-ui.sh` | [Rúbrica](/evaluation/rubric#lo-que-puntúa-un-script) |
+| 7. Evaluar | Definition of Done | `CONTRIBUTING.md` | [Contribuir](/evaluation/contributing#definition-of-done) |
+| 7. Evaluar | Changelog y lista de publicación | `CHANGELOG.md` | [Changelog](/evaluation/changelog#el-changelog) |
+
+## La estructura completa del repositorio
+
+Al terminar las siete fases, el repositorio del sistema queda así:
+
+```text filename="Repositorio del sistema de diseño"
+AGENTS.md                  reglas para cualquier agente
+CLAUDE.md                  @AGENTS.md y lo propio de Claude Code
+CHANGELOG.md
+CONTRIBUTING.md
+.mcp.json                  servidores MCP compartidos (Storybook)
+.claude/
+├── rules/                 reglas por ruta
+└── skills/                build-ui y review-ui
+docs/
+├── inventory.md
+├── foundations/
+├── components/
+├── patterns/
+├── content/
+└── rules/
+tokens/                    DTCG, exportados de Figma
+src/components/            componentes, historias y plantillas de Code Connect
+evals/evals.md
+scripts/                   build-figma-guidelines, validate-docs, check-ui
+figma.config.json
+```
+
+<Takeaways>
+
+## En resumen
+
+- Cada plantilla está en la página que explica su porqué; este índice las reúne por fase.
+- Las plantillas cubren documentos, scripts, configuración e instrucciones para agentes.
+- Al final, el repositorio reúne todo lo que leen las personas y los agentes.
+
+</Takeaways>
+
+## Fuentes
+
+Las fuentes de cada plantilla están en la página donde se explica.
