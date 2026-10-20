@@ -1,6 +1,6 @@
 # ds4agents
 
-Curso web para aprender a documentar un sistema de diseño de Figma y conectarlo con agentes de IA: auditoría, preparación de Figma, tokens, documentación en Markdown, vínculo con el código, capa de agente y evaluación.
+Guía web abierta, en español, con nuestra investigación sobre cómo documentar un sistema de diseño de Figma y conectarlo con agentes de IA: auditoría, preparación de Figma, tokens, documentación en Markdown, vínculo con el código, capa de agente y evaluación.
 
 Usa el mismo sistema de diseño, componentes y stack que [DesignToken101](https://designtokens101.com) ([repositorio](https://github.com/ocarballido/design-tokens-101)).
 
@@ -21,7 +21,7 @@ npm test
 
 | Carpeta | Contenido |
 |---|---|
-| `content/` | Lecciones en MDX |
+| `content/` | Páginas de la guía en MDX |
 | `docs/` | Decisiones, estado y especificación del sistema de diseño (heredada) |
 | `tools/` | Comprobaciones del contenido y de los tokens |
 

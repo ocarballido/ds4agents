@@ -9,10 +9,10 @@
     "label": "En código"
   },
   "Sidebar": {
-    "label": "Lecciones"
+    "label": "Contenido"
   },
   "Lesson": {
-    "untranslated": "Esta lección todavía no está traducida. Se muestra en {language}."
+    "untranslated": "Esta página todavía no está traducida. Se muestra en {language}."
   },
   "Languages": {
     "en": "inglés",
@@ -51,7 +51,7 @@
     "system": "Modo del sistema"
   },
   "PageNav": {
-    "label": "Lección anterior y siguiente",
+    "label": "Página anterior y siguiente",
     "previous": "Anterior",
     "next": "Siguiente"
   },
@@ -64,10 +64,10 @@
   },
   "Home": {
     "metaTitle": "ds4agents · Sistemas de diseño legibles por agentes de IA",
-    "metaDescription": "Un curso en español para diseñadores de UI: prepara tu sistema de diseño en Figma, documéntalo y conéctalo para que cualquier agente de IA pueda usar sus componentes, tokens y reglas.",
+    "metaDescription": "Una guía abierta en español sobre cómo documentar un sistema de diseño de Figma y conectarlo con agentes de IA para que usen sus componentes, tokens y reglas.",
     "title": "Sistemas de diseño para agentes de IA",
-    "subtitle": "Un curso en español para diseñadores de UI",
-    "intro": "Paso a paso, auditarás tu sistema, prepararás Figma, convertirás tus decisiones en tokens y documentos Markdown y los conectarás con agentes como Claude. Cada afirmación técnica enlaza a su fuente, y esta web usa el mismo sistema de diseño que DesignToken101.",
-    "start": "Empezar el curso"
+    "subtitle": "Nuestra investigación, abierta a la comunidad",
+    "intro": "Esta guía reúne lo que hemos investigado sobre cómo preparar un sistema de diseño de Figma para que un agente de IA lo use bien: auditarlo, ordenar Figma, convertir las decisiones en tokens y documentos Markdown y conectarlos con agentes como Claude. Cada afirmación técnica enlaza a su fuente oficial, y esta web usa el mismo sistema de diseño que DesignToken101.",
+    "start": "Leer la guía"
   }
 }

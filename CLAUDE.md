@@ -1,6 +1,6 @@
 # ds4agents
 
-Web-curso que enseña a documentar un sistema de diseño de Figma y conectarlo con agentes de IA (Claude Code, Claude Design, MCP) para que usen sus componentes, tokens y reglas. Es un clon técnico de DesignToken101 (https://designtokens101.com): mismo stack, mismo sistema de diseño y mismos componentes. Autor: Oscar Carballido.
+Guía web abierta (G10) que reúne nuestra investigación sobre cómo documentar un sistema de diseño de Figma y conectarlo con agentes de IA (Claude Code, Claude Design, MCP) para que usen sus componentes, tokens y reglas. No es un curso: se escribe como documentación que compartimos con la comunidad (`content/README.md`). Es un clon técnico de DesignToken101 (https://designtokens101.com): mismo stack, mismo sistema de diseño y mismos componentes. Autor: Oscar Carballido.
 
 Los documentos de `docs/` son la fuente de verdad compartida entre las sesiones de contenido, diseño y desarrollo. Escribe siempre en español.
 
@@ -12,8 +12,8 @@ Los documentos de `docs/` son la fuente de verdad compartida entre las sesiones 
 Lee bajo demanda, cuando el trabajo lo pida:
 - `docs/historial.md`: detalle de lo hecho en cada frente.
 - `docs/sistema/`: especificación del sistema de diseño **heredada de designtokens101** (tokens, componentes, entrega de diseño, paso a código). Los códigos de decisión que aparecen ahí (V12, D17, S27…) y en los comentarios del código son los de designtokens101.
-- `docs/guia-fuente.md`: índice de la guía extendida de la que sale el contenido, con el reparto por módulo.
-- `content/README.md`: convenciones de las lecciones MDX.
+- `docs/guia-fuente.md`: índice de la guía extendida de la que sale el contenido, con el reparto por capítulo.
+- `content/README.md`: convenciones de las páginas MDX.
 
 ## Reglas de trabajo
 
@@ -27,7 +27,7 @@ Lee bajo demanda, cuando el trabajo lo pida:
 
 ## Estructura del repositorio
 
-- `content/es/NN-seccion/NN-pagina.mdx`: lecciones. Solo español.
+- `content/es/NN-seccion/NN-pagina.mdx`: páginas de la guía, una carpeta por capítulo. Solo español.
 - `docs/`: documentos compartidos.
 - `tools/`: comprobación del contenido compilado (`npm run build && npm run check:content`), comprobación de tokens (`npm run check:tokens`), normalización de la exportación de Figma (`figma-to-dtcg.mjs`) y scripts de escalas y contraste del sistema (`python3 tools/scales.py`, `python3 tools/semantic.py`).
 - `tests/`: `npm test` comprueba la estructura del contenido (frontmatter y `meta.json`).

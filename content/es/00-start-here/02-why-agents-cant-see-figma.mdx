@@ -6,7 +6,7 @@ nav_title: Por qué un agente no ve tu Figma
 lastReviewed: 2026-10-20
 ---
 
-Cuando miras un componente en Figma, ves su intención: sabes que el botón verde es la acción principal y que no debe repetirse en la misma vista. Un agente de IA no ve eso. En esta lección verás qué información le llega de tu archivo, qué se pierde por el camino y por qué todo el curso gira alrededor de esa diferencia.
+Cuando miras un componente en Figma, ves su intención: sabes que el botón verde es la acción principal y que no debe repetirse en la misma vista. Un agente de IA no ve eso. Esta página explica qué información le llega de tu archivo, qué se pierde por el camino y por qué toda la guía gira alrededor de esa diferencia.
 
 **En esta página**
 
@@ -15,7 +15,7 @@ Cuando miras un componente en Figma, ves su intención: sabes que el botón verd
 - [Lo que no le llega nunca](#lo-que-no-le-llega-nunca)
 - [Del archivo de Figma a un contrato](#del-archivo-de-figma-a-un-contrato)
 - [En Figma](#en-figma)
-- [Lo que te llevas](#lo-que-te-llevas)
+- [En resumen](#en-resumen)
 
 ## Lo que tú ves y lo que recibe el agente
 
@@ -30,7 +30,7 @@ La palabra importante es *estructurado*. La documentación de Figma lo dice de f
 | Que el botón es el mismo en toda la librería | Una instancia de un componente, si lo es; un grupo de capas, si no |
 | Que no debe haber dos botones principales en una vista | Nada, salvo que esté escrito en algún sitio |
 
-La última fila es la que más importa en este curso.
+La última fila es la que más importa en esta guía.
 
 ## Lo que le llega de Figma
 
@@ -55,13 +55,13 @@ Un agente trata como válido todo lo que encuentra. Si tienes dos botones casi i
 
 <Callout variant="recommendation">
 
-Para ds4agents, una regla que no está escrita no existe para el agente. Por eso el curso dedica un módulo entero a documentar en Markdown las reglas que hoy solo conoce tu equipo, con frases que se pueden comprobar: *nunca*, *máximo*, *solo si*.
+Nuestra conclusión: una regla que no está escrita no existe para el agente. Por eso esta guía dedica un capítulo entero a documentar en Markdown las reglas que hoy solo conoce tu equipo, con frases que se pueden comprobar: *nunca*, *máximo*, *solo si*.
 
 </Callout>
 
 ## Del archivo de Figma a un contrato
 
-El objetivo del curso es convertir las decisiones implícitas de tu sistema en un **contrato explícito y versionado**: un repositorio con tokens, componentes vinculados a su código, documentación en Markdown y reglas para agentes. Figma y el código alimentan ese contrato, y las herramientas de IA lo consumen.
+La propuesta de esta guía es convertir las decisiones implícitas de tu sistema en un **contrato explícito y versionado**: un repositorio con tokens, componentes vinculados a su código, documentación en Markdown y reglas para agentes. Figma y el código alimentan ese contrato, y las herramientas de IA lo consumen.
 
 <Flow caption="Las tres capas de un sistema de diseño legible por agentes de IA.">
   <FlowGroup title="Fuentes" meta="Donde se toman las decisiones">
@@ -69,10 +69,10 @@ El objetivo del curso es convertir las decisiones implícitas de tu sistema en u
     <FlowStep title="Código" meta="Librería de componentes" />
   </FlowGroup>
   <FlowGroup title="Contrato" meta="Lo que lee el agente">
-    <FlowStep title="Tokens DTCG" meta="Módulo 3" />
-    <FlowStep title="Documentación Markdown" meta="Módulo 4" />
-    <FlowStep title="Code Connect" meta="Módulo 5" />
-    <FlowStep title="Reglas para agentes" meta="Módulo 6" />
+    <FlowStep title="Tokens DTCG" meta="Capítulo 3" />
+    <FlowStep title="Documentación Markdown" meta="Capítulo 4" />
+    <FlowStep title="Code Connect" meta="Capítulo 5" />
+    <FlowStep title="Reglas para agentes" meta="Capítulo 6" />
   </FlowGroup>
   <FlowGroup title="Consumo" meta="Quien usa el contrato">
     <FlowStep title="Agentes de IA" meta="Claude Code, Claude Design y otros" />
@@ -85,11 +85,11 @@ Si una regla no está en la capa central, ningún agente la conoce. Por eso el t
 
 Con el servidor MCP de Figma conectado a tu agente, puedes comprobar qué recibe de un componente: selecciónalo y pídele que te muestre el contexto de diseño y las variables que usa ([Figma: Tools and prompts](https://developers.figma.com/docs/figma-mcp-server/tools-and-prompts/)). Si una regla o un token no aparece en esa respuesta, el agente no lo conoce.
 
-Cómo conectar el servidor MCP lo verás en el [módulo Capa de agente](/agent-layer/mcp-servers). Cómo preparar el archivo para que ese contexto sea útil, en el [módulo Preparar Figma](/figma/library-structure).
+Cómo conectar el servidor MCP lo explicamos en el capítulo [Capa de agente](/agent-layer/mcp-servers). Cómo preparar el archivo para que ese contexto sea útil, en el capítulo [Preparar Figma](/figma/library-structure).
 
 <Takeaways>
 
-## Lo que te llevas
+## En resumen
 
 - Un agente recibe datos estructurados de Figma, no la intención con la que diseñaste.
 - Componentes, variables, nombres, auto layout, anotaciones y Code Connect convierten esa intención en datos.

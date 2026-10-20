@@ -1,11 +1,12 @@
 // Logotipos como SVG (D22), en public/brand/ (C10). Fuera de la regla "solo tokens".
 // Cada logotipo tiene una versión para Light y otra para Dark (V20); se muestra una u otra con la
 // variante dark:, que sigue los mismos selectores que el modo Dark de los tokens (V10).
-// Las medidas son las del SVG exportado (la habilidad de Figma pide no cambiarlas).
+// Las medidas son las del SVG exportado (la habilidad de Figma pide no cambiarlas). En ds4agents (G11),
+// el lockup de símbolo y texto de la imagen Open Graph, a 44 y 34 px de alto como en designtokens101.
 
 const LOGOS = {
-  colored: { light: '/brand/logo-colored.svg', dark: '/brand/logo-colored-dark.svg', width: 184, height: 44 },
-  gray: { light: '/brand/logo-gray.svg', dark: '/brand/logo-gray-dark.svg', width: 143, height: 34 },
+  colored: { light: '/brand/logo-colored.svg', dark: '/brand/logo-colored-dark.svg', width: 80, height: 44 },
+  gray: { light: '/brand/logo-gray.svg', dark: '/brand/logo-gray-dark.svg', width: 62, height: 34 },
 };
 
 /** Imagen decorativa: el nombre accesible lo pone el enlace que la contiene. */

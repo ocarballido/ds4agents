@@ -1,6 +1,8 @@
 # Contenido de ds4agents
 
 > Convenciones heredadas de designtokens101 (G01). Donde dice DesignToken101, léase ds4agents.
+>
+> **ds4agents es una guía, no un curso (G10).** Compartimos nuestra investigación con la comunidad: se habla de *guía*, *capítulo* y *página*, no de *curso*, *módulo* ni *lección*. Los ejercicios son *prácticas* (`NN-practice-…`, título "Práctica: …"). El apartado final de cada página es "En resumen", no "Lo que te llevas". En primera persona del plural cuando contamos lo que hemos investigado o recomendamos ("hemos comprobado", "recomendamos").
 
 Convenciones para escribir y mantener las lecciones. Última revisión: 30/09/2026.
 
@@ -49,7 +51,7 @@ lastReviewed: 2026-09-30          # última verificación de las fuentes
 3. Contenido, con cada afirmación enlazada a su fuente.
 4. Apartado "En Figma" cuando la lección trata algo que se hace en Figma.
 5. Bloques `<InCode>` opcionales: el itinerario de código.
-6. "Lo que te llevas" (T10): tres viñetas de una frase con lo aprendido, sin enlaces, dentro de `<Takeaways>` (C18). En los ejercicios, lo que el alumno tiene al terminar. También va en "En esta página".
+6. "En resumen" (T10, G10): tres viñetas de una frase con las ideas clave, sin enlaces, dentro de `<Takeaways>` (C18). En los ejercicios, lo que el alumno tiene al terminar. También va en "En esta página".
 7. Apartado final "Fuentes".
 
 **Anclas.** Los enlaces de "En esta página" asumen `rehype-slug` (github-slugger): minúsculas, sin signos de puntuación, espacios convertidos en guiones y tildes conservadas. Por eso los títulos evitan `¿?`, comillas y dos puntos. *Verificado en el esqueleto (2026-10-03): las tildes se conservan y `npm run build && npm run check:content` comprueba que todas las anclas tienen destino.*
@@ -66,7 +68,7 @@ Se diseñarán en Figma con el sistema de DesignToken101 y se implementarán en 
 | `<Callout variant="pending">` | Contenido en preparación (un módulo, un canal de contacto). Nunca para una afirmación técnica sin comprobar (P14) |
 | `<InCode title="…">` | Itinerario de código; se puede plegar y el diseñador puede saltarlo |
 | `<Flow caption="…">` con `<FlowGroup>` y `<FlowStep>` | Gráfico de un proceso: pasos en orden, agrupados o no en fases (C13). Anatomía y ejemplo en `docs/componentes-v1.md` §3.7. Un paso `pending` debe decirlo también en su `meta` ("En estudio") |
-| `<Takeaways>` | Envuelve el apartado "Lo que te llevas" (título `##` y lista) de cada lección (C18, T10). Anatomía en `docs/componentes-v1.md` §3.9 |
+| `<Takeaways>` | Envuelve el apartado "En resumen" (título `##` y lista) de cada lección (C18, T10). Anatomía en `docs/componentes-v1.md` §3.9 |
 
 ## Guía de redacción
 

@@ -9,12 +9,12 @@ import type { Metadata } from 'next';
 export const SITE_URL = 'https://ds4agents.com';
 export const SITE_NAME = 'ds4agents';
 
-// Imagen para compartir de 1200 × 630 (tarjeta grande en X). PENDIENTE: public/brand/share.png de ds4agents.
+// Imagen para compartir de 1200 × 630 (tarjeta grande en X), exportada de Figma (TokensDS, Opengraph 225:6859; G11).
 const SHARE_IMAGE = {
   url: '/brand/share.png',
   width: 1200,
   height: 630,
-  alt: 'Logotipo de ds4agents',
+  alt: 'Logotipo de ds4agents (DS 4 Agents) junto a su símbolo en 3D: un robot verde con una gota roja sobre fondo rojo',
 };
 
 /** C20, V49: el <title> de una lección es meta_title (o title) seguido de la marca. */
