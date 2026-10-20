@@ -24,3 +24,4 @@ El protocolo entre sesiones (contenido, diseño, desarrollo) es el de designtoke
 | G06 | Se quitan los componentes y herramientas exclusivos del curso de tokens: `ScaleGenerator`, `ScalePreview`, `ChromaChart`, `ColorScale`, `ExportNormalizer`, `ExportNormalizerForm`, `TypeDecision`, `tools/scales.mjs`, `tools/zip.mjs`, `lib/download.ts`. Se conservan `tools/figma-to-dtcg.mjs` (lo usa `npm run tokens`) y los scripts de escalas en Python. | Cerrada (2026-10-20) |
 | G07 | Estructura del curso en módulos 00 a 07 más Plantillas (98) y Recursos (99), uno por fase de la guía. El módulo de tokens remite a designtokens101 en lugar de repetirlo. | Provisional |
 | G08 | Logotipos y portada provisionales hasta que Oscar entregue los de ds4agents. | Provisional |
+| G09 | GitHub Actions ejecuta `npm test`, `check:tokens`, `build` y `check:content` en cada push a `main` y en cada pull request (`.github/workflows/ci.yml`). | Cerrada (2026-10-20) |
