@@ -143,7 +143,7 @@ for (const [file, name, expected] of fromFigma) {
 
 // 6. Estilos de texto (V15): src/styles/text-styles.css frente a la tabla §8 de la especificación.
 const textStylesCss = read('src/styles/text-styles.css');
-const spec = read('docs/sistema-tokens-v1.md');
+const spec = read('docs/sistema/sistema-tokens-v1.md');
 const section8 = spec.slice(spec.indexOf('## 8. Estilos de texto'));
 const styleRows = [...section8.matchAll(/^\| ([a-z]+\/[a-z0-9]+) \| `font-family\/(\w+)` \| `(font-size\/[\w/-]+)` [^|]*\| `(line-height\/\w+)` [^|]*\| `(font-weight\/\d+)` \|/gm)];
 if (styleRows.length !== 10) errors.push(`§8: se esperaban 10 estilos de texto y se leyeron ${styleRows.length}`);
