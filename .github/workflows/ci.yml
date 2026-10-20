@@ -16,7 +16,7 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - run: npm test
-      - run: npm run check:tokens
-      - run: npm run build
-      - run: npm run check:content
+      - run: tools/ci-step.sh npm test
+      - run: tools/ci-step.sh npm run check:tokens
+      - run: tools/ci-step.sh npm run build
+      - run: tools/ci-step.sh npm run check:content
