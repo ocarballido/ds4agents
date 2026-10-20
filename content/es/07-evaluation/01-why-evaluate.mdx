@@ -1,14 +1,70 @@
 ---
 title: Por qué evaluar
-description: Por qué medir cómo usa el agente el sistema antes y después de cada cambio.
+meta_title: "Por qué evaluar cómo usa un agente de IA tu sistema de diseño"
+description: Por qué hay que medir lo que genera un agente con tu sistema antes y después de cada cambio, y qué vocabulario usa Anthropic para las evaluaciones de agentes.
 nav_title: Por qué evaluar
 lastReviewed: 2026-10-20
 ---
 
-Por qué medir cómo usa el agente el sistema antes y después de cada cambio.
+Después de seis capítulos tienes Figma preparado, documentación, Code Connect y una capa de agente. Pero no sabes si funciona hasta que lo mides. Y cada cambio en la documentación, en el modelo o en la herramienta puede mejorar o empeorar el resultado sin que nadie lo note.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 6: Evaluación y gobernanza» (`docs/guia-fuente.md`).
+- [Sin medición, todo parece funcionar](#sin-medición-todo-parece-funcionar)
+- [El vocabulario de una evaluación](#el-vocabulario-de-una-evaluación)
+- [Dos tipos de evaluación](#dos-tipos-de-evaluación)
+- [Cuándo evaluar](#cuándo-evaluar)
+- [En resumen](#en-resumen)
+
+## Sin medición, todo parece funcionar
+
+Una prueba suelta ("le he pedido un login y ha quedado bien") no dice mucho. El agente no responde siempre igual a la misma petición, y un buen resultado puede ser suerte. Para saber si el sistema funciona con agentes, hace falta un conjunto fijo de tareas, repetido en el tiempo.
+
+## El vocabulario de una evaluación
+
+Anthropic usa estos términos para evaluar agentes ([Anthropic: Demystifying evals for AI agents](https://anthropic.com/engineering/demystifying-evals-for-ai-agents)):
+
+| Término | Qué es | En un sistema de diseño |
+|---|---|---|
+| Tarea | Una prueba con entradas y criterios de éxito definidos | "Crea la pantalla de inicio de sesión" |
+| Intento (*trial*) | Cada vez que el agente hace la tarea | Varias ejecuciones de la misma petición |
+| Evaluador (*grader*) | La lógica que puntúa un aspecto del resultado | Un script que busca valores literales |
+| Transcripción | El registro completo del intento: salidas, llamadas a herramientas, razonamiento | Si el agente abrió `docs/patterns/login.md` |
+| Resultado | El estado final al terminar el intento | El código de la pantalla |
+
+La diferencia entre transcripción y resultado importa: un agente puede decir que ha seguido el patrón y no haberlo hecho. Anthropic insiste en leer las transcripciones de muchos intentos, porque solo así se ve si un fallo es del agente o del evaluador.
+
+## Dos tipos de evaluación
+
+Anthropic distingue dos ([Anthropic: Demystifying evals for AI agents](https://anthropic.com/engineering/demystifying-evals-for-ai-agents)):
+
+- **De capacidad:** qué hace bien el agente. Empiezan con un porcentaje de éxito bajo; son las tareas que quieres mejorar.
+- **De regresión:** si el agente sigue haciendo bien lo que ya hacía. Deben estar cerca del 100 %. Una evaluación de capacidad que llega a un porcentaje alto pasa a ser de regresión.
+
+En un sistema de diseño, las pantallas con patrón documentado son, al principio, de capacidad. Cuando salen bien, se quedan como regresión: si un cambio en la documentación las rompe, lo sabrás.
+
+## Cuándo evaluar
+
+<Callout variant="recommendation">
+
+- Al terminar el piloto, para tener la línea de base.
+- Después de cada versión del sistema, o de un cambio grande en `AGENTS.md` o en las skills.
+- Al cambiar de modelo o de herramienta.
+
+Si la puntuación baja, mira primero la documentación del componente que falló: casi siempre falta una regla escrita o un ejemplo.
 
 </Callout>
+
+<Takeaways>
+
+## En resumen
+
+- Una prueba suelta no dice si el sistema funciona: hace falta un conjunto fijo de tareas, repetido.
+- Tarea, intento, evaluador, transcripción y resultado son el vocabulario de una evaluación.
+- Las evaluaciones de capacidad miden lo que quieres mejorar; las de regresión, lo que no quieres romper.
+
+</Takeaways>
+
+## Fuentes
+
+- [Anthropic: Demystifying evals for AI agents](https://anthropic.com/engineering/demystifying-evals-for-ai-agents)

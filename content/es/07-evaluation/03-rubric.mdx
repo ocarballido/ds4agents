@@ -1,14 +1,88 @@
 ---
 title: Rúbrica
-description: Una rúbrica para puntuar lo que genera el agente.
+meta_title: "Rúbrica para puntuar lo que genera un agente de IA con un sistema de diseño"
+description: Qué evaluadores usar para puntuar lo que genera un agente con tu sistema (scripts, modelo y personas), una rúbrica de 0 a 3 y un script de búsquedas listo para usar.
 nav_title: Rúbrica
 lastReviewed: 2026-10-20
 ---
 
-Una rúbrica para puntuar lo que genera el agente.
+Para comparar resultados entre versiones hace falta puntuarlos siempre igual. Esta página combina los tres tipos de evaluador que describe Anthropic con una rúbrica sencilla para sistemas de diseño.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 6: Evaluación y gobernanza» (`docs/guia-fuente.md`).
+- [Tres tipos de evaluador](#tres-tipos-de-evaluador)
+- [La rúbrica](#la-rúbrica)
+- [Lo que puntúa un script](#lo-que-puntúa-un-script)
+- [Lo que puntúa un modelo o una persona](#lo-que-puntúa-un-modelo-o-una-persona)
+- [En resumen](#en-resumen)
+
+## Tres tipos de evaluador
+
+Anthropic describe tres tipos de evaluador para agentes ([Anthropic: Demystifying evals for AI agents](https://anthropic.com/engineering/demystifying-evals-for-ai-agents)):
+
+| Tipo | Ventajas | Inconvenientes | En un sistema de diseño |
+|---|---|---|---|
+| Código | Rápido, barato, objetivo y reproducible | Frágil; limitado en lo subjetivo | Valores literales, primitivos, componentes obsoletos |
+| Modelo | Flexible; capta matices | No determinista, más caro, hay que calibrarlo | Si se respetan las reglas escritas, si los textos siguen la guía |
+| Persona | La referencia | Caro y lento | Si la pantalla es la que el equipo habría diseñado |
+
+## La rúbrica
+
+<Callout variant="recommendation">
+
+Esta rúbrica es nuestra. Lo importante es aplicarla siempre igual, no los números concretos.
 
 </Callout>
+
+| Nota | Significado |
+|---|---|
+| 3 | Solo componentes y tokens del sistema; sin props inventadas; cumple todas las reglas escritas. En una tarea trampa, avisa de la regla. |
+| 2 | Uno o dos valores literales o desviaciones menores, sin romper una regla escrita |
+| 1 | Inventa props o componentes, usa un obsoleto o rompe una regla escrita |
+| 0 | Ignora el sistema: HTML y CSS genéricos |
+
+## Lo que puntúa un script
+
+Las reglas escritas con "nunca" se pueden comprobar con búsquedas. Este script cuenta los valores literales, los primitivos usados directamente y los componentes obsoletos en lo que ha generado el agente. Cambia `--ds-` por el prefijo de tus variables CSS.
+
+```bash filename="scripts/check-ui.sh"
+#!/usr/bin/env bash
+# Puntúa con búsquedas lo que ha generado un agente. Uso: scripts/check-ui.sh src/app/login
+DIR="$1"
+FILES=(--include='*.tsx' --include='*.jsx' --include='*.css')
+
+echo "Valores literales (color o px):"
+grep -rnE "#[0-9a-fA-F]{3,8}\b|rgba?\(|[0-9]+px" "$DIR" "${FILES[@]}" || echo "  ninguno"
+
+echo "Primitivos usados directamente:"
+grep -rnE "var\(--ds-color-[a-z]+-[0-9]+\)" "$DIR" "${FILES[@]}" || echo "  ninguno"
+
+echo "Componentes obsoletos:"
+found=0
+for name in $(grep -l '^status: deprecated' docs/components/*.md 2>/dev/null | xargs -r grep -h '^name:' | cut -d' ' -f2); do
+  grep -rn "<$name\b" "$DIR" "${FILES[@]}" && found=1
+done
+if [ "$found" = 0 ]; then echo "  ninguno"; fi
+```
+
+El script lee los componentes obsoletos del frontmatter de `docs/components/` ([Componentes](/documentation/components#qué-hace-útil-cada-sección)), así que no hay que mantener otra lista.
+
+## Lo que puntúa un modelo o una persona
+
+Lo que no se puede buscar con un script, como "máximo un botón principal por vista" o "los textos siguen la guía", lo puntúa un modelo o una persona. La skill `review-ui` del [capítulo 6](/agent-layer/skills#skill-para-revisar-interfaces) sirve como evaluador de modelo: devuelve una tabla de reglas incumplidas.
+
+Un evaluador de modelo hay que calibrarlo ([Anthropic: Demystifying evals for AI agents](https://anthropic.com/engineering/demystifying-evals-for-ai-agents)). Antes de fiarte de él, compara su puntuación con la tuya en las primeras tareas. Si no coinciden, ajusta la skill o la regla.
+
+<Takeaways>
+
+## En resumen
+
+- Combina tres evaluadores: scripts para lo comprobable, un modelo para las reglas y una persona como referencia.
+- Una rúbrica de 0 a 3, aplicada siempre igual.
+- Un script de búsquedas puntúa valores literales, primitivos y obsoletos en segundos.
+
+</Takeaways>
+
+## Fuentes
+
+- [Anthropic: Demystifying evals for AI agents](https://anthropic.com/engineering/demystifying-evals-for-ai-agents)

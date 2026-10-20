@@ -1,14 +1,107 @@
 ---
 title: Diseñar evaluaciones
-description: Cómo elegir tareas de prueba, incluidas las trampas.
+meta_title: "Diseñar evaluaciones para un agente de IA que usa un sistema de diseño"
+description: Qué tareas incluir en las evaluaciones de un sistema de diseño, por qué hacen falta tareas trampa, cuántos intentos hacer y cómo registrar los resultados.
 nav_title: Diseñar evaluaciones
 lastReviewed: 2026-10-20
 ---
 
-Cómo elegir tareas de prueba, incluidas las trampas.
+Una evaluación útil se parece al trabajo real del equipo: las pantallas que se construyen de verdad, los diseños que llegan de Figma y los errores que ya has visto. Esta página explica cómo elegir las tareas y cómo registrar los resultados.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 6: Evaluación y gobernanza» (`docs/guia-fuente.md`).
+- [Empezar con pocas tareas reales](#empezar-con-pocas-tareas-reales)
+- [Qué tareas incluir](#qué-tareas-incluir)
+- [Las tareas trampa](#las-tareas-trampa)
+- [Varios intentos por tarea](#varios-intentos-por-tarea)
+- [El registro](#el-registro)
+- [En resumen](#en-resumen)
+
+## Empezar con pocas tareas reales
+
+Anthropic recomienda empezar con entre 20 y 50 tareas sencillas sacadas de fallos reales, en lugar de esperar a tener cientos ([Anthropic: Demystifying evals for AI agents](https://anthropic.com/engineering/demystifying-evals-for-ai-agents)).
+
+<Callout variant="recommendation">
+
+Para el piloto de un sistema de diseño, con 10 tareas es suficiente para empezar. Sácalas de lo que ya ha salido mal: pantallas generadas con valores sueltos, componentes inventados, props que no existen. Llega a 20 o más cuando amplíes el sistema.
 
 </Callout>
+
+## Qué tareas incluir
+
+| Tipo | Cuántas, en un conjunto de 10 | Qué mide |
+|---|---|---|
+| Con patrón documentado | 3 o 4 | Si el agente encuentra y sigue la receta |
+| Sin patrón | 2 o 3 | Cómo compone cuando no hay receta |
+| Desde un diseño de Figma | 2 | Si usa el MCP, las variables y Code Connect |
+| Trampa | 2 | Si respeta una regla cuando se le pide romperla |
+
+## Las tareas trampa
+
+Anthropic recomienda conjuntos equilibrados: probar tanto los casos en que una conducta debe ocurrir como aquellos en que no. Las evaluaciones de un solo lado producen agentes de un solo lado ([Anthropic: Demystifying evals for AI agents](https://anthropic.com/engineering/demystifying-evals-for-ai-agents)).
+
+En un sistema de diseño, la conducta que no debe ocurrir es romper una regla. Una tarea trampa pide algo que el sistema prohíbe o que no existe:
+
+- "Añade un botón verde de confirmar al lado del principal." (Dos acciones principales y un color que no es un token.)
+- "Usa un componente de calendario para elegir la fecha." (No existe en el sistema.)
+
+La respuesta correcta es avisar: "el sistema solo permite una acción principal" o "no hay componente de calendario; propongo esto". Un agente que construye lo pedido sin avisar ha fallado la tarea.
+
+## Varios intentos por tarea
+
+Las respuestas de un agente varían entre ejecuciones, así que cada tarea se hace varias veces. Anthropic describe dos medidas ([Anthropic: Demystifying evals for AI agents](https://anthropic.com/engineering/demystifying-evals-for-ai-agents)):
+
+- **pass@k:** la probabilidad de acertar al menos una vez en k intentos. Útil cuando basta con un acierto.
+- **pass^k:** la probabilidad de acertar en los k intentos. Útil cuando importa la constancia.
+
+<Callout variant="recommendation">
+
+Para un sistema de diseño importa la constancia: el equipo pedirá la misma pantalla muchas veces. Haz tres intentos por tarea y cuenta una tarea como superada solo si las tres lo son.
+
+</Callout>
+
+## El registro
+
+```markdown filename="evals/evals.md"
+---
+system_version: 1.4.0
+agent: Claude Code
+date: 2026-10-20
+trials: 3
+---
+
+# Evaluaciones del sistema de diseño
+
+## Tareas
+| ID | Tarea | Tipo |
+|---|---|---|
+| E01 | Pantalla de inicio de sesión con email y contraseña | patrón |
+| E02 | Tabla de pedidos con filtro por estado y paginación | patrón |
+| E03 | Página de ajustes de notificaciones | sin patrón |
+| E04 | Implementar el marco <enlace de Figma> | Figma |
+| E05 | "Añade un botón verde de confirmar junto al principal" | trampa |
+
+## Resultados
+| ID | Intentos superados | Valores literales | Props inventadas | Obsoletos | Nota (0-3) |
+|---|---|---|---|---|---|
+| E01 | 3/3 | 0 | 0 | 0 | 3 |
+| E02 | 1/3 | 2 | 1 | 0 | 1 |
+| E05 | 3/3 | | | | 3 (avisó de la regla) |
+
+## Hallazgos y acciones
+- E02: inventó `DataTable.filterable`. Acción: documentar los filtros en data-table.md y crear su patrón.
+```
+
+<Takeaways>
+
+## En resumen
+
+- Empieza con 10 tareas sacadas de fallos reales y amplía después.
+- Incluye tareas trampa: el agente tiene que avisar cuando se le pide romper una regla.
+- Tres intentos por tarea, y solo cuenta como superada si salen bien los tres.
+
+</Takeaways>
+
+## Fuentes
+
+- [Anthropic: Demystifying evals for AI agents](https://anthropic.com/engineering/demystifying-evals-for-ai-agents)

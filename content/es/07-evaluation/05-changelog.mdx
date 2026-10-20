@@ -1,14 +1,101 @@
 ---
 title: Changelog
-description: Versionado semántico y changelog del sistema.
+meta_title: "Versionar y publicar un sistema de diseño preparado para agentes de IA"
+description: Cómo versionar el sistema con versionado semántico, qué cambios rompen lo que usa un agente, cómo escribir el changelog y qué destinos actualizar en cada versión.
 nav_title: Changelog
 lastReviewed: 2026-10-20
 ---
 
-Versionado semántico y changelog del sistema.
+Cada versión del sistema cambia lo que leen los agentes. El changelog dice qué ha cambiado; la lista de publicación asegura que todos los destinos reciben el cambio.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 6: Evaluación y gobernanza» (`docs/guia-fuente.md`).
+- [Versionado semántico](#versionado-semántico)
+- [Qué rompe a un agente](#qué-rompe-a-un-agente)
+- [El changelog](#el-changelog)
+- [Publicar en todos los destinos](#publicar-en-todos-los-destinos)
+- [En resumen](#en-resumen)
+
+## Versionado semántico
+
+La guía de Figma para sistemas de diseño recomienda el versionado semántico, con una entrada de changelog en cada versión ([Figma: Lesson 4, Document and manage your system](https://help.figma.com/hc/en-us/articles/14552804059927-Lesson-4-Document-and-manage-your-system)). Según la especificación ([Semantic Versioning 2.0.0](https://semver.org/)):
+
+- **Mayor:** cambios incompatibles.
+- **Menor:** funciones nuevas compatibles.
+- **Parche:** correcciones compatibles.
+
+DesignToken101 aplica el mismo esquema a su sistema de tokens ([DesignToken101: Versionar el sistema](https://designtokens101.com/final-exercise/version-the-system)).
+
+## Qué rompe a un agente
+
+| Cambio | Versión | Por qué |
+|---|---|---|
+| Renombrar o quitar una prop | Mayor | El código generado con la prop antigua deja de funcionar |
+| Quitar un componente o un token | Mayor | Igual |
+| Cambiar una regla de uso ("máximo uno" a "máximo dos") | Menor | El código antiguo sigue funcionando, pero el agente actúa distinto |
+| Añadir un componente, un token o un patrón | Menor | |
+| Corregir una descripción o un ejemplo | Parche | |
+
+<Callout variant="recommendation">
+
+Un cambio de regla no rompe el código, pero cambia lo que hace el agente. Vuelve a pasar las evaluaciones en cada versión menor, no solo en las mayores.
 
 </Callout>
+
+## El changelog
+
+Keep a Changelog propone una entrada por versión, la más reciente arriba, con fecha, y los cambios agrupados en Added, Changed, Deprecated, Removed, Fixed y Security. Recomienda también una sección Unreleased al principio para ir anotando lo que viene ([Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.1.0/)).
+
+```markdown filename="CHANGELOG.md"
+# Changelog
+
+Este sistema sigue el versionado semántico.
+
+## [Unreleased]
+
+## [1.4.0] - 2026-10-20
+### Added
+- DataTable: filtros por columna (prop `filters`). Documento y patrón list-with-filters.
+### Changed
+- TextField: en Figma, `State=Error` pasa a llamarse `invalid`, como en código.
+### Deprecated
+- LegacyButton. Usa Button. Se elimina en 2.0.0.
+```
+
+<Callout variant="recommendation">
+
+Enlaza `CHANGELOG.md` desde `AGENTS.md`. Así el agente puede saber que un componente que encuentra en código antiguo está obsoleto y desde cuándo.
+
+</Callout>
+
+## Publicar en todos los destinos
+
+Una versión no está publicada hasta que todos los destinos de [Una fuente, varios destinos](/documentation/one-source-many-channels) la reflejan:
+
+```markdown filename="Lista de publicación"
+- [ ] Librería de Figma publicada, con nota de versión
+- [ ] Tokens exportados y generados
+- [ ] Guidelines de Figma generadas desde docs/ y subidas
+- [ ] Code Connect publicado
+- [ ] Sistema de diseño en Claude actualizado (Remix o /design-sync)
+- [ ] Documentos del Project de Claude sustituidos
+- [ ] Evaluaciones de regresión pasadas y registradas en evals.md
+- [ ] CHANGELOG.md con fecha
+```
+
+<Takeaways>
+
+## En resumen
+
+- Versionado semántico: quitar o renombrar algo que usa el agente es una versión mayor.
+- Un cambio de regla no rompe el código pero cambia al agente: evalúa también en las versiones menores.
+- Una versión está publicada cuando todos los destinos la reflejan.
+
+</Takeaways>
+
+## Fuentes
+
+- [Figma: Lesson 4, Document and manage your system](https://help.figma.com/hc/en-us/articles/14552804059927-Lesson-4-Document-and-manage-your-system)
+- [Semantic Versioning 2.0.0](https://semver.org/)
+- [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.1.0/)
+- [DesignToken101: Versionar el sistema](https://designtokens101.com/final-exercise/version-the-system)

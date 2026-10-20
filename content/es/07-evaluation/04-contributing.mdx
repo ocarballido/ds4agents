@@ -1,14 +1,87 @@
 ---
 title: Contribuir
-description: Proceso de contribución y Definition of Done de un componente.
+meta_title: "Proceso de contribución y Definition of Done de un componente para agentes de IA"
+description: Cómo se añade o se cambia un componente sin romper lo que leen los agentes, qué Definition of Done debe cumplir y cómo se retira un componente.
 nav_title: Contribuir
 lastReviewed: 2026-10-20
 ---
 
-Proceso de contribución y Definition of Done de un componente.
+Un sistema preparado para agentes se degrada en cuanto alguien añade un componente sin documento o cambia una prop sin actualizar Code Connect. El proceso de contribución evita eso: dice qué tiene que tener un componente para considerarse terminado.
 
-<Callout variant="pending">
+**En esta página**
 
-Página en preparación. El contenido de partida está en la guía extendida, apartado «Fase 6: Evaluación y gobernanza» (`docs/guia-fuente.md`).
+- [El proceso](#el-proceso)
+- [Definition of Done](#definition-of-done)
+- [Retirar un componente](#retirar-un-componente)
+- [Roles](#roles)
+- [En resumen](#en-resumen)
+
+## El proceso
+
+La guía de Figma para sistemas de diseño propone hacer los cambios en una rama, para no molestar a quien usa la librería, y revisarlos y aprobarlos antes de unirlos en una versión. La función de ramas de Figma está en los planes Organization y Enterprise ([Figma: Lesson 4, Document and manage your system](https://help.figma.com/hc/en-us/articles/14552804059927-Lesson-4-Document-and-manage-your-system)).
+
+<Callout variant="recommendation">
+
+Un cambio en el sistema sigue estos pasos, en este orden:
+
+1. **Propuesta:** el problema, dónde se usaría y qué componente existente no lo resuelve.
+2. **Diseño** en una rama de la librería de Figma.
+3. **Código** y su historia de Storybook.
+4. **Documento** en `docs/`, con frontmatter.
+5. **Code Connect** y sus instrucciones para el MCP.
+6. **Evaluaciones:** las de regresión siguen pasando.
+7. **Changelog** y publicación en todos los destinos.
 
 </Callout>
+
+## Definition of Done
+
+```markdown filename="CONTRIBUTING.md (fragmento)"
+## Definition of Done de un componente
+- [ ] Cumple la lista Ready for AI en Figma
+- [ ] Usa solo tokens semánticos o de componente
+- [ ] Tiene documento en docs/components/ y pasa la validación
+- [ ] Está conectado con Code Connect, con instrucciones para el MCP
+- [ ] Tiene historia con @summary y JSDoc en sus props
+- [ ] Las evaluaciones de regresión siguen pasando
+- [ ] No contradice ninguna regla escrita en docs/rules/ ni en AGENTS.md
+- [ ] Tiene entrada en CHANGELOG.md
+
+Sin todos los puntos, el estado del componente es beta.
+```
+
+El penúltimo punto evita las contradicciones que, según Claude Code, hacen que el agente elija una instrucción al azar ([Claude Code: Memory](https://code.claude.com/docs/en/memory)).
+
+## Retirar un componente
+
+1. Cambia `status: deprecated` y añade `replaced_by` en su documento.
+2. Escribe el sustituto en su descripción de Figma y muévelo a la página Deprecated ([Estructura de la librería](/figma/library-structure#lo-obsoleto-fuera-de-la-librería)).
+3. Añade a su historia de Storybook la etiqueta `!manifest`, para que no llegue al agente ([JSDoc para agentes](/design-to-code/jsdoc#qué-excluir-del-manifiesto)).
+4. Anótalo en la sección Deprecated del changelog.
+5. Mantenlo al menos una versión mayor antes de eliminarlo.
+
+## Roles
+
+| Rol | Responsabilidad |
+|---|---|
+| Responsable del sistema | Decide, revisa las contribuciones y publica las versiones |
+| Referente de diseño | La librería de Figma, las guidelines y la documentación |
+| Referente de desarrollo | Los componentes, los tokens, Code Connect y la integración continua |
+| Quien contribuye | Propone y construye siguiendo el proceso |
+
+En un equipo pequeño, una persona cubre varios roles. Lo que importa es que el proceso esté escrito.
+
+<Takeaways>
+
+## En resumen
+
+- Los cambios se hacen en una rama y siguen un orden: diseño, código, documento, Code Connect, evaluaciones y changelog.
+- Un componente sin todos los puntos de la Definition of Done se queda en beta.
+- Un componente se retira con sustituto, fuera del manifiesto y con al menos una versión mayor de aviso.
+
+</Takeaways>
+
+## Fuentes
+
+- [Figma: Lesson 4, Document and manage your system](https://help.figma.com/hc/en-us/articles/14552804059927-Lesson-4-Document-and-manage-your-system)
+- [Claude Code: How Claude remembers your project](https://code.claude.com/docs/en/memory)
