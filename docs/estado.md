@@ -15,7 +15,6 @@ Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El
 | 5 | Desarrollo | Despliegue en Vercel y dominio `ds4agents.com` (G17) | Hecho (2026-10-21) |
 
 ## Pendiente
-- **Google Search Console:** dar de alta `ds4agents.com` (propiedad de dominio, verificación por DNS) y enviar `https://ds4agents.com/sitemap.xml`.
 
 - **`Takeaways` (G15):** si designtokens101 cambia el componente, copiar el cambio aquí sin perder la excepción.
 - **Tamaño de los logotipos (G16):** a 44 px de alto, "DS4Agents" mide unos 9 px de alto en la cabecera y unos 7 px en el pie (34 px). Se lee en la cabecera; en el pie es pequeño. Decidir si el pie sube de tamaño.
