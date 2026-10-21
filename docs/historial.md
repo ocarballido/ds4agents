@@ -2,6 +2,18 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-10-21 · Contenido · Revisión con G20 y G21
+
+- `why-agents-cant-see-figma`: las filas de color y de botón de la tabla, como condicionales completas.
+- `figma-inventory`: las siete categorías funcionales en lista, con qué entra y ejemplos; los valores van en inglés porque son los del inventario y del campo `category`.
+- Término "scorecard" (la scorecard) en toda la web, en lugar de "puntuación de madurez". Fuera de su página se marca como rúbrica propia y enlaza a `/audit/maturity-scorecard#una-rúbrica-propia`. Entrada nueva en el glosario. `content/README.md` no tiene lista de términos.
+- G20: `docs/` en la raíz del repositorio de la librería de componentes, en Requisitos (Código), Por qué Markdown y Plantillas. Árbol de `docs/` con los archivos como entradas e incluye `radius.md`; los nombres citados en los capítulos 4 y 6 y en Plantillas coinciden con él.
+- `validate-docs`: sección "Cómo ejecutarlo" (`scripts/`, raíz del repositorio, `npm run docs:check` y `docs:figma`, workflow `.github/workflows/docs.yml` con `actions/checkout@v7` y `actions/setup-node@v7`, versiones comprobadas en la API de GitHub, y el código de salida). El script compara además `docs/components/*.md` con la primera tabla de `docs/inventory.md`: cada documento tiene que estar en el inventario, y cada fila con Doc "Sí" tiene que tener documento. La promesa del texto se ajusta a eso, porque la plantilla del inventario tiene filas con Doc "No". Enlace a npm en v12, la versión vigente (v10 y v11 están marcadas como Legacy).
+- `one-source-many-channels`: `dist/figma-guidelines/`, `.gitignore` y la subida a mano.
+- Los dos scripts, extraídos tal como se publican, probados en una carpeta de ejemplo del scratchpad (sin errores, con errores y desde una subcarpeta) con `node` y `npm run`; YAML del workflow validado con `yaml`.
+- `jsdoc`: sección "JSDoc y TypeScript" (forma frente a intención, etiquetas de documentación en `.ts`, por qué JSDoc y no Code Connect), con fuentes de TypeScript y JSDoc.
+- G21: `/agent-layer/claude-design` pasa a "Sistemas de diseño en Claude", con la web independiente como aviso fechado. Fuentes de la ayuda de Claude revisadas el 2026-10-21: get started, set up your design system, migrate from standalone y admin guide for Team and Enterprise plans. Alineadas las páginas que hablaban del "sistema publicado" y la errata `claudae` en el contenido y en `docs/guia-fuente.md`.
+
 ## 2026-10-21 · Diseño y desarrollo · Marca nueva (G19)
 
 - Inspección con el MCP de Figma (TokensDS, sección "DS4Agents · Marca (2026-10-21)", 298:6831): logotipo horizontal 202 × 48 y vertical 144 × 77,07, cada uno en color y gris, Light y Dark; `home` 440 × 441 y `share` 1200 × 630. Los nombres de los marcos son los de los archivos.

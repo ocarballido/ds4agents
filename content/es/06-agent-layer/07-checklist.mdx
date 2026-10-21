@@ -1,9 +1,9 @@
 ---
 title: Lista de comprobación
 meta_title: "Lista de comprobación: la capa de agente de un sistema de diseño"
-description: El entregable de la capa de agente (AGENTS.md, CLAUDE.md, skills, servidores MCP y el sistema publicado en Claude), los pasos, una primera prueba y los criterios para darla por terminada.
+description: El entregable de la capa de agente (AGENTS.md, CLAUDE.md, skills, servidores MCP y el sistema de diseño en Claude), los pasos, una primera prueba y los criterios para darla por terminada.
 nav_title: Lista de comprobación
-lastReviewed: 2026-10-20
+lastReviewed: 2026-10-21
 ---
 
 Esta lista resume la capa de agente: el entregable, los pasos para montarla, una primera prueba y los criterios para darla por terminada. Revísala cada vez que cambies las reglas del sistema.
@@ -21,7 +21,7 @@ Esta lista resume la capa de agente: el entregable, los pasos para montarla, una
 - `AGENTS.md`, con las reglas que valen siempre y el mapa de `docs/`, y `CLAUDE.md` que lo importa.
 - Las skills `build-ui` y `review-ui` en `.claude/skills/`.
 - Los servidores MCP de Figma y, si lo usas, de Storybook, conectados.
-- Si tu plan lo permite, el sistema publicado en Claude y un Project para el equipo.
+- Si tu plan lo permite, el sistema de diseño en Claude y un Project para el equipo.
 
 ## Pasos
 
@@ -29,7 +29,7 @@ Esta lista resume la capa de agente: el entregable, los pasos para montarla, una
 2. Crea `CLAUDE.md` con `@AGENTS.md` y lo propio de Claude Code.
 3. Crea las skills de crear y revisar interfaces ([Skills](/agent-layer/skills)).
 4. Conecta el servidor MCP de Figma con el plugin y el de Storybook en el ámbito de proyecto ([Servidores MCP](/agent-layer/mcp-servers)).
-5. Si tu plan lo permite, crea el sistema en Claude con `/design-sync` y publícalo ([Claude Design](/agent-layer/claude-design)).
+5. Si tu plan lo permite, crea el sistema de diseño en Claude con `/design-sync` y pruébalo con los patrones del piloto ([Sistemas de diseño en Claude](/agent-layer/claude-design)).
 6. Si el equipo lo necesita, crea un Project con los documentos del sistema ([Projects de Claude](/agent-layer/claude-projects)).
 
 ## Una primera prueba
@@ -53,7 +53,7 @@ Mira qué hace: si abre `docs/patterns/`, si usa los componentes del sistema, si
 
 ## En resumen
 
-- El entregable es el archivo de instrucciones, dos skills, los servidores MCP y el sistema publicado.
+- El entregable es el archivo de instrucciones, dos skills, los servidores MCP y el sistema de diseño en Claude.
 - `AGENTS.md` enlaza a la documentación en lugar de copiarla.
 - Una primera prueba dice qué ajustar antes de evaluar con método.
 

@@ -906,7 +906,7 @@ Ordenada por fase. Prioriza siempre la documentación oficial: estas herramienta
 - [Claude Code — Extend Claude with skills](https://code.claude.com/docs/en/skills.md) — Formato de SKILL.md, ubicaciones y buenas prácticas.
 - [Claude Help — Set up your design system in Claude Design](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design) — Paso a paso oficial.
 - [Claude Help — Claude Design admin guide](https://support.claude.com/en/articles/14604406-claude-design-admin-guide) — Despliegue por fases y limitaciones actuales.
-- [Claude Help — Get started with Claude Design](https://support.claude.com/en/articles/14604416-get-started-with-claudae-design) — Uso diario y sincronización con Claude Code.
+- [Claude Help — Get started with Claude Design](https://support.claude.com/en/articles/14604416-get-started-with-claude-design) — Uso diario y sincronización con Claude Code.
 
 ### Casos públicos para estudiar
 
