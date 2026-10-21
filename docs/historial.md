@@ -11,7 +11,7 @@ Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
   - `sitemap.xml`: 200, 54 URL (portada y 53 páginas), todas con `https://ds4agents.com`, ninguna con www.
   - `robots.txt`: `Allow: /` y `Sitemap: https://ds4agents.com/sitemap.xml`.
   - `http://ds4agents.com` → 308 a `https://ds4agents.com`; `http://www.ds4agents.com` → 308 a `https://www.ds4agents.com`.
-  - **`https://www.ds4agents.com` responde 200, sin redirigir** (Vercel, `x-vercel-cache: HIT`). La redirección 308 de G17 no está activa en HTTPS; queda pendiente en `estado.md`.
+  - `https://www.ds4agents.com` respondía 200, sin redirigir (Vercel, `x-vercel-cache: HIT`). Oscar configura www como redirección en Vercel: primero sale 307 (el código por defecto) y, cambiado a 308, `https://www.ds4agents.com/<ruta>` → 308 a `https://ds4agents.com/<ruta>`, conservando la ruta. Desde `http://www` son dos saltos (308 a `https://www` y 308 al dominio sin www).
 - Search Console: sin meta `google-site-verification` ni registro TXT en el DNS; se da por no hecha.
 
 ## 2026-10-20 · Diseño y desarrollo · Marca definitiva (G16)
