@@ -8,6 +8,7 @@ Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 - Exportados con `download_assets` sin forzar formato ni escala (se usa el ajuste de exportación de cada marco) y descargados con `curl`: SVG sin fondo del lienzo, solo los dos rellenos de cada variante; los verticales salen a 144 × 78. `home.png` sale a 880 × 882 porque el marco mide 440 × 441. Única edición: la nota de procedencia en la segunda línea de cada SVG (comprobado con `diff`).
 - `public/brand/`: los ocho `logo-{horizontal,vertical}-{colored,gray}(-dark).svg`, `home.png` y `share.png`. Borrados `logo-colored(-dark).svg`, `logo-gray(-dark).svg` y `symbol.svg` (este ya no tenía uso).
 - `Logo.tsx`: cabecera con el horizontal en color a 185 × 44 (la altura de designtokens101; "DS4Agents" mide unos 16 px de alto); pie con el vertical en gris a 103 × 56 (unos 13 px; a 34 px serían 8). Texto alternativo de `share.png` actualizado en `src/lib/metadata.ts`; comentarios de la portada.
+- Oscar confirma las alturas. El marco `home` (298:6888) pasa a 440 × 440 en Figma con `resizeWithoutConstraints` (los hijos no se mueven; se recorta 1 px abajo) y `home.png` se exporta de nuevo a 880 × 880.
 - Comprobado: `npm test` (14 pruebas), `check:tokens`, `build`, `check:content`, sin errores; capturas con Chrome sin interfaz a 1280 px y en un iframe de 320 px, en Light y Dark: el logotipo y el botón de menú caben sin scroll horizontal.
 
 ## 2026-10-21 · Desarrollo · CodePreview (G18)

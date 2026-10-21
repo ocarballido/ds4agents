@@ -35,7 +35,7 @@ export default async function Home() {
         </Button>
       </div>
       {/* D43 y V48 en designtokens101, con una diferencia (G16, G19): la ilustración de ds4agents tiene
-          fondo propio y sirve en los dos temas, así que hay un solo PNG (880 × 882, a 2×; object-cover lo recorta a cuadrado).
+          fondo propio y sirve en los dos temas, así que hay un solo PNG (880 × 880, a 2×).
           Decorativa: el título ya dice qué es la página. Fuera de "solo tokens" como los logotipos
           (D22); el radio sí es un token. */}
       <div>
