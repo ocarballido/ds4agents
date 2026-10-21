@@ -18,9 +18,7 @@ Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El
 ## Pendiente
 
 - **Fase 2 de G22 (Preparar Figma), en TokensDS:**
-  - Comprobar en el panel de Figma si las descripciones de CodePreview, CodeTab, CodeBlock y Takeaways tienen `&quot;` de verdad o es cosa de la herramienta que las lee.
-  - Dev resources del piloto: revisarlos en Dev Mode (el MCP no los lee).
-- **G24 y G19:** TokensDS ya tiene la página "DS4Agents · Marca" (301:7473). Comprobar si la separación está hecha y si cambiaron los ID de nodo de G19.
+  - Corregir las descripciones de CodePreview, CodeTab, CodeBlock y Takeaways: tienen `&quot;` en lugar de comillas (confirmado en Figma).
 - **Fase 6 (G22):** decidir cómo consume ds4agents el `docs/` de designtokens101 (enlace, submódulo o paquete), y documentar en la capa de agente de ds4agents la excepción de G15 (`BookOpenText` en Takeaways), porque Figma solo tiene el birrete.
 
 - **CodePreview (G18):** los tres puntos abiertos de V60 (contraste de la pestaña en `active` en Dark, `hover` en el carril, código en línea de la vista previa) se deciden en designtokens101 y se copian aquí (G02).
