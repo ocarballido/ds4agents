@@ -2,6 +2,16 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-10-21 · Desarrollo · Copia de D65 y D66 de designtokens101 (G02)
+
+- Exportaciones de Figma copiadas de `main` de designtokens101 (commits 4896240 y c5eb8fe): `tokens/figma/semantic-color/` (Light y Dark), `tokens/figma/semantic-size/Value.tokens.json` y `tokens/figma/layout/` (Desktop y Mobile). `primitives/` y `code-only.tokens.json`, sin cambios. `npm run tokens` regenera `tokens/dtcg/` (idéntico al de designtokens101) y `src/styles/`: `--t101-radius-group` y las descripciones nuevas, sin rastro de `nested`. `tokens.css` solo difiere en las rutas de las fuentes de los tokens de código (`docs/…`).
+- `tools/check-tokens.mjs`: punto 9 (descripciones de Semantic color, Semantic size y Layout no vacías y sin referencias internas), con la ruta de ds4agents (`docs/sistema/sistema-tokens-v1.md`).
+- `CodeBlock.tsx` (carril de CodeTabs) y `ThemeToggle.tsx`: `rounded-300` pasa a `rounded-group`.
+- `docs/sistema/sistema-tokens-v1.md` (versión 1.2.0, `radius/group` en §4.3 y §7, descripciones de los semánticos en §7, registro de cambios) y `docs/sistema/componentes-v1.md` (carril de CodeTabs con `radius/group`).
+- No se copian `docs/rules/rules-tokens.md` ni `docs/inventory.md`: viven en designtokens101 (G22); cómo los consume ds4agents se decide en la fase 6.
+- Cerrado en `estado.md` el pendiente de `radius/nested` en CodeTabs: aplicado en Figma y en código con D66.
+- Rutas antiguas de la especificación heredada corregidas a `docs/sistema/` (`sistema-tokens-v1.md`, `componentes-v1.md`, `paso-7-tokens.md` y `entrega-diseno.md`) en `tokens/code-only.tokens.json` (y, regenerado, `tokens.css`), `terrazzo.config.mjs`, `tools/`, los comentarios de cabecera de `src/` y `docs/sistema/`. Queda sin cambiar `docs/investigacion-herramientas.md` en `tools/figma-to-dtcg.mjs`: no existe en ds4agents.
+
 ## 2026-10-21 · Diseño y desarrollo · Fase 3 de G22 terminada (G29)
 
 - Tokens del piloto en designtokens101 (D65, commit 4896240): descripciones de 46 tokens en TokensDS con dos partes (para qué sirve y restricción principal), sin valor ni referencias internas; token nuevo `radius/nested` para un elemento dentro de un contenedor (creado el 2026-10-21 en la colección Semantic size de TokensDS, alias de `radius/300`, registrado en D65); `docs/rules/rules-tokens.md` con la regla de capas por categoría (color y texto solo semánticos o estilos de texto; espaciado y grosor de borde con su escala, sin capa semántica, S22); punto 9 de `check:tokens`, que vigila las descripciones. Scorecard del piloto de 1,88 a 2,00 en `docs/inventory.md`.

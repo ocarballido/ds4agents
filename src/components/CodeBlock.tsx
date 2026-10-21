@@ -7,7 +7,7 @@ import { CodeMarker } from '@/components/CodeMarker';
 import { IconButton } from '@/components/IconButton';
 import { cx } from '@/lib/cx';
 
-// Anatomía: docs/componentes-v1.md §3.4. Sin resaltado de colores en v1 (D08).
+// Anatomía: docs/sistema/componentes-v1.md §3.4. Sin resaltado de colores en v1 (D08).
 // - El área de código tiene scroll horizontal propio y se enfoca con el teclado (1.4.10).
 // - V39: el nombre de archivo baja de línea si no cabe (y parte una ruta larga), sin puntos
 //   suspensivos: con el espaciado de 1.4.12, o a 320 px, no se pierde texto.
@@ -103,7 +103,7 @@ export function CodeBlock({ children, language, filename, marks, legend, preview
               role="tablist"
               aria-label={t('tabs')}
               onKeyDown={onTabKeyDown}
-              className="flex gap-050 rounded-300 bg-neutral-strong p-050"
+              className="flex gap-050 rounded-group bg-neutral-strong p-050"
             >
               {TABS.map((value) => {
                 const selected = value === tab;

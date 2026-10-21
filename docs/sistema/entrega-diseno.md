@@ -6,7 +6,7 @@ Documento para la sesión de desarrollo (pasos 7 y 8 de `docs/estado.md`). Resum
 
 Archivo: [TokensDS](https://www.figma.com/design/yAIMfySdLHo6hyNg8E1F6O/TokensDS) · plan Professional · perfil sRGB.
 
-Documentos de referencia: `docs/sistema-tokens-v1.md` (tokens: fuente de verdad), `docs/componentes-v1.md` (anatomía y props), `docs/decisiones.md`.
+Documentos de referencia: `docs/sistema/sistema-tokens-v1.md` (tokens: fuente de verdad), `docs/sistema/componentes-v1.md` (anatomía y props), `docs/decisiones.md`.
 
 > **Cambios posteriores a la entrega (sesión de desarrollo, 2026-10-03, decididos por Oscar).** Mandan sobre lo que dice este documento y sobre el archivo de Figma hasta que diseño los incorpore:
 > - **V16:** token `size/sidebar/width` = 304 px (Semantic size). Creado en Figma (V31).
@@ -67,7 +67,7 @@ Las plantillas usan el contenido real de `content/es/00-start-here/01-what-is-de
   - Semantic color: Light por defecto; Dark con el selector de tema (`light`/`dark`/`system`, D07; `system` respeta `prefers-color-scheme`).
   - Layout: Mobile por defecto; Desktop con `@media (width >= 64rem)` (D11).
 
-### 2.1 Lo que no sale de Figma: se genera desde `docs/sistema-tokens-v1.md`
+### 2.1 Lo que no sale de Figma: se genera desde `docs/sistema/sistema-tokens-v1.md`
 
 | Qué | Por qué | Fuente |
 |---|---|---|

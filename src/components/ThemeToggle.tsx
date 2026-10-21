@@ -6,7 +6,7 @@ import { useLayoutEffect, useSyncExternalStore } from 'react';
 import { cx } from '@/lib/cx';
 import { THEME_STORAGE_KEY, type Theme } from '@/lib/theme';
 
-// Anatomía: docs/componentes-v1.md §4.5 y §4.10. Tres botones con aria-pressed (D07).
+// Anatomía: docs/sistema/componentes-v1.md §4.5 y §4.10. Tres botones con aria-pressed (D07).
 // Sin marca inferior en la opción actual (V26).
 // - `light` y `dark` ponen data-theme en <html>; `system` lo quita y manda prefers-color-scheme (V10).
 // - La elección se guarda en localStorage (V21). THEME_SCRIPT (src/lib/theme.ts) la aplica antes de pintar.
@@ -65,7 +65,7 @@ export function ThemeToggle() {
   useLayoutEffect(applyStoredTheme, []);
 
   return (
-    <div role="group" aria-label={t('label')} className="flex gap-100 rounded-300 bg-neutral-strong p-100">
+    <div role="group" aria-label={t('label')} className="flex gap-100 rounded-group bg-neutral-strong p-100">
       {OPTIONS.map(({ value, icon: Icon }) => {
         const isCurrent = value === current;
         return (

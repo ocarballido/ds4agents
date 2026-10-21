@@ -2,7 +2,7 @@ import { BookOpenText, Check } from 'lucide-react';
 import { Children, cloneElement, isValidElement, type ReactElement, type ReactNode } from 'react';
 import { Heading2, UnorderedList } from '@/components/Prose';
 
-// Anatomía: docs/componentes-v1.md §3.9 (C18). "Lo que te llevas" (T10), al final de cada lección.
+// Anatomía: docs/sistema/componentes-v1.md §3.9 (C18). "Lo que te llevas" (T10), al final de cada lección.
 // En ds4agents (G15): "En resumen", con el icono BookOpenText en lugar del birrete.
 // No es un Callout: el título es el ## del MDX, con el id de rehype-slug, para que llegue el
 // enlace de "En esta página". El componente le añade el icono y le da nombre a la región.
