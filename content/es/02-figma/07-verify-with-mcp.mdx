@@ -3,7 +3,7 @@ title: Comprobar con el MCP
 meta_title: "Comprobar qué recibe un agente de IA de un componente de Figma"
 description: Cómo usar las herramientas del servidor MCP de Figma para ver qué contexto recibe un agente de un componente y qué revisar en la respuesta.
 nav_title: Comprobar con el MCP
-lastReviewed: 2026-10-20
+lastReviewed: 2026-10-21
 ---
 
 Después de preparar un componente, conviene comprobar qué recibe de él un agente. El servidor MCP de Figma tiene herramientas de lectura que muestran exactamente eso. Si un dato no aparece en la respuesta, el agente no lo conoce.
@@ -57,6 +57,8 @@ Revisa la respuesta con esta lista. Cada "no" te lleva a una página de este cap
 - ¿El componente trae su componente de código? → [Code Connect](/design-to-code/code-connect)
 
 </Callout>
+
+En nuestra prueba con el servidor remoto (21 de octubre de 2026), las anotaciones aparecen en el código de `get_design_context` como atributos `data-…-annotations`, y la descripción y los dev resources, en un apartado aparte, "Component descriptions".
 
 Anota en `inventory.md` lo que no llega. Algunas cosas no llegarán aunque estén bien hechas: por ejemplo, las anotaciones dentro de instancias anidadas, según informan usuarios en el [foro de Figma](https://forum.figma.com/report-a-problem-6/figma-mcp-server-not-displaying-annotations-from-nested-component-instances-42958). Lo que no llega por el MCP tiene que llegar por los archivos del repositorio ([capítulo 6](/agent-layer/claude-md)).
 

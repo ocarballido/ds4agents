@@ -3,7 +3,7 @@ title: Anotaciones
 meta_title: "Anotaciones de Figma para explicar el comportamiento a un agente de IA"
 description: Qué comportamiento documentar con las anotaciones de Figma, cómo escribirlas para que se entiendan sin ambigüedad y qué limitaciones tienen.
 nav_title: Anotaciones
-lastReviewed: 2026-10-20
+lastReviewed: 2026-10-21
 ---
 
 Un diseño estático no dice qué pasa al pulsar, al hacer más estrecha la pantalla o al cargar los datos. Las anotaciones de Figma sirven para escribir ese comportamiento sobre el propio diseño, y la guía de Figma para el servidor MCP las recomienda para lo que no se puede mostrar en el dibujo.
@@ -41,7 +41,7 @@ La guía de Figma para el servidor MCP recomienda añadir anotaciones para expli
 - **Una idea por anotación.** Si necesitas "y además", son dos anotaciones.
 - **Condiciones medibles.** "Por debajo de 360 px", no "en pantallas pequeñas".
 - **Verbo y resultado.** "Al pulsar, abre el panel lateral", no "panel lateral".
-- **En el componente principal**, cuando el comportamiento es del componente. En una pantalla, cuando es de esa pantalla.
+- **En el componente**, cuando el comportamiento es del componente; si es un conjunto de variantes, en la variante a la que corresponde (lo explicamos en [Limitaciones](#limitaciones)). En una pantalla, cuando es de esa pantalla.
 
 </Callout>
 
@@ -50,6 +50,7 @@ Las reglas que valen para todo el sistema ("nunca dos botones principales en una
 ## Limitaciones
 
 - **Asientos:** añadir anotaciones pide un asiento Full y permiso de edición; verlas, un asiento Full o Dev ([Figma: Add measurements and annotate designs](https://help.figma.com/hc/en-us/articles/20774752502935-Add-measurements-and-annotate-designs)).
+- **Conjuntos de variantes:** lo hemos comprobado con el servidor MCP remoto de Figma y `get_design_context` el 21 de octubre de 2026. Una anotación en el conjunto de variantes no llegaba al agente. En una variante, sí: como atributo del elemento (`data-interaction-annotations`, `data-accessibility-annotations`) y ligada a esa combinación de propiedades. En un componente sin variantes llega igual, como atributo.
 - **Instancias anidadas:** en el foro de Figma, varios usuarios informan de que las anotaciones dentro de instancias anidadas no llegan al agente por el servidor MCP ([Foro de Figma: MCP server not displaying annotations from nested component instances](https://forum.figma.com/report-a-problem-6/figma-mcp-server-not-displaying-annotations-from-nested-component-instances-42958)). Es un informe de usuarios, no documentación oficial, pero conviene comprobarlo en tu archivo.
 
 ## En Figma

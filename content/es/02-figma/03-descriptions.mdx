@@ -3,7 +3,7 @@ title: Descripciones
 meta_title: "Descripciones de componentes en Figma: una plantilla para personas y agentes"
 description: Dónde se escribe la descripción de un componente, una variable o un estilo en Figma, dónde se ve y una plantilla fija de cinco líneas.
 nav_title: Descripciones
-lastReviewed: 2026-10-20
+lastReviewed: 2026-10-21
 ---
 
 La descripción es el texto que acompaña a un componente, una variable o un estilo allá donde se use. Es el sitio natural para su propósito y su regla principal. Esta página explica dónde se escribe y propone una plantilla fija.
@@ -34,7 +34,7 @@ Según la ayuda de Figma, la descripción aparece en el menú de la instancia en
 
 <Callout variant="note">
 
-La documentación del servidor MCP de Figma no detalla si la descripción de un componente forma parte del contexto que recibe el agente. Compruébalo con tu cliente, como explicamos en [Comprobar con el MCP](/figma/verify-with-mcp). Para las reglas que el agente debe seguir sí hay canales documentados: las [guidelines de la librería](/figma/library-guidelines) y las [instrucciones para el MCP](/design-to-code/mcp-instructions) de Code Connect.
+La documentación del servidor MCP de Figma no detalla si la descripción de un componente forma parte del contexto que recibe el agente. Lo hemos comprobado con el servidor remoto el 21 de octubre de 2026: `get_design_context` devuelve la descripción en un apartado "Component descriptions", con la indicación de tenerla en cuenta al usar el componente. También devuelve la de los componentes anidados, como un icono o un botón interno, así que conviene que todas sigan la misma plantilla. Compruébalo con tu cliente, como explicamos en [Comprobar con el MCP](/figma/verify-with-mcp). Para las reglas que el agente debe seguir sí hay canales documentados: las [guidelines de la librería](/figma/library-guidelines) y las [instrucciones para el MCP](/design-to-code/mcp-instructions) de Code Connect.
 
 </Callout>
 

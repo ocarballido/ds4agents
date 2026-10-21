@@ -3,7 +3,7 @@ title: Lista de comprobación
 meta_title: "Lista de comprobación: preparar una librería de Figma para agentes de IA"
 description: La lista Ready for AI para cada componente de Figma, los pasos para aplicarla a la librería y los criterios para dar la fase por terminada.
 nav_title: Lista de comprobación
-lastReviewed: 2026-10-20
+lastReviewed: 2026-10-21
 ---
 
 Esta lista resume la preparación de Figma: lo que debe cumplir cada componente, los pasos para aplicarlo a la librería y los criterios para darlo por terminado. Úsala con cada componente nuevo o modificado.
@@ -51,7 +51,7 @@ Esta lista es nuestra y resume el capítulo. Adáptala a tu sistema.
 ## Criterios para darlo por terminado
 
 - La comprobación con el MCP de cada componente del alcance no devuelve `Frame` ni `Group` en los nombres de capa.
-- `get_variable_defs` no devuelve valores sueltos.
+- En la respuesta de `get_design_context`, cada color, espacio y radio sale como variable. `get_variable_defs` no sirve para esto: lista las variables que usa la selección, no los valores sueltos.
 - La librería tiene al menos un archivo de guidelines.
 - `inventory.md` dice qué componentes cumplen la lista y qué les falta a los demás.
 

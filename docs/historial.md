@@ -2,6 +2,13 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-10-21 · Diseño y desarrollo · Fase 2 de G22 terminada (G28)
+
+- Piloto preparado en TokensDS (D64 en designtokens101): marcos por nivel, capas por función, descripciones con la plantilla, diez anotaciones, dev resources al código y `anti-patterns.md` en las guidelines (V61). Inventario y scorecard en `docs/inventory.md` de designtokens101 (media de 1,50 a 1,88).
+- Comprobación con el servidor MCP remoto de Figma (`get_design_context` en los ocho componentes, antes y después de los cambios): llegan la descripción, con los dev resources dentro, y las anotaciones como atributos `data-…-annotations`, pero solo si están en un componente o en una variante. También llegan las descripciones de los componentes anidados. La capa interna del icono llegaba con el nombre del icono por defecto (`li:circle-plus`); se renombró a `Glyph`.
+- Capítulo 2 con lo comprobado (`lastReviewed` 2026-10-21): la descripción llega (03), anotaciones en la variante (04), dev resources dentro de la descripción (05), cómo aparecen en la respuesta (07) y el criterio de variables de la lista de comprobación, que ya no depende de `get_variable_defs` (08).
+- La API de plugins no permite añadir dev resources ni gestionar guidelines: los pone y los sube una persona.
+
 ## 2026-10-21 · Diseño y desarrollo · Fase 1 de G22 terminada (G26 y G27)
 
 - Inventario del piloto (G25) en designtokens101, `docs/inventory.md`, con lo comprobado en TokensDS: scorecard con media 1,50. Oscar resuelve las nueve decisiones pendientes del borrador.
