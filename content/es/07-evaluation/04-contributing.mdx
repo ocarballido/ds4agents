@@ -3,7 +3,7 @@ title: Contribuir
 meta_title: "Proceso de contribución y Definition of Done de un componente para agentes de IA"
 description: Cómo se añade o se cambia un componente sin romper lo que leen los agentes, qué Definition of Done debe cumplir y cómo se retira un componente.
 nav_title: Contribuir
-lastReviewed: 2026-10-20
+lastReviewed: 2026-10-21
 ---
 
 Un sistema preparado para agentes se degrada en cuanto alguien añade un componente sin documento o cambia una prop sin actualizar Code Connect. El proceso de contribución evita eso: dice qué tiene que tener un componente para considerarse terminado.
@@ -47,8 +47,10 @@ Un cambio en el sistema sigue estos pasos, en este orden:
 - [ ] No contradice ninguna regla escrita en docs/rules/ ni en AGENTS.md
 - [ ] Tiene entrada en CHANGELOG.md
 
-Sin todos los puntos, el estado del componente es beta.
+Sin todos los puntos, el componente no está terminado.
 ```
+
+La Definition of Done dice cuándo está terminado un componente, no su estado. El estado sigue los criterios del [inventario](/audit/figma-inventory#el-estado-de-cada-componente): si le falta código o validación, o tiene puntos abiertos, es `beta`; si solo le falta el documento, se anota en la columna Doc.
 
 El penúltimo punto evita las contradicciones que, según Claude Code, hacen que el agente elija una instrucción al azar ([Claude Code: Memory](https://code.claude.com/docs/en/memory)).
 
@@ -76,7 +78,7 @@ En un equipo pequeño, una persona cubre varios roles. Lo que importa es que el 
 ## En resumen
 
 - Los cambios se hacen en una rama y siguen un orden: diseño, código, documento, Code Connect, evaluaciones y changelog.
-- Un componente sin todos los puntos de la Definition of Done se queda en beta.
+- Un componente sin todos los puntos de la Definition of Done no está terminado; su estado lo deciden el código y la validación, no la documentación.
 - Un componente se retira con sustituto, fuera del manifiesto y con al menos una versión mayor de aviso.
 
 </Takeaways>

@@ -2,6 +2,13 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-10-21 · Diseño y desarrollo · Fase 1 de G22 terminada (G26 y G27)
+
+- Inventario del piloto (G25) en designtokens101, `docs/inventory.md`, con lo comprobado en TokensDS: scorecard con media 1,50. Oscar resuelve las nueve decisiones pendientes del borrador.
+- G26: categoría funcional `content` (Takeaways, CodeBlock, bloques de código con vista previa; Callout es `feedback`), añadida a la lista de `/audit/figma-inventory`. Ningún otro sitio de `content/` ni los scripts de la guía (`validate-docs` no comprueba categorías) enumeran las categorías; `docs/guia-fuente.md` es el índice de la fuente y no se toca.
+- G27: el estado no depende de la documentación (columna Doc). Corregida la fila `beta` de `/audit/figma-inventory`, que ahora coincide con el ejemplo de `/audit/checklist`, con una frase sobre la columna Doc. En `/evaluation/contributing`, "Sin todos los puntos, el estado del componente es beta" pasa a "el componente no está terminado", con una nota que remite a los estados del inventario; el resumen, igual.
+- `lastReviewed` a 2026-10-21 en `contributing` (`figma-inventory` ya la tenía).
+
 ## 2026-10-21 · Diseño y desarrollo · La guía aplicada al propio sistema
 
 - Decisiones G22 a G25 (la librería es designtokens101, `proyecto/` allí, TokensDS como librería de Figma, piloto) y notas de procedencia de `docs/sistema/` apuntando a `proyecto/` de designtokens101 (P28).

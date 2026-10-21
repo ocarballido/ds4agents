@@ -48,6 +48,7 @@ Anota también una **categoría funcional** para cada componente. Proponemos est
 - **`navigation`**: mueven entre vistas (Tabs, Breadcrumb, Pagination, menú lateral).
 - **`feedback`**: informan del estado o de un resultado (Alert, Toast, ProgressBar, Spinner).
 - **`data-display`**: muestran información (Table, Badge, Avatar, Card).
+- **`content`**: presentan el contenido editorial de una página (bloques de código, bloques de código con vista previa, resúmenes). Un aviso como Callout no es `content`, sino `feedback`.
 - **`layout`**: ordenan el espacio (Stack, Grid, Divider).
 - **`overlays`**: se superponen a la vista (Modal, Popover, Tooltip, Drawer).
 
@@ -62,10 +63,12 @@ El nivel atómico ordena la librería; la categoría ayuda al agente a encontrar
 | Estado | Cuándo | Qué hace el agente |
 |---|---|---|
 | `stable` | Existe en Figma y en código, coinciden y se usa en producción | Lo usa |
-| `beta` | Existe, pero le falta algo: documentación, código o validación | Lo usa solo si se le pide |
+| `beta` | Existe, pero le falta código o validación, o tiene puntos abiertos | Lo usa solo si se le pide |
 | `deprecated` | Tiene un sustituto | No lo usa; usa el sustituto |
 | `figma-only` | Solo existe en Figma | No puede implementarlo sin inventarlo |
 | `code-only` | Solo existe en código | Puede usarlo en código, pero no aparece en los diseños |
+
+El estado no depende de la documentación, que tiene su propia columna (Doc) en el [inventario](/audit/checklist#el-entregable): un componente `stable` puede no tener documento todavía.
 
 Un componente `deprecated` lleva siempre el nombre de su sustituto. Sin sustituto, el agente sabe qué no usar, pero no qué usar.
 
