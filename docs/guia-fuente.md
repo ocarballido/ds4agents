@@ -809,7 +809,7 @@ Si la nota baja, revisa primero la documentación del componente implicado: casi
 - [ ] Code Connect publicado
 - [ ] Story con JSDoc en props
 - [ ] Evaluación relevante ejecutada sin regresiones
-Sin todos los puntos, el estado es `beta`.
+Sin todos los puntos, el componente no está terminado. El estado no depende de la documentación, que tiene su propia columna (Doc .md) en el inventario: es `beta` si le falta código o validación, o tiene puntos abiertos (G27).
 
 ## Deprecación
 - Marca `status: deprecated` y `replaces`/`replaced_by` en el frontmatter.

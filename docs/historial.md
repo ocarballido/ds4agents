@@ -8,6 +8,7 @@ Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 - G26: categoría funcional `content` (Takeaways, CodeBlock, bloques de código con vista previa; Callout es `feedback`), añadida a la lista de `/audit/figma-inventory`. Ningún otro sitio de `content/` ni los scripts de la guía (`validate-docs` no comprueba categorías) enumeran las categorías; `docs/guia-fuente.md` es el índice de la fuente y no se toca.
 - G27: el estado no depende de la documentación (columna Doc). Corregida la fila `beta` de `/audit/figma-inventory`, que ahora coincide con el ejemplo de `/audit/checklist`, con una frase sobre la columna Doc. En `/evaluation/contributing`, "Sin todos los puntos, el estado del componente es beta" pasa a "el componente no está terminado", con una nota que remite a los estados del inventario; el resumen, igual.
 - `lastReviewed` a 2026-10-21 en `contributing` (`figma-inventory` ya la tenía).
+- `docs/guia-fuente.md`: la frase de la Definition of Done ("Sin todos los puntos, el estado es `beta`"), alineada con G27. Las dos filas con `data-display` (Tag y DataTable) no son componentes editoriales y se quedan así (G26).
 
 ## 2026-10-21 · Diseño y desarrollo · La guía aplicada al propio sistema
 
