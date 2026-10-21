@@ -32,6 +32,7 @@ Cada plantilla de la guía está en la página que la explica, junto con el moti
 | 4. Documentar | Voz y tono | `docs/content/voice-and-tone.md` | [Contenido](/documentation/content-guidelines#la-plantilla) |
 | 4. Documentar | Script de guidelines de Figma | `scripts/build-figma-guidelines.mjs` | [Una fuente, varios destinos](/documentation/one-source-many-channels#generar-las-guidelines-de-figma) |
 | 4. Documentar | Script de validación | `scripts/validate-docs.mjs` | [Validar la documentación](/documentation/validate-docs#un-script-de-validación) |
+| 4. Documentar | Comandos y workflow de validación | `package.json` y `.github/workflows/docs.yml` | [Validar la documentación](/documentation/validate-docs#cómo-ejecutarlo) |
 | 5. Diseño y código | Plantilla de Code Connect | `*.figma.ts` y `figma.config.json` | [Mapear propiedades](/design-to-code/mapping-props#mapear-con-un-archivo-de-plantilla) |
 | 5. Diseño y código | Instrucciones para el MCP | Code Connect UI | [Instrucciones para el MCP](/design-to-code/mcp-instructions#qué-escribir) |
 | 5. Diseño y código | JSDoc e historias | `*.tsx` y `*.stories.tsx` | [JSDoc para agentes](/design-to-code/jsdoc) |
@@ -54,6 +55,8 @@ CLAUDE.md                  @AGENTS.md y lo propio de Claude Code
 CHANGELOG.md
 CONTRIBUTING.md
 .mcp.json                  servidores MCP compartidos (Storybook)
+package.json               docs:check y docs:figma
+.github/workflows/docs.yml npm run docs:check en cada pull request
 .claude/
 ├── rules/                 reglas por ruta
 └── skills/                build-ui y review-ui

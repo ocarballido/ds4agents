@@ -3,7 +3,7 @@ title: Una fuente, varios destinos
 meta_title: "Publicar la documentación de un sistema de diseño en Figma, Claude y el repositorio"
 description: Cómo publicar la misma documentación Markdown en las guidelines de Figma, en Code Connect, en el repositorio, en Claude y en Storybook sin mantener copias distintas.
 nav_title: Una fuente, varios destinos
-lastReviewed: 2026-10-20
+lastReviewed: 2026-10-21
 ---
 
 Cada herramienta lee las reglas del sistema en un sitio distinto: el agente de Figma, en las guidelines; Claude Code, en el repositorio; Claude Design, en el sistema publicado. Si escribes una versión para cada una, acabarán diciendo cosas distintas. Esta página propone escribir una vez y publicar en cada destino.
@@ -90,6 +90,18 @@ if (total > 100 * 1024) process.exitCode = 1; // Figma recomienda menos de 100 K
 ```
 
 El script es un ejemplo: ajusta los grupos a tu carpeta `docs/`. Lo importante es el orden de trabajo: se cambia `docs/`, se genera, se sube.
+
+Para usarlo:
+
+1. Guárdalo en `scripts/` del repositorio de la librería y ejecútalo desde la raíz, con `node scripts/build-figma-guidelines.mjs` o con `npm run docs:figma` si lo dejas como comando del proyecto. Los pasos son los mismos que los del [script de validación](/documentation/validate-docs#cómo-ejecutarlo).
+2. El script escribe los archivos en `dist/figma-guidelines/` y el tamaño total. Si pasa de 100 KB, termina con código de salida 1.
+3. Sube esos archivos a mano en Figma, desde **Library → Manage guidelines…**, mientras las guidelines estén en beta ([Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)).
+
+<Callout variant="recommendation">
+
+Añade `dist/` a `.gitignore`. Los archivos de `dist/figma-guidelines/` se generan desde `docs/`, y si los guardas en el repositorio tendrás dos copias de cada regla.
+
+</Callout>
 
 <Takeaways>
 

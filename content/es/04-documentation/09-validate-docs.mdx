@@ -1,9 +1,9 @@
 ---
 title: Validar la documentación
 meta_title: "Validar de forma automática la documentación de un sistema de diseño"
-description: Cómo comprobar con un script que cada componente estable tiene enlace a Figma, a código y a sus tokens, y cómo revisar las instrucciones para agentes en busca de contradicciones.
+description: Cómo comprobar con un script que cada componente estable tiene enlace a Figma, a código y a sus tokens, cómo ejecutarlo en cada pull request y cómo revisar las instrucciones para agentes en busca de contradicciones.
 nav_title: Validar la documentación
-lastReviewed: 2026-10-20
+lastReviewed: 2026-10-21
 ---
 
 La documentación se degrada en silencio: alguien añade un componente y no escribe su documento, o cambia una prop y no actualiza la tabla. Un script que revisa el frontmatter en cada cambio evita lo primero; una revisión periódica de las instrucciones evita lo segundo.
@@ -12,6 +12,7 @@ La documentación se degrada en silencio: alguien añade un componente y no escr
 
 - [Qué se puede comprobar](#qué-se-puede-comprobar)
 - [Un script de validación](#un-script-de-validación)
+- [Cómo ejecutarlo](#cómo-ejecutarlo)
 - [Revisar las instrucciones para agentes](#revisar-las-instrucciones-para-agentes)
 - [En resumen](#en-resumen)
 
@@ -21,7 +22,7 @@ Con el frontmatter de cada documento ([Por qué Markdown](/documentation/why-mar
 
 - Que cada componente `stable` tiene `figma`, `code` y `tokens`.
 - Que cada componente `deprecated` tiene sustituto (`replaced_by`).
-- Que cada componente de `inventory.md` tiene su documento, y al revés.
+- Que cada documento de componente está en `inventory.md`, y que cada componente que el inventario marca con documento (columna Doc) lo tiene.
 - Que la ruta de `code` existe en el repositorio.
 
 Lo que no se puede comprobar con un script, como si una regla es clara, se revisa con las [evaluaciones del capítulo 7](/evaluation/design-evals).
@@ -29,13 +30,19 @@ Lo que no se puede comprobar con un script, como si una regla es clara, se revis
 ## Un script de validación
 
 ```js filename="scripts/validate-docs.mjs"
-// Comprueba el frontmatter de docs/components/*.md. Uso: node scripts/validate-docs.mjs
+// Comprueba docs/components/*.md y su relación con docs/inventory.md. Uso: node scripts/validate-docs.mjs
 import fs from 'node:fs';
 import path from 'node:path';
 
 const DIR = 'docs/components';
 const REQUIRED = { stable: ['figma', 'code', 'tokens'], deprecated: ['replaced_by'] };
 const errors = [];
+
+// La primera tabla de inventory.md: nombre del componente y columna Doc (Sí o No).
+const table = fs.readFileSync('docs/inventory.md', 'utf8').split('\n\n').find((b) => b.startsWith('| Componente'));
+const [header, , ...rows] = table.trim().split('\n').map((line) => line.split('|').slice(1, -1).map((c) => c.trim()));
+const inventory = new Map(rows.map((row) => [row[0], row[header.indexOf('Doc')]]));
+const documented = new Set();
 
 for (const file of fs.readdirSync(DIR).filter((f) => f.endsWith('.md'))) {
   const text = fs.readFileSync(path.join(DIR, file), 'utf8');
@@ -48,13 +55,64 @@ for (const file of fs.readdirSync(DIR).filter((f) => f.endsWith('.md'))) {
     if (!data[key]) errors.push(`${file}: status ${data.status} sin "${key}"`);
   }
   if (data.code && !fs.existsSync(data.code)) errors.push(`${file}: no existe ${data.code}`);
+  if (!inventory.has(data.name)) errors.push(`${file}: ${data.name} no está en inventory.md`);
+  documented.add(data.name);
+}
+
+for (const [name, doc] of inventory) {
+  if (doc === 'Sí' && !documented.has(name)) errors.push(`inventory.md: ${name} tiene Doc "Sí" y no tiene documento`);
 }
 
 console.log(errors.length ? errors.join('\n') : 'Documentación sin errores');
 process.exitCode = errors.length ? 1 : 0;
 ```
 
-El script lee el frontmatter de forma simple, línea a línea. Si tus documentos usan listas o valores en varias líneas, usa una librería de YAML. Ejecútalo en la integración continua de cada pull request, junto con el que genera las [guidelines de Figma](/documentation/one-source-many-channels#generar-las-guidelines-de-figma).
+El script lee el frontmatter de forma simple, línea a línea. Si tus documentos usan listas o valores en varias líneas, usa una librería de YAML. De `inventory.md` lee la primera tabla, la de la [plantilla de la auditoría](/audit/checklist#el-entregable): el nombre de cada componente y la columna Doc.
+
+## Cómo ejecutarlo
+
+1. Guarda el script en la carpeta `scripts/` del repositorio de la librería de componentes, el mismo que contiene `docs/` ([Por qué Markdown](/documentation/why-markdown#la-carpeta-docs)).
+2. Ejecútalo desde la raíz del repositorio, porque las rutas del script (`docs/components`, `docs/inventory.md` y las de `code`) son relativas a la carpeta desde la que lanzas el comando. No necesita más que Node.js ([Requisitos](/start-here/requirements#código)):
+
+   ```bash
+   node scripts/validate-docs.mjs
+   ```
+
+3. Déjalo como comando del proyecto en `package.json`, junto con el que genera las [guidelines de Figma](/documentation/one-source-many-channels#generar-las-guidelines-de-figma). npm ejecuta los comandos de `scripts` con `npm run <nombre>` ([npm: scripts](https://docs.npmjs.com/cli/v12/using-npm/scripts)):
+
+   ```json filename="package.json"
+   {
+     "scripts": {
+       "docs:check": "node scripts/validate-docs.mjs",
+       "docs:figma": "node scripts/build-figma-guidelines.mjs"
+     }
+   }
+   ```
+
+   Desde ese momento, la comprobación es `npm run docs:check`.
+
+4. Ejecútalo en cada pull request. Con GitHub Actions, el workflow se guarda en la carpeta `.github/workflows` del repositorio ([GitHub Docs: Building and testing Node.js](https://docs.github.com/en/actions/tutorials/build-and-test-code/nodejs)), y el evento `pull_request` lo lanza cuando hay actividad en un pull request del repositorio ([GitHub Docs: Events that trigger workflows](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows)). Este ejemplo descarga el repositorio, instala Node.js y ejecuta la comprobación. Las versiones de `actions/checkout` y `actions/setup-node` son las vigentes en octubre de 2026 ([actions/checkout](https://github.com/actions/checkout), [actions/setup-node](https://github.com/actions/setup-node)):
+
+   ```yaml filename=".github/workflows/docs.yml"
+   name: Docs
+
+   on:
+     pull_request:
+
+   jobs:
+     docs:
+       runs-on: ubuntu-latest
+       steps:
+         - uses: actions/checkout@v7
+         - uses: actions/setup-node@v7
+           with:
+             node-version: 24
+         - run: npm run docs:check
+   ```
+
+   El script no tiene dependencias, así que el workflow no necesita `npm ci`. Si añades una librería de YAML, pon `- run: npm ci` antes de la comprobación.
+
+5. Lee el resultado. Si todo está bien, el script escribe "Documentación sin errores". Si no, escribe un error por línea, como `text-field.md: status stable sin "tokens"`, y termina con código de salida 1. GitHub Actions marca el paso como fallido o correcto según ese código ([GitHub Docs: Workflow syntax](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax)), y el pull request muestra la comprobación como fallida. Si la rama está protegida y exige esa comprobación, el pull request no se puede fusionar hasta que pase ([GitHub Docs: About status checks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks)).
 
 ## Revisar las instrucciones para agentes
 
@@ -71,7 +129,7 @@ Haz esa revisión al publicar cada versión del sistema. Y añade al proceso de 
 ## En resumen
 
 - El frontmatter permite comprobar con un script que no falta ningún enlace ni sustituto.
-- El script se ejecuta en cada pull request, junto con la generación de guidelines.
+- El script se ejecuta desde la raíz del repositorio con `npm run docs:check`, y en cada pull request con un workflow.
 - Las contradicciones entre instrucciones se revisan en cada versión; Claude Code tiene una auditoría para ello.
 
 </Takeaways>
@@ -79,3 +137,10 @@ Haz esa revisión al publicar cada versión del sistema. Y añade al proceso de 
 ## Fuentes
 
 - [Claude Code: How Claude remembers your project](https://code.claude.com/docs/en/memory)
+- [npm: scripts](https://docs.npmjs.com/cli/v12/using-npm/scripts)
+- [GitHub Docs: Events that trigger workflows](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows)
+- [GitHub Docs: Building and testing Node.js](https://docs.github.com/en/actions/tutorials/build-and-test-code/nodejs)
+- [GitHub Docs: Workflow syntax for GitHub Actions](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax)
+- [GitHub Docs: About status checks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks)
+- [actions/checkout](https://github.com/actions/checkout)
+- [actions/setup-node](https://github.com/actions/setup-node)
