@@ -2,7 +2,7 @@
 
 Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El detalle de lo hecho va en `docs/historial.md`.
 
-Última actualización: 2026-10-21, sesión de contenido. Revisión de contenido: `docs/` en el repositorio de la librería (G20), Claude Design dentro de Claude (G21), término "scorecard" y cómo ejecutar los scripts. Antes, el mismo día: marca nueva (G19), CodePreview (G18) y web publicada en Vercel (G17).
+Última actualización: 2026-10-21, sesión de desarrollo. Fase 1 de G22 (piloto G25): borrador del inventario y la scorecard en designtokens101, `docs/inventory.md` (media 1,50), con lo comprobado en TokensDS. Antes, el mismo día, sesión de contenido. Revisión de contenido: `docs/` en el repositorio de la librería (G20), Claude Design dentro de Claude (G21), término "scorecard" y cómo ejecutar los scripts. Antes, el mismo día: marca nueva (G19), CodePreview (G18) y web publicada en Vercel (G17).
 
 ## Plan general
 
@@ -13,10 +13,21 @@ Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El
 | 3 | Contenido | Escribir las páginas a partir de `docs/guia-fuente.md` | Hecho (2026-10-20): 53 páginas, con listas de comprobación (G14); revisión de Oscar pendiente |
 | 4 | Diseño | Marca definitiva e ilustración de portada (G16) | Hecho (2026-10-20) |
 | 5 | Desarrollo | Despliegue en Vercel y dominio `ds4agents.com` (G17) | Hecho (2026-10-21) |
-| 6 | Diseño y desarrollo | Aplicar la guía al propio sistema (G22), en designtokens101 | En curso: fase 1, auditoría del piloto |
+| 6 | Diseño y desarrollo | Aplicar la guía al propio sistema (G22), en designtokens101 | En curso: fase 1 (auditoría del piloto) con borrador en `docs/inventory.md` de designtokens101 (2026-10-21); faltan las decisiones de Oscar |
 
 ## Pendiente
 
+- **Fase 1 de G22, decisiones pendientes del inventario** (`docs/inventory.md` de designtokens101; las decide Oscar):
+  1. Nivel, categoría y estado de cada componente (todo es propuesta); categoría de Takeaways, CodeBlock y CodePreview, sin proponer.
+  2. Button: átomo (propuesta) o molécula (marco "Molecules" de Figma).
+  3. TextField: `invalid` (Figma) frente a `error` (código): traducir en Code Connect o renombrar en Figma.
+  4. TextField: está en el marco "Tools" de Figma, no en "Molecules".
+  5. Takeaways: Figma tiene `li:graduation-cap`; ds4agents usa `BookOpenText` (G15), que no está en el marco Icons.
+  6. CodeBlock / CodePreview: varios componentes de Figma (CodeBlock, CodePreview, AnnotatedCode, CodeTabs, CodeTab) frente a un solo `CodeBlock` en código: mapear en Code Connect o separar en código.
+  7. Página de la guía: el patrón se llama "Lesson" y tiene contenido de designtokens101: renombrar o aceptar.
+  8. Lista de comprobación: no hay marco en Templates (comprobado): diseñarlo o dejarlo solo en código.
+  9. Plantilla Lesson: las secciones se llaman "ThisPage", como el bloque "En esta página" (nombres por función, capítulo 2).
+  - Sin verificar: dev resources de los componentes del piloto (el MCP no los lee; mirar en Dev Mode). Sin anotaciones ni enlaces de documentación.
 - **Fase 6 (G22):** decidir cómo consume ds4agents el `docs/` de designtokens101 (enlace, submódulo o paquete).
 - **G24:** separar la marca de la librería en TokensDS (Oscar).
 
