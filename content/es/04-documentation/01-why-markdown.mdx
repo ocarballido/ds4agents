@@ -3,7 +3,7 @@ title: Por qué Markdown
 meta_title: "Por qué documentar un sistema de diseño en Markdown para agentes de IA"
 description: Por qué Markdown con frontmatter es el formato común de la documentación para agentes, qué ventajas tiene frente a texto plano o PDF y cómo organizar la carpeta docs del repositorio.
 nav_title: Por qué Markdown
-lastReviewed: 2026-10-20
+lastReviewed: 2026-10-21
 ---
 
 La documentación de un sistema de diseño para agentes tiene que leerse en Figma, en el repositorio, en Claude y en la web del sistema. Markdown es el único formato que admiten todos esos destinos. Esta página explica por qué y cómo organizar los archivos.
@@ -57,18 +57,34 @@ Con eso, un script puede listar los componentes estables, comprobar que todos ti
 
 <Callout variant="recommendation">
 
-Proponemos esta estructura. Un archivo por componente y por patrón, con el nombre del componente en minúsculas y con guiones.
+La carpeta `docs/` vive en la raíz del repositorio de la librería de componentes, junto a `src/`, `tokens/` y la configuración de Storybook. Por dos motivos: el [script de validación](/documentation/validate-docs) comprueba rutas de código (`code: src/...`), y `CLAUDE.md`, las skills y Code Connect viven en ese mismo repositorio.
+
+- Si la web de documentación del sistema está en otro repositorio, consume la carpeta `docs/` de la librería; no mantiene una copia.
+- Si tu equipo aún no tiene código (capítulos 1 a 4), empieza con un repositorio solo de documentación y tokens. Cuando exista la librería, `docs/` se mueve a ella.
+
+Dentro de `docs/`, proponemos esta estructura: un archivo por componente y por patrón, con el nombre en minúsculas y con guiones.
 
 </Callout>
 
-```text filename="Repositorio del sistema de diseño"
+```text filename="Repositorio de la librería de componentes"
 docs/
-├── inventory.md           índice de componentes con su estado (capítulo 1)
-├── foundations/           color.md, typography.md, spacing.md, accessibility.md
-├── components/            button.md, text-field.md, data-table.md…
-├── patterns/              login.md, list-with-filters.md…
-├── content/               voice-and-tone.md
-└── rules/                 rules-tokens.md, anti-patterns.md y otras reglas transversales
+├── inventory.md              índice de componentes y scorecard (cap. 1)
+├── foundations/
+│   ├── color.md
+│   ├── typography.md
+│   ├── spacing.md
+│   ├── radius.md
+│   └── accessibility.md
+├── components/
+│   ├── button.md
+│   └── text-field.md         uno por componente
+├── patterns/
+│   └── login.md              uno por patrón
+├── content/
+│   └── voice-and-tone.md
+└── rules/
+    ├── rules-tokens.md
+    └── anti-patterns.md
 ```
 
 Las páginas siguientes explican qué escribir en cada carpeta. La carpeta `rules/` reúne las reglas que valen para todo el sistema, como la de los tokens del [capítulo 3](/tokens/checklist#el-entregable).

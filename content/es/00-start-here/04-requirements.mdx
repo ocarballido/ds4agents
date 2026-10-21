@@ -3,7 +3,7 @@ title: Requisitos
 meta_title: "Requisitos de Figma, Claude y Storybook para conectar un sistema de diseño con IA"
 description: Qué plan, asiento o herramienta pide cada función que usa la guía, según la documentación oficial de Figma, Claude y Storybook en octubre de 2026.
 nav_title: Requisitos
-lastReviewed: 2026-10-20
+lastReviewed: 2026-10-21
 ---
 
 Muchas de las funciones de esta guía dependen del plan de Figma, del tipo de asiento o de la cuenta de Claude. Revisa esta página antes de empezar para saber qué puedes aplicar con lo que tienes.
@@ -57,6 +57,15 @@ Los capítulos 5 a 7 suponen que el sistema tiene una librería de componentes e
 - Un repositorio Git con la librería de componentes.
 - Node.js y un gestor de paquetes, para Code Connect por línea de comandos y Storybook.
 - Si usas Storybook con agentes: un proyecto con React (cualquier framework de React), `angular-vite` o `vue3-vite`. Con otros frameworks, el servidor MCP de Storybook funciona, pero sin el manifiesto de componentes ([Storybook: MCP server](https://storybook.js.org/docs/ai/mcp/overview)).
+
+<Callout variant="recommendation">
+
+La documentación del sistema (la carpeta `docs/` del [capítulo 4](/documentation/why-markdown#la-carpeta-docs)) vive en la raíz del repositorio de la librería de componentes, junto a `src/`, `tokens/` y la configuración de Storybook. El script de validación comprueba rutas de código, y `CLAUDE.md`, las skills y Code Connect están en ese mismo repositorio.
+
+- Si la web de documentación del sistema está en otro repositorio, consume la carpeta `docs/` de la librería; no mantiene una copia.
+- Si tu equipo aún no tiene código, los capítulos 1 a 4 se pueden seguir con un repositorio solo de documentación y tokens. Cuando exista la librería, `docs/` se mueve a ella.
+
+</Callout>
 
 ## Conocimientos previos
 
