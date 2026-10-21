@@ -2,6 +2,10 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-10-21 · Diseño y desarrollo · La guía aplicada al propio sistema
+
+- Decisiones G22 a G25 (la librería es designtokens101, `proyecto/` allí, TokensDS como librería de Figma, piloto) y notas de procedencia de `docs/sistema/` apuntando a `proyecto/` de designtokens101 (P28).
+
 ## 2026-10-21 · Contenido · Revisión con G20 y G21
 
 - `why-agents-cant-see-figma`: las filas de color y de botón de la tabla, como condicionales completas.

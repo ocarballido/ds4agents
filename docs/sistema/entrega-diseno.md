@@ -1,4 +1,4 @@
-> **Heredado de [designtokens101](https://github.com/ocarballido/design-tokens-101/blob/main/docs/entrega-diseno.md)** el 2026-10-20 (G01). Los códigos de decisión (V12, D17, S27…) remiten a `docs/decisiones.md` de ese repositorio. Si el sistema cambia allí, se copia aquí (G02).
+> **Heredado de [designtokens101](https://github.com/ocarballido/design-tokens-101/blob/main/proyecto/entrega-diseno.md)** el 2026-10-20 (G01). Los códigos de decisión (V12, D17, S27…) remiten a `docs/decisiones.md` de ese repositorio. Si el sistema cambia allí, se copia aquí (G02).
 
 # DesignToken101: Entrega de diseño a desarrollo
 
