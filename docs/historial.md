@@ -2,6 +2,14 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-10-21 · Diseño y desarrollo · Marca nueva (G19)
+
+- Inspección con el MCP de Figma (TokensDS, sección "DS4Agents · Marca (2026-10-21)", 298:6831): logotipo horizontal 202 × 48 y vertical 144 × 77,07, cada uno en color y gris, Light y Dark; `home` 440 × 441 y `share` 1200 × 630. Los nombres de los marcos son los de los archivos.
+- Exportados con `download_assets` sin forzar formato ni escala (se usa el ajuste de exportación de cada marco) y descargados con `curl`: SVG sin fondo del lienzo, solo los dos rellenos de cada variante; los verticales salen a 144 × 78. `home.png` sale a 880 × 882 porque el marco mide 440 × 441. Única edición: la nota de procedencia en la segunda línea de cada SVG (comprobado con `diff`).
+- `public/brand/`: los ocho `logo-{horizontal,vertical}-{colored,gray}(-dark).svg`, `home.png` y `share.png`. Borrados `logo-colored(-dark).svg`, `logo-gray(-dark).svg` y `symbol.svg` (este ya no tenía uso).
+- `Logo.tsx`: cabecera con el horizontal en color a 185 × 44 (la altura de designtokens101; "DS4Agents" mide unos 16 px de alto); pie con el vertical en gris a 103 × 56 (unos 13 px; a 34 px serían 8). Texto alternativo de `share.png` actualizado en `src/lib/metadata.ts`; comentarios de la portada.
+- Comprobado: `npm test` (14 pruebas), `check:tokens`, `build`, `check:content`, sin errores; capturas con Chrome sin interfaz a 1280 px y en un iframe de 320 px, en Light y Dark: el logotipo y el botón de menú caben sin scroll horizontal.
+
 ## 2026-10-21 · Desarrollo · CodePreview (G18)
 
 - Copiado de designtokens101 el commit `8712a45` (V60): `CodeBlock.tsx`, `Table.tsx` (prop `header` de `Th`), `src/lib/render-markdown-preview.tsx`, `tools/rehype-code-meta.mjs`, `tools/check-content.mjs` (aviso de `preview` fuera de markdown) y `tests/rehype-code-meta.test.mjs`, idénticos byte a byte. `src/mdx-components.tsx`, `messages/es.json` (claves `tabs`, `markdown`, `preview`, `frontmatter`), `package.json` y §3.11 de `docs/sistema/componentes-v1.md`, con el mismo cambio sobre lo propio de ds4agents.

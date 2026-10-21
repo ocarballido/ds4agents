@@ -2,7 +2,7 @@
 
 Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El detalle de lo hecho va en `docs/historial.md`.
 
-Última actualización: 2026-10-21, sesión de desarrollo. CodePreview copiado de designtokens101 (G18) y usado en 13 bloques markdown. Antes, el mismo día: web publicada en Vercel con `ds4agents.com` (G17).
+Última actualización: 2026-10-21, sesión de desarrollo. Marca nueva desde Figma (G19). Antes, el mismo día: CodePreview (G18) y web publicada en Vercel con `ds4agents.com` (G17).
 
 ## Plan general
 
@@ -19,7 +19,9 @@ Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El
 - **CodePreview (G18):** los tres puntos abiertos de V60 (contraste de la pestaña en `active` en Dark, `hover` en el carril, código en línea de la vista previa) se deciden en designtokens101 y se copian aquí (G02).
 
 - **`Takeaways` (G15):** si designtokens101 cambia el componente, copiar el cambio aquí sin perder la excepción.
-- **Tamaño de los logotipos (G16):** a 44 px de alto, "DS4Agents" mide unos 9 px de alto en la cabecera y unos 7 px en el pie (34 px). Se lee en la cabecera; en el pie es pequeño. Decidir si el pie sube de tamaño.
+- **Alturas de los logotipos (G19):** propuestas por desarrollo, cabecera a 44 px (185 × 44) y pie a 56 px (103 × 56). Oscar las confirma en el navegador.
+- **`home.png` (G19):** sale a 880 × 882 porque el marco `home` (298:6888) mide 440 × 441. `object-cover` lo recorta; para 880 × 880 exactos, el marco a 440 × 440 en Figma y exportar de nuevo.
+- **Iconos (G16):** `icon.svg`, `favicon.ico` y `apple-icon.png` siguen siendo la marca anterior. Decidir si se sacan de la marca nueva.
 - **Favicon en pestañas oscuras (G16):** el verde del emoticon tiene poco contraste sobre una pestaña oscura del navegador.
 - **Revisión de Oscar:** leer las 53 páginas en el navegador. Criterio propio marcado como recomendación: rúbrica, scorecard, extensiones por nivel, categorías funcionales, estructura de páginas, plantillas y scripts.
 - **Sin verificar (no se afirma):** si las guidelines de Figma llegan por el servidor MCP; si la descripción de un componente llega en el contexto del MCP; si Figma exporta `$deprecated`; qué pasa con las instancias de un componente oculto al publicar.
