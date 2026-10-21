@@ -3,7 +3,7 @@ title: Descripciones en DTCG
 meta_title: "La descripción de un token de diseño: $description en DTCG para agentes de IA"
 description: Cómo usar $description en DTCG para que la intención de cada token viaje con él, de Figma al código, y cómo escribir una descripción que un agente pueda aplicar.
 nav_title: Descripciones en DTCG
-lastReviewed: 2026-10-20
+lastReviewed: 2026-10-21
 ---
 
 El nombre de un token dice para qué sirve en general. La descripción dice cuándo usarlo y cuándo no. Es la documentación más barata que puedes escribir para un agente, porque viaja con el token a cualquier herramienta que lea DTCG.
@@ -34,6 +34,10 @@ La descripción de una variable se escribe en Figma con **Edit variable** ([Figm
 
 Así, la misma frase está en Figma, en el JSON del repositorio y, si la herramienta de transformación la conserva, como comentario en el CSS que lee el agente.
 
+El servidor MCP de Figma no la entrega. Lo hemos comprobado con el servidor remoto el 21 de octubre de 2026, en un archivo: `get_design_context` devuelve las variables por su nombre, como `var(--…)` con su valor de reserva, junto con los estilos de texto, las descripciones de los componentes y las anotaciones, pero no la descripción de las variables. `get_variable_defs` tampoco: devuelve el nombre y el valor de cada una. Es una prueba en un archivo; repítela si cambia el servidor, como explicamos en [Comprobar con el MCP](/figma/verify-with-mcp).
+
+Por tanto, el agente recibe las descripciones de token por el repositorio: en el JSON DTCG y, si la herramienta de transformación las conserva, en los comentarios del CSS. No por el servidor MCP de Figma.
+
 ## Cómo escribir una descripción
 
 <Callout variant="recommendation">
@@ -61,6 +65,7 @@ DesignToken101 hace obligatoria la descripción en los semánticos y opcional en
 
 - `$description` explica el propósito del token y viaja con él entre herramientas.
 - Figma exporta la descripción de la variable como `$description`.
+- El servidor MCP de Figma no entrega la descripción de las variables: el agente la lee en el repositorio.
 - Una descripción útil dice para qué sirve el token y su restricción principal.
 
 </Takeaways>

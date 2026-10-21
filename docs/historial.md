@@ -2,6 +2,11 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-10-21 · Contenido · Capítulo 3 con lo comprobado en el MCP (fase 3)
+
+- `03-tokens/03-descriptions-in-dtcg` (`lastReviewed` 2026-10-21), en "De Figma a DTCG": `get_design_context` no entrega la descripción de las variables (da el nombre como `var(--…)` con su valor de reserva, los estilos de texto, las descripciones de componente y las anotaciones) y `get_variable_defs` tampoco (nombre y valor); el agente recibe las descripciones de token por el repositorio. Punto nuevo en "En resumen". Comprobado en designtokens101, commit 5eb5a04.
+- `estado.md`: fuera de "Sin verificar"; añadido a lo comprobado con el servidor MCP remoto.
+
 ## 2026-10-21 · Desarrollo · Copia de D65 y D66 de designtokens101 (G02)
 
 - Exportaciones de Figma copiadas de `main` de designtokens101 (commits 4896240 y c5eb8fe): `tokens/figma/semantic-color/` (Light y Dark), `tokens/figma/semantic-size/Value.tokens.json` y `tokens/figma/layout/` (Desktop y Mobile). `primitives/` y `code-only.tokens.json`, sin cambios. `npm run tokens` regenera `tokens/dtcg/` (idéntico al de designtokens101) y `src/styles/`: `--t101-radius-group` y las descripciones nuevas, sin rastro de `nested`. `tokens.css` solo difiere en las rutas de las fuentes de los tokens de código (`docs/…`).
