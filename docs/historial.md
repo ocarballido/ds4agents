@@ -2,6 +2,18 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-10-21 · Desarrollo · Despliegue en Vercel y dominio (G17)
+
+- Oscar publica la web en Vercel con el dominio `ds4agents.com`, canónico sin www (G17).
+- Comprobado en producción con `curl`:
+  - `canonical` y `og:url`: `https://ds4agents.com` en la portada y la URL de cada página en las páginas de la guía (por ejemplo, `https://ds4agents.com/figma/naming`). En `www.ds4agents.com` el canonical también apunta a `ds4agents.com`.
+  - `og:image` y `twitter:image`: `https://ds4agents.com/brand/share.png`, 1200 × 630, responde 200 (`image/png`).
+  - `sitemap.xml`: 200, 54 URL (portada y 53 páginas), todas con `https://ds4agents.com`, ninguna con www.
+  - `robots.txt`: `Allow: /` y `Sitemap: https://ds4agents.com/sitemap.xml`.
+  - `http://ds4agents.com` → 308 a `https://ds4agents.com`; `http://www.ds4agents.com` → 308 a `https://www.ds4agents.com`.
+  - **`https://www.ds4agents.com` responde 200, sin redirigir** (Vercel, `x-vercel-cache: HIT`). La redirección 308 de G17 no está activa en HTTPS; queda pendiente en `estado.md`.
+- Search Console: sin meta `google-site-verification` ni registro TXT en el DNS; se da por no hecha.
+
 ## 2026-10-20 · Diseño y desarrollo · Marca definitiva (G16)
 
 - Inspección con el MCP de Figma (TokensDS, página Templates): Logo 228:6874 y LogoMonocrome 229:6939 (571 × 331), Symbol 228:6906 (252 × 224), emoticon 228:6907 (89 × 106), Opengraph 225:6859 (1200 × 630) e Illustration 228:6911 (440 × 441). Ninguno tenía variante para Dark.
