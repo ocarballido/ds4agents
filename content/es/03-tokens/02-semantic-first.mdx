@@ -3,7 +3,7 @@ title: Primero los semánticos
 meta_title: "Por qué un agente de IA debe usar tokens semánticos y no primitivos"
 description: Qué capas de tokens existen, cuál debe usar un agente al generar diseños o código y cómo escribir esa regla para que se pueda comprobar.
 nav_title: Primero los semánticos
-lastReviewed: 2026-10-20
+lastReviewed: 2026-10-21
 ---
 
 Un sistema de tokens suele tener dos o tres capas: valores, intenciones y, a veces, decisiones de componente. Un agente que elige mal la capa produce código que se rompe al cambiar de tema. Esta página propone una regla sencilla y comprobable.
@@ -39,6 +39,12 @@ Escribe la regla en las [guidelines](/figma/library-guidelines) y en el [archivo
 </Callout>
 
 El tercer punto es el más importante. Sin él, un agente que no encuentra el token adecuado elige el valor más parecido, y el sistema crece con excepciones que nadie decidió.
+
+<Callout variant="recommendation">
+
+Muchos sistemas publican una escala sin capa semántica, y los componentes la usan directamente. El espaciado es el caso típico. Entonces la regla no puede decir "nunca primitivos": tiene que decir, por categoría, qué capa se usa. Por ejemplo, la regla de designtokens101 dice que el color se usa solo con semánticos, y el espaciado y el grosor de borde, con su escala, que no tiene capa semántica ([designtokens101: docs/rules/rules-tokens.md](https://github.com/ocarballido/design-tokens-101/blob/main/docs/rules/rules-tokens.md)).
+
+</Callout>
 
 En Figma, la regla se refuerza ocultando los primitivos al publicar, para que no aparezcan al aplicar variables. Figma permite ocultar una variable al publicar, o una colección entera si su nombre empieza por `_` o `.` ([Figma: Hide styles, components, and variables when publishing](https://help.figma.com/hc/en-us/articles/360039238193)). DesignToken101 oculta sus primitivos variable por variable ([DesignToken101: La colección completa](https://designtokens101.com/primitives/primitives-collection)).
 

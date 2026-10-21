@@ -2,6 +2,12 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-10-21 · Diseño y desarrollo · Fase 3 de G22 terminada (G29)
+
+- Tokens del piloto en designtokens101 (D65, commit 4896240): descripciones de 46 tokens en TokensDS con dos partes (para qué sirve y restricción principal), sin valor ni referencias internas; token nuevo `radius/nested` para un elemento dentro de un contenedor (creado el 2026-10-21 en la colección Semantic size de TokensDS, alias de `radius/300`, registrado en D65); `docs/rules/rules-tokens.md` con la regla de capas por categoría (color y texto solo semánticos o estilos de texto; espaciado y grosor de borde con su escala, sin capa semántica, S22); punto 9 de `check:tokens`, que vigila las descripciones. Scorecard del piloto de 1,88 a 2,00 en `docs/inventory.md`.
+- `get_variable_defs` devuelve nombre y valor de cada variable, no la descripción (comprobado el 2026-10-21).
+- Capítulo 3 (`lastReviewed` 2026-10-21): en `semantic-first`, recomendación para las escalas publicadas sin capa semántica, con la regla de designtokens101 como ejemplo; en la lista de comprobación, primera línea del ejemplo de `rules-tokens.md` con ese matiz y criterio nuevo ("La regla dice, por categoría, qué capa se usa").
+
 ## 2026-10-21 · Diseño y desarrollo · Fase 2 de G22 terminada (G28)
 
 - Piloto preparado en TokensDS (D64 en designtokens101): marcos por nivel, capas por función, descripciones con la plantilla, diez anotaciones, dev resources al código y `anti-patterns.md` en las guidelines (V61). Inventario y scorecard en `docs/inventory.md` de designtokens101 (media de 1,50 a 1,88).

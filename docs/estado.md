@@ -2,7 +2,7 @@
 
 Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El detalle de lo hecho va en `docs/historial.md`.
 
-Última actualización: 2026-10-21, sesión de diseño y desarrollo. Fase 2 de G22 terminada (G28; D64 en designtokens101): piloto preparado en TokensDS, comprobado con el servidor MCP (media 1,88) y páginas 03, 04, 05, 07 y 08 del capítulo 2 con lo comprobado. Antes, el mismo día, fase 1 de G22 terminada (inventario del piloto en designtokens101, media 1,50) y decisiones G26 (categoría `content`) y G27 (el estado no depende de la documentación). Antes, el mismo día, sesión de contenido. Revisión de contenido: `docs/` en el repositorio de la librería (G20), Claude Design dentro de Claude (G21), término "scorecard" y cómo ejecutar los scripts. Antes, el mismo día: marca nueva (G19), CodePreview (G18) y web publicada en Vercel (G17).
+Última actualización: 2026-10-21, sesión de diseño y desarrollo. Fase 3 de G22 terminada (G29; D65 en designtokens101): descripciones de token, `radius/nested`, `rules-tokens.md` y scorecard del piloto en 2,00; capítulo 3 con las escalas publicadas sin capa semántica. Antes, el mismo día, fase 2 de G22 terminada (G28; D64 en designtokens101): piloto preparado en TokensDS, comprobado con el servidor MCP (media 1,88) y páginas 03, 04, 05, 07 y 08 del capítulo 2 con lo comprobado. Antes, el mismo día, fase 1 de G22 terminada (inventario del piloto en designtokens101, media 1,50) y decisiones G26 (categoría `content`) y G27 (el estado no depende de la documentación). Antes, el mismo día, sesión de contenido. Revisión de contenido: `docs/` en el repositorio de la librería (G20), Claude Design dentro de Claude (G21), término "scorecard" y cómo ejecutar los scripts. Antes, el mismo día: marca nueva (G19), CodePreview (G18) y web publicada en Vercel (G17).
 
 ## Plan general
 
@@ -13,10 +13,12 @@ Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El
 | 3 | Contenido | Escribir las páginas a partir de `docs/guia-fuente.md` | Hecho (2026-10-20): 53 páginas, con listas de comprobación (G14); revisión de Oscar pendiente |
 | 4 | Diseño | Marca definitiva e ilustración de portada (G16) | Hecho (2026-10-20) |
 | 5 | Desarrollo | Despliegue en Vercel y dominio `ds4agents.com` (G17) | Hecho (2026-10-21) |
-| 6 | Diseño y desarrollo | Aplicar la guía al propio sistema (G22), en designtokens101 | En curso: fases 1 y 2 terminadas (`docs/inventory.md` de designtokens101, 2026-10-21); siguiente, fase 3 (tokens) |
+| 6 | Diseño y desarrollo | Aplicar la guía al propio sistema (G22), en designtokens101 | En curso: fases 1, 2 y 3 terminadas (`docs/inventory.md` de designtokens101, 2026-10-21); siguiente, fase 4 (documentar) |
 
 ## Pendiente
 
+- **`radius/nested` (G29):** aplicarlo en CodeTabs (Figma, TokensDS) y en `CodeBlock.tsx` (designtokens101), los dos a la vez.
+- **Sin verificar:** si `get_design_context` entrega la descripción de una variable. Comprobado el 2026-10-21: `get_variable_defs` devuelve nombre y valor, no la descripción.
 - **Fase 6 (G22):** decidir cómo consume ds4agents el `docs/` de designtokens101 (enlace, submódulo o paquete), y documentar en la capa de agente de ds4agents la excepción de G15 (`BookOpenText` en Takeaways), porque Figma solo tiene el birrete.
 
 - **CodePreview (G18):** los tres puntos abiertos de V60 (contraste de la pestaña en `active` en Dark, `hover` en el carril, código en línea de la vista previa) se deciden en designtokens101 y se copian aquí (G02).

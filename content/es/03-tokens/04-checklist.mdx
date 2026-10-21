@@ -3,7 +3,7 @@ title: Lista de comprobación
 meta_title: "Lista de comprobación: tokens de diseño preparados para agentes de IA"
 description: El entregable de la fase de tokens (descripciones en los semánticos, obsoletos marcados y regla de capas escrita), los pasos y los criterios para darla por terminada.
 nav_title: Lista de comprobación
-lastReviewed: 2026-10-20
+lastReviewed: 2026-10-21
 ---
 
 Esta lista resume la preparación de los tokens para agentes: el entregable, los pasos para obtenerlo y los criterios para darlo por terminado. Vuelve a ella cada vez que añadas tokens semánticos.
@@ -24,7 +24,7 @@ Esta lista resume la preparación de los tokens para agentes: el entregable, los
 ```markdown filename="docs/rules/rules-tokens.md" preview
 # Tokens
 
-- Usa solo tokens semánticos o de componente. Nunca primitivos.
+- Usa tokens semánticos o de componente. Usa una escala primitiva solo si el sistema la publica para eso (como el espaciado) y dilo por categoría.
 - Nunca escribas un valor literal de color, espaciado, radio o tipografía.
 - Si ningún token semántico encaja, no uses un primitivo: dilo y propone el token que falta.
 - Los tokens con $deprecated no se usan. Su descripción dice cuál usar en su lugar.
@@ -44,6 +44,7 @@ Esta lista resume la preparación de los tokens para agentes: el entregable, los
 - Todos los semánticos que usan los componentes del alcance tienen descripción en Figma y en la exportación.
 - Ninguna descripción repite solo el valor ("Azul 600").
 - Los obsoletos dicen qué usar en su lugar.
+- La regla dice, por categoría, qué capa se usa.
 - `rules-tokens.md` incluye qué hacer cuando falta un token.
 
 <Takeaways>
