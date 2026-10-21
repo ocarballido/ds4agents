@@ -2,7 +2,7 @@
 
 Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El detalle de lo hecho va en `docs/historial.md`.
 
-Última actualización: 2026-10-21, sesión de desarrollo. Web publicada en Vercel con `ds4agents.com` (G17).
+Última actualización: 2026-10-21, sesión de desarrollo. CodePreview copiado de designtokens101 (G18) y usado en 13 bloques markdown. Antes, el mismo día: web publicada en Vercel con `ds4agents.com` (G17).
 
 ## Plan general
 
@@ -15,6 +15,8 @@ Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El
 | 5 | Desarrollo | Despliegue en Vercel y dominio `ds4agents.com` (G17) | Hecho (2026-10-21) |
 
 ## Pendiente
+
+- **CodePreview (G18):** los tres puntos abiertos de V60 (contraste de la pestaña en `active` en Dark, `hover` en el carril, código en línea de la vista previa) se deciden en designtokens101 y se copian aquí (G02).
 
 - **`Takeaways` (G15):** si designtokens101 cambia el componente, copiar el cambio aquí sin perder la excepción.
 - **Tamaño de los logotipos (G16):** a 44 px de alto, "DS4Agents" mide unos 9 px de alto en la cabecera y unos 7 px en el pie (34 px). Se lee en la cabecera; en el pie es pequeño. Decidir si el pie sube de tamaño.

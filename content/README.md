@@ -68,6 +68,8 @@ Se diseñarán en Figma con el sistema de DesignToken101 y se implementarán en 
 | `<Callout variant="pending">` | Contenido en preparación (un módulo, un canal de contacto). Nunca para una afirmación técnica sin comprobar (P14) |
 | `<InCode title="…">` | Itinerario de código; se puede plegar y el diseñador puede saltarlo |
 | `<Flow caption="…">` con `<FlowGroup>` y `<FlowStep>` | Gráfico de un proceso: pasos en orden, agrupados o no en fases (C13). Anatomía y ejemplo en `docs/componentes-v1.md` §3.7. Un paso `pending` debe decirlo también en su `meta` ("En estudio") |
+| ` ```json filename="tokens.json" ` | Bloque de código con nombre de archivo (`CodeBlock`, `docs/sistema/componentes-v1.md` §3.4). Dentro de `<AnnotatedCode>`, `marks="2,4"` marca líneas (§3.10) |
+| ` ```markdown filename="button.md" preview ` | Bloque markdown con pestañas Markdown / Vista previa (`CodePreview`, V60 de designtokens101, §3.11). Solo en `markdown` o `md`: en otro lenguaje falla `check:content`. Se usa cuando el bloque es un documento completo y verlo renderizado aporta algo (frontmatter, encabezados, listas o tablas); los fragmentos y los archivos que se verían como texto plano van sin `preview` (G18) |
 | `<Takeaways>` | Envuelve el apartado "En resumen" (título `##` y lista) de cada lección (C18, T10). Anatomía en `docs/componentes-v1.md` §3.9 |
 
 ## Guía de redacción

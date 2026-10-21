@@ -2,6 +2,14 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-10-21 · Desarrollo · CodePreview (G18)
+
+- Copiado de designtokens101 el commit `8712a45` (V60): `CodeBlock.tsx`, `Table.tsx` (prop `header` de `Th`), `src/lib/render-markdown-preview.tsx`, `tools/rehype-code-meta.mjs`, `tools/check-content.mjs` (aviso de `preview` fuera de markdown) y `tests/rehype-code-meta.test.mjs`, idénticos byte a byte. `src/mdx-components.tsx`, `messages/es.json` (claves `tabs`, `markdown`, `preview`, `frontmatter`), `package.json` y §3.11 de `docs/sistema/componentes-v1.md`, con el mismo cambio sobre lo propio de ds4agents.
+- `package-lock.json` regenerado con `npm install` (el parche no se aplicaba); las cuatro dependencias nuevas resuelven a las mismas versiones que en designtokens101: `hast-util-to-jsx-runtime` 2.3.6, `remark-parse` 11.0.0, `remark-rehype` 11.1.2, `unified` 11.0.5.
+- G18 y sintaxis `preview` en `content/README.md`.
+- De los 19 bloques ```` ```markdown ```` del contenido, 13 llevan `preview`: `docs/inventory.md`, `anti-patterns.md`, `docs/rules/rules-tokens.md`, `docs/foundations/color.md`, `docs/components/text-field.md`, `docs/patterns/login.md`, `docs/content/voice-and-tone.md`, `AGENTS.md`, `.claude/rules/stories.md`, los dos `SKILL.md`, `evals/evals.md` y `CHANGELOG.md`. Sin `preview` (fragmentos o texto plano, con Oscar): Ready for AI, `button.md (cabecera)`, Escenario, `CONTRIBUTING.md (fragmento)`, Lista de publicación y `CLAUDE.md` (cuatro líneas, la primera un import `@AGENTS.md`). `rules-tokens.md` y `stories.md` se quedan: `#` y lista, y frontmatter en `stories.md`.
+- Comprobado: `npm test` (14 pruebas, 3 nuevas), `check:tokens`, `build` y `check:content` (13 bloques con `preview`), sin errores; `role="tablist"` en el HTML compilado. Oscar lo revisa en el navegador.
+
 ## 2026-10-21 · Desarrollo · Despliegue en Vercel y dominio (G17)
 
 - Oscar publica la web en Vercel con el dominio `ds4agents.com`, canónico sin www (G17).

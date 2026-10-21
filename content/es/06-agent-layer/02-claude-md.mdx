@@ -54,7 +54,7 @@ Escribe las reglas del sistema en `AGENTS.md`, que leen casi todos los agentes, 
 
 ## La plantilla
 
-```markdown filename="AGENTS.md"
+```markdown filename="AGENTS.md" preview
 # Sistema de diseño Acme: instrucciones para agentes
 
 Este repositorio contiene el sistema de diseño Acme: tokens, componentes React y su documentación.
@@ -91,7 +91,7 @@ La plantilla tiene unas 30 líneas. Las reglas apuntan a los documentos; no los 
 
 Para instrucciones que solo valen al tocar ciertos archivos, Claude Code admite archivos en `.claude/rules/` con un campo `paths` en el frontmatter. Se cargan solo cuando Claude trabaja con archivos que coinciden ([Claude Code: Memory](https://code.claude.com/docs/en/memory)):
 
-```markdown filename=".claude/rules/stories.md"
+```markdown filename=".claude/rules/stories.md" preview
 ---
 paths:
   - "src/**/*.stories.tsx"
