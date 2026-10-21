@@ -3,7 +3,7 @@ title: Inventario de Figma
 meta_title: "Inventario de componentes de una librería de Figma"
 description: Cómo recorrer una librería de Figma y anotar cada componente con su nivel atómico, su categoría, su estado y lo que le falta para que un agente lo entienda.
 nav_title: Inventario de Figma
-lastReviewed: 2026-10-20
+lastReviewed: 2026-10-21
 ---
 
 El inventario de Figma es una tabla con una fila por componente principal de la librería. Esta página explica qué columnas tiene, cómo clasificar cada componente y de dónde sacar los datos de uso.
@@ -41,7 +41,19 @@ Un agente, en cambio, no busca por nivel. Busca por intención: "necesito mostra
 
 <Callout variant="recommendation">
 
-Anota también una **categoría funcional** para cada componente. Proponemos estas, que puedes adaptar: `actions`, `forms`, `navigation`, `feedback`, `data-display`, `layout`, `overlays`. El nivel atómico ordena la librería; la categoría ayuda al agente a encontrar el componente que resuelve un problema.
+Anota también una **categoría funcional** para cada componente. Proponemos estas, que puedes adaptar:
+
+- **`actions`**: lanzan una acción (Button, IconButton, Link de acción).
+- **`forms`**: piden o editan datos (TextField, Select, Checkbox, DatePicker).
+- **`navigation`**: mueven entre vistas (Tabs, Breadcrumb, Pagination, menú lateral).
+- **`feedback`**: informan del estado o de un resultado (Alert, Toast, ProgressBar, Spinner).
+- **`data-display`**: muestran información (Table, Badge, Avatar, Card).
+- **`layout`**: ordenan el espacio (Stack, Grid, Divider).
+- **`overlays`**: se superponen a la vista (Modal, Popover, Tooltip, Drawer).
+
+Los valores van en inglés porque son valores del inventario y del campo `category` del frontmatter de cada [documento de componente](/documentation/components), y así un script puede compararlos.
+
+El nivel atómico ordena la librería; la categoría ayuda al agente a encontrar el componente que resuelve un problema.
 
 </Callout>
 

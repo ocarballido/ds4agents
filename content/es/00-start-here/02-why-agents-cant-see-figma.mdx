@@ -3,7 +3,7 @@ title: Por qué un agente no ve tu Figma
 meta_title: Por qué un agente de IA no entiende tu archivo de Figma
 description: Un agente de IA no interpreta tu diseño como tú. Qué información le llega de Figma, qué se pierde por el camino y por qué la documentación decide la calidad de lo que genera.
 nav_title: Por qué un agente no ve tu Figma
-lastReviewed: 2026-10-20
+lastReviewed: 2026-10-21
 ---
 
 Cuando miras un componente en Figma, ves su intención: sabes que el botón verde es la acción principal y que no debe repetirse en la misma vista. Un agente de IA no ve eso. Esta página explica qué información le llega de tu archivo, qué se pierde por el camino y por qué toda la guía gira alrededor de esa diferencia.
@@ -26,8 +26,8 @@ La palabra importante es *estructurado*. La documentación de Figma lo dice de f
 | Tú ves | El agente recibe |
 |---|---|
 | Un botón verde de acción principal | Un nodo con un nombre, unas propiedades y unos valores |
-| Que ese verde es el color de marca | Una variable enlazada, si existe; un valor hexadecimal, si no |
-| Que el botón es el mismo en toda la librería | Una instancia de un componente, si lo es; un grupo de capas, si no |
+| Que ese verde es el color de marca | Si el color está enlazado a una variable, su nombre. Si no, solo un valor hexadecimal. |
+| Que el botón es el mismo en toda la librería | Si el botón es un componente, una instancia. Si no, un grupo de capas sin relación con los demás botones. |
 | Que no debe haber dos botones principales en una vista | Nada, salvo que esté escrito en algún sitio |
 
 La última fila es la que más importa en esta guía.

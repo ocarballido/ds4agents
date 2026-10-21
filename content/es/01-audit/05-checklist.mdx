@@ -1,9 +1,9 @@
 ---
 title: Lista de comprobación
 meta_title: "Lista de comprobación: auditoría de un sistema de diseño para agentes de IA"
-description: El entregable de la auditoría (inventory.md con la scorecard), los pasos para producirlo y los criterios para darlo por terminado.
+description: El entregable de la auditoría (inventory.md con la scorecard de madurez), los pasos para producirlo y los criterios para darlo por terminado.
 nav_title: Lista de comprobación
-lastReviewed: 2026-10-20
+lastReviewed: 2026-10-21
 ---
 
 Esta lista resume la fase de auditoría: el entregable que produce, los pasos para obtenerlo y los criterios para darlo por terminado. Sirve para el piloto y para cada auditoría que repitas después.
@@ -17,7 +17,7 @@ Esta lista resume la fase de auditoría: el entregable que produce, los pasos pa
 
 ## El entregable
 
-`docs/inventory.md`: una fila por componente, la lista de obsoletos, las diferencias entre Figma y código y la scorecard con fecha. Este archivo es, más adelante, el índice que lee el agente ([capítulo 6](/agent-layer/claude-md#la-plantilla)).
+`docs/inventory.md`: una fila por componente, la lista de obsoletos, las diferencias entre Figma y código y la [scorecard de madurez (rúbrica propia)](/audit/maturity-scorecard#una-rúbrica-propia) con fecha. Este archivo es, más adelante, el índice que lee el agente ([capítulo 6](/agent-layer/claude-md#la-plantilla)).
 
 ```markdown filename="docs/inventory.md" preview
 ---
@@ -69,7 +69,7 @@ Estados: stable · beta · deprecated · figma-only · code-only
 2. Anota cada componente con nivel, categoría y estado ([Inventario de Figma](/audit/figma-inventory)).
 3. Cruza con el código y anota cada diferencia con su decisión ([Inventario de código](/audit/code-inventory)).
 4. Lista los obsoletos con su sustituto, aunque estén fuera del alcance.
-5. Puntúa los ocho criterios de la scorecard y escribe la fecha ([Scorecard de madurez](/audit/maturity-scorecard)).
+5. Puntúa los ocho criterios de la scorecard y escribe la fecha ([Scorecard de madurez](/audit/maturity-scorecard#una-rúbrica-propia)).
 
 ## Criterios para darlo por terminado
 
