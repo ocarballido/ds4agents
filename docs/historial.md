@@ -2,6 +2,19 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-10-22 · Diseño, desarrollo y contenido · Fase 5 de G22 terminada (G31 a G33)
+
+- En designtokens101 (D68 a D71): Code Connect con archivos de plantilla (CLI), no con Code Connect UI, porque tres componentes necesitan traducir propiedades (G31). Conectados los seis componentes del piloto, AnnotatedCode y los 26 iconos (con un archivo batch). Las reglas llegan por la descripción del componente y por `docs/`, sin instrucciones para el MCP (G32). Los fragmentos de la familia CodeBlock usan la sintaxis del MDX. Comprobado con `get_code_connect_map` el 2026-10-22.
+- Hallazgos para la guía:
+  - Code Connect UI muestra las conexiones creadas con el CLI, pero no las edita.
+  - En Professional, la primera publicación fija la librería y el framework activos.
+  - Las plantillas no tienen un campo de instrucciones (Template API).
+  - `language` solo se declara en `figma.config.json`, para todo el proyecto, y no admite markdown.
+  - Los iconos se conectan con un archivo batch.
+  - Si se conectan los iconos sin sus contenedores, el mapa de un marco devuelve los iconos sueltos.
+- Capítulo 5 con G32 (`lastReviewed` 2026-10-22): sección "Con archivos de plantilla" en `03-mcp-instructions` (Template API en Fuentes); entregable, paso 2, tercer criterio y resumen de `06-checklist` con las dos vías; tabla de `01-code-connect` ("No: las plantillas no tienen un campo para instrucciones"), `05-jsdoc`, `07-evaluation/04-contributing` (pasos y Definition of Done), `00-start-here/03-guide-map` y `04-documentation/08-one-source-many-channels` (tabla y viñeta), corregidos para no decir que toda conexión lleva instrucciones.
+- Sin reflejar todavía en el capítulo 5: batch para iconos, `language` global sin markdown, primera publicación en Professional e iconos sueltos (en `estado.md`).
+
 ## 2026-10-22 · Diseño, desarrollo y contenido · Fase 4 de G22 terminada (G30)
 
 - En designtokens101 (D67, commit 085a34a): `docs/` del piloto con el fundamento de color, cinco documentos de componente (CodePreview dentro de `code-block.md`), dos patrones (página de lección y lista de comprobación), voz y tono y reglas; guidelines de Figma generadas con `docs:figma` y subidas a TokensDS; `validate-docs` en CI; en Figma, línea Docs: y enlace de documentación al Markdown.

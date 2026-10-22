@@ -2,7 +2,7 @@
 
 Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El detalle de lo hecho va en `docs/historial.md`.
 
-Última actualización: 2026-10-22, fase 4 de G22 cerrada (G30; D67 en designtokens101, commit 085a34a): `docs/` del piloto, guidelines de Figma generadas desde `docs/`, `validate-docs` en CI y línea Docs: en Figma. Siguiente: fase 5 (Code Connect).
+Última actualización: 2026-10-22, fase 5 de G22 cerrada (G31 a G33; D68 a D71 en designtokens101): Code Connect con plantillas para el piloto, AnnotatedCode y los 26 iconos, reglas por la descripción y por `docs/`, comprobado con `get_code_connect_map`. Siguiente: fase 6 (capa de agente).
 
 ## Plan general
 
@@ -13,10 +13,11 @@ Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El
 | 3 | Contenido | Escribir las páginas a partir de `docs/guia-fuente.md` | Hecho (2026-10-20): 53 páginas, con listas de comprobación (G14); revisión de Oscar pendiente |
 | 4 | Diseño | Marca definitiva e ilustración de portada (G16) | Hecho (2026-10-20) |
 | 5 | Desarrollo | Despliegue en Vercel y dominio `ds4agents.com` (G17) | Hecho (2026-10-21) |
-| 6 | Diseño y desarrollo | Aplicar la guía al propio sistema (G22), en designtokens101 | En curso: fases 1 a 4 terminadas (`docs/` de designtokens101, 2026-10-22); siguiente, fase 5 (Code Connect) |
+| 6 | Diseño y desarrollo | Aplicar la guía al propio sistema (G22), en designtokens101 | En curso: fases 1 a 5 terminadas (2026-10-22); siguiente, fase 6 (capa de agente) |
 
 ## Pendiente
 
+- **Hallazgos de la fase 5 sin reflejar en el capítulo 5:** batch para iconos, language global sin markdown, primera publicación en Professional e iconos sueltos en contenedores no conectados (designtokens101, docs/inventory.md).
 - **Fase 6 (G22):** decidir cómo consume ds4agents el `docs/` de designtokens101 (enlace, submódulo o paquete), y documentar en la capa de agente de ds4agents la excepción de G15 (`BookOpenText` en Takeaways), porque Figma solo tiene el birrete.
 
 - **CodePreview (G18):** los tres puntos abiertos de V60 (contraste de la pestaña en `active` en Dark, `hover` en el carril, código en línea de la vista previa) se deciden en designtokens101 y se copian aquí (G02).
