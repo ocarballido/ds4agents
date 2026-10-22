@@ -3,7 +3,7 @@ title: Contribuir
 meta_title: "Proceso de contribución y Definition of Done de un componente para agentes de IA"
 description: Cómo se añade o se cambia un componente sin romper lo que leen los agentes, qué Definition of Done debe cumplir y cómo se retira un componente.
 nav_title: Contribuir
-lastReviewed: 2026-10-21
+lastReviewed: 2026-10-22
 ---
 
 Un sistema preparado para agentes se degrada en cuanto alguien añade un componente sin documento o cambia una prop sin actualizar Code Connect. El proceso de contribución evita eso: dice qué tiene que tener un componente para considerarse terminado.
@@ -28,7 +28,7 @@ Un cambio en el sistema sigue estos pasos, en este orden:
 2. **Diseño** en una rama de la librería de Figma.
 3. **Código** y su historia de Storybook.
 4. **Documento** en `docs/`, con frontmatter.
-5. **Code Connect** y sus instrucciones para el MCP.
+5. **Code Connect** y sus reglas para el agente: instrucciones para el MCP con Code Connect UI, o la descripción con su enlace a `docs/` con archivos de plantilla.
 6. **Evaluaciones:** las de regresión siguen pasando.
 7. **Changelog** y publicación en todos los destinos.
 
@@ -41,7 +41,7 @@ Un cambio en el sistema sigue estos pasos, en este orden:
 - [ ] Cumple la lista Ready for AI en Figma
 - [ ] Usa solo tokens semánticos o de componente
 - [ ] Tiene documento en docs/components/ y pasa la validación
-- [ ] Está conectado con Code Connect, con instrucciones para el MCP
+- [ ] Está conectado con Code Connect, con instrucciones para el MCP (Code Connect UI) o con la descripción y su enlace a docs/ (plantillas)
 - [ ] Tiene historia con @summary y JSDoc en sus props
 - [ ] Las evaluaciones de regresión siguen pasando
 - [ ] No contradice ninguna regla escrita en docs/rules/ ni en AGENTS.md

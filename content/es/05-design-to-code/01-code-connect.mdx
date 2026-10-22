@@ -3,7 +3,7 @@ title: Code Connect
 meta_title: "Code Connect: que el agente de IA use tus componentes reales al implementar un diseño"
 description: Qué es Code Connect, qué recibe un agente gracias a él a través del servidor MCP de Figma, en qué se diferencian la versión de interfaz y la de línea de comandos y qué plan pide.
 nav_title: Code Connect
-lastReviewed: 2026-10-20
+lastReviewed: 2026-10-22
 ---
 
 Sin Code Connect, un agente que lee un botón en Figma tiene que adivinar qué componente de tu código le corresponde. Con Code Connect, recibe el import y el fragmento de código reales. Figma lo describe como la forma más eficaz de que el agente reutilice tus componentes.
@@ -34,10 +34,10 @@ La herramienta `get_code_connect_map` devuelve, para cada instancia seleccionada
 | Dónde se trabaja | Dentro de Figma | En el repositorio |
 | Cómo se crea la conexión | Ruta del componente, a mano o con el repositorio de GitHub conectado | Archivos de plantilla junto al código |
 | Qué fragmento recibe el agente | Import y uso básico, generados desde la ruta, el nombre y las propiedades | Import y fragmento exactos, escritos por el equipo |
-| Instrucciones para el MCP | Sí, una por conexión | No documentado en la interfaz de línea de comandos |
+| Instrucciones para el MCP | Sí, una por conexión | No: las plantillas no tienen un campo para instrucciones |
 | Quién lo suele mantener | Diseño | Desarrollo |
 
-Fuentes: [Figma: Code Connect](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect) y [Figma: Code Connect integration](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/).
+Fuentes: [Figma: Code Connect](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect), [Figma: Code Connect integration](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/) y [Figma: Template API](https://developers.figma.com/docs/code-connect/template-api/).
 
 Las dos se pueden usar en el mismo sistema. Las conexiones creadas por línea de comandos aparecen en la interfaz, pero solo se editan desde la línea de comandos. Para la línea de comandos, Figma recomienda ahora los archivos de plantilla, independientes del framework: los analizadores específicos de cada framework ya no se mantienen de forma activa ([Figma: Code Connect](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)).
 
@@ -71,4 +71,5 @@ Los mismos que documentaste primero: los del piloto y los que más se insertan. 
 - [Figma: Code Connect](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)
 - [Figma: Structure your Figma file for better code](https://developers.figma.com/docs/figma-mcp-server/structure-figma-file/)
 - [Figma: Code Connect integration](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/)
+- [Figma: Template API](https://developers.figma.com/docs/code-connect/template-api/)
 - [Figma: Tools and prompts](https://developers.figma.com/docs/figma-mcp-server/tools-and-prompts/)

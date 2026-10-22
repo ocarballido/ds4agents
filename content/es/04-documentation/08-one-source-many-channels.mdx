@@ -3,7 +3,7 @@ title: Una fuente, varios destinos
 meta_title: "Publicar la documentación de un sistema de diseño en Figma, Claude y el repositorio"
 description: Cómo publicar la misma documentación Markdown en las guidelines de Figma, en Code Connect, en el repositorio, en Claude y en Storybook sin mantener copias distintas.
 nav_title: Una fuente, varios destinos
-lastReviewed: 2026-10-21
+lastReviewed: 2026-10-22
 ---
 
 Cada herramienta lee las reglas del sistema en un sitio distinto: el agente de Figma, en las guidelines; Claude Code, en el repositorio; Claude Design, en el sistema de diseño de Claude. Si escribes una versión para cada una, acabarán diciendo cosas distintas. Esta página propone escribir una vez y publicar en cada destino.
@@ -21,7 +21,7 @@ Cada herramienta lee las reglas del sistema en un sitio distinto: el agente de F
 | Destino | Quién lo lee | Límites | Fuente |
 |---|---|---|---|
 | Guidelines de la librería | El agente de Figma | De 3 a 8 archivos, menos de 100 KB recomendados, 200 KB como máximo | [Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511) |
-| Instrucciones de Code Connect | Agentes que leen el diseño por el servidor MCP | Una por conexión de componente | [Figma: Code Connect integration](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/) |
+| Instrucciones de Code Connect | Agentes que leen el diseño por el servidor MCP | Una por conexión de Code Connect UI | [Figma: Code Connect integration](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/) |
 | `CLAUDE.md` o `AGENTS.md` | Claude Code y otros agentes de código, en cada sesión | Menos de 200 líneas por archivo, según Claude Code | [Claude Code: Memory](https://code.claude.com/docs/en/memory) |
 | Skills | Claude Code, cuando la tarea coincide | `SKILL.md` de menos de 500 líneas | [Claude Code: Skills](https://code.claude.com/docs/en/skills) |
 | Sistema de diseño en Claude | Claude Design, en los chats, en Artifacts y en Claude Code | En beta; es un artifact que se crea desde un chat o con `/design-sync` | [Claude Help: Set up your design system](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design) |
@@ -51,7 +51,7 @@ La fuente es la carpeta `docs/` del repositorio, porque es el único sitio con h
 ## Qué va a cada destino
 
 - **Guidelines de Figma:** las reglas que afectan al diseño (fundamentos, antipatrones, patrones), agrupadas en pocos archivos. No las props: el agente de Figma trabaja con los componentes de la librería, no con el código.
-- **Instrucciones de Code Connect:** dos o tres líneas por componente con lo que un agente de código necesita al implementarlo, sacadas de la sección Reglas de su documento. Lo vemos en [Instrucciones para el MCP](/design-to-code/mcp-instructions).
+- **Instrucciones de Code Connect:** solo con Code Connect UI, dos o tres líneas por componente con lo que un agente de código necesita al implementarlo, sacadas de la sección Reglas de su documento. Lo vemos en [Instrucciones para el MCP](/design-to-code/mcp-instructions).
 - **`CLAUDE.md` o `AGENTS.md`:** las reglas que valen siempre y un mapa de la carpeta `docs/`, no los documentos enteros. Claude Code permite importar archivos con `@ruta`, pero los archivos importados se cargan al empezar la sesión y no reducen el coste de contexto ([Claude Code: Memory](https://code.claude.com/docs/en/memory)). Mejor enlazar las rutas y dejar que el agente abra lo que necesite ([capítulo 6](/agent-layer/progressive-disclosure)).
 - **Sistema de diseño en Claude:** el repositorio con los componentes y la documentación, como una de sus fuentes. Si los componentes son de React, `/design-sync` desde Claude Code lee los tokens y los componentes directamente ([Claude Help: Set up your design system](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)). Lo vemos en [Sistemas de diseño en Claude](/agent-layer/claude-design).
 - **Storybook:** si usas su MCP, el manifiesto de documentación solo recoge lo que está escrito en los archivos MDX, no valores importados de otros archivos ([Storybook: Best practices](https://storybook.js.org/docs/ai/best-practices)).

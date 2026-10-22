@@ -1,9 +1,9 @@
 ---
 title: Lista de comprobación
 meta_title: "Lista de comprobación: vincular componentes de Figma con su código para agentes de IA"
-description: El entregable de la fase de diseño y código (componentes conectados con Code Connect, con instrucciones para el MCP, y Storybook si usas React), los pasos y los criterios para darla por terminada.
+description: El entregable de la fase de diseño y código (componentes conectados con Code Connect, con sus reglas para el agente, y Storybook si usas React), los pasos y los criterios para darla por terminada.
 nav_title: Lista de comprobación
-lastReviewed: 2026-10-20
+lastReviewed: 2026-10-22
 ---
 
 Esta lista resume el vínculo entre diseño y código: el entregable, los pasos para producirlo y los criterios para darlo por terminado. Aplícala a cada componente que conectes.
@@ -17,7 +17,7 @@ Esta lista resume el vínculo entre diseño y código: el entregable, los pasos 
 
 ## El entregable
 
-- Los componentes del alcance conectados con Code Connect, cada uno con sus instrucciones para el MCP.
+- Los componentes del alcance conectados con Code Connect, cada uno con sus reglas para el agente: con Code Connect UI, sus instrucciones para el MCP; con archivos de plantilla, la descripción del componente con su enlace a `docs/` ([Instrucciones para el MCP](/design-to-code/mcp-instructions#con-archivos-de-plantilla)).
 - Si usas Storybook con React: el servidor MCP instalado, el manifiesto activado y `@summary` en los componentes del alcance.
 - La columna Code Connect de `inventory.md` al día.
 
@@ -26,7 +26,7 @@ Code Connect pide Figma Professional o superior, con asiento Full o Dev ([Requis
 ## Pasos
 
 1. Conecta cada componente en Code Connect UI ([Mapear propiedades](/design-to-code/mapping-props#conectar-en-code-connect-ui)), o con un archivo de plantilla si necesitas fragmentos exactos.
-2. Añade a cada conexión sus instrucciones para el MCP, resumidas desde la sección Reglas de su documento ([Instrucciones para el MCP](/design-to-code/mcp-instructions)).
+2. Con Code Connect UI, añade a cada conexión sus instrucciones para el MCP, resumidas desde la sección Reglas de su documento ([Instrucciones para el MCP](/design-to-code/mcp-instructions)). Con archivos de plantilla, que no tienen instrucciones, comprueba que la descripción de cada componente lleva sus reglas y la línea `Docs:` ([Descripciones](/figma/descriptions#una-plantilla-de-cinco-líneas)).
 3. En un marco con varios componentes del alcance, pide `get_code_connect_map` y revisa cada instancia ([Comprobar con el MCP](/figma/verify-with-mcp)).
 4. Si usas Storybook: instala el MCP, activa el manifiesto y escribe el JSDoc ([Storybook y su MCP](/design-to-code/storybook-mcp), [JSDoc para agentes](/design-to-code/jsdoc)).
 5. Actualiza `inventory.md`.
@@ -35,7 +35,7 @@ Code Connect pide Figma Professional o superior, con asiento Full o Dev ([Requis
 
 - `get_code_connect_map` devuelve el componente de código de cada instancia del alcance.
 - El fragmento importa desde la ruta correcta.
-- Las instrucciones aparecen en la respuesta del servidor MCP junto al fragmento.
+- Las reglas llegan al agente: con Code Connect UI, las instrucciones aparecen en la respuesta del servidor MCP junto al fragmento; con archivos de plantilla, `get_design_context` devuelve la descripción del componente con su enlace a `docs/`.
 - Si usas Storybook, `docs-show` devuelve las props del componente con sus descripciones.
 
 <Takeaways>
@@ -44,7 +44,7 @@ Code Connect pide Figma Professional o superior, con asiento Full o Dev ([Requis
 
 - El entregable son componentes conectados con su código, cada uno con sus reglas para el agente.
 - Storybook añade las props y los ejemplos de uso si trabajas con React.
-- La fase está terminada cuando el MCP devuelve el componente real y sus instrucciones.
+- La fase está terminada cuando el MCP devuelve el componente real y sus reglas: las instrucciones o la descripción con su enlace a `docs/`.
 
 </Takeaways>
 

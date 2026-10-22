@@ -1,9 +1,9 @@
 ---
 title: Instrucciones para el MCP
 meta_title: "Instrucciones para el MCP en Code Connect: reglas de uso que recibe el agente"
-description: Cómo añadir a cada conexión de Code Connect instrucciones que el servidor MCP de Figma entrega al agente como reglas, y qué escribir en ellas.
+description: Cómo añadir a cada conexión de Code Connect UI instrucciones que el servidor MCP de Figma entrega al agente como reglas, qué escribir en ellas y por dónde llegan las reglas si conectas con archivos de plantilla.
 nav_title: Instrucciones para el MCP
-lastReviewed: 2026-10-20
+lastReviewed: 2026-10-22
 ---
 
 Code Connect UI permite escribir, en cada conexión, instrucciones para el agente. El servidor MCP de Figma las incluye junto al fragmento del componente como reglas de usuario. Es la vía documentada para que una regla de uso llegue a un agente de código que lee tu diseño.
@@ -12,6 +12,7 @@ Code Connect UI permite escribir, en cada conexión, instrucciones para el agent
 
 - [Qué son](#qué-son)
 - [Cómo se añaden](#cómo-se-añaden)
+- [Con archivos de plantilla](#con-archivos-de-plantilla)
 - [Qué escribir](#qué-escribir)
 - [De dónde sacarlas](#de-dónde-sacarlas)
 - [En resumen](#en-resumen)
@@ -31,6 +32,16 @@ Como van por conexión, cada implementación (React, SwiftUI) puede tener las su
 Fuente: [Figma: Code Connect UI setup](https://developers.figma.com/docs/code-connect/code-connect-ui-setup/).
 
 Para comprobar el resultado, selecciona el componente conectado, cambia sus propiedades en Figma y mira el fragmento que se genera. Figma advierte que la vista previa puede diferir un poco de lo que produce el modelo en un uso real.
+
+## Con archivos de plantilla
+
+Las instrucciones para el MCP son de Code Connect UI. Una conexión creada con la línea de comandos aparece en Code Connect UI, pero solo se edita desde la línea de comandos ([Figma: Code Connect](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)). Y los archivos de plantilla no tienen un campo para instrucciones: declaran el fragmento (`example`), un identificador (`id`) y metadatos como `nestable` o `props` ([Figma: Template API](https://developers.figma.com/docs/code-connect/template-api/)).
+
+<Callout variant="recommendation">
+
+Si conectas con archivos de plantilla, escribe las reglas en la descripción del componente en Figma, con la línea `Docs:` que enlaza a su documento de `docs/` ([Descripciones](/figma/descriptions#una-plantilla-de-cinco-líneas)). `get_design_context` entrega la descripción, con ese enlace, junto al diseño ([Descripciones](/figma/descriptions#dónde-se-ve)), y el agente abre el documento completo en el repositorio.
+
+</Callout>
 
 ## Qué escribir
 
@@ -65,6 +76,7 @@ Las instrucciones son un resumen de la sección Reglas del documento del compone
 ## En resumen
 
 - Code Connect UI permite escribir instrucciones por conexión, que el servidor MCP entrega al agente como reglas.
+- Con archivos de plantilla no hay instrucciones: las reglas llegan por la descripción del componente, con su enlace a `docs/`.
 - Tres o cuatro reglas cortas: las que más errores evitan al implementar.
 - Se resumen desde la sección Reglas del documento del componente.
 
@@ -75,3 +87,4 @@ Las instrucciones son un resumen de la sección Reglas del documento del compone
 - [Figma: Code Connect](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)
 - [Figma: Code Connect integration](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/)
 - [Figma: Code Connect UI setup](https://developers.figma.com/docs/code-connect/code-connect-ui-setup/)
+- [Figma: Template API](https://developers.figma.com/docs/code-connect/template-api/)

@@ -3,7 +3,7 @@ title: JSDoc para agentes
 meta_title: "JSDoc en componentes y props para el manifiesto de Storybook"
 description: Cómo escribir los comentarios JSDoc de un componente, de sus props y de sus historias para que lleguen al manifiesto de Storybook, y cómo excluir los antipatrones.
 nav_title: JSDoc para agentes
-lastReviewed: 2026-10-21
+lastReviewed: 2026-10-22
 ---
 
 Los tipos de las props dicen qué valores admite un componente. Los comentarios JSDoc dicen cuándo usarlo. Storybook extrae esos comentarios al manifiesto que lee el agente, así que son la forma de poner reglas de uso dentro del propio código.
@@ -23,7 +23,7 @@ TypeScript documenta la forma de las props: qué valores admite cada una. No doc
 
 JSDoc nació como un generador de documentación para JavaScript ([JSDoc: Getting started](https://jsdoc.app/about-getting-started)). No es un estándar formal, sino una convención de comentarios muy extendida que TypeScript y los editores reconocen. En los archivos `.ts` y `.tsx`, TypeScript solo usa las etiquetas de documentación, como `@deprecated`, `@see` y `@link`; las demás etiquetas sirven para tipar archivos JavaScript ([TypeScript: JSDoc Reference](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html)).
 
-En esta guía usamos JSDoc porque Storybook extrae esos comentarios al manifiesto que lee el agente ([Storybook: Best practices](https://storybook.js.org/docs/ai/best-practices)). Code Connect funciona de otra forma: lo que entrega al agente sale de su [plantilla `.figma.ts`](/design-to-code/mapping-props#mapear-con-un-archivo-de-plantilla) y de sus [instrucciones para el MCP](/design-to-code/mcp-instructions), no de estos comentarios ([Code Connect](/design-to-code/code-connect#qué-recibe-el-agente)).
+En esta guía usamos JSDoc porque Storybook extrae esos comentarios al manifiesto que lee el agente ([Storybook: Best practices](https://storybook.js.org/docs/ai/best-practices)). Code Connect funciona de otra forma: lo que entrega al agente sale de su [plantilla `.figma.ts`](/design-to-code/mapping-props#mapear-con-un-archivo-de-plantilla) o de sus [instrucciones para el MCP](/design-to-code/mcp-instructions), si usas Code Connect UI, no de estos comentarios ([Code Connect](/design-to-code/code-connect#qué-recibe-el-agente)).
 
 ## El resumen del componente
 
