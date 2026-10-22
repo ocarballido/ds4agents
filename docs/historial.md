@@ -2,6 +2,12 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-10-22 · Diseño, desarrollo y contenido · Fase 4 de G22 terminada (G30)
+
+- En designtokens101 (D67, commit 085a34a): `docs/` del piloto con el fundamento de color, cinco documentos de componente (CodePreview dentro de `code-block.md`), dos patrones (página de lección y lista de comprobación), voz y tono y reglas; guidelines de Figma generadas con `docs:figma` y subidas a TokensDS; `validate-docs` en CI; en Figma, línea Docs: y enlace de documentación al Markdown.
+- Scripts de la guía comparados con los de designtokens101 y probados con las plantillas de la guía (`text-field.md` del capítulo 4, inventario de `/audit/checklist`, árbol de `docs/` de Por qué Markdown). Las diferencias de `tools/validate-docs.mjs` (listas en varias líneas, variantes como CodePreview) y de `tools/build-figma-guidelines.mjs` (grupo de componentes, borrado de la salida, tamaño por archivo) son adaptaciones al repositorio. Corregido en `09-validate-docs` (`lastReviewed` 2026-10-22): `tokens: []` pasaba como si tuviera tokens; ahora la lista vacía cuenta como vacía, y el texto lo dice.
+- Errata en `03-tokens/02-semantic-first` y `03-tokens/04-checklist`: "dilo y propón el token que falta".
+
 ## 2026-10-21 · Contenido · Capítulo 3 con lo comprobado en el MCP (fase 3)
 
 - `03-tokens/03-descriptions-in-dtcg` (`lastReviewed` 2026-10-21), en "De Figma a DTCG": `get_design_context` no entrega la descripción de las variables (da el nombre como `var(--…)` con su valor de reserva, los estilos de texto, las descripciones de componente y las anotaciones) y `get_variable_defs` tampoco (nombre y valor); el agente recibe las descripciones de token por el repositorio. Punto nuevo en "En resumen". Comprobado en designtokens101, commit 5eb5a04.

@@ -3,7 +3,7 @@ title: Validar la documentación
 meta_title: "Validar de forma automática la documentación de un sistema de diseño"
 description: Cómo comprobar con un script que cada componente estable tiene enlace a Figma, a código y a sus tokens, cómo ejecutarlo en cada pull request y cómo revisar las instrucciones para agentes en busca de contradicciones.
 nav_title: Validar la documentación
-lastReviewed: 2026-10-21
+lastReviewed: 2026-10-22
 ---
 
 La documentación se degrada en silencio: alguien añade un componente y no escribe su documento, o cambia una prop y no actualiza la tabla. Un script que revisa el frontmatter en cada cambio evita lo primero; una revisión periódica de las instrucciones evita lo segundo.
@@ -52,7 +52,7 @@ for (const file of fs.readdirSync(DIR).filter((f) => f.endsWith('.md'))) {
     block[1].split('\n').map((line) => line.split(/:\s(.*)/s)).filter(([k, v]) => k && v !== undefined),
   );
   for (const key of REQUIRED[data.status] ?? []) {
-    if (!data[key]) errors.push(`${file}: status ${data.status} sin "${key}"`);
+    if (!data[key] || data[key] === '[]') errors.push(`${file}: status ${data.status} sin "${key}"`);
   }
   if (data.code && !fs.existsSync(data.code)) errors.push(`${file}: no existe ${data.code}`);
   if (!inventory.has(data.name)) errors.push(`${file}: ${data.name} no está en inventory.md`);
@@ -67,7 +67,7 @@ console.log(errors.length ? errors.join('\n') : 'Documentación sin errores');
 process.exitCode = errors.length ? 1 : 0;
 ```
 
-El script lee el frontmatter de forma simple, línea a línea. Si tus documentos usan listas o valores en varias líneas, usa una librería de YAML. De `inventory.md` lee la primera tabla, la de la [plantilla de la auditoría](/audit/checklist#el-entregable): el nombre de cada componente y la columna Doc.
+El script lee el frontmatter de forma simple, línea a línea: entiende las listas en una línea (`tokens: [a, b]`) y da por vacía la lista `[]`. Si tus documentos usan listas o valores en varias líneas, usa una librería de YAML. De `inventory.md` lee la primera tabla, la de la [plantilla de la auditoría](/audit/checklist#el-entregable): el nombre de cada componente y la columna Doc.
 
 ## Cómo ejecutarlo
 
