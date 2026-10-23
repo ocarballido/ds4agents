@@ -12,8 +12,13 @@ Los documentos de `docs/` son la fuente de verdad compartida entre las sesiones 
 Lee bajo demanda, cuando el trabajo lo pida:
 - `docs/historial.md`: detalle de lo hecho en cada frente.
 - `docs/sistema/`: especificación del sistema de diseño **heredada de designtokens101** (tokens, componentes, entrega de diseño, paso a código). Los códigos de decisión que aparecen ahí (V12, D17, S27…) y en los comentarios del código son los de designtokens101.
+- `docs/sistema/libreria/`: la documentación del sistema (componentes, fundamentos, patrones, reglas y contenido), copia literal del `docs/` de designtokens101 (G35). No se edita aquí: un cambio se hace primero en designtokens101 y se copia.
 - `docs/guia-fuente.md`: índice de la guía extendida de la que sale el contenido, con el reparto por capítulo.
 - `content/README.md`: convenciones de las páginas MDX.
+
+## Excepciones a la librería
+
+- **Takeaways (G15):** usa el icono `BookOpenText` de lucide-react, no `li:graduation-cap`. Figma y `docs/sistema/libreria/components/takeaways.md` muestran el birrete; en ds4agents manda esta excepción.
 
 ## Reglas de trabajo
 

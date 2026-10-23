@@ -2,6 +2,12 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-10-23 · Desarrollo · Fase 6 de G22: copia de la documentación de la librería (G35)
+
+- `docs/` de designtokens101 copiado a `docs/sistema/libreria/` desde el commit e4aa515 (`main`, "docs: cierre de la fase 5 (D68 a D71)"): 11 archivos en `components/` (cinco), `content/`, `foundations/`, `patterns/` (dos) y `rules/` (dos). Sin `inventory.md`, que es trabajo del piloto.
+- Revisión de rutas y enlaces de la copia, sin cambiar los archivos. Existen en ds4agents las rutas de `code` de los cinco componentes y de `lesson-page.md`, `src/app/layout.tsx`, `tokens/dtcg/semantic-color/` y el enlace relativo `../rules/rules-tokens.md`. No existen: `docs/components/callout.md`, `docs/components/code-block.md`, `docs/components/takeaways.md` y `docs/patterns/lesson-page.md` (aquí están en `docs/sistema/libreria/`), `content/es/98-tools/` (ds4agents no tiene herramientas; 98 es Plantillas) y `ColorScale` en `lesson-page.md` (quitado por G06). `content/es/NN-capitulo/NN-checklist.mdx` es un patrón de nombre, no una ruta.
+- `CLAUDE.md`: `docs/sistema/libreria/` en "Lee bajo demanda" y sección "Excepciones a la librería" con G15.
+
 ## 2026-10-23 · Contenido · Hallazgos de la fase 5 en el capítulo 5 (G34)
 
 - `01-code-connect`: en Requisitos, la primera publicación en Professional activa la librería y el framework; un administrador los cambia en Admin → Settings → Resources → Code Connect; las conexiones del par anterior quedan desactivadas y el MCP no las devuelve.

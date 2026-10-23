@@ -2,7 +2,7 @@
 
 Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El detalle de lo hecho va en `docs/historial.md`.
 
-Última actualización: 2026-10-23, hallazgos de la fase 5 en el capítulo 5 (G34). Fase 5 de G22 cerrada (G31 a G33; D68 a D71 en designtokens101): Code Connect con plantillas para el piloto, AnnotatedCode y los 26 iconos, reglas por la descripción y por `docs/`, comprobado con `get_code_connect_map`. Siguiente: fase 6 (capa de agente).
+Última actualización: 2026-10-23, fase 6 de G22 empezada: copia del `docs/` de designtokens101 (G35) y excepción de G15 en `CLAUDE.md`. Antes, hallazgos de la fase 5 en el capítulo 5 (G34). Fase 5 de G22 cerrada (G31 a G33; D68 a D71 en designtokens101): Code Connect con plantillas para el piloto, AnnotatedCode y los 26 iconos, reglas por la descripción y por `docs/`, comprobado con `get_code_connect_map`. Siguiente: fase 6 (capa de agente).
 
 ## Plan general
 
@@ -17,7 +17,7 @@ Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El
 
 ## Pendiente
 
-- **Fase 6 (G22):** decidir cómo consume ds4agents el `docs/` de designtokens101 (enlace, submódulo o paquete), y documentar en la capa de agente de ds4agents la excepción de G15 (`BookOpenText` en Takeaways), porque Figma solo tiene el birrete.
+- **Fase 6 (G22), en curso:** hecho, cómo consume ds4agents el `docs/` de designtokens101 (copia en `docs/sistema/libreria/`, G35) y la excepción de G15 (`BookOpenText` en Takeaways) en `CLAUDE.md`. La fase sigue abierta.
 
 - **CodePreview (G18):** los tres puntos abiertos de V60 (contraste de la pestaña en `active` en Dark, `hover` en el carril, código en línea de la vista previa) se deciden en designtokens101 y se copian aquí (G02).
 
