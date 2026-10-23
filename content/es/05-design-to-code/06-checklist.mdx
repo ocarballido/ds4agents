@@ -3,7 +3,7 @@ title: Lista de comprobación
 meta_title: "Lista de comprobación: vincular componentes de Figma con su código para agentes de IA"
 description: El entregable de la fase de diseño y código (componentes conectados con Code Connect, con sus reglas para el agente, y Storybook si usas React), los pasos y los criterios para darla por terminada.
 nav_title: Lista de comprobación
-lastReviewed: 2026-10-22
+lastReviewed: 2026-10-23
 ---
 
 Esta lista resume el vínculo entre diseño y código: el entregable, los pasos para producirlo y los criterios para darlo por terminado. Aplícala a cada componente que conectes.
@@ -21,15 +21,16 @@ Esta lista resume el vínculo entre diseño y código: el entregable, los pasos 
 - Si usas Storybook con React: el servidor MCP instalado, el manifiesto activado y `@summary` en los componentes del alcance.
 - La columna Code Connect de `inventory.md` al día.
 
-Code Connect pide Figma Professional o superior, con asiento Full o Dev ([Requisitos](/start-here/requirements)).
+Code Connect pide Figma Professional o superior, con asiento Full o Dev ([Requisitos](/start-here/requirements)). En Professional, la primera publicación fija la librería y el framework activos ([Code Connect](/design-to-code/code-connect#requisitos)).
 
 ## Pasos
 
 1. Conecta cada componente en Code Connect UI ([Mapear propiedades](/design-to-code/mapping-props#conectar-en-code-connect-ui)), o con un archivo de plantilla si necesitas fragmentos exactos.
 2. Con Code Connect UI, añade a cada conexión sus instrucciones para el MCP, resumidas desde la sección Reglas de su documento ([Instrucciones para el MCP](/design-to-code/mcp-instructions)). Con archivos de plantilla, que no tienen instrucciones, comprueba que la descripción de cada componente lleva sus reglas y la línea `Docs:` ([Descripciones](/figma/descriptions#una-plantilla-de-cinco-líneas)).
 3. En un marco con varios componentes del alcance, pide `get_code_connect_map` y revisa cada instancia ([Comprobar con el MCP](/figma/verify-with-mcp)).
-4. Si usas Storybook: instala el MCP, activa el manifiesto y escribe el JSDoc ([Storybook y su MCP](/design-to-code/storybook-mcp), [JSDoc para agentes](/design-to-code/jsdoc)).
-5. Actualiza `inventory.md`.
+4. Pide también `get_code_connect_map` de un marco o una pantalla completos, no solo de cada componente, y revisa que no aparezcan componentes de código que no esperas. En nuestra prueba con el servidor MCP remoto (22 de octubre de 2026) aparecieron iconos sueltos dentro de componentes no conectados.
+5. Si usas Storybook: instala el MCP, activa el manifiesto y escribe el JSDoc ([Storybook y su MCP](/design-to-code/storybook-mcp), [JSDoc para agentes](/design-to-code/jsdoc)).
+6. Actualiza `inventory.md`.
 
 ## Criterios para darlo por terminado
 

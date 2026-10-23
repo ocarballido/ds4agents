@@ -2,6 +2,13 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-10-23 · Contenido · Hallazgos de la fase 5 en el capítulo 5 (G34)
+
+- `01-code-connect`: en Requisitos, la primera publicación en Professional activa la librería y el framework; un administrador los cambia en Admin → Settings → Resources → Code Connect; las conexiones del par anterior quedan desactivadas y el MCP no las devuelve.
+- `02-mapping-props`: sección "Muchos componentes con una plantilla" (archivos batch, con ejemplo), `**/*.figma.batch.json` en el `include` de ejemplo y qué hace `language` (solo resaltado, en el archivo de configuración y sin markdown). Prueba propia del 2026-10-22: sin `component`, el MCP no devolvió el nombre; recomendación de rellenarlo. Fuentes nuevas: Batch files y Config file.
+- `06-checklist`: requisito de la primera publicación en Professional y paso 4 nuevo, el mapa de un marco o una pantalla completos, con los iconos sueltos de nuestra prueba (sin explicar la causa).
+- Fuentes comprobadas el 2026-10-23. `lastReviewed` 2026-10-23 en las tres páginas.
+
 ## 2026-10-22 · Diseño, desarrollo y contenido · Fase 5 de G22 terminada (G31 a G33)
 
 - En designtokens101 (D68 a D71): Code Connect con archivos de plantilla (CLI), no con Code Connect UI, porque tres componentes necesitan traducir propiedades (G31). Conectados los seis componentes del piloto, AnnotatedCode y los 26 iconos (con un archivo batch). Las reglas llegan por la descripción del componente y por `docs/`, sin instrucciones para el MCP (G32). Los fragmentos de la familia CodeBlock usan la sintaxis del MDX. Comprobado con `get_code_connect_map` el 2026-10-22.

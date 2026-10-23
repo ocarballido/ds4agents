@@ -1,9 +1,9 @@
 ---
 title: Mapear propiedades
 meta_title: "Mapear propiedades de Figma a props de código con Code Connect"
-description: Cómo conectar un componente en Code Connect UI y cómo mapear sus propiedades de Figma a las props del código con un archivo de plantilla.
+description: Cómo conectar un componente en Code Connect UI, cómo mapear sus propiedades de Figma a las props del código con un archivo de plantilla y cómo conectar muchos componentes iguales, como los iconos, con un archivo batch.
 nav_title: Mapear propiedades
-lastReviewed: 2026-10-20
+lastReviewed: 2026-10-23
 ---
 
 Mapear es decir a Code Connect que la propiedad `variant` de Figma corresponde a la prop `variant` del código, y que el valor `Error` de Figma corresponde a `invalid={true}`. Si en el capítulo 2 alineaste los nombres, casi todo el mapeo es directo.
@@ -12,6 +12,7 @@ Mapear es decir a Code Connect que la propiedad `variant` de Figma corresponde a
 
 - [Conectar en Code Connect UI](#conectar-en-code-connect-ui)
 - [Mapear con un archivo de plantilla](#mapear-con-un-archivo-de-plantilla)
+- [Muchos componentes con una plantilla](#muchos-componentes-con-una-plantilla)
 - [Cuando los nombres no coinciden](#cuando-los-nombres-no-coinciden)
 - [En resumen](#en-resumen)
 
@@ -57,14 +58,51 @@ La configuración del proyecto indica qué archivos son plantillas:
 ```json filename="figma.config.json"
 {
   "codeConnect": {
-    "include": ["**/*.figma.ts"],
+    "include": ["**/*.figma.ts", "**/*.figma.batch.json"],
     "label": "React",
     "language": "jsx"
   }
 }
 ```
 
+`language` solo controla el resaltado de sintaxis del fragmento en Dev Mode. Se fija en el archivo de configuración, no en cada plantilla, y markdown no está entre los valores admitidos ([Figma: Config file](https://developers.figma.com/docs/code-connect/api/config-file)). Un fragmento de MDX se resalta, por tanto, como `jsx`.
+
 Las conexiones se publican con `npx figma connect publish` ([Figma: Template files](https://developers.figma.com/docs/code-connect/template-files/)). Los métodos para leer propiedades (`getString`, `getEnum`, `getBoolean`, `getInstanceSwap`, `getSlot` y otros) están en la [referencia de la API de plantillas](https://developers.figma.com/docs/code-connect/template-api/).
+
+## Muchos componentes con una plantilla
+
+Un archivo batch conecta con una sola plantilla muchos componentes con la misma estructura. El caso típico son los iconos. Son dos archivos ([Figma: Batch files](https://developers.figma.com/docs/code-connect/batch-files/)):
+
+- `*.figma.batch.ts`: la plantilla. Lee los datos de cada componente en `figma.batch`.
+- `*.figma.batch.json`: la lista de componentes. Cada entrada lleva `url` (obligatoria) y, si quieres, `component` y `source`, que sustituyen a los comentarios `// component=` y `// source=` de una plantilla normal. Los demás campos que añadas llegan también a `figma.batch`.
+
+```ts filename="src/icons/icons.figma.batch.ts"
+import figma from 'figma'
+
+export default {
+  example: figma.code`<${figma.batch.component} />`,
+  id: figma.batch.id,
+}
+```
+
+```json filename="src/icons/icons.figma.batch.json"
+{
+  "components": [
+    { "url": "https://www.figma.com/design/<archivo>?node-id=<nodo>", "component": "IconArrow", "id": "icon-arrow" },
+    { "url": "https://www.figma.com/design/<archivo>?node-id=<nodo>", "component": "IconClose", "id": "icon-close" }
+  ]
+}
+```
+
+Si el `include` de `figma.config.json` es propio, como en el ejemplo anterior, añade el patrón `**/*.figma.batch.json`. La plantilla `.figma.batch.ts` no hace falta listarla: se lee al procesar la lista ([Figma: Batch files](https://developers.figma.com/docs/code-connect/batch-files/)).
+
+Lo hemos comprobado con el servidor MCP remoto de Figma el 22 de octubre de 2026: en las entradas sin `component`, el servidor no devolvió el nombre del componente.
+
+<Callout variant="recommendation">
+
+Rellena `component` en cada entrada de la lista, aunque sea opcional.
+
+</Callout>
 
 ## Cuando los nombres no coinciden
 
@@ -86,6 +124,7 @@ Cada traducción así es una regla escondida que hay que mantener. Si un compone
 
 - En Code Connect UI basta con la ruta del componente; el fragmento usa los nombres de Figma.
 - Con la línea de comandos, un archivo `.figma.ts` por componente traduce propiedades a props.
+- Para muchos componentes iguales, como los iconos, un archivo batch: una plantilla y una lista, con `component` en cada entrada.
 - Cada traducción entre nombres distintos es una regla que mantener: mejor alinear los nombres.
 
 </Takeaways>
@@ -96,3 +135,5 @@ Cada traducción así es una regla escondida que hay que mantener. Si un compone
 - [Figma: Code Connect integration](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/)
 - [Figma: Template files](https://developers.figma.com/docs/code-connect/template-files/)
 - [Figma: Template API](https://developers.figma.com/docs/code-connect/template-api/)
+- [Figma: Batch files](https://developers.figma.com/docs/code-connect/batch-files/)
+- [Figma: Config file](https://developers.figma.com/docs/code-connect/api/config-file)
