@@ -2,6 +2,12 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-10-23 · Contenido · Voz de ds4agents en el README y G35 ampliada
+
+- `content/README.md`: línea "A quién se escribe" que remite a "Para quién es" (`00-start-here/01-what-is-ds4agents`); sección "Textos de interfaz" con las reglas de error (texto además del color, cuándo aparece, `ErrorSummary`, que existe en `src/components/`) y la celda vacía, con la redacción de `voice-and-tone.md`; restos de designtokens101 cambiados (lección → página, curso → guía, módulo → capítulo, DesignToken101 → ds4agents en `meta_title` y en la recomendación; fuera la frase de los ejercicios).
+- G35 ampliada: la copia excluye `content/voice-and-tone.md`. Borrado de `docs/sistema/libreria/content/` (quedaba vacía).
+- `CLAUDE.md`: la voz está en `content/README.md`; excepciones nuevas ("En resumen" en Takeaways, textos y rutas de ejemplo de designtokens101, sin variante "Ejercicio" ni vocabulario de curso).
+
 ## 2026-10-23 · Desarrollo · Fase 6 de G22: copia de la documentación de la librería (G35)
 
 - `docs/` de designtokens101 copiado a `docs/sistema/libreria/` desde el commit e4aa515 (`main`, "docs: cierre de la fase 5 (D68 a D71)"): 11 archivos en `components/` (cinco), `content/`, `foundations/`, `patterns/` (dos) y `rules/` (dos). Sin `inventory.md`, que es trabajo del piloto.

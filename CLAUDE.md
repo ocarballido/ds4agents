@@ -12,16 +12,19 @@ Los documentos de `docs/` son la fuente de verdad compartida entre las sesiones 
 Lee bajo demanda, cuando el trabajo lo pida:
 - `docs/historial.md`: detalle de lo hecho en cada frente.
 - `docs/sistema/`: especificación del sistema de diseño **heredada de designtokens101** (tokens, componentes, entrega de diseño, paso a código). Los códigos de decisión que aparecen ahí (V12, D17, S27…) y en los comentarios del código son los de designtokens101.
-- `docs/sistema/libreria/`: la documentación del sistema (componentes, fundamentos, patrones, reglas y contenido), copia literal del `docs/` de designtokens101 (G35). No se edita aquí: un cambio se hace primero en designtokens101 y se copia. Como las copias son literales, sus rutas `docs/…` corresponden aquí a `docs/sistema/libreria/…` (por ejemplo, `docs/components/callout.md` → `docs/sistema/libreria/components/callout.md`).
+- `docs/sistema/libreria/`: la documentación del sistema (componentes, fundamentos, patrones, reglas y contenido), copia literal del `docs/` de designtokens101 (G35). No se edita aquí: un cambio se hace primero en designtokens101 y se copia. Como las copias son literales, sus rutas `docs/…` corresponden aquí a `docs/sistema/libreria/…` (por ejemplo, `docs/components/callout.md` → `docs/sistema/libreria/components/callout.md`). La voz y el tono de ds4agents están en `content/README.md`.
 - `docs/guia-fuente.md`: índice de la guía extendida de la que sale el contenido, con el reparto por capítulo.
 - `content/README.md`: convenciones de las páginas MDX.
 
 ## Excepciones a la librería
 
 - **Takeaways (G15):** usa el icono `BookOpenText` de lucide-react, no `li:graduation-cap`. Figma y `docs/sistema/libreria/components/takeaways.md` muestran el birrete; en ds4agents manda esta excepción.
+- **Cierre de cada página:** se llama "En resumen", no "Lo que te llevas" (`takeaways.md`).
+- **Textos y rutas de ejemplo:** los de los documentos de la librería son de designtokens101 (por ejemplo, "Empezar el curso" o `/start-here/what-is-designtoken101` en `button.md`). En ds4agents se usan los suyos.
 - **Página de lección (`patterns/lesson-page.md`):**
   - En ds4agents, el capítulo 98 es Plantillas; no hay `content/es/98-tools/`.
   - `ColorScale` no existe en ds4agents (G06).
+  - No hay variante "Ejercicio" ni vocabulario de curso (G10).
   - La página de ds4agents no es una lección (G10): para su estructura mandan `content/README.md`, la lista de comprobación de cada capítulo (G14) y el cierre "En resumen".
 
 ## Reglas de trabajo
