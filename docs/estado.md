@@ -17,7 +17,10 @@ Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El
 
 ## Pendiente
 
-- **Fase 6 (G22), en curso:** hecho, cómo consume ds4agents el `docs/` de designtokens101 (copia en `docs/sistema/libreria/`, G35) y la excepción de G15 (`BookOpenText` en Takeaways) en `CLAUDE.md`. La fase sigue abierta.
+- **Fase 6 (G22), en curso:**
+  - Hecho en ds4agents: cómo consume el `docs/` de designtokens101 (copia en `docs/sistema/libreria/`, G35) y la excepción de G15 (`BookOpenText` en Takeaways) en `CLAUDE.md`.
+  - Hecho en designtokens101: `AGENTS.md` (D73), skills `build-ui` y `review-ui` (D74), servidor MCP de Figma conectado (por el conector de claude.ai, no por el plugin) y el sistema DesignToken101 en Claude con `/design-sync`, probado en Light y Dark (D75).
+  - Falta: paso 6 (Project, opcional, trabaja solo); la primera prueba con Claude Code del capítulo 6; reflejar en el capítulo 6 tres hallazgos: el conector de claude.ai como tercera vía para el MCP de Figma (no se carga con una clave de API activa), `/design-login` antes del primer `/design-sync` y `_ds_sync.json` como ancla de las siguientes sincronizaciones (prueba propia).
 
 - **CodePreview (G18):** los tres puntos abiertos de V60 (contraste de la pestaña en `active` en Dark, `hover` en el carril, código en línea de la vista previa) se deciden en designtokens101 y se copian aquí (G02).
 
