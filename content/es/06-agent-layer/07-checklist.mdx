@@ -42,6 +42,14 @@ Crea la pantalla de inicio de sesión de la aplicación.
 
 Mira qué hace: si abre `docs/patterns/`, si usa los componentes del sistema, si usa tokens y no valores. Lo que falle indica qué falta en `AGENTS.md` o en la skill. El [capítulo 7](/evaluation/why-evaluate) convierte esta prueba en un método.
 
+Lo hicimos con nuestro sistema el 1 de noviembre de 2026: una sesión nueva de Claude Code, sin más contexto que la petición de una página con uno de los patrones del piloto. El agente cargó solo la skill de crear interfaces y abrió el patrón. Antes de escribir se paró, porque la página nueva cambiaba una decisión cerrada del proyecto y nuestro `CLAUDE.md` pide no improvisar, y propuso opciones. Con la respuesta, escribió una página que sigue el patrón, sin componentes ni props inventados. Se saltó el primer paso de la skill, leer el inventario.
+
+<Callout variant="recommendation">
+
+Si tus instrucciones piden parar ante una decisión, la prueba puede acabar en preguntas: es buena señal, respóndelas y sigue. Compara también lo que hace con los pasos de la skill, no solo el resultado: un paso que se salta es un paso que la skill no deja claro.
+
+</Callout>
+
 ## Criterios para darlo por terminado
 
 - `AGENTS.md` tiene menos de 200 líneas y enlaza a `docs/` en lugar de copiarla.

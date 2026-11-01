@@ -2,6 +2,14 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-11-01 · Contenido y desarrollo · Fase 6 de G22 terminada (G38)
+
+- `06-agent-layer/07-checklist`, "Una primera prueba": nuestra prueba del 1 de noviembre (la sesión se paró ante una decisión cerrada y, con la respuesta, siguió el patrón; se saltó el primer paso de la skill) y una recomendación (responder a las preguntas; comparar con los pasos de la skill, no solo el resultado).
+- `06-agent-layer/03-skills`, "Cómo se escribe": la skill se cargó sola por su descripción, sin nombrarla, y se saltó su primer paso, con enlace a la lista. `lastReviewed` sin cambiar: no se han vuelto a comprobar sus fuentes.
+- En designtokens101 (D77, commit d7b9c93): `docs/foundations/color.md`, sección "Light y Dark", sacada de V10, V20, `tokens.css` y `base.css`. Copiada a `docs/sistema/libreria/foundations/color.md` (G35); las demás copias, iguales. Guidelines de Figma regeneradas (35,0 KB); Oscar sube `overview.md` y `components.md`.
+- Project (paso 6 de la lista del capítulo 6): no se aplica (G38).
+- `npm test`, `npm run build` y `npm run check:content` sin errores.
+
 ## 2026-11-01 · Desarrollo · Primera prueba con Claude Code (capítulo 6, fase 6 de G22)
 
 - En designtokens101 (commit ffee894, detalle en su `historial.md`): sesión nueva sin contexto (`claude -p`) en una copia temporal, con "Crea una página de lección nueva sobre los tokens de opacidad.". Cargó sola `build-ui`, leyó `docs/patterns/lesson-page.md` y se paró antes de cambiar decisiones cerradas del temario, con tres opciones. Con la respuesta, escribió una lección que sigue la receta, sin componentes ni props inventados, pasó `review-ui` y `check:tokens`, y compila con `check:content` sin errores. No leyó `docs/inventory.md` (paso 1 de `build-ui`). Señaló una contradicción en una lección de designtokens101. Resultado en la rama `prueba/cap6-claude-code`.
