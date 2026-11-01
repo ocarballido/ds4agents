@@ -2,6 +2,13 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-11-01 · Contenido · Prueba de Claude Design en el capítulo 6 (G37)
+
+- En designtokens101 (D76, V62 y V63): `/design-sync` subida, DesignToken101 movido a Claude desde Artifacts y actualizado con "Move again"; `Takeaways` salió bien a la primera con el ejemplo en JSX, y la página de lección, sin menú lateral cuando la cabecera de convenciones dijo que la navegación no está en el paquete. `docs/` sin cambios desde la copia de `takeaways.md`.
+- `06-agent-layer/05-claude-design`, "Comprobarlo con un diseño de prueba": dónde se crea el diseño (pestaña Artifacts y menú de sistemas de diseño, con fuente); prueba propia: dentro del proyecto del sistema, el agente no creó ningún diseño; los dos fallos de nuestra prueba (ejemplos solo en MDX y componentes que faltan) y su arreglo; recomendación ampliada. "Mantenerlo al día": "Move again" actualizó el sistema movido sin borrarlo. "Si aún usas la web independiente": la página Artifacts es la de Claude.
+- `06-agent-layer/07-checklist`: paso 5 (probar en un diseño nuevo de Claude, no en el proyecto del sistema) y criterio nuevo (el diseño usa los componentes del sistema y no inventa los que faltan).
+- `npm test`, `npm run build` y `npm run check:content` sin errores.
+
 ## 2026-11-01 · Desarrollo · Próxima `/design-sync` preparada en designtokens101 (D76)
 
 - En designtokens101 (commit d488265): `pilot/build.mjs` marca con `/* @kind other */` las variables `--tw-*` y las de duración, curva y opacidad (53 marcas; `@kind` no está documentado, se comprueba tras la subida); `docs/components/takeaways.md` con una regla y ejemplos en JSX (`Heading2` con `id` y `UnorderedList`). Paquete reconstruido y validado en local con los scripts de la sincronización; nada subido.

@@ -2,7 +2,7 @@
 
 Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El detalle de lo hecho va en `docs/historial.md`.
 
-Última actualización: 2026-11-01, hallazgos de la fase 6 en el capítulo 6 (G36): conector de claude.ai para el MCP de Figma, `/design-sync` en dos pasos (sube a claude.ai/design y se mueve a Claude), `/design-login` y `_ds_sync.json`; datos de la ayuda de Claude Design puestos al día. Antes, 2026-10-23: copia del `docs/` de designtokens101 (G35) y excepción de G15 en `CLAUDE.md`.
+Última actualización: 2026-11-01, prueba de Claude Design en el capítulo 6 (G37), después de mover DesignToken101 a Claude (D76 en designtokens101). Antes, el mismo día: hallazgos de la fase 6 en el capítulo 6 (G36).
 
 ## Plan general
 
@@ -19,10 +19,9 @@ Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El
 
 - **Fase 6 (G22), en curso:**
   - Hecho en ds4agents: cómo consume el `docs/` de designtokens101 (copia en `docs/sistema/libreria/`, G35) y la excepción de G15 (`BookOpenText` en Takeaways) en `CLAUDE.md`.
-  - Hecho en designtokens101: `AGENTS.md` (D73), skills `build-ui` y `review-ui` (D74), servidor MCP de Figma conectado (por el conector de claude.ai, no por el plugin) y el sistema DesignToken101 subido con `/design-sync` a claude.ai/design, probado en Light y Dark (D75).
-  - Hecho en ds4agents: los hallazgos en el capítulo 6 (G36).
-  - Preparado en designtokens101 (D76, 2026-11-01): `@kind other` en las variables `--tw-*` y en duración, curva y opacidad, y `Takeaways` en JSX en `takeaways.md` (ya copiado aquí). Falta, de Oscar: subirlo con `/design-sync` desde una sesión en designtokens101, comprobar en Claude Design si desaparecen los avisos y si `Takeaways` sale bien, y mover DesignToken101 a Claude **antes del 14 de diciembre de 2026**. Si `@kind` funciona o no, es un hallazgo para el capítulo 6.
-  - Falta: paso 6 (Project, opcional, trabaja solo); la primera prueba con Claude Code del capítulo 6.
+  - Hecho en designtokens101: `AGENTS.md` (D73), skills `build-ui` y `review-ui` (D74), servidor MCP de Figma conectado (por el conector de claude.ai, no por el plugin) y el sistema DesignToken101 subido con `/design-sync` (D75) y movido a Claude (D76, V62, V63, 2026-11-01). Desde el traslado, `/design-sync` no llega a Claude: "Move again" o pedírselo a Claude, antes del 14 de diciembre de 2026.
+  - Hecho en ds4agents: los hallazgos en el capítulo 6 (G36, G37).
+  - Falta: paso 6 (Project, opcional, trabaja solo); la primera prueba con Claude Code del capítulo 6; `data-theme="dark"` en `docs/foundations/color.md` de designtokens101, y copiarlo aquí (G35).
 
 - **CodePreview (G18):** los tres puntos abiertos de V60 (contraste de la pestaña en `active` en Dark, `hover` en el carril, código en línea de la vista previa) se deciden en designtokens101 y se copian aquí (G02).
 

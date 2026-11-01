@@ -29,7 +29,7 @@ Esta lista resume la capa de agente: el entregable, los pasos para montarla, una
 2. Crea `CLAUDE.md` con `@AGENTS.md` y lo propio de Claude Code.
 3. Crea las skills de crear y revisar interfaces ([Skills](/agent-layer/skills)).
 4. Conecta el servidor MCP de Figma con el plugin o con el conector de claude.ai, y el de Storybook en el ámbito de proyecto ([Servidores MCP](/agent-layer/mcp-servers)).
-5. Si tu plan lo permite, sube el sistema de diseño con `/design-login` y `/design-sync`, muévelo a Claude y pruébalo con los patrones del piloto ([Sistemas de diseño en Claude](/agent-layer/claude-design)).
+5. Si tu plan lo permite, sube el sistema de diseño con `/design-login` y `/design-sync`, muévelo a Claude y pruébalo con los patrones del piloto en un diseño nuevo de Claude, no en el proyecto del sistema ([Sistemas de diseño en Claude](/agent-layer/claude-design)).
 6. Si el equipo lo necesita, crea un Project con los documentos del sistema ([Projects de Claude](/agent-layer/claude-projects)).
 
 ## Una primera prueba
@@ -48,6 +48,7 @@ Mira qué hace: si abre `docs/patterns/`, si usa los componentes del sistema, si
 - `/build-ui` y `/review-ui` aparecen como skills en Claude Code.
 - `/mcp` muestra Figma conectado y, si lo usas, Storybook.
 - La pantalla de prueba usa el patrón documentado.
+- El diseño de prueba de Claude Design usa los componentes del sistema y no inventa los que faltan.
 
 <Takeaways>
 

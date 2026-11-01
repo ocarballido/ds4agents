@@ -82,9 +82,16 @@ Ejecuta `/design-login` antes de la primera `/design-sync` y no borres `_ds_sync
 
 Una vez creado, Claude aplica el sistema a cada diseño y presentación nuevos ([Claude Help: Set up your design system](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)). Antes de fijarlo como sistema por defecto de la organización, pruébalo con una petición real.
 
+Crea el diseño de prueba en Claude: en la pestaña Artifacts, empieza desde una plantilla de diseño ([Claude Help: Get started with Claude Design](https://support.claude.com/en/articles/14604416-get-started-with-claude-design)) y elige tu sistema en el menú de sistemas de diseño ([Claude Help: Move from standalone Claude Design to Claude](https://support.claude.com/en/articles/17440474-migrate-from-standalone-claude-design-to-claude)). En nuestra prueba del 1 de noviembre de 2026, al pedir un diseño dentro del proyecto del propio sistema, en claude.ai/design, el agente respondió sobre el sistema y no creó ningún diseño: ese proyecto es donde se trabaja en el sistema ([Claude Help: Set up your design system](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)).
+
+Con nuestro sistema, la página de la guía falló dos veces, el 23 de octubre y el 1 de noviembre de 2026. Las dos se arreglaron en lo que sube `/design-sync`, no en Claude:
+
+- **Los ejemplos en MDX no bastan.** Claude Design monta los diseños con los componentes de React del sistema ([Claude Code: Commands](https://code.claude.com/docs/en/commands)). Escribió el resumen de la página con un `h2` y una lista normales, y `Takeaways` falló, porque necesita sus componentes `Heading2` y `UnorderedList`. El documento del componente, que subimos con él, solo tenía ejemplos en MDX. Con un ejemplo en JSX, salió bien a la primera.
+- **Los componentes que faltan se inventan.** Subimos solo los cinco componentes del piloto, pero el patrón de la página pide el menú lateral, la cabecera y el pie. El agente los dibujó a su manera. Cuando la guía del sistema (el README que sube `/design-sync`) dijo que no están y que se diseñe solo la columna de contenido, el siguiente diseño salió sin ellos.
+
 <Callout variant="recommendation">
 
-Usa como prueba los dos patrones de tu piloto. Así puedes comparar lo que genera Claude Design con la receta que escribiste en `docs/patterns/`, con las mismas [evaluaciones del capítulo 7](/evaluation/design-evals).
+Usa como prueba los dos patrones de tu piloto. Así puedes comparar lo que genera Claude Design con la receta que escribiste en `docs/patterns/`, con las mismas [evaluaciones del capítulo 7](/evaluation/design-evals). Antes de subir el sistema, añade un ejemplo en JSX a los componentes que exigen hijos concretos y, si subes solo una parte, di en la guía del sistema qué componentes de tus patrones no están y qué hacer sin ellos.
 
 </Callout>
 
@@ -93,7 +100,7 @@ Usa como prueba los dos patrones de tu piloto. Así puedes comparar lo que gener
 Un sistema que ya está en Claude se mantiene allí ([Claude Help: Move from standalone Claude Design to Claude](https://support.claude.com/en/articles/17440474-migrate-from-standalone-claude-design-to-claude)):
 
 - **Cambios:** un sistema movido todavía no se puede editar a mano en su página; se cambia pidiéndoselo a Claude.
-- **Una copia nueva:** mientras tu organización no tenga **Move to Claude**, **Move again** trae los sistemas que cambiaron en claude.ai/design desde el último movimiento, salvo los que cambiaste en Claude, que se respetan. Con **Move to Claude**, moverlo otra vez ya no lo actualiza. En los dos casos, para traer una copia nueva, su propietario lo borra en Claude y lo mueve de nuevo; si quieres conservar los cambios que le hiciste en Claude, duplícalo antes.
+- **Una copia nueva:** mientras tu organización no tenga **Move to Claude**, **Move again** trae los sistemas que cambiaron en claude.ai/design desde el último movimiento, salvo los que cambiaste en Claude, que se respetan. Con **Move to Claude**, moverlo otra vez ya no lo actualiza. En los dos casos, para traer una copia nueva, su propietario lo borra en Claude y lo mueve de nuevo; si quieres conservar los cambios que le hiciste en Claude, duplícalo antes. En nuestra prueba del 1 de noviembre de 2026, todavía sin **Move to Claude**, **Move again** actualizó nuestro sistema ya movido sin borrarlo.
 - **Retención:** si tu organización tiene un periodo de retención para los artifacts, un sistema movido se puede borrar si nadie lo abre en ese periodo. Abrir un diseño que lo usa no cuenta ([Claude Help: Set up your design system](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)).
 
 <Callout variant="recommendation">
@@ -108,7 +115,7 @@ Haz los ajustes grandes con `/design-sync` antes de mover el sistema a Claude, y
 
 **Fecha a vigilar: 14 de diciembre de 2026.** Ese día cierra la web independiente de Claude Design (claude.ai/design); después queda en solo lectura y no se pueden empezar proyectos nuevos ([Claude Help: Move from standalone Claude Design to Claude](https://support.claude.com/en/articles/17440474-migrate-from-standalone-claude-design-to-claude)).
 
-- **Cómo se mueven los sistemas:** una sola operación trae todos los sistemas de diseño de la organización, también los de otras personas. La inicia cualquiera que pueda usar Claude Design, desde el aviso "Claude Design lives here now" de la página Artifacts, con **Move team design systems**. Cuando tu organización tenga **Move to Claude**, los sistemas se mueven como los proyectos: cada propietario el suyo, o un propietario de la organización todos a la vez.
+- **Cómo se mueven los sistemas:** una sola operación trae todos los sistemas de diseño de la organización, también los de otras personas. La inicia cualquiera que pueda usar Claude Design, desde el aviso "Claude Design lives here now" de la página Artifacts de Claude, con **Move team design systems**. Cuando tu organización tenga **Move to Claude**, los sistemas se mueven como los proyectos: cada propietario el suyo, o un propietario de la organización todos a la vez.
 - **Qué se comparte:** en Team y Enterprise, los sistemas publicados que no son privados se comparten con toda la organización; en los planes individuales, nada. El sistema por defecto pasa a serlo también en Claude si no has fijado otro.
 - **Qué no se mueve:** los sistemas vacíos ni los creados desde un tema de partida integrado, aunque los hayas editado. Las organizaciones con retención cero de datos (ZDR) no pueden activar los artifacts, así que no pueden moverlos.
 - **Qué pasa con el original:** se queda en la web independiente. Cuando tu organización tenga **Move to Claude**, los sistemas ya movidos pasan allí a solo lectura, y lo que hayas cambiado en el original después de moverlo hay que repetirlo en Claude.
