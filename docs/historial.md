@@ -2,6 +2,11 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-11-01 · Desarrollo · Próxima `/design-sync` preparada en designtokens101 (D76)
+
+- En designtokens101 (commit d488265): `pilot/build.mjs` marca con `/* @kind other */` las variables `--tw-*` y las de duración, curva y opacidad (53 marcas; `@kind` no está documentado, se comprueba tras la subida); `docs/components/takeaways.md` con una regla y ejemplos en JSX (`Heading2` con `id` y `UnorderedList`). Paquete reconstruido y validado en local con los scripts de la sincronización; nada subido.
+- Copia de `docs/components/takeaways.md` a `docs/sistema/libreria/components/takeaways.md` (G35). Las demás copias, comprobadas iguales a designtokens101.
+
 ## 2026-11-01 · Contenido · Hallazgos de la fase 6 en el capítulo 6 (G36)
 
 - Con el criterio de G34: lo documentado, con enlace; lo que solo sale de nuestras pruebas, como prueba propia con fecha. Fuentes consultadas el 2026-11-01; `lastReviewed` 2026-11-01 en las páginas cambiadas.

@@ -21,7 +21,7 @@ Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El
   - Hecho en ds4agents: cómo consume el `docs/` de designtokens101 (copia en `docs/sistema/libreria/`, G35) y la excepción de G15 (`BookOpenText` en Takeaways) en `CLAUDE.md`.
   - Hecho en designtokens101: `AGENTS.md` (D73), skills `build-ui` y `review-ui` (D74), servidor MCP de Figma conectado (por el conector de claude.ai, no por el plugin) y el sistema DesignToken101 subido con `/design-sync` a claude.ai/design, probado en Light y Dark (D75).
   - Hecho en ds4agents: los hallazgos en el capítulo 6 (G36).
-  - Falta en designtokens101 (G36): la próxima `/design-sync` con los dos pendientes de la prueba de Oscar (variables `--tw-*` y tokens sin categoría; ejemplo de Takeaways con `Heading2` y `UnorderedList`, que cambia `docs/` y se copia aquí, G35) y, después, mover DesignToken101 a Claude, **antes del 14 de diciembre de 2026**.
+  - Preparado en designtokens101 (D76, 2026-11-01): `@kind other` en las variables `--tw-*` y en duración, curva y opacidad, y `Takeaways` en JSX en `takeaways.md` (ya copiado aquí). Falta, de Oscar: subirlo con `/design-sync` desde una sesión en designtokens101, comprobar en Claude Design si desaparecen los avisos y si `Takeaways` sale bien, y mover DesignToken101 a Claude **antes del 14 de diciembre de 2026**. Si `@kind` funciona o no, es un hallazgo para el capítulo 6.
   - Falta: paso 6 (Project, opcional, trabaja solo); la primera prueba con Claude Code del capítulo 6.
 
 - **CodePreview (G18):** los tres puntos abiertos de V60 (contraste de la pestaña en `active` en Dark, `hover` en el carril, código en línea de la vista previa) se deciden en designtokens101 y se copian aquí (G02).
