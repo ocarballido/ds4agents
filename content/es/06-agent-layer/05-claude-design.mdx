@@ -3,7 +3,7 @@ title: Sistemas de diseño en Claude
 meta_title: "Crear y mantener un sistema de diseño en Claude con Claude Design"
 description: Cómo crear tu sistema de diseño como artifact en Claude, desde un chat o con /design-sync desde Claude Code, para que Claude Design lo aplique a cada diseño, y cómo mantenerlo al día.
 nav_title: Sistemas de diseño en Claude
-lastReviewed: 2026-10-21
+lastReviewed: 2026-11-01
 ---
 
 Claude Design forma parte de Claude: crea diseños, prototipos y presentaciones desde un chat, desde la pestaña Artifacts o desde Claude Code. Con tu sistema de diseño creado en Claude, lo aplica a todo lo que genera. Sin él, Anthropic advierte que el resultado es funcional pero genérico.
@@ -14,6 +14,7 @@ Claude Design forma parte de Claude: crea diseños, prototipos y presentaciones 
 - [El sistema de diseño como artifact](#el-sistema-de-diseño-como-artifact)
 - [Por qué el sistema va primero](#por-qué-el-sistema-va-primero)
 - [Cómo se crea el sistema](#cómo-se-crea-el-sistema)
+- [Con /design-sync, en dos pasos](#con-design-sync-en-dos-pasos)
 - [Comprobarlo con un diseño de prueba](#comprobarlo-con-un-diseño-de-prueba)
 - [Mantenerlo al día](#mantenerlo-al-día)
 - [Si aún usas la web independiente](#si-aún-usas-la-web-independiente)
@@ -21,24 +22,24 @@ Claude Design forma parte de Claude: crea diseños, prototipos y presentaciones 
 
 ## Claude Design dentro de Claude
 
-Claude Design es una plantilla de artifacts para crear diseños, prototipos interactivos y otros recursos visuales conversando con Claude. Está en los planes Free, Pro, Max, Team y Enterprise, y se puede usar en varios sitios ([Claude Help: Get started with Claude Design](https://support.claude.com/en/articles/14604416-get-started-with-claude-design)):
+Claude Design es una plantilla de artifacts para crear diseños, prototipos interactivos y otros recursos visuales conversando con Claude. Está en los planes Free, Pro, Max, Ultra, Team y Enterprise, y se puede usar en varios sitios ([Claude Help: Get started with Claude Design](https://support.claude.com/en/articles/14604416-get-started-with-claude-design)):
 
 - **En un chat:** pide un diseño o elige **Output → Design** en la caja de mensajes.
 - **En la pestaña Artifacts:** empieza desde una plantilla de diseño.
-- **En Claude Code:** `/design` crea, edita y sincroniza diseños, en el escritorio o en la terminal, y `/design-sync` trae tu sistema de diseño.
+- **En Claude Code:** `/design` crea, edita y sincroniza diseños, en el escritorio o en la terminal, y `/design-sync` sube tu sistema de diseño.
 - **En las apps de iOS y Android:** puedes pedir un diseño y revisarlo después, pero los ajustes de uso compartido no se cambian desde ellas.
 
 Claude comprueba su resultado contra tu sistema de diseño antes de mostrártelo, y un diseño terminado se puede pasar a Claude Code para convertirlo en software ([Claude Help: Get started with Claude Design](https://support.claude.com/en/articles/14604416-get-started-with-claude-design)).
 
-En Team y Enterprise, los artifacts tienen que estar activados: sin ellos no se pueden crear diseños ni migrar sistemas ([Claude Help: Migrate from standalone Claude Design to Claude](https://support.claude.com/en/articles/17440474-migrate-from-standalone-claude-design-to-claude)).
+En Team y Enterprise, los artifacts tienen que estar activados: sin ellos no se pueden crear diseños ni mover sistemas ([Claude Help: Move from standalone Claude Design to Claude](https://support.claude.com/en/articles/17440474-migrate-from-standalone-claude-design-to-claude)).
 
 ## El sistema de diseño como artifact
 
 Un sistema de diseño reúne colores, tipografía, componentes y patrones de maquetación para que Claude los aplique a cada diseño y presentación nuevos. Cada sistema se convierte en un artifact que Claude puede usar en cualquier chat, también en Claude Code ([Claude Help: Set up your design system](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)).
 
-- **Disponibilidad:** en beta en Pro, Max, Team y Enterprise. Viene activado en Pro, Max y Team; en Enterprise, un propietario lo activa en la configuración de la organización, en Artifacts ([Claude Help: Set up your design system](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)).
-- **Dónde aparece:** en el menú de sistema de diseño al crear diseños y presentaciones. La lista completa está en **Settings → Design systems** ([Claude Help: Migrate from standalone Claude Design to Claude](https://support.claude.com/en/articles/17440474-migrate-from-standalone-claude-design-to-claude)).
-- **Sistema por defecto:** los propietarios pueden fijar el de la organización desde esa lista, con **Set as default** en el menú del sistema ([Claude Help: Migrate from standalone Claude Design to Claude](https://support.claude.com/en/articles/17440474-migrate-from-standalone-claude-design-to-claude)). En Enterprise, los administradores pueden reservar a ciertas personas publicar, fijar el sistema por defecto y borrar sistemas ([Claude Help: Set up your design system](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)).
+- **Disponibilidad:** en beta en Pro, Max, Ultra, Team y Enterprise. Viene activado en Pro, Max, Ultra y Team; en Enterprise, un propietario lo activa en **Organization settings → Artifacts**. La web independiente, claude.ai/design, tiene su propio ajuste ([Claude Help: Set up your design system](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)).
+- **Dónde aparece:** en el menú de sistema de diseño al crear diseños y presentaciones. La lista completa está en **Settings → Capabilities**, con **Manage** junto a **Design systems**, o en **Settings → Design systems** si no aparece allí ([Claude Help: Set up your design system](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)).
+- **Sistema por defecto:** los propietarios pueden fijar el de la organización desde esa lista, con **Set as default** en el menú del sistema ([Claude Help: Move from standalone Claude Design to Claude](https://support.claude.com/en/articles/17440474-migrate-from-standalone-claude-design-to-claude)). En Enterprise, los administradores pueden reservar a ciertas personas publicar, fijar el sistema por defecto y borrar sistemas ([Claude Help: Set up your design system](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)).
 
 ## Por qué el sistema va primero
 
@@ -52,13 +53,28 @@ Hay tres formas ([Claude Help: Set up your design system](https://support.claude
 |---|---|---|
 | Desde un chat | Sistemas de marca | Claude lo construye a partir de tus apps conectadas, archivos, Figma, presentaciones, logotipos y fuentes tipográficas |
 | `/design-sync` en Claude Code | Sistemas que ya existen como componentes de React | Lee los tokens y los componentes directamente; funciona mejor con sistemas de producto en código |
-| Migrar desde la web independiente | Sistemas creados en claude.ai/design | Los trae a Claude; Claude puede ordenarlos después |
+| Mover desde la web independiente | Sistemas que están en claude.ai/design | Los trae a Claude; después, Claude puede ordenarlos con **Let Claude clean it up** |
 
 Anthropic recomienda incluir ejemplos reales, como una página terminada, y añadir más material si la primera extracción no capta bien tu marca.
 
 <Callout variant="recommendation">
 
 Si tienes el repositorio preparado con los capítulos anteriores, usa `/design-sync` desde Claude Code: Claude lee los tokens y componentes reales, y tu `AGENTS.md` y tu carpeta `docs/` están en el mismo repositorio ([Por qué Markdown](/documentation/why-markdown#la-carpeta-docs)). Si además quieres recoger la marca, completa el sistema desde un chat con uno o dos diseños terminados de tu producto.
+
+</Callout>
+
+## Con /design-sync, en dos pasos
+
+`/design-sync` no crea el sistema directamente en Claude: lo sube a la web independiente, claude.ai/design, que cierra el 14 de diciembre de 2026 ([Claude Code: Commands](https://code.claude.com/docs/en/commands)). Para tenerlo en Claude hay dos pasos:
+
+1. **Súbelo con `/design-sync`.** Antes, `/design-login` autoriza el acceso con tu cuenta de claude.ai; es el inicio de sesión de la web independiente, y se ejecuta cuando `/design-sync` lo pide. Después, `/design-sync` convierte el sistema de React del repositorio y lo sube; puedes darle un nombre, como `/design-sync Acme DS`. La primera sincronización comprueba cada componente y puede tardar unas horas en un repositorio grande ([Claude Code: Commands](https://code.claude.com/docs/en/commands)).
+2. **Muévelo a Claude** desde la página Artifacts, como se explica en [Si aún usas la web independiente](#si-aún-usas-la-web-independiente).
+
+Lo hemos comprobado con nuestro sistema el 23 de octubre de 2026. La primera `/design-sync` pidió la autorización y no hizo nada hasta ejecutar `/design-login`. Al terminar, subió con el sistema un archivo `_ds_sync.json`. Según los scripts de la sincronización, es el ancla de las siguientes: con él, los componentes que no han cambiado no se vuelven a comprobar; sin él, la siguiente sincronización lo comprueba todo.
+
+<Callout variant="recommendation">
+
+Ejecuta `/design-login` antes de la primera `/design-sync` y no borres `_ds_sync.json` del sistema en claude.ai/design. Antes del 14 de diciembre de 2026, comprueba si Anthropic ha documentado qué hace `/design-sync` después del cierre.
 
 </Callout>
 
@@ -74,11 +90,15 @@ Usa como prueba los dos patrones de tu piloto. Así puedes comparar lo que gener
 
 ## Mantenerlo al día
 
-Los sistemas migrados todavía no se pueden editar a mano en su página: se cambian pidiéndoselo a Claude ([Claude Help: Migrate from standalone Claude Design to Claude](https://support.claude.com/en/articles/17440474-migrate-from-standalone-claude-design-to-claude)). La ayuda no detalla si volver a ejecutar `/design-sync` actualiza un sistema existente o crea uno nuevo, así que compruébalo en **Settings → Design systems** después de ejecutarlo.
+Un sistema que ya está en Claude se mantiene allí ([Claude Help: Move from standalone Claude Design to Claude](https://support.claude.com/en/articles/17440474-migrate-from-standalone-claude-design-to-claude)):
+
+- **Cambios:** un sistema movido todavía no se puede editar a mano en su página; se cambia pidiéndoselo a Claude.
+- **Una copia nueva:** mientras tu organización no tenga **Move to Claude**, **Move again** trae los sistemas que cambiaron en claude.ai/design desde el último movimiento, salvo los que cambiaste en Claude, que se respetan. Con **Move to Claude**, moverlo otra vez ya no lo actualiza. En los dos casos, para traer una copia nueva, su propietario lo borra en Claude y lo mueve de nuevo; si quieres conservar los cambios que le hiciste en Claude, duplícalo antes.
+- **Retención:** si tu organización tiene un periodo de retención para los artifacts, un sistema movido se puede borrar si nadie lo abre en ese periodo. Abrir un diseño que lo usa no cuenta ([Claude Help: Set up your design system](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)).
 
 <Callout variant="recommendation">
 
-Anota en el changelog del sistema cada vez que actualices el sistema de Claude, para saber qué versión del repositorio refleja ([Changelog](/evaluation/changelog)).
+Haz los ajustes grandes con `/design-sync` antes de mover el sistema a Claude, y después pide a Claude los cambios pequeños. Anota en el changelog del sistema cada vez que actualices el sistema de Claude, para saber qué versión del repositorio refleja ([Changelog](/evaluation/changelog)).
 
 </Callout>
 
@@ -86,11 +106,13 @@ Anota en el changelog del sistema cada vez que actualices el sistema de Claude, 
 
 <Callout variant="warning">
 
-**Fecha a vigilar: 14 de diciembre de 2026.** Ese día cierra la web independiente de Claude Design (claude.ai/design); después, la URL lleva a Claude ([Claude Help: Migrate from standalone Claude Design to Claude](https://support.claude.com/en/articles/17440474-migrate-from-standalone-claude-design-to-claude)).
+**Fecha a vigilar: 14 de diciembre de 2026.** Ese día cierra la web independiente de Claude Design (claude.ai/design); después queda en solo lectura y no se pueden empezar proyectos nuevos ([Claude Help: Move from standalone Claude Design to Claude](https://support.claude.com/en/articles/17440474-migrate-from-standalone-claude-design-to-claude)).
 
-- **Qué migra:** una sola migración trae todos los sistemas de diseño de la organización, también los de otras personas. La inicia cualquiera que pueda usar Claude Design, desde el aviso "Claude Design lives here now" con **Migrate team design systems**. Los sistemas publicados que no son privados se comparten con toda la organización, y el sistema por defecto pasa a serlo también en Claude si no has fijado otro.
-- **Qué no migra:** los sistemas vacíos ni los creados desde un tema de partida integrado, aunque los hayas editado. Las organizaciones con retención cero de datos (ZDR) no pueden activar los artifacts, así que no pueden migrar.
-- **Qué se pierde al cerrar:** los chats y los comentarios se quedan en la versión independiente y se borran tras el cierre; guarda antes lo que necesites. Los proyectos siguen allí hasta el cierre y se descargan uno a uno como `.zip`. Los enlaces públicos a proyectos dejan de funcionar.
+- **Cómo se mueven los sistemas:** una sola operación trae todos los sistemas de diseño de la organización, también los de otras personas. La inicia cualquiera que pueda usar Claude Design, desde el aviso "Claude Design lives here now" de la página Artifacts, con **Move team design systems**. Cuando tu organización tenga **Move to Claude**, los sistemas se mueven como los proyectos: cada propietario el suyo, o un propietario de la organización todos a la vez.
+- **Qué se comparte:** en Team y Enterprise, los sistemas publicados que no son privados se comparten con toda la organización; en los planes individuales, nada. El sistema por defecto pasa a serlo también en Claude si no has fijado otro.
+- **Qué no se mueve:** los sistemas vacíos ni los creados desde un tema de partida integrado, aunque los hayas editado. Las organizaciones con retención cero de datos (ZDR) no pueden activar los artifacts, así que no pueden moverlos.
+- **Qué pasa con el original:** se queda en la web independiente. Cuando tu organización tenga **Move to Claude**, los sistemas ya movidos pasan allí a solo lectura, y lo que hayas cambiado en el original después de moverlo hay que repetirlo en Claude.
+- **Qué se pierde al cerrar:** los chats y los comentarios se quedan en la versión independiente y se borran tras el cierre; guarda antes lo que necesites. Los enlaces públicos a proyectos dejan de funcionar. Mover proyectos a Claude se está activando poco a poco en los planes de pago; hasta entonces siguen en la web independiente, y cada uno se puede descargar como `.zip`.
 
 </Callout>
 
@@ -99,8 +121,8 @@ Anota en el changelog del sistema cada vez que actualices el sistema de Claude, 
 ## En resumen
 
 - Claude Design forma parte de Claude: chats, Artifacts, Claude Code y apps móviles.
-- El sistema de diseño es un artifact que se crea desde un chat o con `/design-sync` y se elige en el menú de sistema de diseño.
-- La web independiente cierra el 14 de diciembre de 2026; sus chats y comentarios no se migran.
+- El sistema de diseño es un artifact que se crea desde un chat, o con `/design-sync` y moviéndolo después desde claude.ai/design.
+- La web independiente cierra el 14 de diciembre de 2026; sus chats y comentarios no se mueven.
 
 </Takeaways>
 
@@ -108,5 +130,6 @@ Anota en el changelog del sistema cada vez que actualices el sistema de Claude, 
 
 - [Claude Help: Get started with Claude Design](https://support.claude.com/en/articles/14604416-get-started-with-claude-design)
 - [Claude Help: Set up your design system in Claude Design](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)
-- [Claude Help: Migrate from standalone Claude Design to Claude](https://support.claude.com/en/articles/17440474-migrate-from-standalone-claude-design-to-claude)
+- [Claude Help: Move from standalone Claude Design to Claude](https://support.claude.com/en/articles/17440474-migrate-from-standalone-claude-design-to-claude)
 - [Claude Help: Claude Design admin guide for Team and Enterprise plans](https://support.claude.com/en/articles/14604406-claude-design-admin-guide-for-team-and-enterprise-plans)
+- [Claude Code: Commands](https://code.claude.com/docs/en/commands)
