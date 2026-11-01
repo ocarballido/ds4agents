@@ -2,6 +2,12 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-11-01 · Desarrollo · Primera prueba con Claude Code (capítulo 6, fase 6 de G22)
+
+- En designtokens101 (commit ffee894, detalle en su `historial.md`): sesión nueva sin contexto (`claude -p`) en una copia temporal, con "Crea una página de lección nueva sobre los tokens de opacidad.". Cargó sola `build-ui`, leyó `docs/patterns/lesson-page.md` y se paró antes de cambiar decisiones cerradas del temario, con tres opciones. Con la respuesta, escribió una lección que sigue la receta, sin componentes ni props inventados, pasó `review-ui` y `check:tokens`, y compila con `check:content` sin errores. No leyó `docs/inventory.md` (paso 1 de `build-ui`). Señaló una contradicción en una lección de designtokens101. Resultado en la rama `prueba/cap6-claude-code`.
+- Criterio de la lista del capítulo 6 "La pantalla de prueba usa el patrón documentado": cumplido.
+- Para repetir la prueba: la copia necesita su propio `node_modules` (Turbopack no acepta un enlace que sale del proyecto); `cp -c` lo clona en APFS en segundos.
+
 ## 2026-11-01 · Contenido · Prueba de Claude Design en el capítulo 6 (G37)
 
 - En designtokens101 (D76, V62 y V63): `/design-sync` subida, DesignToken101 movido a Claude desde Artifacts y actualizado con "Move again"; `Takeaways` salió bien a la primera con el ejemplo en JSX, y la página de lección, sin menú lateral cuando la cabecera de convenciones dijo que la navegación no está en el paquete. `docs/` sin cambios desde la copia de `takeaways.md`.

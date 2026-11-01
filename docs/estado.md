@@ -2,7 +2,7 @@
 
 Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El detalle de lo hecho va en `docs/historial.md`.
 
-Última actualización: 2026-11-01, prueba de Claude Design en el capítulo 6 (G37), después de mover DesignToken101 a Claude (D76 en designtokens101). Antes, el mismo día: hallazgos de la fase 6 en el capítulo 6 (G36).
+Última actualización: 2026-11-01, primera prueba con Claude Code del capítulo 6, cumplida. Antes, el mismo día: prueba de Claude Design en el capítulo 6 (G37), después de mover DesignToken101 a Claude (D76 en designtokens101). Antes, el mismo día: hallazgos de la fase 6 en el capítulo 6 (G36).
 
 ## Plan general
 
@@ -21,7 +21,8 @@ Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El
   - Hecho en ds4agents: cómo consume el `docs/` de designtokens101 (copia en `docs/sistema/libreria/`, G35) y la excepción de G15 (`BookOpenText` en Takeaways) en `CLAUDE.md`.
   - Hecho en designtokens101: `AGENTS.md` (D73), skills `build-ui` y `review-ui` (D74), servidor MCP de Figma conectado (por el conector de claude.ai, no por el plugin) y el sistema DesignToken101 subido con `/design-sync` (D75) y movido a Claude (D76, V62, V63, 2026-11-01). Desde el traslado, `/design-sync` no llega a Claude: "Move again" o pedírselo a Claude, antes del 14 de diciembre de 2026.
   - Hecho en ds4agents: los hallazgos en el capítulo 6 (G36, G37).
-  - Falta: paso 6 (Project, opcional, trabaja solo); la primera prueba con Claude Code del capítulo 6; `data-theme="dark"` en `docs/foundations/color.md` de designtokens101, y copiarlo aquí (G35).
+  - Hecho: la primera prueba con Claude Code (2026-11-01), que cumple el criterio del capítulo 6; rama `prueba/cap6-claude-code` en designtokens101, para que Oscar la vea y la borre.
+  - Falta: paso 6 (Project, opcional, trabaja solo); `data-theme="dark"` en `docs/foundations/color.md` de designtokens101, y copiarlo aquí (G35).
 
 - **CodePreview (G18):** los tres puntos abiertos de V60 (contraste de la pestaña en `active` en Dark, `hover` en el carril, código en línea de la vista previa) se deciden en designtokens101 y se copian aquí (G02).
 
