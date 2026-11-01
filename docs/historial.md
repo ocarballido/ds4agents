@@ -2,6 +2,17 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-11-01 · Contenido · Serie de Figma para su agente (G39)
+
+- Fuente: el vídeo "Make your Figma design system agent-ready" (Figma, YouTube, 28 de octubre de 2026, 8 min 9 s) y la serie de la ayuda que enlaza su descripción. La transcripción del vídeo no se pudo sacar (YouTube devuelve vacía la pista de subtítulos sin navegador); se revisaron la descripción, los capítulos y los artículos, con su fecha de edición leída en la API pública del centro de ayuda de Figma: "Add guidelines files to a design library" (antes "About guidelines", editado el 2026-10-30), "Teach the Figma agent how to apply your design system" (2026-10-05), "Create and manage custom skills in Figma" (2026-10-06), "Work with the Figma agent in design files" (2026-10-27) y la introducción de la serie (2026-10-28).
+- Correcciones: el título del artículo de las guidelines en los enlaces de 11 páginas; el plan Education en las guidelines (`02-figma/06-library-guidelines`, `00-start-here/04-requirements`). Config India sigue diciendo "Open beta" y sin Education.
+- `02-figma/06-library-guidelines`: viñeta "Lo que el agente ya ha hecho mal" en "Qué escribir" y apartado "Descripción, ejemplo o guideline". `lastReviewed` a 2026-11-01: sus tres fuentes, comprobadas (la ayuda del servidor MCP sigue sin mencionar las guidelines).
+- `02-figma/01-library-structure`: apartado "Los ejemplos de la librería" (página Examples o sufijo `_example`, hasta 200), página Examples en la estructura propuesta y recomendación (cada patrón, un ejemplo; nunca un uso incorrecto). `04-documentation/06-patterns`: el marco de referencia del patrón pasa a ser su ejemplo. `02-figma/08-checklist`: entregable, paso 5 y criterio de los ejemplos.
+- `06-agent-layer/03-skills`: apartado "Skills en el agente de Figma" y recomendación (una skill aparte, sin repetir las reglas de `docs/`). `07-evaluation/02-design-evals`: apartado "Una acción por fallo"; enlazado desde el paso 5 de `07-evaluation/06-checklist`.
+- `00-start-here/04-requirements`: fila del agente de Figma. `99-resources/01-sources`: grupo "Agente de Figma" con la serie y el vídeo. `99-resources/02-glossary`: "Ejemplo", y "Agent Skills" y "Skill" ampliados.
+- Fuera de los ajustes de `lastReviewed`: las páginas a las que solo se añadió una fuente o se cambió el texto de un enlace, porque no se volvieron a comprobar sus demás fuentes.
+- `npm test`, `npm run build` y `npm run check:content` sin errores.
+
 ## 2026-11-01 · Contenido y desarrollo · Fase 6 de G22 terminada (G38)
 
 - `06-agent-layer/07-checklist`, "Una primera prueba": nuestra prueba del 1 de noviembre (la sesión se paró ante una decisión cerrada y, con la respuesta, siguió el patrón; se saltó el primer paso de la skill) y una recomendación (responder a las preguntas; comparar con los pasos de la skill, no solo el resultado).

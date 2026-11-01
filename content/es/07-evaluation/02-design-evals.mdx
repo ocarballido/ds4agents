@@ -15,6 +15,7 @@ Una evaluación útil se parece al trabajo real del equipo: las pantallas que se
 - [Las tareas trampa](#las-tareas-trampa)
 - [Varios intentos por tarea](#varios-intentos-por-tarea)
 - [El registro](#el-registro)
+- [Una acción por fallo](#una-acción-por-fallo)
 - [En resumen](#en-resumen)
 
 ## Empezar con pocas tareas reales
@@ -92,6 +93,16 @@ trials: 3
 - E02: inventó `DataTable.filterable`. Acción: documentar los filtros en data-table.md y crear su patrón.
 ```
 
+## Una acción por fallo
+
+Cada fallo se arregla en el sitio que lee el agente. Para su agente, Figma propone elegir el más claro de tres: la descripción del componente, el estilo o la variable; un ejemplo de la librería, si falla una composición; o una guideline, si la decisión vale para toda la librería. Después, repetir una tarea parecida y revisar el resultado ([Figma: Teach the Figma agent how to apply your design system](https://help.figma.com/hc/en-us/articles/43861597594007-Teach-the-Figma-agent-how-to-apply-your-design-system)).
+
+<Callout variant="recommendation">
+
+Para un agente de código, los sitios equivalentes son el documento del componente en `docs/components/`, el patrón en `docs/patterns/` y las reglas de `docs/rules/` o de `AGENTS.md`. Haz el arreglo en `docs/` y llévalo a cada destino ([Una fuente, varios destinos](/documentation/one-source-many-channels)); si el fallo viene de Figma, cambia también la descripción o el ejemplo de la librería. Vuelve a pasar la tarea fallida antes de dar la acción por cerrada.
+
+</Callout>
+
 <Takeaways>
 
 ## En resumen
@@ -105,3 +116,4 @@ trials: 3
 ## Fuentes
 
 - [Anthropic: Demystifying evals for AI agents](https://anthropic.com/engineering/demystifying-evals-for-ai-agents)
+- [Figma: Teach the Figma agent how to apply your design system](https://help.figma.com/hc/en-us/articles/43861597594007-Teach-the-Figma-agent-how-to-apply-your-design-system)

@@ -1,7 +1,7 @@
 ---
 title: Skills
-meta_title: "Skills de Claude Code para trabajar con un sistema de diseño"
-description: Qué es una skill, cómo se escribe un SKILL.md, qué skills ofrece Figma y dos skills de ejemplo para crear y revisar interfaces con tu sistema de diseño.
+meta_title: "Skills de Claude Code y del agente de Figma para trabajar con un sistema de diseño"
+description: Qué es una skill, cómo se escribe un SKILL.md, qué skills ofrece Figma, cómo usa skills el agente de Figma y dos skills de ejemplo para crear y revisar interfaces con tu sistema de diseño.
 nav_title: Skills
 lastReviewed: 2026-10-20
 ---
@@ -13,6 +13,7 @@ Una skill empaqueta un procedimiento de varios pasos para que el agente lo siga 
 - [Qué es una skill](#qué-es-una-skill)
 - [Cómo se escribe](#cómo-se-escribe)
 - [Las skills de Figma](#las-skills-de-figma)
+- [Skills en el agente de Figma](#skills-en-el-agente-de-figma)
 - [Skill para crear interfaces](#skill-para-crear-interfaces)
 - [Skill para revisar interfaces](#skill-para-revisar-interfaces)
 - [En resumen](#en-resumen)
@@ -50,6 +51,26 @@ El servidor MCP de Figma tiene, además, un *prompt* llamado `create_design_syst
 <Callout variant="recommendation">
 
 Usa `create_design_system_rules` como borrador, no como resultado. Compara lo que genera con tu `AGENTS.md` y tu carpeta `docs/`, y quédate solo con lo que falte. Si lo guardas tal cual, tendrás dos versiones de las mismas reglas.
+
+</Callout>
+
+## Skills en el agente de Figma
+
+El agente de Figma, en Figma Design y en Figma Make, también usa skills. Lo que dice la ayuda de Figma ([Figma: Create and manage custom skills in Figma](https://help.figma.com/hc/en-us/articles/40283639496599-Create-and-manage-custom-skills-in-Figma)):
+
+- Son archivos Markdown que siguen la especificación Agent Skills, como las de Claude Code. Cada skill es un solo archivo: no admite las carpetas opcionales `scripts/`, `references/` ni `assets/`.
+- Se crean en el chat del agente de tres maneras: pidiéndosela al agente, subiendo un archivo `.md` o escribiéndola a mano. Sirven en todos tus archivos, no solo en el que las creaste.
+- Se invocan con `/` y su nombre. Si un *prompt* nombra varias, solo se invoca la primera.
+- Se pueden publicar para un equipo, una organización o Figma Community, y exportar como Markdown.
+- Están en todos los planes. Con asiento Full se usan en cualquier archivo; con View, Dev o Collab, solo en Drafts.
+
+Para escribirlas, Figma pide dos cosas. La condición de uso se escribe como un requisito ("úsala siempre que…"), no como una restricción ("úsala solo si…"). Y si la vas a publicar, lleva un nombre propio, con el de tu equipo o tu empresa, para que no choque con otra skill del mismo nombre.
+
+La ayuda dice que una skill se invoca con su comando, pero también habla de skills que se invocan automáticamente. No aclara si el agente de Figma elige una skill por su descripción, como hace Claude Code.
+
+<Callout variant="recommendation">
+
+Las skills de crear y revisar interfaces de esta página leen archivos del repositorio (`docs/`, `AGENTS.md`) que el agente de Figma no tiene. Para el agente de Figma, escribe una skill aparte que ordene los pasos con lo que sí recibe: los componentes y las variables de la librería, sus descripciones, los ejemplos y las guidelines. Las reglas siguen en `docs/` y le llegan por las guidelines ([Una fuente, varios destinos](/documentation/one-source-many-channels)): la skill no las repite.
 
 </Callout>
 
@@ -100,7 +121,7 @@ Revisa los archivos cambiados y devuelve una tabla: regla, archivo y línea, pro
 ## En resumen
 
 - Una skill es un `SKILL.md` con una descripción que dice cuándo usarla y las instrucciones del procedimiento.
-- Figma publica skills oficiales y un *prompt* que genera un borrador de reglas.
+- Figma publica skills oficiales para otros agentes, y su propio agente usa skills de un solo archivo que se invocan con `/`.
 - Dos skills cubren lo esencial: crear interfaces con el sistema y revisarlas contra sus reglas.
 
 </Takeaways>
@@ -110,5 +131,6 @@ Revisa los archivos cambiados y devuelve una tabla: regla, archivo y línea, pro
 - [Claude Code: Extend Claude with skills](https://code.claude.com/docs/en/skills)
 - [Claude Code: How Claude remembers your project](https://code.claude.com/docs/en/memory)
 - [Figma: Figma's agent skills](https://help.figma.com/hc/en-us/articles/39166810751895)
+- [Figma: Create and manage custom skills in Figma](https://help.figma.com/hc/en-us/articles/40283639496599-Create-and-manage-custom-skills-in-Figma)
 - [Figma: Remote server installation](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/)
 - [Figma: Tools and prompts](https://developers.figma.com/docs/figma-mcp-server/tools-and-prompts/)

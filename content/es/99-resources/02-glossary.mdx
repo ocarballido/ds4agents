@@ -18,7 +18,7 @@ Los términos que usa la guía, por orden alfabético. Cada uno enlaza a la pág
 | Término | Definición | Dónde |
 |---|---|---|
 | Agente | Un modelo de lenguaje con acceso a herramientas (archivos, terminal, servidores MCP) que ejecuta tareas de varios pasos | [Por qué un agente no ve tu Figma](/start-here/why-agents-cant-see-figma) |
-| Agent Skills | Estándar abierto para empaquetar procedimientos en carpetas con un `SKILL.md`; lo siguen las skills de Claude Code | [Skills](/agent-layer/skills) |
+| Agent Skills | Estándar abierto para empaquetar procedimientos en Markdown, con un `SKILL.md`; lo siguen las skills de Claude Code y las del agente de Figma | [Skills](/agent-layer/skills) |
 | AGENTS.md | Formato abierto de instrucciones para agentes de código, en Markdown | [CLAUDE.md y AGENTS.md](/agent-layer/claude-md#agentsmd) |
 | Alias | Un token cuyo valor apunta a otro, como `{color.blue.600}` | [Primero los semánticos](/tokens/semantic-first) |
 | Anotación | Nota de Figma unida a una capa, con texto o propiedades | [Anotaciones](/figma/annotations) |
@@ -30,6 +30,7 @@ Los términos que usa la guía, por orden alfabético. Cada uno enlaza a la pág
 | Dev resource | Enlace unido a una capa en Dev Mode | [Dev resources](/figma/dev-resources) |
 | Divulgación progresiva | Cargar lo mínimo siempre y el resto cuando se necesita | [Divulgación progresiva](/agent-layer/progressive-disclosure) |
 | DTCG | Design Tokens Community Group del W3C; publica el formato estándar de tokens, estable desde 2025.10 | [Tokens para agentes](/tokens/tokens-for-agents) |
+| Ejemplo | Componente de una librería de Figma (en la página Examples o con el sufijo `_example`) que el agente de Figma usa como referencia de una composición completa | [Estructura de la librería](/figma/library-structure#los-ejemplos-de-la-librería) |
 | Evaluación | Conjunto fijo de tareas con las que se mide lo que hace un agente | [Por qué evaluar](/evaluation/why-evaluate) |
 | Evaluador | La lógica que puntúa un aspecto del resultado: código, modelo o persona | [Rúbrica](/evaluation/rubric) |
 | Frontmatter | Bloque YAML al principio de un archivo Markdown, con datos estructurados | [Por qué Markdown](/documentation/why-markdown#frontmatter-datos-además-de-texto) |
@@ -40,7 +41,7 @@ Los términos que usa la guía, por orden alfabético. Cada uno enlaza a la pág
 | Patrón | Receta documentada de una pantalla, compuesta por componentes del sistema | [Patrones](/documentation/patterns) |
 | Project | Espacio de trabajo de Claude con conocimiento e instrucciones propios | [Projects de Claude](/agent-layer/claude-projects) |
 | Scorecard | Rúbrica propia de esta guía (la scorecard de madurez): ocho criterios de 0 a 3 que dan una línea de base y se repiten al final para medir el avance | [Scorecard de madurez](/audit/maturity-scorecard#una-rúbrica-propia) |
-| Skill | Carpeta con un `SKILL.md` que el agente carga cuando la tarea coincide | [Skills](/agent-layer/skills) |
+| Skill | Procedimiento en Markdown que el agente carga cuando la tarea coincide o cuando se invoca con su comando; en Claude Code, una carpeta con un `SKILL.md` | [Skills](/agent-layer/skills) |
 | Tarea trampa | Tarea de evaluación que pide romper una regla; la respuesta correcta es avisar | [Diseñar evaluaciones](/evaluation/design-evals#las-tareas-trampa) |
 | Token semántico | Token que nombra para qué se usa un valor, no qué valor es | [Primero los semánticos](/tokens/semantic-first) |
 

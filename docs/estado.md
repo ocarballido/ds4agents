@@ -2,7 +2,7 @@
 
 Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El detalle de lo hecho va en `docs/historial.md`.
 
-Última actualización: 2026-11-01, fase 6 de G22 terminada (G38; D77 en designtokens101): hallazgos de la primera prueba con Claude Code en el capítulo 6, `data-theme` en `color.md` (copiado aquí) y Project no aplica. Siguiente: fase 7 (evaluación). Antes, el mismo día: prueba de Claude Design en el capítulo 6 (G37) y hallazgos de la fase 6 (G36).
+Última actualización: 2026-11-01, G39: novedades de la serie de Figma para su agente (ejemplos de la librería, skills del agente de Figma, título y planes de las guidelines) y el vídeo en Fuentes. Siguiente: fase 7 (evaluación), en la sesión de designtokens101. Antes, el mismo día: fase 6 de G22 terminada (G38; D77 en designtokens101), prueba de Claude Design en el capítulo 6 (G37) y hallazgos de la fase 6 (G36).
 
 ## Plan general
 
@@ -20,13 +20,16 @@ Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El
 - **Fase 7 (G22), siguiente:** evaluación del sistema (capítulo 7), en designtokens101. La scorecard tiene Gobernanza a 1 (sin changelog ni proceso de contribución).
 - **De la fase 6, para Oscar:** subir a TokensDS `overview.md` y `components.md` regenerados (`npm run docs:figma` en designtokens101); borrar la rama `prueba/cap6-claude-code` de designtokens101 cuando la haya visto. DesignToken101 está en Claude: desde el traslado, `/design-sync` no llega a Claude ("Move again" o pedírselo a Claude, antes del 14 de diciembre de 2026).
 
+- **De G39, en designtokens101:** decidir si los marcos Lesson de TokensDS (Templates, 35:843…) pasan a ser ejemplos (componentes en una página Examples o con el sufijo `_example`), y revisar si el `components.md` de las guidelines repite las descripciones de los componentes (Figma pide la guía de cada componente en su descripción).
+- **De G39, para Oscar:** ver el vídeo "Make your Figma design system agent-ready" (no se pudo leer su transcripción) y confirmar que no dice nada que no esté en los artículos, por ejemplo en "Keep variants focused". Sin decidir: la opción C (consejos para preparar la librería con el agente de Figma: renombrar capas, auto layout, descripciones en bloque, revisión antes de publicar, Check designs). El artículo del servidor MCP se titula ahora "Guide to the Figma MCP server"; los enlaces dicen "Figma MCP server".
+
 - **CodePreview (G18):** los tres puntos abiertos de V60 (contraste de la pestaña en `active` en Dark, `hover` en el carril, código en línea de la vista previa) se deciden en designtokens101 y se copian aquí (G02).
 
 - **`Takeaways` (G15):** si designtokens101 cambia el componente, copiar el cambio aquí sin perder la excepción.
 - **Iconos (G16):** `icon.svg`, `favicon.ico` y `apple-icon.png` siguen siendo la marca anterior, y el emoticon del que salían (228:6907) ya no existe en Figma. Falta un marco de icono en la sección de la marca (298:6831).
 - **Favicon en pestañas oscuras (G16):** el verde del emoticon tiene poco contraste sobre una pestaña oscura del navegador.
 - **Revisión de Oscar:** leer las 53 páginas en el navegador. Criterio propio marcado como recomendación: rúbrica, scorecard, extensiones por nivel, categorías funcionales, estructura de páginas, plantillas y scripts.
-- **Sin verificar (no se afirma):** si las guidelines de Figma llegan por el servidor MCP; si Figma exporta `$deprecated`; qué pasa con las instancias de un componente oculto al publicar; por qué el mapa de un marco devuelve iconos sueltos de componentes no conectados (pendiente en designtokens101).
+- **Sin verificar (no se afirma):** si las guidelines de Figma llegan por el servidor MCP; si Figma exporta `$deprecated`; qué pasa con las instancias de un componente oculto al publicar; por qué el mapa de un marco devuelve iconos sueltos de componentes no conectados (pendiente en designtokens101); si los ejemplos de la librería llegan por el servidor MCP y si un ejemplo oculto al publicar sigue contando; si el agente de Figma elige una skill por su descripción (la ayuda dice que se invoca con `/` y también habla de invocación automática).
 - **Comprobado con el servidor MCP remoto (2026-10-21), ya en el capítulo 2:** la descripción y los dev resources llegan con `get_design_context`; las anotaciones, solo en un componente o una variante, no en el conjunto. Ya en el capítulo 3 (`/tokens/descriptions-in-dtcg`): ni `get_design_context` ni `get_variable_defs` entregan la descripción de una variable. Es una prueba en un archivo: repetirla si cambia el servidor.
 - **Scripts de la guía:** `validate-docs.mjs` y `build-figma-guidelines.mjs` ya se usan, adaptados, en designtokens101 (D67); `check-ui.sh` sigue probado solo con archivos de ejemplo.
 - **Claude Design (G21, G36):** la web independiente (claude.ai/design) cierra el **14 de diciembre de 2026**. Antes, comprobar si Anthropic documenta qué hace `/design-sync` después del cierre; ese día, revisar `/agent-layer/claude-design`, el capítulo 4 (`one-source-many-channels`) y la lista de publicación de `/evaluation/changelog`, y quitar o reducir el aviso. Los sistemas de diseño en Claude siguen en beta (Pro, Max, Ultra, Team y Enterprise). La ayuda de Claude Design cambió el 2026-10-31: revisarla otra vez antes de publicar.

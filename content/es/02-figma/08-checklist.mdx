@@ -18,7 +18,7 @@ Esta lista resume la preparación de Figma: lo que debe cumplir cada componente,
 
 ## El entregable
 
-Una librería publicada en la que los componentes del alcance cumplen la lista Ready for AI, con un primer archivo de guidelines (`anti-patterns.md`) subido. Para las guidelines hace falta Figma Professional o superior ([Requisitos](/start-here/requirements)).
+Una librería publicada en la que los componentes del alcance cumplen la lista Ready for AI, con un primer archivo de guidelines (`anti-patterns.md`) subido y un ejemplo por cada patrón del piloto que tenga diseño. Las guidelines no están en el plan Starter ([Requisitos](/start-here/requirements)).
 
 ## Ready for AI, por componente
 
@@ -46,13 +46,15 @@ Esta lista es nuestra y resume el capítulo. Adáptala a tu sistema.
 2. Alinea los nombres de componentes, propiedades y capas con el código ([Nombres](/figma/naming)).
 3. Escribe las descripciones, las anotaciones y los dev resources ([Descripciones](/figma/descriptions), [Anotaciones](/figma/annotations), [Dev resources](/figma/dev-resources)).
 4. Escribe los tres antipatrones más frecuentes de tu equipo como escenarios y súbelos como guidelines ([Guidelines de la librería](/figma/library-guidelines#un-ejemplo)).
-5. Comprueba cada componente con el [prompt de comprobación](/figma/verify-with-mcp#cómo-pedir-la-comprobación) y anota en `inventory.md` lo que no llega.
+5. Convierte en ejemplo la pantalla de referencia de cada patrón del piloto que tenga diseño en Figma ([Estructura de la librería](/figma/library-structure#los-ejemplos-de-la-librería)).
+6. Comprueba cada componente con el [prompt de comprobación](/figma/verify-with-mcp#cómo-pedir-la-comprobación) y anota en `inventory.md` lo que no llega.
 
 ## Criterios para darlo por terminado
 
 - La comprobación con el MCP de cada componente del alcance no devuelve `Frame` ni `Group` en los nombres de capa.
 - En la respuesta de `get_design_context`, cada color, espacio y radio sale como variable. `get_variable_defs` no sirve para esto: lista las variables que usa la selección, no los valores sueltos.
 - La librería tiene al menos un archivo de guidelines.
+- Cada patrón del alcance que tiene diseño en Figma es un ejemplo de la librería: un componente en la página Examples o con el sufijo `_example`.
 - `inventory.md` dice qué componentes cumplen la lista y qué les falta a los demás.
 
 <Takeaways>

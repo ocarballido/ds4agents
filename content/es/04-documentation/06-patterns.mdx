@@ -1,7 +1,7 @@
 ---
 title: Patrones
 meta_title: "Documentar patrones de pantalla para que un agente de IA los componga"
-description: Cómo documentar un patrón de pantalla como una receta paso a paso que un agente pueda seguir, con sus variantes y antipatrones, y cómo enlazarlo con su marco de referencia en Figma.
+description: Cómo documentar un patrón de pantalla como una receta paso a paso que un agente pueda seguir, con sus variantes y antipatrones, y cómo enlazarlo con su ejemplo en la librería de Figma.
 nav_title: Patrones
 lastReviewed: 2026-10-20
 ---
@@ -20,7 +20,7 @@ Un componente dice cómo es una pieza. Un patrón dice cómo se combinan varias 
 
 Anthropic recomienda dar a un agente ejemplos canónicos del comportamiento esperado antes que listas de casos límite ([Anthropic: Effective context engineering for AI agents](https://anthropic.com/engineering/effective-context-engineering-for-ai-agents)). Un patrón es exactamente eso: el ejemplo canónico de una pantalla.
 
-Sin patrones, un agente que tiene que construir un formulario elige componentes uno a uno y los combina a su manera. Con un patrón, sigue una receta que el equipo ya validó. La ayuda de Figma para las guidelines pone los patrones establecidos entre lo primero que conviene escribir ([Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)).
+Sin patrones, un agente que tiene que construir un formulario elige componentes uno a uno y los combina a su manera. Con un patrón, sigue una receta que el equipo ya validó. La ayuda de Figma para las guidelines pone los patrones establecidos entre lo primero que conviene escribir ([Figma: Add guidelines files to a design library](https://help.figma.com/hc/en-us/articles/43509372175511)).
 
 ## Qué lleva un patrón
 
@@ -31,7 +31,7 @@ Sin patrones, un agente que tiene que construir un formulario elige componentes 
 | Receta | Los pasos en orden, con componente, props y tokens de cada uno |
 | Variantes | Los cambios para los casos habituales |
 | Antipatrones | Los errores frecuentes, con su motivo |
-| Referencia | El enlace al marco de Figma |
+| Referencia | El enlace a su ejemplo en Figma |
 
 ## La plantilla
 
@@ -68,7 +68,7 @@ El usuario se identifica con email y contraseña.
 
 ## El patrón en Figma
 
-En la librería, cada patrón tiene un marco de referencia en la página **Patterns**, con las anotaciones de su comportamiento ([Estructura de la librería](/figma/library-structure)). El documento enlaza al marco y el marco enlaza al documento con un dev resource ([Dev resources](/figma/dev-resources)).
+En la librería, cada patrón tiene su ejemplo: un componente en la página **Examples**, con las anotaciones de su comportamiento ([Estructura de la librería](/figma/library-structure#los-ejemplos-de-la-librería)). Figma reconoce como ejemplos los componentes de esa página y los que llevan el sufijo `_example`, y su agente los usa como referencia de una composición completa ([Figma: Teach the Figma agent how to apply your design system](https://help.figma.com/hc/en-us/articles/43861597594007-Teach-the-Figma-agent-how-to-apply-your-design-system)). El documento enlaza al ejemplo y el ejemplo enlaza al documento con un dev resource ([Dev resources](/figma/dev-resources)).
 
 <Callout variant="recommendation">
 
@@ -82,11 +82,12 @@ Documenta primero los dos patrones de tu piloto. Después, los que más se repit
 
 - Un patrón es el ejemplo canónico de una pantalla: lo que más ayuda a un agente a crear pantallas nuevas.
 - La receta da los pasos en orden, con componentes, props y tokens.
-- Cada patrón tiene un marco de referencia en Figma, enlazado con su documento.
+- Cada patrón tiene su ejemplo en la librería de Figma, enlazado con su documento.
 
 </Takeaways>
 
 ## Fuentes
 
 - [Anthropic: Effective context engineering for AI agents](https://anthropic.com/engineering/effective-context-engineering-for-ai-agents)
-- [Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)
+- [Figma: Add guidelines files to a design library](https://help.figma.com/hc/en-us/articles/43509372175511)
+- [Figma: Teach the Figma agent how to apply your design system](https://help.figma.com/hc/en-us/articles/43861597594007-Teach-the-Figma-agent-how-to-apply-your-design-system)

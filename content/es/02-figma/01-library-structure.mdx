@@ -1,7 +1,7 @@
 ---
 title: Estructura de la librería
 meta_title: "Cómo organizar una librería de Figma para personas y agentes de IA"
-description: Cómo ordenar las páginas de una librería de Figma para que personas y agentes encuentren cada componente, y qué hacer con los componentes obsoletos.
+description: Cómo ordenar las páginas de una librería de Figma para que personas y agentes encuentren cada componente, cómo marcar los ejemplos que usa el agente de Figma y qué hacer con los componentes obsoletos.
 nav_title: Estructura de la librería
 lastReviewed: 2026-10-20
 ---
@@ -13,6 +13,7 @@ Una librería con una estructura previsible es más fácil de recorrer, para tu 
 - [Fundamentos, componentes y patrones](#fundamentos-componentes-y-patrones)
 - [Una estructura de páginas](#una-estructura-de-páginas)
 - [La página de cada componente](#la-página-de-cada-componente)
+- [Los ejemplos de la librería](#los-ejemplos-de-la-librería)
 - [Lo obsoleto, fuera de la librería](#lo-obsoleto-fuera-de-la-librería)
 - [En resumen](#en-resumen)
 
@@ -47,7 +48,8 @@ Card
 --- Organisms
 DataTable
 Header
---- Patterns     pantallas de referencia anotadas: login, listado, detalle
+--- Patterns
+Examples         un componente por patrón, con sus anotaciones: login, listado, detalle
 Deprecated       componentes retirados, ocultos al publicar
 ```
 
@@ -62,6 +64,27 @@ Para los componentes complejos, una página propia con tres zonas:
 3. **Ejemplos de uso correcto e incorrecto.** La guía de Figma recomienda incluirlos en la documentación, junto con un registro de cambios y enlaces al código ([Figma: Lesson 4, Document and manage your system](https://help.figma.com/hc/en-us/articles/14552804059927-Lesson-4-Document-and-manage-your-system)).
 
 Los ejemplos incorrectos son útiles para las personas. Para los agentes, la forma de transmitir un antipatrón es escribirlo: en las [guidelines de la librería](/figma/library-guidelines) y en la [documentación Markdown](/documentation/why-markdown).
+
+## Los ejemplos de la librería
+
+Un ejemplo es una composición completa hecha con el sistema, como un formulario, un panel o una página de producto. El agente de Figma lo usa como referencia de cómo se combinan los componentes, las variables y el layout, incluidas las decisiones que no caben en la descripción de cada componente. Figma reconoce los ejemplos de dos maneras ([Figma: Teach the Figma agent how to apply your design system](https://help.figma.com/hc/en-us/articles/43861597594007-Teach-the-Figma-agent-how-to-apply-your-design-system)):
+
+- **Una página llamada Examples** en el archivo de la librería, en la que cada diseño es un componente.
+- **El sufijo `_example`** en el nombre de un componente, en cualquier página del archivo: `Dashboard/HeroSection_example`. El nombre tiene que decir cuándo sirve el ejemplo.
+
+El agente consulta hasta 200 ejemplos por librería. Figma pide elegir los que muestran las decisiones que quieres que repita y sustituirlos cuando el sistema cambie.
+
+<Callout variant="recommendation">
+
+Convierte en ejemplo la pantalla de referencia de cada patrón documentado ([Patrones](/documentation/patterns#el-patrón-en-figma)): un componente en la página Examples, con las anotaciones de su comportamiento. Así el agente de Figma parte de la misma pantalla que describe la receta de `docs/patterns/`. No marques como ejemplo un uso incorrecto: el agente lo tomaría como modelo.
+
+</Callout>
+
+<Callout variant="note">
+
+La ayuda habla del agente de Figma. No dice si los ejemplos llegan también por el servidor MCP, ni si un ejemplo oculto al publicar sigue contando.
+
+</Callout>
 
 ## Lo obsoleto, fuera de la librería
 
@@ -84,7 +107,7 @@ Antes de ocultarlo, muévelo a la página **Deprecated** y escribe en su descrip
 ## En resumen
 
 - Fundamentos, componentes y patrones: los patrones son lo que más ayuda a un agente a componer pantallas.
-- Una estructura de páginas fija, con el nivel atómico visible en el orden.
+- Una estructura de páginas fija, con el nivel atómico visible en el orden y cada patrón como ejemplo en la página Examples.
 - Lo obsoleto se marca con su sustituto y se oculta al publicar.
 
 </Takeaways>
@@ -92,4 +115,5 @@ Antes de ocultarlo, muévelo a la página **Deprecated** y escribe en su descrip
 ## Fuentes
 
 - [Figma: Lesson 4, Document and manage your system](https://help.figma.com/hc/en-us/articles/14552804059927-Lesson-4-Document-and-manage-your-system)
+- [Figma: Teach the Figma agent how to apply your design system](https://help.figma.com/hc/en-us/articles/43861597594007-Teach-the-Figma-agent-how-to-apply-your-design-system)
 - [Figma: Hide styles, components, and variables when publishing](https://help.figma.com/hc/en-us/articles/360039238193)

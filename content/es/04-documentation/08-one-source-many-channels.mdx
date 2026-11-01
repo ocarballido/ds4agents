@@ -20,7 +20,7 @@ Cada herramienta lee las reglas del sistema en un sitio distinto: el agente de F
 
 | Destino | Quién lo lee | Límites | Fuente |
 |---|---|---|---|
-| Guidelines de la librería | El agente de Figma | De 3 a 8 archivos, menos de 100 KB recomendados, 200 KB como máximo | [Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511) |
+| Guidelines de la librería | El agente de Figma | De 3 a 8 archivos, menos de 100 KB recomendados, 200 KB como máximo | [Figma: Add guidelines files to a design library](https://help.figma.com/hc/en-us/articles/43509372175511) |
 | Instrucciones de Code Connect | Agentes que leen el diseño por el servidor MCP | Una por conexión de Code Connect UI | [Figma: Code Connect integration](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/) |
 | `CLAUDE.md` o `AGENTS.md` | Claude Code y otros agentes de código, en cada sesión | Menos de 200 líneas por archivo, según Claude Code | [Claude Code: Memory](https://code.claude.com/docs/en/memory) |
 | Skills | Claude Code, cuando la tarea coincide | `SKILL.md` de menos de 500 líneas | [Claude Code: Skills](https://code.claude.com/docs/en/skills) |
@@ -58,7 +58,7 @@ La fuente es la carpeta `docs/` del repositorio, porque es el único sitio con h
 
 ## Generar las guidelines de Figma
 
-Mientras las guidelines estén en beta, los archivos se suben a mano ([Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)). Un script puede prepararlos desde `docs/` y comprobar el tamaño:
+Mientras las guidelines estén en beta, los archivos se suben a mano ([Figma: Add guidelines files to a design library](https://help.figma.com/hc/en-us/articles/43509372175511)). Un script puede prepararlos desde `docs/` y comprobar el tamaño:
 
 ```js filename="scripts/build-figma-guidelines.mjs"
 // Junta docs/ en los archivos que se suben a Figma (Library → Manage guidelines…).
@@ -95,7 +95,7 @@ Para usarlo:
 
 1. Guárdalo en `scripts/` del repositorio de la librería y ejecútalo desde la raíz, con `node scripts/build-figma-guidelines.mjs` o con `npm run docs:figma` si lo dejas como comando del proyecto. Los pasos son los mismos que los del [script de validación](/documentation/validate-docs#cómo-ejecutarlo).
 2. El script escribe los archivos en `dist/figma-guidelines/` y el tamaño total. Si pasa de 100 KB, termina con código de salida 1.
-3. Sube esos archivos a mano en Figma, desde **Library → Manage guidelines…**, mientras las guidelines estén en beta ([Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)).
+3. Sube esos archivos a mano en Figma, desde **Library → Manage guidelines…**, mientras las guidelines estén en beta ([Figma: Add guidelines files to a design library](https://help.figma.com/hc/en-us/articles/43509372175511)).
 
 <Callout variant="recommendation">
 
@@ -115,7 +115,7 @@ Añade `dist/` a `.gitignore`. Los archivos de `dist/figma-guidelines/` se gener
 
 ## Fuentes
 
-- [Figma: About guidelines](https://help.figma.com/hc/en-us/articles/43509372175511)
+- [Figma: Add guidelines files to a design library](https://help.figma.com/hc/en-us/articles/43509372175511)
 - [Figma: Code Connect integration](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/)
 - [Claude Code: How Claude remembers your project](https://code.claude.com/docs/en/memory)
 - [Claude Code: Extend Claude with skills](https://code.claude.com/docs/en/skills)
