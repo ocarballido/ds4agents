@@ -2,7 +2,7 @@
 
 Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El detalle de lo hecho va en `docs/historial.md`.
 
-Última actualización: 2026-11-02, G41: cierre de lo abierto (CodePreview `stable`, G39, `check-ui.sh`). Antes, el mismo día, G40: fase 7 terminada y, con ella, G22; hallazgos principales de la primera tanda de evaluaciones en el capítulo 7. Antes, 2026-11-01: G39 (serie de Figma para su agente) y fase 6 terminada (G38).
+Última actualización: 2026-11-02, TokensDS publicado como 1.3.0 y `components.md` subido a las guidelines (Oscar). Antes, el mismo día, G41: cierre de lo abierto (CodePreview `stable`, G39, `check-ui.sh`). Antes, el mismo día, G40: fase 7 terminada y, con ella, G22; hallazgos principales de la primera tanda de evaluaciones en el capítulo 7. Antes, 2026-11-01: G39 (serie de Figma para su agente) y fase 6 terminada (G38).
 
 ## Plan general
 
@@ -20,7 +20,6 @@ Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El
 Todo está decidido. Lo que queda necesita a Oscar o tiene fecha.
 
 **Para Oscar**
-- **En Figma (TokensDS):** publicar la librería con la nota de la versión 1.3.0 y subir `components.md` regenerado (`npm run docs:figma` en designtokens101). Detalle en el `proyecto/estado.md` de designtokens101.
 - **Iconos (G16):** `icon.svg`, `favicon.ico` y `apple-icon.png` siguen siendo la marca anterior, y el emoticon del que salían (228:6907) ya no existe en Figma. Hace falta un marco de icono en la sección de la marca (298:6831), con contraste también sobre una pestaña oscura del navegador. Con el marco, se exportan los tres archivos y se actualiza G19.
 - **Revisión:** leer las páginas en el navegador. Criterio propio marcado como recomendación: rúbrica, scorecard, extensiones por nivel, categorías funcionales, estructura de páginas, plantillas y scripts.
 

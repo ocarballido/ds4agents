@@ -2,6 +2,10 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-11-02 · Diseño · TokensDS publicado como 1.3.0
+
+- Oscar publica TokensDS con la nota "1.3.0" (D64, D67 y V68) y sube a las guidelines el `components.md` regenerado, con CodePreview `stable`. Detalle en el `proyecto/historial.md` de designtokens101 (commit d5c1e01).
+
 ## 2026-11-02 · Contenido y desarrollo · Cierre de lo abierto (G41)
 
 - Oscar pide cerrar lo que quede según la recomendación de la sesión. En designtokens101 (commit 878d1f4): V66 (propuestas de `CONTRIBUTING.md`), V67 (hallazgos de la primera tanda, marcos Lesson, `components.md` en las guidelines, `rounded-100`) y V68 (CodePreview `stable`: texto `text/neutral/default` en `hover` y `active` de la pestaña no actual, 9,84:1 en Dark; código en línea con `Code`). Cambio de CodeTab y descripciones de CodeTab, CodeTabs y CodePreview hechos en TokensDS con el servidor MCP de Figma.
