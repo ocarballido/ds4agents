@@ -16,6 +16,7 @@ Una evaluación útil se parece al trabajo real del equipo: las pantallas que se
 - [Varios intentos por tarea](#varios-intentos-por-tarea)
 - [El registro](#el-registro)
 - [Una acción por fallo](#una-acción-por-fallo)
+- [Nuestra primera tanda](#nuestra-primera-tanda)
 - [En resumen](#en-resumen)
 
 ## Empezar con pocas tareas reales
@@ -100,6 +101,20 @@ Cada fallo se arregla en el sitio que lee el agente. Para su agente, Figma propo
 <Callout variant="recommendation">
 
 Para un agente de código, los sitios equivalentes son el documento del componente en `docs/components/`, el patrón en `docs/patterns/` y las reglas de `docs/rules/` o de `AGENTS.md`. Haz el arreglo en `docs/` y llévalo a cada destino ([Una fuente, varios destinos](/documentation/one-source-many-channels)); si el fallo viene de Figma, cambia también la descripción o el ejemplo de la librería. Vuelve a pasar la tarea fallida antes de dar la acción por cerrada.
+
+</Callout>
+
+## Nuestra primera tanda
+
+Lo hicimos con el piloto de nuestro sistema el 2 de noviembre de 2026: nueve tareas con el reparto de la tabla (cuatro con patrón, dos sin patrón, una desde Figma y dos trampa), cada una en una sesión nueva de Claude Code sin contexto, puntuadas con los [tres tipos de evaluador](/evaluation/rubric#tres-tipos-de-evaluador). Tres cosas que no esperábamos:
+
+- **Un intento por tarea, no tres.** Cada intento es una sesión completa del agente más su revisión, y siete intentos gastaron más de la mitad del uso de nuestra cuenta en cinco horas. Con las nueve tareas superadas en el primer intento, dejamos los otros dos: el resultado es pass@1 y no dice nada de la constancia.
+- **Las nueve tareas sacaron un 3.** Casi no distinguen un buen intento de uno malo. Además, la rúbrica mide el uso del sistema, no el contenido: dos agentes escribieron contenido propio y lo avisaron, y la nota no lo recoge.
+- **El agente siguió el diseño aunque contradijera una decisión.** El marco de Figma de la tarea tenía un texto anterior a una decisión del proyecto que el agente tenía en el contexto, y lo copió tal cual.
+
+<Callout variant="recommendation">
+
+Calcula el coste con una tarea antes de lanzar la tanda. Si no llegas a tres intentos, apúntalo en el registro (`trials`) y no saques conclusiones sobre la constancia. Cuando todas las tareas saquen un 3, conviértelas en evaluaciones de regresión y añade otras más difíciles, sacadas de fallos reales; el contenido revísalo aparte, porque la rúbrica no lo mide. Antes de una tarea desde Figma, comprueba que el marco está al día: el agente lo toma como fuente aunque contradiga lo que tiene escrito.
 
 </Callout>
 

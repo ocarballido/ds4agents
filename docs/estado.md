@@ -2,7 +2,7 @@
 
 Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El detalle de lo hecho va en `docs/historial.md`.
 
-Última actualización: 2026-11-01, G39: novedades de la serie de Figma para su agente (ejemplos de la librería, skills del agente de Figma, título y planes de las guidelines) y el vídeo en Fuentes. Siguiente: fase 7 (evaluación), en la sesión de designtokens101. Antes, el mismo día: fase 6 de G22 terminada (G38; D77 en designtokens101), prueba de Claude Design en el capítulo 6 (G37) y hallazgos de la fase 6 (G36).
+Última actualización: 2026-11-02, G40: fase 7 terminada y, con ella, G22; hallazgos principales de la primera tanda de evaluaciones en el capítulo 7. Antes, 2026-11-01: G39 (serie de Figma para su agente) y fase 6 terminada (G38).
 
 ## Plan general
 
@@ -13,12 +13,12 @@ Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El
 | 3 | Contenido | Escribir las páginas a partir de `docs/guia-fuente.md` | Hecho (2026-10-20): 53 páginas, con listas de comprobación (G14); revisión de Oscar pendiente |
 | 4 | Diseño | Marca definitiva e ilustración de portada (G16) | Hecho (2026-10-20) |
 | 5 | Desarrollo | Despliegue en Vercel y dominio `ds4agents.com` (G17) | Hecho (2026-10-21) |
-| 6 | Diseño y desarrollo | Aplicar la guía al propio sistema (G22), en designtokens101 | En curso: fases 1 a 5 terminadas (2026-10-22) y fase 6 (2026-11-01); siguiente, fase 7 (evaluación) |
+| 6 | Diseño y desarrollo | Aplicar la guía al propio sistema (G22), en designtokens101 | Hecho (2026-11-02): fases 1 a 7 (G40) |
 
 ## Pendiente
 
-- **Fase 7 (G22), siguiente:** evaluación del sistema (capítulo 7), en designtokens101. La scorecard tiene Gobernanza a 1 (sin changelog ni proceso de contribución).
-- **De la fase 6, para Oscar:** subir a TokensDS `overview.md` y `components.md` regenerados (`npm run docs:figma` en designtokens101); borrar la rama `prueba/cap6-claude-code` de designtokens101 cuando la haya visto. DesignToken101 está en Claude: desde el traslado, `/design-sync` no llega a Claude ("Move again" o pedírselo a Claude, antes del 14 de diciembre de 2026).
+- **Después de G22, en designtokens101:** Oscar revisa las dos propuestas de `CONTRIBUTING.md` y decide los hallazgos de `evals/evals.md` ("Sin decidir"); publicar TokensDS con la nota de la versión 1.3.0. Lo abierto está en el `proyecto/estado.md` de designtokens101.
+- **DesignToken101 en Claude:** desde el traslado, `/design-sync` no llega a Claude ("Move again" o pedírselo a Claude, antes del 14 de diciembre de 2026).
 
 - **De G39, en designtokens101:** decidir si los marcos Lesson de TokensDS (Templates, 35:843…) pasan a ser ejemplos (componentes en una página Examples o con el sufijo `_example`), y revisar si el `components.md` de las guidelines repite las descripciones de los componentes (Figma pide la guía de cada componente en su descripción).
 - **De G39, para Oscar:** ver el vídeo "Make your Figma design system agent-ready" (no se pudo leer su transcripción) y confirmar que no dice nada que no esté en los artículos, por ejemplo en "Keep variants focused". Sin decidir: la opción C (consejos para preparar la librería con el agente de Figma: renombrar capas, auto layout, descripciones en bloque, revisión antes de publicar, Check designs). El artículo del servidor MCP se titula ahora "Guide to the Figma MCP server"; los enlaces dicen "Figma MCP server".

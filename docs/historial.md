@@ -2,6 +2,13 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-11-02 · Contenido · Fase 7 de G22 terminada (G40)
+
+- En designtokens101 (commits 174bd55 y 2926d7b, detalle en su `historial.md`): `CHANGELOG.md` 1.3.0 (D78); evaluaciones en `evals/` (D79), primera tanda con un intento por tarea, 3 en las nueve (V64), sin intentos 2 y 3 ni E08 (V65: siete intentos subieron la ventana de cinco horas de la cuenta del 10 % al 72 %); `CONTRIBUTING.md`; scorecard repetida, media 2,88 (1,50 en la auditoría). Guidelines de la fase 6 subidas a TokensDS y rama `prueba/cap6-claude-code` borrada.
+- Copia de `docs/patterns/checklist.md` (V64, línea de ámbito: solo para ds4agents) a `docs/sistema/libreria/patterns/checklist.md`, hecha por Oscar (commit ca88dbb). Comprobado con `diff -r`: `docs/sistema/libreria/` es igual al `docs/` de designtokens101 (sin `inventory.md`).
+- `07-evaluation/02-design-evals`: sección "Nuestra primera tanda", prueba propia del 2 de noviembre (criterio de G34) con los tres hallazgos de G40 y una recomendación. `07-evaluation/06-checklist`: el piloto cerró la fase con un intento por tarea y la scorecard de 1,50 a 2,88. `lastReviewed` sin cambiar: no se han vuelto a comprobar sus fuentes.
+- `npm test`, `npm run build` y `npm run check:content` sin errores.
+
 ## 2026-11-01 · Contenido · Serie de Figma para su agente (G39)
 
 - Fuente: el vídeo "Make your Figma design system agent-ready" (Figma, YouTube, 28 de octubre de 2026, 8 min 9 s) y la serie de la ayuda que enlaza su descripción. La transcripción del vídeo no se pudo sacar (YouTube devuelve vacía la pista de subtítulos sin navegador); se revisaron la descripción, los capítulos y los artículos, con su fecha de edición leída en la API pública del centro de ayuda de Figma: "Add guidelines files to a design library" (antes "About guidelines", editado el 2026-10-30), "Teach the Figma agent how to apply your design system" (2026-10-05), "Create and manage custom skills in Figma" (2026-10-06), "Work with the Figma agent in design files" (2026-10-27) y la introducción de la serie (2026-10-28).
