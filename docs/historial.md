@@ -2,6 +2,14 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-11-02 · Contenido y desarrollo · Cierre de lo abierto (G41)
+
+- Oscar pide cerrar lo que quede según la recomendación de la sesión. En designtokens101 (commit 878d1f4): V66 (propuestas de `CONTRIBUTING.md`), V67 (hallazgos de la primera tanda, marcos Lesson, `components.md` en las guidelines, `rounded-100`) y V68 (CodePreview `stable`: texto `text/neutral/default` en `hover` y `active` de la pestaña no actual, 9,84:1 en Dark; código en línea con `Code`). Cambio de CodeTab y descripciones de CodeTab, CodeTabs y CodePreview hechos en TokensDS con el servidor MCP de Figma.
+- Copiados de designtokens101: `src/components/CodeBlock.tsx` (la línea de la pestaña no actual) y `docs/sistema/libreria/components/code-block.md`. `diff -r`: `docs/sistema/libreria/` igual al `docs/` de designtokens101 (sin `inventory.md`).
+- G39: título "Guide to the Figma MCP server" comprobado en la API del centro de ayuda de Figma (artículo 32132100833559, editado el 2026-10-23); texto de los enlaces cambiado en `00-start-here/04-requirements`, `02-figma/06-library-guidelines`, `06-agent-layer/04-mcp-servers` y `99-resources/01-sources`. El vídeo y la opción C quedan cerrados sin cambios en la guía.
+- `check-ui.sh` (`07-evaluation/03-rubric`, con `--t101-`) sobre `src/components` y `src/app` de designtokens101: tres valores literales en `src/components`, dos en comentarios (`ColorScale.tsx`) y uno en `ScaleGenerator.tsx`; ninguno en `src/app`; no ve `rounded-100`, que sí encuentra `check:ui` (`tools/check-ui.mjs`). En la rúbrica, como prueba propia con recomendación. `lastReviewed` sin cambiar.
+- `estado.md` reordenado: para Oscar, con fecha y sin verificar. Fuera: `Takeaways` (G15, ya en `CLAUDE.md`) y las pruebas del servidor MCP, que ya están en los capítulos 2 y 3.
+
 ## 2026-11-02 · Contenido · Fase 7 de G22 terminada (G40)
 
 - En designtokens101 (commits 174bd55 y 2926d7b, detalle en su `historial.md`): `CHANGELOG.md` 1.3.0 (D78); evaluaciones en `evals/` (D79), primera tanda con un intento por tarea, 3 en las nueve (V64), sin intentos 2 y 3 ni E08 (V65: siete intentos subieron la ventana de cinco horas de la cuenta del 10 % al 72 %); `CONTRIBUTING.md`; scorecard repetida, media 2,88 (1,50 en la auditoría). Guidelines de la fase 6 subidas a TokensDS y rama `prueba/cap6-claude-code` borrada.

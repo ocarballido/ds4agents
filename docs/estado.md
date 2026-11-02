@@ -2,7 +2,7 @@
 
 Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El detalle de lo hecho va en `docs/historial.md`.
 
-Última actualización: 2026-11-02, G40: fase 7 terminada y, con ella, G22; hallazgos principales de la primera tanda de evaluaciones en el capítulo 7. Antes, 2026-11-01: G39 (serie de Figma para su agente) y fase 6 terminada (G38).
+Última actualización: 2026-11-02, G41: cierre de lo abierto (CodePreview `stable`, G39, `check-ui.sh`). Antes, el mismo día, G40: fase 7 terminada y, con ella, G22; hallazgos principales de la primera tanda de evaluaciones en el capítulo 7. Antes, 2026-11-01: G39 (serie de Figma para su agente) y fase 6 terminada (G38).
 
 ## Plan general
 
@@ -17,21 +17,18 @@ Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El
 
 ## Pendiente
 
-- **Después de G22, en designtokens101:** Oscar revisa las dos propuestas de `CONTRIBUTING.md` y decide los hallazgos de `evals/evals.md` ("Sin decidir"); publicar TokensDS con la nota de la versión 1.3.0. Lo abierto está en el `proyecto/estado.md` de designtokens101.
-- **DesignToken101 en Claude:** desde el traslado, `/design-sync` no llega a Claude ("Move again" o pedírselo a Claude, antes del 14 de diciembre de 2026).
+Todo está decidido. Lo que queda necesita a Oscar o tiene fecha.
 
-- **De G39, en designtokens101:** decidir si los marcos Lesson de TokensDS (Templates, 35:843…) pasan a ser ejemplos (componentes en una página Examples o con el sufijo `_example`), y revisar si el `components.md` de las guidelines repite las descripciones de los componentes (Figma pide la guía de cada componente en su descripción).
-- **De G39, para Oscar:** ver el vídeo "Make your Figma design system agent-ready" (no se pudo leer su transcripción) y confirmar que no dice nada que no esté en los artículos, por ejemplo en "Keep variants focused". Sin decidir: la opción C (consejos para preparar la librería con el agente de Figma: renombrar capas, auto layout, descripciones en bloque, revisión antes de publicar, Check designs). El artículo del servidor MCP se titula ahora "Guide to the Figma MCP server"; los enlaces dicen "Figma MCP server".
+**Para Oscar**
+- **En Figma (TokensDS):** publicar la librería con la nota de la versión 1.3.0 y subir `components.md` regenerado (`npm run docs:figma` en designtokens101). Detalle en el `proyecto/estado.md` de designtokens101.
+- **Iconos (G16):** `icon.svg`, `favicon.ico` y `apple-icon.png` siguen siendo la marca anterior, y el emoticon del que salían (228:6907) ya no existe en Figma. Hace falta un marco de icono en la sección de la marca (298:6831), con contraste también sobre una pestaña oscura del navegador. Con el marco, se exportan los tres archivos y se actualiza G19.
+- **Revisión:** leer las páginas en el navegador. Criterio propio marcado como recomendación: rúbrica, scorecard, extensiones por nivel, categorías funcionales, estructura de páginas, plantillas y scripts.
 
-- **CodePreview (G18):** los tres puntos abiertos de V60 (contraste de la pestaña en `active` en Dark, `hover` en el carril, código en línea de la vista previa) se deciden en designtokens101 y se copian aquí (G02).
+**Con fecha**
+- **Claude Design (G21, G36):** la web independiente (claude.ai/design) cierra el **14 de diciembre de 2026**. Antes, comprobar si Anthropic documenta qué hace `/design-sync` después del cierre, y llevar a Claude lo que cambie del sistema ("Move again" o pedírselo a Claude). Ese día, revisar `/agent-layer/claude-design`, el capítulo 4 (`one-source-many-channels`) y la lista de publicación de `/evaluation/changelog`, y quitar o reducir el aviso.
+- **Fuentes que caducan pronto:** sistemas de diseño en Claude (beta; la ayuda cambió el 2026-10-31) y las capacidades de IA de Storybook (preview). Revisar sus páginas y su `lastReviewed` en cada repaso.
 
-- **`Takeaways` (G15):** si designtokens101 cambia el componente, copiar el cambio aquí sin perder la excepción.
-- **Iconos (G16):** `icon.svg`, `favicon.ico` y `apple-icon.png` siguen siendo la marca anterior, y el emoticon del que salían (228:6907) ya no existe en Figma. Falta un marco de icono en la sección de la marca (298:6831).
-- **Favicon en pestañas oscuras (G16):** el verde del emoticon tiene poco contraste sobre una pestaña oscura del navegador.
-- **Revisión de Oscar:** leer las 53 páginas en el navegador. Criterio propio marcado como recomendación: rúbrica, scorecard, extensiones por nivel, categorías funcionales, estructura de páginas, plantillas y scripts.
-- **Sin verificar (no se afirma):** si las guidelines de Figma llegan por el servidor MCP; si Figma exporta `$deprecated`; qué pasa con las instancias de un componente oculto al publicar; por qué el mapa de un marco devuelve iconos sueltos de componentes no conectados (pendiente en designtokens101); si los ejemplos de la librería llegan por el servidor MCP y si un ejemplo oculto al publicar sigue contando; si el agente de Figma elige una skill por su descripción (la ayuda dice que se invoca con `/` y también habla de invocación automática).
-- **Comprobado con el servidor MCP remoto (2026-10-21), ya en el capítulo 2:** la descripción y los dev resources llegan con `get_design_context`; las anotaciones, solo en un componente o una variante, no en el conjunto. Ya en el capítulo 3 (`/tokens/descriptions-in-dtcg`): ni `get_design_context` ni `get_variable_defs` entregan la descripción de una variable. Es una prueba en un archivo: repetirla si cambia el servidor.
-- **Scripts de la guía:** `validate-docs.mjs` y `build-figma-guidelines.mjs` ya se usan, adaptados, en designtokens101 (D67); `check-ui.sh` sigue probado solo con archivos de ejemplo.
-- **Claude Design (G21, G36):** la web independiente (claude.ai/design) cierra el **14 de diciembre de 2026**. Antes, comprobar si Anthropic documenta qué hace `/design-sync` después del cierre; ese día, revisar `/agent-layer/claude-design`, el capítulo 4 (`one-source-many-channels`) y la lista de publicación de `/evaluation/changelog`, y quitar o reducir el aviso. Los sistemas de diseño en Claude siguen en beta (Pro, Max, Ultra, Team y Enterprise). La ayuda de Claude Design cambió el 2026-10-31: revisarla otra vez antes de publicar.
-- **Sin verificar en la ayuda de Claude:** qué hace `/design-sync` después del cierre de claude.ai/design, y si un sistema creado desde un chat se edita a mano (la ayuda solo dice que los movidos no).
-- **Fuentes que caducan pronto:** sistemas de diseño en Claude (beta) y las capacidades de IA de Storybook (preview). Revisar `lastReviewed` antes de publicar.
+**Sin verificar (la guía no lo afirma)**
+- Figma: si las guidelines y los ejemplos de la librería llegan por el servidor MCP; si un ejemplo oculto al publicar sigue contando; si Figma exporta `$deprecated`; qué pasa con las instancias de un componente oculto al publicar; por qué el mapa de un marco devuelve iconos sueltos de componentes no conectados; si el agente de Figma elige una skill por su descripción.
+- Claude: qué hace `/design-sync` después del cierre de claude.ai/design, y si un sistema creado desde un chat se edita a mano (la ayuda solo dice que los movidos no).
+- Las pruebas con el servidor MCP remoto (capítulos 2 y 3, 2026-10-21) son de un archivo: repetirlas si cambia el servidor.

@@ -67,6 +67,14 @@ if [ "$found" = 0 ]; then echo "  ninguno"; fi
 
 El script lee los componentes obsoletos del frontmatter de `docs/components/` ([Componentes](/documentation/components#qué-hace-útil-cada-sección)), así que no hay que mantener otra lista.
 
+Lo probamos con los componentes de nuestro sistema el 2 de noviembre de 2026. Encontró tres valores literales, dos de ellos dentro de comentarios, y no vio las clases de Tailwind que usan un primitivo, como `rounded-100`, porque solo busca variables CSS.
+
+<Callout variant="recommendation">
+
+Revisa a mano lo que encuentre: un color en un comentario no es un fallo. Si usas Tailwind, añade una búsqueda para las clases de tus primitivos.
+
+</Callout>
+
 ## Lo que puntúa un modelo o una persona
 
 Lo que no se puede buscar con un script, como "máximo un botón principal por vista" o "los textos siguen la guía", lo puntúa un modelo o una persona. La skill `review-ui` del [capítulo 6](/agent-layer/skills#skill-para-revisar-interfaces) sirve como evaluador de modelo: devuelve una tabla de reglas incumplidas.
