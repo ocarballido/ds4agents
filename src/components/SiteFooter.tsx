@@ -3,8 +3,7 @@ import { Logo } from '@/components/Logo';
 import { TextLink } from '@/components/TextLink';
 
 // Anatomía: docs/sistema/componentes-v1.md §4.8. Región footer: logotipo, autor (P8), aviso de P7,
-// enlace para avisar de un error (P25) y, solo en ds4agents por ahora, enlace a la página de privacidad
-// (G42; designtokens101 lo incorporará después).
+// enlace para avisar de un error (P25) y enlace a la página de privacidad (G42).
 
 const AUTHOR_URL = 'https://www.oscarballido.com';
 const ISSUES_URL = 'https://github.com/ocarballido/ds4agents/issues';
@@ -37,7 +36,7 @@ export function SiteFooter() {
             {t('reportError')} <TextLink href={ISSUES_URL}>{t('reportLink')}</TextLink>
           </p>
           {/* G42: mismo patrón que P25 (pregunta y enlace en un párrafo): el enlace está en una línea de texto,
-              exento de 2.5.8, y la pregunta le da contexto (2.4.4). */}
+              exento de 2.5.8, y la pregunta le da contexto (2.4.4). Interno: sin icono externo. */}
           <p>
             {t('privacyQuestion')} <TextLink href={PRIVACY_PATH}>{t('privacyLink')}</TextLink>
           </p>

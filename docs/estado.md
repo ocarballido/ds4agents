@@ -2,7 +2,7 @@
 
 Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El detalle de lo hecho va en `docs/historial.md`.
 
-Última actualización: 2026-11-19, G42: medición de visitas con Vercel Web Analytics y Search Console, `/privacy` y enlace en el pie; activa en producción sin esperar a la respuesta de Vercel. Antes, 2026-11-02, TokensDS publicado como 1.3.0 y `components.md` subido a las guidelines (Oscar). Antes, el mismo día, G41: cierre de lo abierto (CodePreview `stable`, G39, `check-ui.sh`). Antes, el mismo día, G40: fase 7 terminada y, con ella, G22; hallazgos principales de la primera tanda de evaluaciones en el capítulo 7. Antes, 2026-11-01: G39 (serie de Figma para su agente) y fase 6 terminada (G38).
+Última actualización: 2026-11-19, G42 terminada: pie copiado de designtokens101 (V69), excepción temporal cerrada, contacto por los issues de GitHub y sin preguntar a Vercel. Antes, el mismo día, G42: medición de visitas con Vercel Web Analytics y Search Console, `/privacy` y enlace en el pie. Antes, 2026-11-02, TokensDS publicado como 1.3.0 y `components.md` subido a las guidelines (Oscar). Antes, el mismo día, G41: cierre de lo abierto (CodePreview `stable`, G39, `check-ui.sh`). Antes, el mismo día, G40: fase 7 terminada y, con ella, G22; hallazgos principales de la primera tanda de evaluaciones en el capítulo 7. Antes, 2026-11-01: G39 (serie de Figma para su agente) y fase 6 terminada (G38).
 
 ## Plan general
 
@@ -14,18 +14,14 @@ Qué sigue abierto. **Corto a propósito**: se carga al empezar cada sesión. El
 | 4 | Diseño | Marca definitiva e ilustración de portada (G16) | Hecho (2026-10-20) |
 | 5 | Desarrollo | Despliegue en Vercel y dominio `ds4agents.com` (G17) | Hecho (2026-10-21) |
 | 6 | Diseño y desarrollo | Aplicar la guía al propio sistema (G22), en designtokens101 | Hecho (2026-11-02): fases 1 a 7 (G40) |
-| 7 | Desarrollo | Medición de visitas (G42) | En curso: activa en producción (2026-11-19); falta la respuesta de Vercel y llevarla a designtokens101 |
+| 7 | Desarrollo | Medición de visitas (G42) | Hecho (2026-11-19): activa en producción en los dos sitios; pie copiado de designtokens101 (V69) |
 
 ## Pendiente
 
 Todo está decidido. Lo que queda necesita a Oscar o tiene fecha.
 
 **Para Oscar**
-- **Analítica (G42):**
-  1. Preguntar a Vercel si los datos de Web Analytics son "Customer Data", de los que es encargado, o "Service-Generated Data", que su DPA le deja usar para sus propias analíticas. Preguntar también cuánto tiempo los conserva: la AEPD pide 25 meses como máximo.
-  2. Sustituir el `Callout` pendiente de `/privacy` por un canal de contacto. Con la respuesta de Vercel, revisar los apartados "Quién trata los datos" y "Cuánto tiempo se ven".
-  3. Comprobar en Search Console que la propiedad de dominio `ds4agents.com` está verificada (el TXT ya existe).
-  4. Llevar el enlace del pie y la analítica a designtokens101 (TokensDS, §4.8 y código). Después, copiar aquí y quitar la excepción del pie de `CLAUDE.md`.
+- **Search Console (G42):** comprobar que la propiedad de dominio `ds4agents.com` está verificada (el TXT ya existe).
 - **Iconos (G16):** `icon.svg`, `favicon.ico` y `apple-icon.png` siguen siendo la marca anterior, y el emoticon del que salían (228:6907) ya no existe en Figma. Hace falta un marco de icono en la sección de la marca (298:6831), con contraste también sobre una pestaña oscura del navegador. Con el marco, se exportan los tres archivos y se actualiza G19.
 - **Revisión:** leer las páginas en el navegador. Criterio propio marcado como recomendación: rúbrica, scorecard, extensiones por nivel, categorías funcionales, estructura de páginas, plantillas y scripts.
 
@@ -35,6 +31,6 @@ Todo está decidido. Lo que queda necesita a Oscar o tiene fecha.
 
 **Sin verificar (la guía no lo afirma)**
 - Figma: si las guidelines y los ejemplos de la librería llegan por el servidor MCP; si un ejemplo oculto al publicar sigue contando; si Figma exporta `$deprecated`; qué pasa con las instancias de un componente oculto al publicar; por qué el mapa de un marco devuelve iconos sueltos de componentes no conectados; si el agente de Figma elige una skill por su descripción.
-- Vercel (G42): en qué categoría de su DPA entran los datos de Web Analytics, cuánto tiempo los conserva y cómo calcula el hash con el que reconoce a quien visita la web.
+- Vercel (G42): en qué categoría de su DPA entran los datos de Web Analytics, cuánto tiempo los conserva y cómo calcula el hash con el que reconoce a quien visita la web. Oscar no se lo preguntará, y `/privacy` no lo afirma.
 - Claude: qué hace `/design-sync` después del cierre de claude.ai/design, y si un sistema creado desde un chat se edita a mano (la ayuda solo dice que los movidos no).
 - Las pruebas con el servidor MCP remoto (capítulos 2 y 3, 2026-10-21) son de un archivo: repetirlas si cambia el servidor.

@@ -68,8 +68,8 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           </div>
           <SiteFooter />
         </NextIntlClientProvider>
-        {/* G42: visitas con Vercel Web Analytics, sin cookies ni eventos personalizados. No mide nada hasta
-            activarlo en el panel de Vercel, que añade las rutas /_vercel/insights/* en el siguiente despliegue
+        {/* G42: visitas con Vercel Web Analytics, sin cookies ni eventos personalizados.
+            Activado en el panel de Vercel el 2026-11-19, que sirve las rutas /_vercel/insights/*
             (https://vercel.com/docs/analytics/quickstart). Lo que se recoge, en /privacy. */}
         <Analytics />
       </body>

@@ -2,6 +2,21 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-11-19 · Desarrollo · Pie copiado de designtokens101 y G42 terminada
+
+- designtokens101 incorpora el enlace a `/privacy` del pie (V69, commits eb895b3 y 24dc538). Oscar decide no preguntar a Vercel y usar como canal de contacto los issues de GitHub, que son públicos.
+- Copiado de designtokens101:
+  - `src/components/SiteFooter.tsx`: cambian los comentarios; el JSX ya era igual. Se conservan `ISSUES_URL` de ds4agents, la ruta del comentario de anatomía y G42 en lugar de V69.
+  - `docs/sistema/componentes-v1.md`: el §4.8, la fila de SiteFooter del §4.10 y la fila de V69 de la tabla final, literales. El script de la copia comprueba que los tres bloques quedan iguales a los de `proyecto/componentes-v1.md`.
+- `src/app/privacy/privacy.mdx` con los cambios de designtokens101:
+  - Sin el `Callout` pendiente: el contacto son los issues del repositorio de ds4agents, en "Quién es responsable" y en "Tus derechos", con el aviso de no escribir datos personales.
+  - Voz activa: "descarta la sesión", "registra los datos", "Vercel cubre las transferencias", "no la usamos para nada más" y "Vercel no asocia los datos", además de "un valor que sale de los datos". El enlace pasa a "RGPD: artículo 6.1.f".
+  - El `diff` con designtokens101 deja solo lo propio de cada sitio: el nombre, "guía" o "curso", la frase de las herramientas y la URL de los issues.
+  - `LAST_REVIEWED` sigue en 2026-11-19, porque el texto cambia el mismo día.
+- Comentario de `<Analytics />` en `src/app/layout.tsx` al día. Quitada la excepción "Pie (G42, temporal)" de `CLAUDE.md`. Figma y `docs/sistema/libreria/` no cambian: TokensDS ya tiene la línea Privacy (363:200) y el `docs/` de designtokens101 no ha cambiado.
+- Citas comprobadas el 2026-11-19: RGPD en el BOE (12.2, "El responsable del tratamiento facilitará al interesado el ejercicio de sus derechos", y 13.1.a, "la identidad y los datos de contacto del responsable") y Vercel, Pricing for Web Analytics ("guaranteed to be stored and viewable").
+- Comprobado: `npm test`, `check:tokens`, `build` y `check:content` sin errores. En el HTML de `/privacy`: diez anclas con destino, un solo h1 y ningún `Callout` pendiente. Con la build en local y Chrome (Playwright), a 320 px en Light y Dark, ni `/privacy` ni `/start-here/what-is-ds4agents` tienen scroll horizontal (`scrollWidth` 320) ni elementos que se salgan. En la captura del pie, el enlace de privacidad ocupa dos líneas, como dice el §4.8, y no lleva icono externo.
+
 ## 2026-11-19 · Desarrollo · Medición de visitas (G42)
 
 - Oscar pide estudiar Google Analytics. La sesión propone tres opciones (Vercel Web Analytics, GA4 con consentimiento y Search Console) y Oscar elige Vercel y Search Console, solo visitas, con el plan Pro. El cambio irá a los dos sitios, empezando por este.
