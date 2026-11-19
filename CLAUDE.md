@@ -20,6 +20,7 @@ Lee bajo demanda, cuando el trabajo lo pida:
 
 - **Takeaways (G15):** usa el icono `BookOpenText` de lucide-react, no `li:graduation-cap`. Figma y `docs/sistema/libreria/components/takeaways.md` muestran el birrete; en ds4agents manda esta excepción.
 - **Cierre de cada página:** se llama "En resumen", no "Lo que te llevas" (`takeaways.md`).
+- **Pie (G42, temporal):** `SiteFooter` tiene un tercer párrafo con el enlace a `/privacy` ("¿Qué datos recogemos? Lee la política de privacidad"). El §4.8 de `docs/sistema/componentes-v1.md` y el SiteFooter de TokensDS todavía no lo tienen. Cuando designtokens101 lo incorpore, se copia y esta excepción se quita.
 - **Textos y rutas de ejemplo:** los de los documentos de la librería son de designtokens101 (por ejemplo, "Empezar el curso" o `/start-here/what-is-designtoken101` en `button.md`). En ds4agents se usan los suyos.
 - **Página de lección (`patterns/lesson-page.md`):**
   - En ds4agents, el capítulo 98 es Plantillas; no hay `content/es/98-tools/`.

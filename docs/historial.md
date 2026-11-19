@@ -2,6 +2,27 @@
 
 Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
 
+## 2026-11-19 · Desarrollo · Medición de visitas (G42)
+
+- Oscar pide estudiar Google Analytics. La sesión propone tres opciones (Vercel Web Analytics, GA4 con consentimiento y Search Console) y Oscar elige Vercel y Search Console, solo visitas, con el plan Pro. El cambio irá a los dos sitios, empezando por este.
+- Fuentes comprobadas el 2026-11-19:
+  - AEPD: Guía sobre el uso de las cookies (mayo 2024): §2.1.2 b, preferencias exentas; §2.1.2 c, análisis no exentas; requisitos de la primera capa en las págs. 20 y 21. Uso de cookies para herramientas de medición de audiencia (enero 2024): condiciones de la exención y garantías mínimas.
+  - Google: consent mode (no sustituye al banner; el modo básico no carga nada hasta aceptar).
+  - Next.js: `@next/third-parties`, experimental.
+  - Vercel: Privacy and Compliance, Pricing for Web Analytics, quickstart y Data Processing Addendum (actualizado el 2026-03-17).
+  - Search Console: propiedades y verificación.
+  - RGPD en el BOE: artículos 6.1.f, 11, 15 a 21 y 77.
+- Hallazgo del DPA de Vercel: Vercel es encargado de los "Customer Data", pero responsable de los "Service-Generated Data", que puede usar para sus propias analíticas, y no dice en cuál entran los datos de Web Analytics. Tampoco publica cuánto tiempo los conserva. La sesión propuso esperar a su respuesta para activarlo; Oscar lo aceptó y después, el mismo día, decidió activarlo ya, con las dos preguntas abiertas.
+- Prueba propia (2026-11-19): el script de producción `va.vercel-scripts.com/v1/script.js` no usa `document.cookie`. Escribe `__va_attribution` en `localStorage` únicamente cuando se llama a `identify`, y ds4agents no la llama.
+- El dominio ya tiene un registro TXT `google-site-verification` (DNS en cdmon). La web personal de Oscar no tiene medio de contacto, así que el canal de contacto de `/privacy` queda en un `<Callout variant="pending">`.
+- Código:
+  - `@vercel/analytics` 2.0.1 y `<Analytics />` en `src/app/layout.tsx`.
+  - `src/app/privacy/`: `page.tsx` con `LessonHeader` y el texto en `privacy.mdx`.
+  - Tercer párrafo de `SiteFooter`, con los textos en `messages/es.json`.
+  - TypeScript 7 no carga los `@types` por defecto, así que `page.tsx` referencia `mdx` para importar el MDX.
+- Excepción temporal en `CLAUDE.md` (pie).
+- Comprobado: `npm test`, `check:tokens`, `build` y `check:content` sin errores. En el HTML de `/privacy`: diez anclas con destino, un h1 y canonical `https://ds4agents.com/privacy`. El enlace del pie aparece en las páginas de la guía, y el código en línea se parte (`wrap-break-word`), así que no da scroll a 320 px.
+
 ## 2026-11-02 · Diseño · TokensDS publicado como 1.3.0
 
 - Oscar publica TokensDS con la nota "1.3.0" (D64, D67 y V68) y sube a las guidelines el `components.md` regenerado, con CodePreview `stable`. Detalle en el `proyecto/historial.md` de designtokens101 (commit d5c1e01).
