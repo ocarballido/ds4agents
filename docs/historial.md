@@ -21,6 +21,7 @@ Detalle de lo hecho en cada frente, con fecha. Lo más reciente, arriba.
   - Tercer párrafo de `SiteFooter`, con los textos en `messages/es.json`.
   - TypeScript 7 no carga los `@types` por defecto, así que `page.tsx` referencia `mdx` para importar el MDX.
 - Excepción temporal en `CLAUDE.md` (pie).
+- Commit 79de241 con la CI en verde. Oscar activa Analytics en el panel y vuelve a desplegar. Comprobado en producción sin enviar visitas de prueba: el JavaScript publicado inserta `/_vercel/insights/script.js`, que devuelve 200 con el script de Vercel, y `/_vercel/insights/view` responde 200 a `OPTIONS`, mientras que una ruta inventada en `/_vercel/insights/` da 404.
 - Comprobado: `npm test`, `check:tokens`, `build` y `check:content` sin errores. En el HTML de `/privacy`: diez anclas con destino, un h1 y canonical `https://ds4agents.com/privacy`. El enlace del pie aparece en las páginas de la guía, y el código en línea se parte (`wrap-break-word`), así que no da scroll a 320 px.
 
 ## 2026-11-02 · Diseño · TokensDS publicado como 1.3.0
